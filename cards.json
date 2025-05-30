@@ -1,352 +1,352 @@
 [
   {
-    "id": "knob",
-    "title": "Knob",
-    "category": "core",
-    "tags": [
-      "rotary",
-      "control",
-      "parameter"
-    ],
+    "id": "knob_skeuomorphic",
+    "title": "Skeuomorphic Knob",
+    "category": "control",
+    "difficulty": "intermediate",
+    "tags": ["knob", "radial", "highlight", "shadow", "bevel"],
+    "tutorial": {
+      "status": "done",
+      "parts": 3,
+      "notes": "Finished knob tutorial with all three parts."
+    },
+    "slug": "skeuomorphic-knob"
+  },
+  {
+    "id": "vu_meter_analog",
+    "title": "Analog VU or LED Meter",
+    "category": "display",
+    "difficulty": "intermediate",
+    "tags": ["meter", "led", "vertical", "bars", "lighting"],
+    "tutorial": {
+      "status": "in progress",
+      "parts": 3,
+      "notes": "Scale and needle steps drafted; glow zones pending."
+    },
+    "slug": "vu-led-meter"
+  },
+  {
+    "id": "waveform_display",
+    "title": "Waveform Display",
+    "category": "display",
+    "difficulty": "advanced",
+    "tags": ["waveform", "oscilloscope", "svg", "animated"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Outline ready; content to be authored."
+    },
+    "slug": "waveform-display"
   },
   {
-    "id": "slider",
-    "title": "Slider",
-    "category": "core",
-    "tags": [
-      "fader",
-      "linear",
-      "parameter"
-    ],
+    "id": "selector_knob_rotary",
+    "title": "Rotary Selector Knob",
+    "category": "control",
+    "difficulty": "intermediate",
+    "tags": ["selector", "rotary", "ticks", "mechanical"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Tick-mark generation and snapping TBD."
+    },
+    "slug": "rotary-selector-knob"
   },
   {
-    "id": "button",
-    "title": "Button",
-    "category": "core",
-    "tags": [
-      "toggle",
-      "action",
-      "press"
-    ],
+    "id": "toggle_switch_glossy",
+    "title": "Glossy Toggle Switch",
+    "category": "control",
+    "difficulty": "beginner",
+    "tags": ["toggle", "on-off", "shiny", "switch"],
+    "tutorial": {
+      "status": "in progress",
+      "notes": "Base shape and states drafted; gloss finish pending."
+    },
+    "slug": "glossy-toggle-switch"
+  },
+  {
+    "id": "drum_pad_grid",
+    "title": "Drum Pad Grid",
+    "category": "input",
+    "difficulty": "intermediate",
+    "tags": ["grid", "buttons", "pads", "velocity", "matrix"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Grid layout and pad styling to author."
+    },
+    "slug": "drum-pad-grid"
   },
   {
-    "id": "toggle_switch",
-    "title": "Mini Toggle Switch",
-    "category": "core",
-    "tags": [
-      "on/off",
-      "lo-fi",
-      "switch"
-    ]
+    "id": "text_label_glow",
+    "title": "Label with Glow Effect",
+    "category": "text",
+    "difficulty": "beginner",
+    "tags": ["text", "glow", "shadow", "label"],
+    "tutorial": {
+      "status": "done",
+      "notes": "Glow effect and legibility techniques covered."
+    },
+    "slug": "glow-text-label"
   },
   {
-    "id": "vu_meter",
-    "title": "Analog VU Meter",
-    "category": "core",
-    "tags": [
-      "meter",
-      "needle",
-      "visual"
-    ]
-  },
-  {
-    "id": "led_ring",
-    "title": "LED Ring",
-    "category": "core",
-    "tags": [
-      "status",
-      "light",
-      "around knob"
-    ]
-  },
-  {
-    "id": "encoder_ring",
-    "title": "Encoder Ring",
-    "category": "core",
-    "tags": [
-      "motion",
-      "ring",
-      "velocity"
-    ],
+    "id": "led_ring_circular",
+    "title": "Circular LED Ring",
+    "category": "indicator",
+    "difficulty": "intermediate",
+    "tags": ["led", "ring", "meter", "knob-surround"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Static ring and animated fill pending."
+    },
+    "slug": "circular-led-ring"
   },
   {
-    "id": "transport_bar",
-    "title": "Transport Controls",
-    "category": "core",
-    "tags": [
-      "play",
-      "stop",
-      "record"
-    ]
+    "id": "toggle_button_mini",
+    "title": "Mini Toggle Button",
+    "category": "control",
+    "difficulty": "beginner",
+    "tags": ["toggle", "switch", "lo-fi"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Basic on/off states to outline."
+    },
+    "slug": "mini-toggle-button"
   },
   {
-    "id": "preset_browser",
+    "id": "preset_browser_panel",
     "title": "Preset Browser Panel",
-    "category": "core",
-    "tags": [
-      "popup",
-      "list",
-      "panel"
-    ]
+    "category": "container",
+    "difficulty": "intermediate",
+    "tags": ["panel", "presets", "scroll", "popup"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "List styling and scroll behavior TBD."
+    },
+    "slug": "preset-browser-panel"
   },
   {
-    "id": "routing_matrix",
-    "title": "Routing Matrix Grid",
-    "category": "core",
-    "tags": [
-      "grid",
-      "routing",
-      "modulation"
-    ]
-  },
-  {
-    "id": "mod_slot",
-    "title": "Modulation Slot",
-    "category": "core",
-    "tags": [
-      "LFO",
-      "assignment",
-      "target"
-    ]
-  },
-  {
-    "id": "tab_selector",
-    "title": "Tab Panel",
-    "category": "core",
-    "tags": [
-      "navigation",
-      "UI",
-      "tabs"
-    ]
-  },
-  {
-    "id": "button_matrix",
+    "id": "button_matrix_grid",
     "title": "Button Matrix/Grid",
-    "category": "core",
-    "tags": [
-      "step",
-      "grid",
-      "buttons"
-    ],
+    "category": "input",
+    "difficulty": "intermediate",
+    "tags": ["grid", "buttons", "matrix", "step-sequencer"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Button alignment and state colors to define."
+    },
+    "slug": "button-matrix-grid"
   },
   {
-    "id": "overlay_modal",
-    "title": "Overlay Panel / Modal Window",
-    "category": "advanced",
-    "tags": [
-      "popup",
-      "modal",
-      "overlay"
-    ],
+    "id": "encoder_ring_indicator",
+    "title": "Encoder Ring Indicator",
+    "category": "indicator",
+    "difficulty": "intermediate",
+    "tags": ["encoder", "velocity", "ring", "motion"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Motion blur and ring segmentation TBD."
+    },
+    "slug": "encoder-ring"
   },
   {
-    "id": "side_panel",
-    "title": "Side Panel / Mod Rack",
-    "category": "advanced",
-    "tags": [
-      "rack",
-      "vertical",
-      "modulation"
-    ],
+    "id": "transport_controls_bar",
+    "title": "Transport Controls Bar",
+    "category": "control",
+    "difficulty": "beginner",
+    "tags": ["play", "stop", "record", "timeline"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Iconography and active states to outline."
+    },
+    "slug": "transport-controls"
   },
   {
-    "id": "bevel_shadow",
-    "title": "Bevel & Shadow Techniques",
-    "category": "style",
-    "tags": [
-      "depth",
-      "lighting",
-      "edges"
-    ]
-  },
-  {
-    "id": "radial_gradient",
-    "title": "Radial Gradient Tricks",
-    "category": "style",
-    "tags": [
-      "lighting",
-      "3D",
-      "centered"
-    ]
-  },
-  {
-    "id": "glass_overlay",
-    "title": "Glass FX & Reflections",
-    "category": "style",
-    "tags": [
-      "reflection",
-      "shine",
-      "glass"
-    ]
-  },
-  {
-    "id": "frosted_glass",
-    "title": "Frosted Glass Panel",
-    "category": "style",
-    "tags": [
-      "blur",
-      "panel",
-      "modern"
-    ],
+    "id": "tab_panel_ui",
+    "title": "Tab Panel / Section Tabs",
+    "category": "layout",
+    "difficulty": "beginner",
+    "tags": ["tabs", "navigation", "ui-layout"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Active/inactive styles and transitions TBD."
+    },
+    "slug": "tab-panel-section-tabs"
   },
   {
-    "id": "feathered_mask",
-    "title": "Feathered Masking",
-    "category": "style",
-    "tags": [
-      "bloom",
-      "glow",
-      "masking"
-    ],
+    "id": "mod_slot_assign",
+    "title": "Modulation Slot Assignment",
+    "category": "modulation",
+    "difficulty": "intermediate",
+    "tags": ["slot", "assign", "lfo", "arc", "removal"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Assignment workflow and remove icon to draft."
+    },
+    "slug": "modulation-slot"
   },
   {
-    "id": "blend_modes",
-    "title": "Multiblend Mode Layers",
-    "category": "style",
-    "tags": [
-      "screen",
-      "overlay",
-      "multiply"
-    ],
+    "id": "routing_matrix_core",
+    "title": "Core Routing Matrix Grid",
+    "category": "routing",
+    "difficulty": "advanced",
+    "tags": ["grid", "routing", "modulation", "core"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Connection lines and activation states TBD."
+    },
+    "slug": "routing-matrix-grid-core" 
   },
   {
-    "id": "text_glow",
-    "title": "Text Glow & Label Design",
+    "id": "inset_glow_shadow_style",
+    "title": "Inset Glows & Soft Shadows",
     "category": "style",
-    "tags": [
-      "label",
-      "readability",
-      "font"
-    ]
+    "difficulty": "intermediate",
+    "tags": ["glow", "shadow", "inset", "glass"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Inner and outer glow techniques outline."
+    },
+    "slug": "inset-glows-soft-shadows"
   },
   {
-    "id": "layering_logic",
+    "id": "radial_gradient_design",
+    "title": "Radial Gradient Design Techniques",
+    "category": "style",
+    "difficulty": "beginner",
+    "tags": ["gradient", "radial", "center-weight", "offset"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Center positioning and falloff control to draft."
+    },
+    "slug": "radial-gradient-design"
+  },
+    {
+    "id": "radial_gradient_tricks",
+    "title": "Advanced Radial Gradient Tricks",
+    "category": "style",
+    "difficulty": "intermediate",
+    "tags": ["gradient", "radial", "lighting", "3d"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Advanced techniques for specific effects."
+    },
+    "slug": "radial-gradient-tricks"
+  },
+  {
+    "id": "frosted_glass_panel_style",
+    "title": "Frosted Glass Panel Effect",
+    "category": "style",
+    "difficulty": "advanced",
+    "tags": ["blur", "transparency", "glass", "popup"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Backdrop blur and alpha layering TBD."
+    },
+    "slug": "frosted-glass-panel"
+  },
+  {
+    "id": "feather_mask_glow_style",
+    "title": "Feathered Masking for Glows",
+    "category": "style",
+    "difficulty": "advanced",
+    "tags": ["feather", "mask", "bloom", "neon"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Mask setup and soft-edge control outline."
+    },
+    "slug": "feathered-masking-glow"
+  },
+  {
+    "id": "multiblend_layers_style",
+    "title": "Multiblend Mode Layering",
+    "category": "style",
+    "difficulty": "advanced",
+    "tags": ["blend", "overlay", "multiply", "screen"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Define overlay workflows and mode blending order."
+    },
+    "slug": "multiblend-mode-layers"
+  },
+  {
+    "id": "text_glow_style",
+    "title": "Text Glow & Advanced Label Design",
+    "category": "style",
+    "difficulty": "intermediate",
+    "tags": ["font", "label", "glow", "shadow", "typography"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Typography pairing and glow intensity control."
+    },
+    "slug": "text-glow-label-design-advanced" 
+  },
+  {
+    "id": "layer_ordering_philosophy",
     "title": "Layer Ordering Philosophy",
     "category": "style",
-    "tags": [
-      "structure",
-      "svg",
-      "naming"
-    ],
+    "difficulty": "beginner",
+    "tags": ["layer", "naming", "svg", "export", "structure"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Best practices for naming and grouping layers."
+    },
+    "slug": "layer-ordering-structure"
   },
   {
-    "id": "panel_container",
-    "title": "Card/Panel Container",
+    "id": "card_panel_container_layout",
+    "title": "Card / Panel Container Design",
     "category": "layout",
-    "tags": [
-      "container",
-      "panel",
-      "grouping"
-    ]
-  },
-  {
-    "id": "layout_grid",
-    "title": "Grid Systems (2x2, 4x4)",
-    "category": "layout",
-    "tags": [
-      "grid",
-      "matrix",
-      "pads"
-    ],
+    "difficulty": "beginner",
+    "tags": ["container", "panel", "card", "border", "glow"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Container rules and responsive padding/margins."
+    },
+    "slug": "card-panel-container"
   },
   {
-    "id": "side_panel_layout",
-    "title": "Side Panels / Mod Racks",
+    "id": "grid_systems_layout",
+    "title": "Layout Grid Systems (2x2, 4x4)",
     "category": "layout",
-    "tags": [
-      "modular",
-      "layout",
-      "vertical"
-    ],
+    "difficulty": "intermediate",
+    "tags": ["grid", "layout", "pads", "step-sequencer"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Defining gutters, alignment, and responsive breakpoints."
+    },
+    "slug": "grid-systems-layout"
   },
   {
-    "id": "overlay_panel_layout",
-    "title": "Overlay Panel / Modal",
+    "id": "side_panel_mod_rack_layout",
+    "title": "Side Panel / Mod Rack Layout",
     "category": "layout",
-    "tags": [
-      "popup",
-      "overlay",
-      "floating"
-    ],
+    "difficulty": "intermediate",
+    "tags": ["vertical", "tab", "container", "rack", "modular"],
     "tutorial": {
       "status": "placeholder",
-      "steps": [],
-      "notes": "Tutorial not yet written."
-    }
+      "notes": "Collapsible sections and nested module styling."
+    },
+    "slug": "side-panel-mod-rack"
   },
   {
-    "id": "scroll_list",
-    "title": "Scrollable List",
+    "id": "modal_window_overlay_layout",
+    "title": "Overlay Panel / Modal Window Layout",
     "category": "layout",
-    "tags": [
-      "list",
-      "preset",
-      "mappings"
-    ]
+    "difficulty": "beginner",
+    "tags": ["modal", "popup", "routing", "settings", "floating"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Backdrop fade and entry/exit animations."
+    },
+    "slug": "overlay-modal-window"
+  },
+  {
+    "id": "scroll_list_container",
+    "title": "Scrollable List Container",
+    "category": "container",
+    "difficulty": "beginner", 
+    "tags": ["scroll", "list", "browser", "mapping"],
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Scrollbar styling and inertia scrolling tips."
+    },
+    "slug": "scrollable-list"
   }
 ]
