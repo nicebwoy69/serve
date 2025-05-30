@@ -1,1 +1,227 @@
-
+{
+  "id": "knob",
+  "title": "Skeuomorphic Knob",
+  "overallIntroduction": "This tutorial guides you through creating a skeuomorphic knob in Inkscape, focusing on realistic lighting, shadows, and interactive elements like a glowing indicator.",
+  "parts": [
+    {
+      "partId": "knob_part1_base_bevel",
+      "partTitle": "Part 1: Base & Bevel",
+      "partIntroduction": "This part focuses on creating the main 3D body of the knob, giving it a matte finish with a subtle gradient and an inner bevel to suggest depth.",
+      "steps": [
+        {
+          "stepTitle": "Create the Base Circle",
+          "instructions": [
+            "Open Inkscape.",
+            "Select the <strong>Circle Tool (<code>E</code>)</strong>.",
+            "Hold <code>Ctrl</code> and drag on the canvas to draw a perfect circle. For example, make it 180x180 pixels.",
+            "Open the <strong>Align and Distribute panel (<code>Shift+Ctrl+A</code>)</strong>.",
+            "With the circle selected, ensure 'Relative to:' is set to 'Page'. Click 'Center on vertical axis' and 'Center on horizontal axis'."
+          ],
+          "tip": "Drawing a large circle initially can make it easier to work on details. You can always scale it down later."
+        },
+        {
+          "stepTitle": "Apply the Base Gradient (Matte Look)",
+          "instructions": [
+            "Select the circle.",
+            "Open the <strong>Fill and Stroke panel (<code>Shift+Ctrl+F</code>)</strong>. Go to the 'Fill' tab.",
+            "Choose <strong>Radial Gradient</strong>." ,
+            "Click the 'Edit gradient' button (or select the <strong>Gradient Tool (<code>G</code>)</strong> from the toolbar). Handles will appear on your circle.",
+            "Select the center stop of the gradient. Set its color.",
+            "Select the outer stop of the gradient. Set its color.",
+            "Using the Gradient Tool (<code>G</code>), drag the center handle of the radial gradient slightly up and to the left to simulate a light source from that direction."
+          ],
+          "parameters": {
+            "Center Stop Color": {"value": "#2d2e45", "notes": "deep indigo"},
+            "Outer Stop Color": {"value": "#11121f", "notes": "almost black"}
+          }
+        },
+        {
+          "stepTitle": "Simulate the Inner Bevel (Sunken Edge)",
+          "details": [
+            "This step gives the illusion of a sunken edge or a soft rim light.",
+            "<strong>Option A – Stroke Gradient (Recommended for cleanest look):</strong>"
+          ],
+          "instructions": [
+            "Duplicate the base circle (select it, then <code>Ctrl+D</code>).",
+            "With the duplicate selected, shrink it slightly (e.g., to 170x170 px if the original was 180x180). You can do this via the W/H input boxes in the toolbar, ensuring the lock icon is active to maintain proportions, or by holding <code>Ctrl+Shift</code> while dragging a corner handle.",
+            "In the Fill and Stroke panel: Remove the fill from this duplicated circle (set Fill to 'No paint').",
+            "Go to the 'Stroke paint' tab and select 'Flat color'. Choose a temporary visible color.",
+            "Go to the 'Stroke style' tab and set the 'Width' to around 10 pixels (adjust to taste).",
+            "Now, back in the 'Stroke paint' tab, change the stroke from 'Flat color' to 'Linear Gradient'.",
+            "Select the <strong>Gradient Tool (<code>G</code>)</strong>. Drag to create a vertical gradient on the stroke. The top handle should be for the lighter color, bottom for transparent.",
+            "Edit the gradient stops for the stroke:"
+          ],
+          "parameters": {
+            "Stroke Gradient - Top Stop Color": {"value": "#4d4d70", "notes": "light gray-blue, ensure alpha is around 50-75%"},
+            "Stroke Gradient - Bottom Stop Color": {"value": "#00000000", "notes": "fully transparent"}
+          },
+          "tip": "Adjust the gradient handles on the stroke directly on-canvas to control how the light appears to hit the rim." ,
+          "notes_after_instructions": [
+             "<strong>Option B – Feathered Inner Shadow (Alternative):</strong> You could also achieve an inner edge effect using filters like a Gaussian blur applied to a shape and then clipping it, but the stroke gradient is often cleaner for this specific bevel effect."
+          ]
+        },
+        {
+          "stepTitle": "Add Drop Shadow for Depth",
+          "instructions": [
+            "Select the original base circle (the larger one with the radial gradient fill).",
+            "Duplicate it (<code>Ctrl+D</code>).",
+            "With this new duplicate selected, fill it with pure black (<code>#000000</code> <span class='color-swatch' style='background-color:#000000;'></span>).",
+            "Move this black circle slightly down and to the right (e.g., press Down Arrow 5 times, Right Arrow 5 times).",
+            "Go to <strong>Filters > Blurs > Gaussian Blur...</strong>. Apply a blur of around 3 to 5 'Standard Deviations'. Check 'Live preview' to adjust.",
+            "Open the Objects panel (<code>Shift+Ctrl+O</code>) or use Page Down/Up keys (<code>PgDn</code>, <code>PgUp</code>) to send this blurred shadow layer *below* the main knob base circle but above any background."
+          ],
+          "tip": "The amount of blur and offset for the drop shadow will determine how 'lifted' the knob appears."
+        }
+      ],
+      "summary": "At this point, you should have a clean knob face with a subtle matte gradient, an inner bevel suggesting a rim, and a drop shadow giving it lift from the page."
+    },
+    {
+      "partId": "knob_part2_glow_arc",
+      "partTitle": "Part 2: Glow Arc & Indicator Dot",
+      "partIntroduction": "This part focuses on creating the glowing arc that typically indicates the knob's range or current setting, along with a bright indicator dot.",
+      "steps": [
+        {
+          "stepTitle": "Create the Arc Ring Base (Guide Path)",
+          "instructions": [
+            "Select the <strong>Circle Tool (<code>E</code>)</strong>. Draw another circle, this time slightly larger than the knob itself (e.g., 220x220 px if your knob is ~180px). Center it over the knob.",
+            "This circle will define the path for the glow. Remove its fill and give it a thin, visible stroke for now so you can see it.",
+            "Convert the circle to a path: Select it → <strong>Path > Object to Path (<code>Shift+Ctrl+C</code>)</strong>.",
+            "Select the <strong>Node Tool (<code>N</code>)</strong>. You'll see nodes on the circle path.",
+            "Decide which segment of the circle you want to remove to create the arc. For a typical top arc, select the bottom node (or segment between two bottom nodes) and click 'Delete segment between two non-endpoint nodes' or 'Break path at selected nodes' then delete the segment/nodes in the Node tool's toolbar.",
+            "Adjust the start and end nodes of the arc if needed to get the desired sweep (e.g., around 210° to 270° of arc visible)."
+          ],
+          "tip": "You can use guides or the Align and Distribute panel to ensure this arc is perfectly centered with your knob base."
+        },
+        {
+          "stepTitle": "Draw Glow Arc Effect",
+          "details": [
+            "<strong>Option A – Stroke Arc with Blur (Simpler & Recommended):</strong>"
+          ],
+          "instructions": [
+            "Duplicate your arc path (<code>Ctrl+D</code>).",
+            "Select the duplicated arc. Remove any fill.",
+            "In the Fill & Stroke panel, go to 'Stroke paint' and choose 'Linear Gradient'.",
+            "Edit the gradient for the stroke. You'll want it to go from one bright accent color, potentially through another, and then fade to transparent if desired, or just use a solid bright color.",
+            "Set the 'Stroke style' width to around 10–12 pixels.",
+            "Duplicate this styled stroke arc again. On this new duplicate, apply a <strong>Gaussian Blur</strong> (Filters > Blurs > Gaussian Blur...) of around 2–3 standard deviations.",
+            "Place the blurred arc layer directly beneath the sharp, styled stroke arc.",
+            "Adjust the opacity of both the sharp stroke and the blurred glow layer (e.g., sharp stroke at 80-100%, blur at 60-70%) until you achieve the desired intensity."
+          ],
+          "parameters": {
+            "Stroke Gradient Start": {"value": "#7af2ff", "notes": "bright cyan"},
+            "Stroke Gradient Middle (optional)": {"value": "#6e6dfb", "notes": "bright blue/purple"},
+            "Stroke Gradient End (optional)": {"value": "#00000000", "notes": "transparent, or another color"}
+          },
+          "notes_after_instructions": [
+            "<strong>Option B – Individual Glow Dots (Stylized):</strong> Draw small circles, apply blurs, color them with a gradient, and distribute them along the arc path using Extensions > Generate from Path > Scatter or by hand. This is more complex for a smooth glow."
+          ]
+        },
+        {
+          "stepTitle": "Add the Indicator Dot (Knob's Value)",
+          "instructions": [
+            "Draw a small circle (<strong>Circle Tool <code>E</code></strong>, e.g., 6–8 px diameter) and place it on or near one end of your glowing arc. This represents the knob's current position.",
+            "Fill this small circle with a bright, solid accent color.",
+            "Duplicate this dot (<code>Ctrl+D</code>).",
+            "To the duplicate, apply a <strong>Gaussian Blur</strong> (Filters > Blurs > Gaussian Blur...) of around 3–5 standard deviations.",
+            "Set the opacity of this blurred duplicate to around 50–70%.",
+            "Place the blurred dot layer directly underneath the sharp, solid-colored dot to simulate a bright bloom or glow."
+          ],
+          "parameters": {
+            "Indicator Dot Fill": {"value": "#00cfff", "notes": "bright cyan"}
+          },
+          "tip": "Group the sharp dot and its blur together for easier positioning."
+        },
+        {
+          "stepTitle": "(Optional) Add Specular Highlight on Arc",
+          "instructions": [
+            "Draw a very thin white ellipse (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>).",
+            "Position it so it slightly overlaps a section of the main glow arc, usually towards the top where light would hit.",
+            "Apply a significant Gaussian Blur to this white ellipse.",
+            "Reduce its opacity greatly (e.g., 10-20%).",
+            "Experiment with blend modes like 'Screen' or 'Overlay' in the Layers panel for this highlight layer.",
+            "If needed, use **Object > Clip > Set** to clip the highlight so it only appears over the arc itself."
+          ]
+        }
+      ],
+      "summary": "You should now have a bright glowing arc around your knob, with a distinct indicator dot showing a position."
+    },
+    {
+      "partId": "knob_part3_highlights_fx",
+      "partTitle": "Part 3: Highlight Streak & Finishing FX",
+      "partIntroduction": "This final part adds a specular highlight or sheen to the knob's face, suggesting a glossy material, and other optional finishing touches.",
+      "steps": [
+        {
+          "stepTitle": "Create the Highlight Streak (Sheen)",
+          "details": ["This mimics the reflection of a soft overhead light on a glossy or plastic surface."],
+          "instructions": [
+            "Select the <strong>Ellipse Tool (<code>E</code>)</strong>.",
+            "Draw a relatively flat, wide horizontal ellipse (e.g., 150px wide by 25px high if your knob is 180px).",
+            "Fill it with white (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>).",
+            "Rotate this ellipse by about 30–45 degrees (or to match the angle of your perceived light source).",
+            "Move it to the top-left area of the main knob face.",
+            "Apply a <strong>Gaussian Blur</strong> (Filters > Blurs > Gaussian Blur...) to it, around 5–8 standard deviations.",
+            "Greatly reduce its opacity (e.g., 10–20%).",
+            "Optional: Set the blend mode of this highlight layer to 'Screen' via the Layers panel (<code>Shift+Ctrl+L</code>) for a brighter, more additive light effect."
+          ]
+        },
+        {
+          "stepTitle": "(Optional) Add a Specular Arc or Overlay",
+          "details": ["This adds a sharper, more defined rim highlight for extra realism."],
+          "instructions": [
+            "Create a thin crescent shape. You can do this by drawing two slightly offset overlapping circles (one slightly smaller) and using <strong>Path > Difference (<code>Ctrl+-</code>)</strong>.",
+            "Position this crescent shape just inside the top rim of the knob face.",
+            "Fill it with white or a very light version of your accent color.",
+            "Apply a slight Gaussian Blur and reduce its opacity significantly."
+          ]
+        },
+        {
+          "stepTitle": "(Optional) Surface Texture Bloom",
+          "details": ["This simulates a faint, overall plastic texture or a subtle lens-like glow on the knob's surface."],
+          "instructions": [
+            "Duplicate your main knob base circle. Make it slightly smaller.",
+            "Fill it with a subtle radial gradient: center is transparent white (white with low alpha), outer edge is fully transparent.",
+            "Apply a slight Gaussian Blur.",
+            "Reduce its opacity to a very low value (e.g., 5–10%).",
+            "Ensure it's clipped inside the main knob if necessary (select this bloom layer and the main knob base, then <strong>Object > Clip > Set</strong>)."
+          ]
+        },
+        {
+          "stepTitle": "(Optional) Add Label Text (e.g., “FREQUENCY”)",
+          "instructions": [
+            "Use the <strong>Text tool (<code>T</code>)</strong>.",
+            "Type your label (e.g., “FREQUENCY”).",
+            "Choose a modern, thin sans-serif font (e.g., Montserrat, Roboto Condensed, Futura, Orbitron).",
+            "Set the text style:",
+            "Place the text centered above or below the knob."
+          ],
+          "parameters": {
+            "Text Color": {"value": "#aaaaaa", "notes": "light gray"},
+            "Text Size": {"value": "~16–24 px", "notes": "adjust to fit"},
+            "Letter Spacing": {"value": "Increase for width", "notes": "e.g., 1 to 5 px"}
+          }
+        },
+        {
+          "stepTitle": "Final Layer Ordering Review",
+          "details": ["Ensure your layers are stacked correctly for the desired visual outcome. Use the Objects panel (<code>Shift+Ctrl+O</code>) or Page Up/Page Down keys."],
+          "instructions": [
+            "A typical order from top to bottom might be:",
+            "1. Specular Highlight Streak (on knob face)",
+            "2. (Optional) Specular Arc (on knob face)",
+            "3. (Optional) Surface Texture Bloom (on knob face)",
+            "4. Indicator Dot (sharp part)",
+            "5. Indicator Dot (glow part)",
+            "6. Glow Arc (sharp part)",
+            "7. Glow Arc (glow part)",
+            "8. Knob Inner Bevel (stroke gradient part)",
+            "9. Knob Base (main radial gradient fill)",
+            "10. Knob Drop Shadow",
+            "11. (Optional) Label Text",
+            "12. Background elements"
+          ],
+          "tip": "Group related elements logically (e.g., all parts of the knob itself, all parts of the glow arc) to keep your Objects panel tidy."
+        }
+      ],
+      "summary": "Your skeuomorphic knob should now be complete, featuring realistic lighting, a glowing indicator, and a polished look suitable for a modern GUI."
+    }
+  ]
+}
