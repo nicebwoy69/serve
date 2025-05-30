@@ -5,7 +5,7 @@
     "category": "control",
     "difficulty": "intermediate",
     "tags": ["knob", "radial", "highlight", "shadow", "bevel"],
-    "contentJsonPath": "https://nicebwoy69.github.io/serve/cards.json",  
+    "contentJsonPath": "https://nicebwoy69.github.io/serve/knob_content.json",  
     "tutorial": {
       "status": "done",
       "parts": 3,
