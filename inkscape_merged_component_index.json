@@ -1,0 +1,352 @@
+[
+  {
+    "id": "knob",
+    "title": "Knob",
+    "category": "core",
+    "tags": [
+      "rotary",
+      "control",
+      "parameter"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "slider",
+    "title": "Slider",
+    "category": "core",
+    "tags": [
+      "fader",
+      "linear",
+      "parameter"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "button",
+    "title": "Button",
+    "category": "core",
+    "tags": [
+      "toggle",
+      "action",
+      "press"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "toggle_switch",
+    "title": "Mini Toggle Switch",
+    "category": "core",
+    "tags": [
+      "on/off",
+      "lo-fi",
+      "switch"
+    ]
+  },
+  {
+    "id": "vu_meter",
+    "title": "Analog VU Meter",
+    "category": "core",
+    "tags": [
+      "meter",
+      "needle",
+      "visual"
+    ]
+  },
+  {
+    "id": "led_ring",
+    "title": "LED Ring",
+    "category": "core",
+    "tags": [
+      "status",
+      "light",
+      "around knob"
+    ]
+  },
+  {
+    "id": "encoder_ring",
+    "title": "Encoder Ring",
+    "category": "core",
+    "tags": [
+      "motion",
+      "ring",
+      "velocity"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "transport_bar",
+    "title": "Transport Controls",
+    "category": "core",
+    "tags": [
+      "play",
+      "stop",
+      "record"
+    ]
+  },
+  {
+    "id": "preset_browser",
+    "title": "Preset Browser Panel",
+    "category": "core",
+    "tags": [
+      "popup",
+      "list",
+      "panel"
+    ]
+  },
+  {
+    "id": "routing_matrix",
+    "title": "Routing Matrix Grid",
+    "category": "core",
+    "tags": [
+      "grid",
+      "routing",
+      "modulation"
+    ]
+  },
+  {
+    "id": "mod_slot",
+    "title": "Modulation Slot",
+    "category": "core",
+    "tags": [
+      "LFO",
+      "assignment",
+      "target"
+    ]
+  },
+  {
+    "id": "tab_selector",
+    "title": "Tab Panel",
+    "category": "core",
+    "tags": [
+      "navigation",
+      "UI",
+      "tabs"
+    ]
+  },
+  {
+    "id": "button_matrix",
+    "title": "Button Matrix/Grid",
+    "category": "core",
+    "tags": [
+      "step",
+      "grid",
+      "buttons"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "overlay_modal",
+    "title": "Overlay Panel / Modal Window",
+    "category": "advanced",
+    "tags": [
+      "popup",
+      "modal",
+      "overlay"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "side_panel",
+    "title": "Side Panel / Mod Rack",
+    "category": "advanced",
+    "tags": [
+      "rack",
+      "vertical",
+      "modulation"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "bevel_shadow",
+    "title": "Bevel & Shadow Techniques",
+    "category": "style",
+    "tags": [
+      "depth",
+      "lighting",
+      "edges"
+    ]
+  },
+  {
+    "id": "radial_gradient",
+    "title": "Radial Gradient Tricks",
+    "category": "style",
+    "tags": [
+      "lighting",
+      "3D",
+      "centered"
+    ]
+  },
+  {
+    "id": "glass_overlay",
+    "title": "Glass FX & Reflections",
+    "category": "style",
+    "tags": [
+      "reflection",
+      "shine",
+      "glass"
+    ]
+  },
+  {
+    "id": "frosted_glass",
+    "title": "Frosted Glass Panel",
+    "category": "style",
+    "tags": [
+      "blur",
+      "panel",
+      "modern"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "feathered_mask",
+    "title": "Feathered Masking",
+    "category": "style",
+    "tags": [
+      "bloom",
+      "glow",
+      "masking"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "blend_modes",
+    "title": "Multiblend Mode Layers",
+    "category": "style",
+    "tags": [
+      "screen",
+      "overlay",
+      "multiply"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "text_glow",
+    "title": "Text Glow & Label Design",
+    "category": "style",
+    "tags": [
+      "label",
+      "readability",
+      "font"
+    ]
+  },
+  {
+    "id": "layering_logic",
+    "title": "Layer Ordering Philosophy",
+    "category": "style",
+    "tags": [
+      "structure",
+      "svg",
+      "naming"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "panel_container",
+    "title": "Card/Panel Container",
+    "category": "layout",
+    "tags": [
+      "container",
+      "panel",
+      "grouping"
+    ]
+  },
+  {
+    "id": "layout_grid",
+    "title": "Grid Systems (2x2, 4x4)",
+    "category": "layout",
+    "tags": [
+      "grid",
+      "matrix",
+      "pads"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "side_panel_layout",
+    "title": "Side Panels / Mod Racks",
+    "category": "layout",
+    "tags": [
+      "modular",
+      "layout",
+      "vertical"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "overlay_panel_layout",
+    "title": "Overlay Panel / Modal",
+    "category": "layout",
+    "tags": [
+      "popup",
+      "overlay",
+      "floating"
+    ],
+    "tutorial": {
+      "status": "placeholder",
+      "steps": [],
+      "notes": "Tutorial not yet written."
+    }
+  },
+  {
+    "id": "scroll_list",
+    "title": "Scrollable List",
+    "category": "layout",
+    "tags": [
+      "list",
+      "preset",
+      "mappings"
+    ]
+  }
+]
