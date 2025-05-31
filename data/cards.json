@@ -363,5 +363,213 @@
     "notes": "Detailed tutorial for a standard glowing push button with states."
   },
   "slug": "glowing-push-button"
-}
+},
+
+ 
+  {
+    "id": "inkscape_color_gradients_patterns",
+    "title": "Color, Gradients & Patterns",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
+    "tags": ["color", "gradients", "patterns", "fill", "stroke", "inkscape", "style"],
+    "contentJsonPath": "tutorials/inkscape_color_gradients_patterns/content.json",
+    "tutorial": {
+      "status": "outline",
+      "notes": "Covers solid fills, linear/radial gradients, pattern fills, color palettes, transparency, and blend modes."
+    },
+    "slug": "inkscape-color-gradients-patterns"
+  },
+  {
+    "id": "project_poster_infographic",
+    "title": "Mini-Project: Simple Poster/Infographic",
+    "category": "mini-project",
+    "difficulty": "intermediate",
+    "tags": ["poster", "infographic", "layout", "typography", "export-pdf", "inkscape", "project"],
+    "contentJsonPath": "tutorials/project_poster_infographic/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "A project-based tutorial on creating a multi-column poster or infographic from concept to final export."
+    },
+    "slug": "project-poster-infographic"
+  },
+  {
+    "id": "gui_breadcrumb_menu",
+    "title": "Breadcrumb Navigation / Horizontal Menu",
+    "category": "gui-component",
+    "difficulty": "beginner",
+    "tags": ["navigation", "menu", "breadcrumb", "text-layout", "ui"],
+    "contentJsonPath": "tutorials/gui_breadcrumb_menu/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Designing horizontal text-based navigation elements like breadcrumbs or simple menu bars."
+    },
+    "slug": "gui-breadcrumb-menu"
+  },
+  {
+    "id": "gui_toolbar_icons",
+    "title": "Toolbar with Icons",
+    "category": "gui-component",
+    "difficulty": "intermediate",
+    "tags": ["toolbar", "icon-button", "panel", "layout", "ui"],
+    "contentJsonPath": "tutorials/gui_toolbar_icons/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Creating a toolbar panel with multiple icon buttons, focusing on grouping and spacing."
+    },
+    "slug": "gui-toolbar-icons"
+  },
+  {
+    "id": "gui_tooltips_popovers",
+    "title": "Tooltips & Popovers Design",
+    "category": "gui-component",
+    "difficulty": "beginner",
+    "tags": ["tooltip", "popover", "ui-hint", "overlay"],
+    "contentJsonPath": "tutorials/gui_tooltips_popovers/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Designing small informational popups like tooltips or simple popovers."
+    },
+    "slug": "gui-tooltips-popovers"
+  },
+  {
+    "id": "gui_notification_toast",
+    "title": "Notification / Toast Message",
+    "category": "gui-component",
+    "difficulty": "beginner",
+    "tags": ["notification", "toast", "alert", "ui-feedback"],
+    "contentJsonPath": "tutorials/gui_notification_toast/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Designing transient message popups like toasts or notifications."
+    },
+    "slug": "gui-notification-toast"
+  },
+  {
+    "id": "inkscape_clipping_masking",
+    "title": "Clipping & Masking Techniques",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
+    "tags": ["clipping", "masking", "transparency", "inkscape", "effects"],
+    "contentJsonPath": "tutorials/inkscape_clipping_masking/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Learn how to use clipping paths and masks to show/hide parts of objects or create transparency effects."
+    },
+    "slug": "inkscape-clipping-masking"
+  },
+  {
+    "id": "inkscape_filters_effects",
+    "title": "Introduction to Filters & Effects",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
+    "tags": ["filters", "effects", "blur", "shadow", "bevels", "inkscape"],
+    "contentJsonPath": "tutorials/inkscape_filters_effects/content.json",
+    "tutorial": {
+      "status": "placeholder",
+      "notes": "Exploring common built-in Inkscape filters like blurs, shadows, and bevels."
+    },
+    "slug": "inkscape-filters-effects"
+  },
+
+  {
+  "id": "getting_started_inkscape",
+  "title": "Getting Started: Interface, Navigation & Preferences",
+  "category": "inkscape-basics",
+  "difficulty": "beginner",
+  "tags": ["inkscape", "interface", "navigation", "setup", "preferences", "beginner"],
+  "contentJsonPath": "tutorials/getting_started_inkscape/content.json",
+  "tutorial": {
+    "status": "outline",
+    "parts": 3, // Example: UI Overview, Navigation, Document/Preferences
+    "notes": "Covers the Inkscape UI, canvas navigation, document properties, and preferences."
+  },
+  "slug": "getting-started-inkscape"
+},
+
+  {
+  "id": "basic_shapes_editing",
+  "title": "Drawing & Editing Basic Shapes",
+  "category": "inkscape-basics",
+  "difficulty": "beginner",
+  "tags": ["shapes", "rectangle", "circle", "star", "polygon", "boolean-operations", "inkscape"],
+  "contentJsonPath": "tutorials/basic_shapes_editing/content.json",
+  "tutorial": {
+    "status": "outline",
+    "parts": 4, // Example: Rectangles, Circles/Ellipses, Stars/Polygons, Boolean Ops
+    "notes": "Learn to create and modify fundamental shapes like rectangles, circles, stars, and use boolean operations."
+  },
+  "slug": "basic-shapes-editing"
+},
+
+
+  {
+  "id": "paths_nodes_mastery",
+  "title": "Working with Paths & Nodes",
+  "category": "inkscape-basics",
+  "difficulty": "intermediate",
+  "tags": ["paths", "nodes", "vector", "editing", "bezier", "inkscape"],
+  "contentJsonPath": "tutorials/paths_nodes_mastery/content.json",
+  "tutorial": {
+    "status": "placeholder",
+    "notes": "Covers converting objects to paths, node editing techniques, splitting/joining paths, and path simplification."
+  },
+  "slug": "paths-nodes-mastery"
+},
+
+
+{
+  "id": "project_icon_set_design",
+  "title": "Mini-Project: Designing an Icon Set",
+  "category": "mini-project",
+  "difficulty": "intermediate",
+  "tags": ["icons", "pixel-grid", "exporting", "vector-art", "inkscape", "project"],
+  "contentJsonPath": "tutorials/project_icon_set_design/content.json",
+  "tutorial": {
+    "status": "placeholder",
+    "notes": "A project-based tutorial on creating a consistent set of icons at multiple resolutions."
+  },
+  "slug": "project-icon-set-design"
+},
+
+  {
+  "id": "inkscape_layers_groups_align",
+  "title": "Layers, Groups & Alignment",
+  "category": "inkscape-basics",
+  "difficulty": "beginner",
+  "tags": ["layers", "groups", "alignment", "distribution", "organization", "inkscape"],
+  "contentJsonPath": "tutorials/inkscape_layers_groups_align/content.json",
+  "tutorial": {
+    "status": "outline",
+    "notes": "Covers using the Layers panel, grouping/ungrouping objects, and precision alignment/distribution."
+  },
+  "slug": "inkscape-layers-groups-alignment"
+},
+
+{
+  "id": "inkscape_exporting_assets",
+  "title": "Exporting & Preparing Assets",
+  "category": "inkscape-basics",
+  "difficulty": "intermediate",
+  "tags": ["export", "png", "svg", "assets", "dpi", "batch-export", "inkscape"],
+  "contentJsonPath": "tutorials/inkscape_exporting_assets/content.json",
+  "tutorial": {
+    "status": "outline",
+    "notes": "Covers exporting PNGs, SVGs (Plain & Optimized), batch exporting, and preparing assets for web/app use."
+  },
+  "slug": "inkscape-exporting-assets"
+}  
+  
+
+
+
+  
 ]
+
+
+
+
+
+
+
+  
+
