@@ -359,7 +359,7 @@
   "tags": ["button", "push-button", "glow", "states"],
   "contentJsonPath": "tutorials/button_glow/content.json",  
   "tutorial": {
-    "status": "in progress", // Or "outline"
+    "status": "in progress",
     "notes": "Detailed tutorial for a standard glowing push button with states."
   },
   "slug": "glowing-push-button"
