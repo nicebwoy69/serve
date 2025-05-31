@@ -1,0 +1,337 @@
+{
+  "id": "applied_design_principles",
+  "title": "Applied Design Principles in Inkscape",
+  "overallIntroduction": "In this tutorial, you’ll build a simple “System Dashboard Panel” in Inkscape, explicitly applying core design principles—Balance, Contrast, Hierarchy, Repetition, Whitespace, and Color Theory—through a mix of shapes, text, and graphics. By following each Part, you’ll see how these principles translate into real Inkscape workflows. Each Step includes a preview image (with transparent background) so you know exactly how your canvas should look.",
+  "parts": [
+    {
+      "partId": "part1_canvas_palette",
+      "partTitle": "Part 1: Set Up Canvas & Define Color Palette",
+      "partIntroduction": "Create a new 600 × 400 px Inkscape document with a dark background. Then define and save five color swatches—dark slate, accent blue, light slate, neutral gray, highlight green, and a complementary accent—so you can reuse them consistently.",
+      "steps": [
+        {
+          "stepTitle": "Create a 600 × 400 px Document",
+          "details": [
+            "Open Inkscape → File → New → Default.svg.",
+            "Go to File → Document Properties (<code>Shift+Ctrl+D</code>). Under ‘Custom size,’ set Units = px, Width = 600, Height = 400. Close the dialog."
+          ],
+          "instructions": [
+            "Select the <strong>Rectangle tool (<code>R</code>)</strong>.",
+            "Click once on the canvas; in the Tool Controls bar, set X = 0, Y = 0, W = 600, H = 400.",
+            "With that rectangle selected, open <strong>Fill & Stroke (<code>Shift+Ctrl+F</code>)</strong> → Fill tab → set hex <code>#1e293b</code>. Go to Stroke paint tab → select 'No paint'."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step1_canvas_setup.png",
+            "alt": "Empty 600x400 canvas with dark background applied"
+          }
+        },
+        {
+          "stepTitle": "Define & Save Color Swatches",
+          "details": [
+            "Draw six 40 × 40 px squares at the bottom of the canvas (e.g., start X = 20, Y = 350; then X = 80, 140, 200, 260, 320).",
+            "Fill each with these hex codes:",
+            "  - <code>#1e293b</code> (dark slate)",
+            "  - <code>#38bdf8</code> (accent blue)",
+            "  - <code>#334155</code> (light slate)",
+            "  - <code>#cbd5e1</code> (neutral gray)",
+            "  - <code>#10b981</code> (highlight green)",
+            "  - <code>#f59e0b</code> (complementary accent)",
+            "With each square selected, open <strong>Swatches panel (<code>Shift+Ctrl+W</code>)</strong>, click ‘New Swatch from selected object(s) fill’ (often a small + icon or specific button depending on Inkscape version/dock setup), and name accordingly: Dark-Slate, Accent-Blue, Light-Slate, Neutral-Gray, Highlight-Green, Comp-Accent."
+          ],
+          "instructions": [
+            "Use the <strong>Rectangle tool (<code>R</code>)</strong> to draw a square. In the Tool Controls bar, set W = 40, H = 40.",
+            "Position the first square (e.g., X = 20, Y = 350).",
+            "In <strong>Fill & Stroke</strong>, set its fill to the first hex code (<code>#1e293b</code>).",
+            "Open the <strong>Swatches panel (<code>Shift+Ctrl+W</code>)</strong>. With the colored square selected, find the option to add the current fill as a new swatch (this might be a '+' button or a menu option like 'Swatch from Selection'). Name the swatch (e.g., 'Dark-Slate').",
+            "Repeat for each of the six hex codes, creating new squares and spacing them (e.g., 60 px apart horizontally)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step2_color_swatches.png",
+            "alt": "Six color swatches shown on canvas and saved in Swatches panel"
+          }
+        }
+      ],
+      "summary": "Your canvas is set up with a dark background and your core color palette is defined and saved as swatches for easy access."
+    },
+    {
+      "partId": "part2_title_hierarchy",
+      "partTitle": "Part 2: Create Title Bar & Demonstrate Hierarchy",
+      "partIntroduction": "Add a colored title bar at the top, then place large, bold text for the panel title and a smaller subtitle beneath it. This shows how font size, weight, and color establish visual hierarchy.",
+      "steps": [
+        {
+          "stepTitle": "Draw a 600 × 60 px Title Bar",
+          "details": [
+            "Select the <strong>Rectangle tool (<code>R</code>)</strong>. Click on the canvas; set X = 0, Y = 0, W = 600, H = 60 in the Tool Controls bar."
+          ],
+          "instructions": [
+            "With the rectangle selected, open <strong>Fill & Stroke (<code>Shift+Ctrl+F</code>)</strong>.",
+            "In the Fill tab, select your 'Accent-Blue' swatch (or enter <code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>).",
+            "In the Stroke paint tab, select 'No paint'."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step1_title_bar.png",
+            "alt": "Blue title bar across top of canvas"
+          }
+        },
+        {
+          "stepTitle": "Add ‘System Dashboard’ Title",
+          "details": [
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click at approximately X = 20, Y = 40. Type: System Dashboard."
+          ],
+          "instructions": [
+            "Open <strong>Text and Font panel (<code>Shift+Ctrl+T</code>)</strong>.",
+            "Set Font family to 'Inter', Style to 'Bold', and Size to '24 px'. Click Apply.",
+            "In <strong>Fill & Stroke panel</strong>, set Fill to White (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>) and Stroke paint to 'No paint'."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step2_title_text.png",
+            "alt": "Title text 'System Dashboard' on the blue bar"
+          }
+        },
+        {
+          "stepTitle": "Add ‘Real-Time Status Overview’ Subtitle",
+          "details": [
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click at approximately X = 22, Y = 85 (below the main title, slightly offset from the title bar). Type: Real-Time Status Overview."
+          ],
+          "instructions": [
+            "In <strong>Text and Font panel</strong>, set Font family to 'Inter', Style to 'Regular', and Size to '16 px'. Click Apply.",
+            "In <strong>Fill & Stroke panel</strong>, set Fill to your 'Neutral-Gray' swatch (or <code>#cbd5e1</code> <span class='color-swatch' style='background-color:#cbd5e1;'></span>) and Stroke paint to 'No paint'."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step3_subtitle.png",
+            "alt": "Subtitle text 'Real-Time Status Overview' beneath title"
+          }
+        }
+      ],
+      "summary": "The title bar is in place, and the title and subtitle demonstrate clear visual hierarchy using size, weight, and color."
+    },
+    {
+      "partId": "part3_stat_cards",
+      "partTitle": "Part 3: Build & Clone Stat Cards (Repetition & Balance)",
+      "partIntroduction": "Create a single “stat card” with a label and numeric value. Then clone it to build three cards in a row, demonstrating repetition. Finally, center the row under the title bar to achieve symmetrical balance.",
+      "steps": [
+        {
+          "stepTitle": "Draw One Stat Card Background",
+          "instructions": [
+            "Select the <strong>Rectangle tool (<code>R</code>)</strong>. Create a rectangle with W = 160px, H = 100px.",
+            "Set corner radius Rx and Ry to 8px.",
+            "Position it at X = 30, Y = 130 (adjust Y later for whitespace).",
+            "Fill with your 'Light-Slate' swatch (or <code>#334155</code> <span class='color-swatch' style='background-color:#334155;'></span>). No stroke."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step1_card_bg.png",
+            "alt": "Single stat card background (rounded rectangle)"
+          }
+        },
+        {
+          "stepTitle": "Add Label: CPU Usage",
+          "instructions": [
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click inside the card (e.g., X = 40, Y = 155 based on card at Y=130) and type: CPU Usage.",
+            "In <strong>Text and Font panel</strong>, set Font family to 'Inter', Style 'SemiBold', Size '14 px'.",
+            "Fill with your 'Accent-Blue' swatch (<code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step2_label.png",
+            "alt": "Stat card with CPU Usage label"
+          }
+        },
+        {
+          "stepTitle": "Add Value: 42 % with Highlight Strip (Contrast)",
+          "instructions": [
+            "Draw a smaller rounded rectangle for the value background: W = 120px, H = 40px, Rx/Ry = 6px. Position it below the 'CPU Usage' label (e.g., X = 40, Y = 175).",
+            "Fill this strip with a slightly lighter slate color (e.g., <code>#475569</code> <span class='color-swatch' style='background-color:#475569;'></span>).",
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click on the highlight strip (e.g., X = 50, Y = 195, adjust for centering) and type: 42 %.",
+            "In <strong>Text and Font panel</strong>, set Font family 'Inter', Style 'Bold', Size '24 px'.",
+            "Fill the text with White (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>).",
+            "Select the '42 %' text and the highlight strip. Use <strong>Align and Distribute (<code>Shift+Ctrl+A</code>)</strong>, 'Relative to: First selected' (if strip was selected first), and 'Center on horizontal axis' and 'Center on vertical axis'."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step3_value_highlight.png",
+            "alt": "Stat card with 42% value on a lighter highlight strip"
+          }
+        },
+        {
+          "stepTitle": "Group & Clone for Repetition",
+          "instructions": [
+            "Select all elements of the first stat card (background, label, value strip, value text). Group them (<code>Ctrl+G</code>). Name this group 'stat_card_1' in the Objects panel (<code>Shift+Ctrl+O</code>).",
+            "Duplicate the group (<code>Ctrl+D</code>). Move the duplicate to the right (e.g., X = 220, Y = 130, assuming a 20px gap if card width is 160px and previous card was at X=30).",
+            "Duplicate again (<code>Ctrl+D</code>). Move this third card to the right (e.g., X = 410, Y = 130).",
+            "Double-click into the duplicated groups to edit their text content:",
+            "  - Second card: Label → 'Memory', Value → '68 %'.",
+            "  - Third card: Label → 'Network', Value → '128 Mbps'. You might need to adjust the width of its highlight strip if the text is longer."
+          ],
+          "tip": "Using 'Edit > Clone > Create Tiled Clones...' can also be powerful for creating grids of objects with transformations.",
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step4_cloned_cards.png",
+            "alt": "Three stat cards in a row (CPU, Memory, Network)"
+          }
+        },
+        {
+          "stepTitle": "Center the Row for Symmetrical Balance",
+          "instructions": [
+            "Select all three 'stat-card' groups.",
+            "In the <strong>Align and Distribute panel (<code>Shift+Ctrl+A</code>)</strong>, ensure 'Relative to:' is set to 'Page'.",
+            "Click 'Center on horizontal axis'."
+          ],
+          "tip": "You might want to group the three cards together first, then center that group relative to the page or other elements.",
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step5_centered.png",
+            "alt": "Three stat cards centered horizontally on the canvas"
+          }
+        }
+      ],
+      "summary": "You've now created three stat cards, demonstrating repetition of a design element and achieving symmetrical balance on the page."
+    },
+    {
+      "partId": "part4_contrast_whitespace",
+      "partTitle": "Part 4: Contrast & Whitespace Refinements",
+      "partIntroduction": "Add subtle visual emphasis by adjusting color contrast and increasing whitespace (negative space) between elements. This step ensures the dashboard feels “airier” and that key data stands out.",
+      "steps": [
+        {
+          "stepTitle": "Increase Vertical Whitespace",
+          "instructions": [
+            "Select the group containing all three stat cards. In the Y coordinate input in the toolbar, increase its value to move the entire row down (e.g., from Y=130 to Y=150, creating more space below the subtitle).",
+            "Ensure there's adequate space (e.g., ~20-30px) between the bottom of the cards and where the next element (progress bar) will go."
+          ],
+          "tip": "Consistent spacing is key. You can use a temporary rectangle as a spacer guide.",
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step1_whitespace.png",
+            "alt": "Stat cards moved down, increasing whitespace"
+          }
+        },
+        {
+          "stepTitle": "(Optional) Add Subtle Drop Shadow to Cards for Contrast",
+          "instructions": [
+            "Select one stat-card group.",
+            "Go to <strong>Filters > Shadows and Glows > Drop Shadow...</strong>.",
+            "In the dialog, set Blur radius to ~5px, Horizontal offset (X) to 0px, Vertical offset (Y) to ~2px. Set Opacity to around 60%. Choose a dark shadow color. Click 'Live preview' to adjust, then 'Apply'.",
+            "Repeat for the other two stat cards, or copy the filter (select original card, Edit > Copy; select new card, Edit > Paste Style or Path > Paste Path Effect if it's a filter LPE)."
+          ],
+          "tip": "Subtle shadows can enhance the perception of depth and contrast, making elements 'pop'.",
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step2_drop_shadow.png",
+            "alt": "Stat cards with subtle drop shadows"
+          }
+        }
+      ],
+      "summary": "By adjusting whitespace and adding subtle shadows, the dashboard elements are now better differentiated and have a more refined look."
+    },
+    {
+      "partId": "part5_progress_color",
+      "partTitle": "Part 5: Draw Progress Bar & Apply Color Theory",
+      "partIntroduction": "Build a progress bar, demonstrating the use of color for status indication (Color Theory) and ensuring good contrast for legibility.",
+      "steps": [
+        {
+          "stepTitle": "Draw Empty Progress Track",
+          "instructions": [
+            "Select the <strong>Rectangle tool (<code>R</code>)</strong>. Draw a rectangle for the progress bar track: W = 540px, H = 20px.",
+            "Position it below the stat cards (e.g., X = 30, Y = 300, ensuring good whitespace).",
+            "Fill with your 'Neutral-Gray' swatch (<code>#cbd5e1</code> <span class='color-swatch' style='background-color:#cbd5e1;'></span>). No stroke."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step1_track.png",
+            "alt": "Empty progress track (light gray)"
+          }
+        },
+        {
+          "stepTitle": "Draw Filled Progress Bar (75%)",
+          "instructions": [
+            "Select the <strong>Rectangle tool (<code>R</code>)</strong>. Draw another rectangle for the fill: H = 20px. Calculate 75% of the track width (0.75 * 540px = 405px). Set W = 405px.",
+            "Position this fill rectangle at the same X and Y as the track (X=30, Y=300), so it overlays the start of the track.",
+            "Fill with your 'Highlight-Green' swatch (<code>#10b981</code> <span class='color-swatch' style='background-color:#10b981;'></span>). No stroke."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step2_filled_bar.png",
+            "alt": "Progress bar filled to 75% in green"
+          }
+        },
+        {
+          "stepTitle": "Add '75 %' Label on Green Bar",
+          "instructions": [
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click towards the right end of the green filled bar (e.g., X = 380, Y = 315, adjust for centering) and type: 75 %.",
+            "In <strong>Text and Font panel</strong>, set Font family 'Inter', Style 'Bold', Size '14 px'.",
+            "Fill the text with White (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>).",
+            "Select the text and the green filled bar. Use <strong>Align and Distribute</strong> to center the text vertically within the bar, and position it horizontally as desired (e.g., near the end of the fill)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step3_label.png",
+            "alt": "75% label centered on the green fill"
+          }
+        },
+        {
+          "stepTitle": "Test Lower Contrast Variant (Color Theory Example)",
+          "details": ["This step demonstrates the importance of contrast in Color Theory for readability."],
+          "instructions": [
+            "Duplicate the green filled progress bar rectangle (<code>Ctrl+D</code>).",
+            "Change its fill to a mid-gray color, for example, your 'Light-Slate' swatch (<code>#334155</code> <span class='color-swatch' style='background-color:#334155;'></span>).",
+            "Ensure the white '75 %' text is on top of this new gray bar.",
+            "Observe the readability. The white text is much harder to read on the mid-gray than on the vibrant green, illustrating poor contrast." ,
+            "You can delete this gray bar after observation, or keep it as an example in a hidden layer."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step4_low_contrast.png",
+            "alt": "Low-contrast variant: white text on mid-gray makes it hard to read"
+          }
+        }
+      ],
+      "summary": "The progress bar is complete, showcasing use of color for status and the importance of contrast."
+    },
+    {
+      "partId": "part6_final_export",
+      "partTitle": "Part 6: Final Dashboard Assembly & Export",
+      "partIntroduction": "Review all elements for consistent spacing and alignment, then export your completed dashboard panel as a PNG and optionally as an SVG.",
+      "steps": [
+        {
+          "stepTitle": "Review Spacing & Alignment",
+          "instructions": [
+            "Zoom to 100% (<strong>View > Zoom > Zoom 1:1</strong> or press <code>1</code>).",
+            "Visually inspect all vertical and horizontal spacing between elements (title bar and cards, cards and progress bar, elements within cards). Use guides or temporary rectangles to measure and ensure consistency.",
+            "Select all elements of your dashboard panel (<code>Ctrl+A</code> if it's the only thing on the page, or drag-select).",
+            "Use <strong>Align and Distribute (<code>Shift+Ctrl+A</code>)</strong>, 'Relative to: Page', and click 'Center on vertical axis' and 'Center on horizontal axis' to ensure the entire composition is perfectly centered on your 600x400px canvas."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part6_step1_review.png",
+            "alt": "Full dashboard with consistent spacing, centered on canvas"
+          }
+        },
+        {
+          "stepTitle": "Export as PNG & SVG",
+          "instructions": [
+            "<strong>For PNG:</strong> Go to <strong>File > Export PNG Image... (<code>Shift+Ctrl+E</code>)</strong>.",
+            "In the Export dialog, under 'Export area', choose 'Page'.",
+            "Set DPI to 96 (standard for web/screen). Width and Height should reflect your 600x400 canvas.",
+            "Click 'Export As...', choose a location, name your file (e.g., `dashboard_panel.png`), and click 'Save'.",
+            "Finally, click the 'Export' button in the dialog.",
+            "<strong>For SVG:</strong> Go to <strong>File > Save As...</strong>.",
+            "Choose a location, name your file (e.g., `dashboard_panel.svg`).",
+            "For 'Save as type', select 'Plain SVG (*.svg)'. Using 'Plain SVG' is generally better for web use as it's cleaner. 'Inkscape SVG' retains more Inkscape-specific data.",
+            "In the Plain SVG dialog that appears, you can usually keep the defaults. Uncheck 'Convert text to paths' if you want text to remain editable in other SVG editors; check it if you want to ensure fonts look identical everywhere (but text becomes shapes). Click 'OK'."
+          ],
+          "tip": "For web use, consider also saving an 'Optimized SVG' via File > Save As... for potentially smaller file sizes.",
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part6_step2_export.png",
+            "alt": "Export dialog showing settings for PNG and SVG export"
+          }
+        }
+      ],
+      "summary": "Your 'Applied Design Principles' dashboard panel is complete and exported!"
+    }
+  ]
+}
