@@ -562,13 +562,13 @@
  {
   "id": "applied_design_principles",
   "title": "Applied Design Principles in Inkscape",
-  "category": "design-principles", // Or a category you prefer
-  "difficulty": "intermediate", // Suggestion, adjust as needed
+  "category": "design-principles",  
+  "difficulty": "intermediate",  
   "tags": ["design", "principles", "balance", "contrast", "hierarchy", "inkscape", "ui-project"],
   "contentJsonPath": "tutorials/applied_design_principles/content.json",
   "tutorial": {
-    "status": "outline", // Or "in progress" once you start adding content
-    "parts": 6, // Based on the document structure
+    "status": "outline",  
+    "parts": 6,  
     "notes": "Build a System Dashboard Panel applying core design principles."
   },
   "slug": "applied-design-principles-inkscape"
