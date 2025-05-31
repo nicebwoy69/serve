@@ -5,7 +5,7 @@
     "category": "control",
     "difficulty": "intermediate",
     "tags": ["knob", "radial", "highlight", "shadow", "bevel"],
-    "contentJsonPath": "knob_content.json",  
+    "contentJsonPath": "serve/tutorials/knob/knob_content.json",  
     "tutorial": {
       "status": "done",
       "parts": 3,
