@@ -1,1 +1,361 @@
-
+{
+  "id": "applied_design_principles_music",
+  "title": "Applied Design Principles in Inkscape (Music-Themed Dashboard)",
+  "overallIntroduction": "In this tutorial, you’ll build a “Music Player Dashboard” in Inkscape while applying core design principles (Balance, Contrast, Hierarchy, Repetition, Whitespace, Color Theory) and layering in a few music-themed graphics. You’ll import a faint waveform background, place a small music-note icon next to your title, show an album-cover thumbnail in each stat card, and optionally add an abstract waveform accent or a night-mode “notes on a night sky” background for variety.",
+  "parts": [
+    {
+      "partId": "part1_canvas_background",
+      "partTitle": "Part 1: Create Canvas & Import Music-Themed Background",
+      "partIntroduction": "Create a new 600 × 400 px Inkscape document. Then import a faint waveform PNG (or SVG) to serve as a subtle, decorative music-themed background. Finally, define and save your core color swatches for consistent styling.",
+      "steps": [
+        {
+          "stepTitle": "Create a 600 × 400 px Document",
+          "details": [
+            "Open Inkscape → File → New.",
+            "File → Document Properties (<code>Shift+Ctrl+D</code>). Under “Custom size,” set Units to “px,” Width to 600, Height to 400. Close.",
+            "(Optional) In the dialog’s “Display units,” you can show rulers in px if you like."
+          ],
+          "instructions": [
+            "Set up a 600×400 px canvas via Document Properties."
+          ]
+        },
+        {
+          "stepTitle": "Import & Tint Waveform Background",
+          "details": [
+            "File → Import (<code>Shift+Ctrl+I</code>) → choose <code>waveform_pattern.png</code> (a transparent-background PNG of a simple waveform).",
+            "Scale the imported graphic so it spans the entire 600 × 400 canvas (hold <code>Ctrl</code> to keep proportions).",
+            "With the waveform selected, open Fill & Stroke (<code>Shift+Ctrl+F</code>) → lower Opacity to ~20 %.",
+            "Now it forms a faint backdrop."
+          ],
+          "instructions": [
+            "Import <code>tutorials/applied_design_principles_music/waveform_pattern.png</code>, scale to cover canvas, set Opacity to 20%."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/waveform_pattern.png",
+            "alt": "Faint waveform pattern at 20% opacity behind canvas"
+          }
+        },
+        {
+          "stepTitle": "Define & Save Color Swatches",
+          "details": [
+            "Using the Rectangle tool (<code>R</code>), draw six 40 × 40 px squares aligned horizontally near Y = 350 (X = 20, 80, 140, 200, 260, 320).",
+            "Fill each square with one of these hex codes in order:",
+            "  - <code>#1e293b</code> (Dark Slate)",
+            "  - <code>#38bdf8</code> (Accent Blue)",
+            "  - <code>#334155</code> (Light Slate)",
+            "  - <code>#cbd5e1</code> (Neutral Gray)",
+            "  - <code>#10b981</code> (Highlight Green)",
+            "  - <code>#f59e0b</code> (Complementary Accent)",
+            "For each square, open Swatches (<code>Shift+Ctrl+W</code>), click “New Swatch,” name it (e.g. “Dark-Slate,” “Accent-Blue,” etc.) so it’s always available."
+          ],
+          "instructions": [
+            "Draw rectangles, fill with the six hex codes (<code>#1e293b</code> <span class='color-swatch' style='background-color:#1e293b;'></span>, <code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>, <code>#334155</code> <span class='color-swatch' style='background-color:#334155;'></span>, <code>#cbd5e1</code> <span class='color-swatch' style='background-color:#cbd5e1;'></span>, <code>#10b981</code> <span class='color-swatch' style='background-color:#10b981;'></span>, <code>#f59e0b</code> <span class='color-swatch' style='background-color:#f59e0b;'></span>), and save each as a Swatch named Dark-Slate, Accent-Blue, Light-Slate, Neutral-Gray, Highlight-Green, Comp-Accent."
+          ]
+        }
+      ],
+      "summary": "The canvas is set up with a thematic background, and your color palette is ready."
+    },
+    {
+      "partId": "part2_title_icon_hierarchy",
+      "partTitle": "Part 2: Draw Title Bar & Add Music Icon with Hierarchy",
+      "partIntroduction": "Add a solid-color title bar along the top, import a small music-note SVG to the left of your main heading, and then insert a smaller subtitle beneath. This demonstrates typographic hierarchy combined with a thematic icon.",
+      "steps": [
+        {
+          "stepTitle": "Draw a 600 × 60 px Title Bar",
+          "details": [
+            "Rectangle tool (<code>R</code>) → click on canvas → set X = 0, Y = 0, W = 600, H = 60.",
+            "Fill & Stroke → Fill → choose the “Accent-Blue” swatch (<code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>).",
+            "Stroke → No paint."
+          ],
+          "instructions": [
+            "Create a top bar shaped 600×60 px and fill it with Accent-Blue."
+          ]
+        },
+        {
+          "stepTitle": "Import & Place Music-Note Icon",
+          "details": [
+            "File → Import (<code>Shift+Ctrl+I</code>) → select <code>music_note_icon.svg</code> (a simple white music note, ~24 × 24 px).",
+            "Scale to ~24 × 24 px; place at X = 20, Y = 18 (inside the blue bar).",
+            "Ensure that icon’s Fill is white—if not, select it and in Fill & Stroke, set Fill color to <code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>."
+          ],
+          "instructions": [
+            "Import <code>tutorials/applied_design_principles_music/music_note_icon.svg</code>, place at X=20, Y=18 inside the title bar, ensure its fill is white."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/music_note_icon.svg",
+            "alt": "A small white music-note icon"
+          }
+        },
+        {
+          "stepTitle": "Add ‘Now Playing Dashboard’ Title",
+          "details": [
+            "Text tool (<code>T</code>) → click at X = 60, Y = 40 → type: Now Playing Dashboard.",
+            "Text and Font (<code>Shift+Ctrl+T</code>) → select Inter Bold, Size = 24 px → Apply.",
+            "Fill & Stroke → Fill → White (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>)."
+          ],
+          "instructions": [
+            "Use the Text tool to add “Now Playing Dashboard” in Inter Bold 24 px, filled white, next to the icon."
+          ]
+        },
+        {
+          "stepTitle": "Add Subtitle: Live Audio Status",
+          "details": [
+            "Text tool (<code>T</code>) → click at X = 22, Y = 85 → type: Live Audio Status.",
+            "Text and Font → Inter Regular, Size = 16 px → Apply.",
+            "Fill & Stroke → Fill → Neutral-Gray (<code>#cbd5e1</code> <span class='color-swatch' style='background-color:#cbd5e1;'></span>)."
+          ],
+          "instructions": [
+            "Add a smaller subtitle “Live Audio Status” in Inter Regular 16 px, filled neutral gray, below the title bar."
+          ]
+        }
+      ],
+      "summary": "The title area is complete with thematic icon and clear text hierarchy."
+    },
+    {
+      "partId": "part3_music_cards",
+      "partTitle": "Part 3: Create & Clone Music-Themed Stat Cards",
+      "partIntroduction": "Design a single “Now Playing” card that shows an album-cover thumbnail on the left, a label/value on the right, then clone it to make “Volume” and “Buffer Status” cards. Finally, center them to achieve symmetrical balance.",
+      "steps": [
+        {
+          "stepTitle": "Draw One Music Stat Card Background",
+          "details": [
+            "Rectangle tool → X = 30, Y = 130, W = 220, H = 100, Rx = 8, Ry = 8.",
+            "Fill & Stroke → Fill → Light-Slate (<code>#334155</code> <span class='color-swatch' style='background-color:#334155;'></span>).",
+            "Stroke → No paint."
+          ],
+          "instructions": [
+            "Draw a 220×100 px rounded rectangle filled Light-Slate."
+          ]
+        },
+        {
+          "stepTitle": "Import & Place an Album-Cover Thumbnail",
+          "details": [
+            "File → Import → select <code>album_cover_example.png</code> (100 × 100 px placeholder).",
+            "Place at X = 30, Y = 130 so it exactly fills the left half of the card.",
+            "Object → Raise to Top (so it sits above the card background)."
+          ],
+          "instructions": [
+            "Import <code>tutorials/applied_design_principles_music/album_cover_example.png</code>, place it at X=30, Y=130 inside the card, so it aligns with the left edge of the card background."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/album_cover_example.png",
+            "alt": "100×100 album-cover placeholder"
+          }
+        },
+        {
+          "stepTitle": "Add ‘Current Track’ Label & Value",
+          "details": [
+            "Text tool → X = 140, Y = 155 → type <code>Current Track</code> → Text and Font → Inter SemiBold, Size = 14 px → Fill → Accent-Blue (<code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>).",
+            "Text tool → X = 140, Y = 180 → type \"Symphony No. 5\" → Text and Font → Inter Bold, Size = 18 px → Fill → White (<code>#ffffff</code> <span class='color-swatch' style='background-color:#ffffff;'></span>).",
+            "Align & Distribute → align both text objects horizontally within the right half of the card."
+          ],
+          "instructions": [
+            "Add the label “Current Track” (Inter SemiBold 14 px, Accent-Blue) and the value \"Symphony No. 5\" (Inter Bold 18 px, White) on the right half of the card, to the right of the album art."
+          ]
+        },
+        {
+          "stepTitle": "Group & Clone for Three Music Stat Cards",
+          "details": [
+            "Select all elements of the first card (background, album cover, two text items) → press <code>Ctrl+G</code> → name group “music-stat-card.”",
+            "While that group is selected, press <code>Ctrl+D</code> → move the second copy to X = 260, Y = 130 → edit its text: Label → <code>Volume</code>; Value → <code>75 %</code>.",
+            "Press <code>Ctrl+D</code> again → move the third copy to X = 490, Y = 130 → edit its text: Label → <code>Buffer</code>; Value → <code>85 %</code>."
+          ],
+          "instructions": [
+            "Group all elements of the first card, then duplicate it twice. Position the duplicates to X=260 and X=490 (or use Align & Distribute for even spacing). Edit text content for 'Volume' and 'Buffer' cards."
+          ]
+        },
+        {
+          "stepTitle": "Center Cards for Symmetrical Balance",
+          "details": [
+            "Select title bar, subtitle, and all three “music-stat-card” groups (hold Shift).",
+            "Align & Distribute → Relative to: Page → click “Center on horizontal axis.”"
+          ],
+          "instructions": [
+            "Shift-select the title bar, subtitle text object, and the three card groups. Use Align & Distribute (Relative to: Page) to center them horizontally."
+          ]
+        }
+      ],
+      "summary": "Music-themed stat cards are created and balanced on the canvas."
+    },
+    {
+      "partId": "part4_contrast_whitespace",
+      "partTitle": "Part 4: Contrast & Whitespace Refinements (Music-Themed)",
+      "partIntroduction": "Emphasize contrast by adding a highlight strip behind the numeric values on the Volume & Buffer cards, then increase vertical whitespace so the layout feels less cramped. Optionally import an abstract waveform SVG behind the cards as a decorative accent.",
+      "steps": [
+        {
+          "stepTitle": "Add Highlight Strips Behind ‘75 %’ & ‘85 %’",
+          "details": [
+            "For the 'Volume' card: Rectangle tool → X = 280, Y = 165, W = 80, H = 30, Rx = 6 → Fill → <code>#475569</code> <span class='color-swatch' style='background-color:#475569;'></span> → send to Back. Center “75 %” (Inter Bold 24 px, White) on that strip.",
+            "Repeat for the “85 %” on the Buffer card: Rectangle tool → X = 510, Y = 165, same W/H/Rx → Fill → <code>#475569</code> <span class='color-swatch' style='background-color:#475569;'></span> → send to Back → center “85 %” text."
+          ],
+          "instructions": [
+            "On the 'Volume' card, draw a dark strip (<code>#475569</code>) behind the '75 %' value. Make sure the text is on top and centered. Repeat for the 'Buffer' card's '85 %' value."
+          ]
+        },
+        {
+          "stepTitle": "Increase Vertical Whitespace",
+          "details": [
+            "Select all three card groups → in the toolbar, change Y from 130 to 150 (move them down 20 px).",
+            "Verify that there is approximately 20 px gap between the bottom of the cards and where the audio progress bar will go."
+          ],
+          "instructions": [
+            "Move the three stat-card groups down by 20 px (e.g., set their Y coordinate to 150) to open up space below them and above the upcoming progress bar."
+          ]
+        },
+        {
+          "stepTitle": "Import Abstract Waveform Accent (Optional)",
+          "details": [
+            "File → Import → <code>abstract_waveform.svg</code> (a stylized, curved waveform vector).",
+            "Scale to W ≈ 300, H ≈ 80 → position at X = 150, Y = 250 → Fill & Stroke → Fill → Accent-Blue (<code>#38bdf8</code> <span class='color-swatch' style='background-color:#38bdf8;'></span>), Opacity = 10 % → send to Back (so it sits faintly behind the cards)."
+          ],
+          "instructions": [
+            "Optionally, import <code>tutorials/applied_design_principles_music/abstract_waveform.svg</code>. Scale and position it behind the stat cards, set its fill to Accent-Blue, and reduce opacity to 10%."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/abstract_waveform.svg",
+            "alt": "Abstract stylized waveform (for background accent)"
+          }
+        }
+      ],
+      "summary": "Contrast and whitespace are refined, enhancing visual clarity and thematic feel."
+    },
+    {
+      "partId": "part5_audio_progress",
+      "partTitle": "Part 5: Draw Audio Progress Bar & Apply Color Theory",
+      "partIntroduction": "Create a 540 × 20 px audio progress track at the bottom, fill exactly 50 % with highlight green, overlay a “50 %” label plus a tiny waveform icon. Then demonstrate a lower-contrast variant to show why hue contrast is important.",
+      "steps": [
+        {
+          "stepTitle": "Draw Empty Audio Progress Track",
+          "details": [
+            "Rectangle tool → X = 30, Y = 300, W = 540, H = 20 → Fill → Neutral-Gray (<code>#cbd5e1</code> <span class='color-swatch' style='background-color:#cbd5e1;'></span>)."
+          ],
+          "instructions": [
+            "Draw a light-gray track of 540×20 px near the bottom of the canvas (Y=300)."
+          ]
+        },
+        {
+          "stepTitle": "Fill 50 % with Highlight Green",
+          "details": [
+            "Rectangle tool → X = 30, Y = 300, W = 270, H = 20 → Fill → Highlight-Green (<code>#10b981</code> <span class='color-swatch' style='background-color:#10b981;'></span>)."
+          ],
+          "instructions": [
+            "Draw a green rectangle (Highlight-Green) W=270px, H=20px, positioned at X=30, Y=300, covering the first half of the track."
+          ]
+        },
+        {
+          "stepTitle": "Add ‘50 %’ Label & Mini-Waveform Icon",
+          "details": [
+            "Text tool (<code>T</code>) → X = 300, Y = 315 → type <code>50 %</code> → Text and Font → Inter Bold, 14 px → Fill → White. Align & Distribute → center horizontally on the green fill.",
+            "File → Import → <code>mini_waveform.svg</code> (a small 20 × 20 px stylized waveform) → scale to ~20 × 20 px → X = 550, Y = 303 (so that it slightly overlaps the right edge of the green fill) → Fill → White, Opacity = 70 %."
+          ],
+          "instructions": [
+            "Add “50 %” text in white (Inter Bold, 14px) centered over the green fill. Import <code>tutorials/applied_design_principles_music/mini_waveform.svg</code>, scale to 20x20px, fill white with 70% opacity, and place it near the right end of the progress track (e.g., X=550, Y=303)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/mini_waveform.svg",
+            "alt": "Tiny stylized waveform icon (for overlay)"
+          }
+        },
+        {
+          "stepTitle": "Demonstrate Lower-Contrast Variant",
+          "details": [
+            "Duplicate the green fill rectangle (<code>Ctrl+D</code>) → change its Fill to <code>#475569</code> <span class='color-swatch' style='background-color:#475569;'></span> (medium slate) → ensure the white “50 %” text remains on top.",
+            "Notice how white text is harder to read on <code>#475569</code> versus <code>#10b981</code>, illustrating why hue contrast matters."
+          ],
+          "instructions": [
+            "For demonstration, duplicate the green fill, change its color to <code>#475569</code>, and observe the reduced readability of the white text."
+          ]
+        }
+      ],
+      "summary": "The audio progress bar is complete, with thematic elements and a practical example of color contrast."
+    },
+    {
+      "partId": "part6_final_export",
+      "partTitle": "Part 6: Final Dashboard Assembly & Export",
+      "partIntroduction": "Review all elements—music-themed background, title bar with icon, music stat cards, audio track—ensure balanced spacing and alignment, then export your final design as both PNG and SVG.",
+      "steps": [
+        {
+          "stepTitle": "Review & Center Everything",
+          "details": [
+            "Zoom to 100 % (View → Zoom → 100 %).",
+            "Verify that:",
+            "  - Waveform background is faint (20 % opacity).",
+            "  - Title bar, music-note icon, and subtitle are crisp.",
+            "  - Three music stat cards have 20 px vertical spacing beneath the subtitle.",
+            "  - Audio track sits about 20 px below the bottom of the cards.",
+            "  - Abstract waveform accent (if used) is very subtle behind the cards.",
+            "Select all objects (<code>Ctrl+A</code>) → Align & Distribute → Relative to: Page → click “Center on horizontal axis” and “Center on vertical axis.”"
+          ],
+          "instructions": [
+            "Review all elements for alignment and spacing. Select all objects (Ctrl+A) and use Align & Distribute (Relative to: Page) to center everything horizontally and vertically on the canvas."
+          ]
+        },
+        {
+          "stepTitle": "Export as PNG & SVG",
+          "details": [
+            "File → Export PNG Image (<code>Shift+Ctrl+E</code>) → under Export area, choose “Page” → set DPI = 96 → click “Export As…,” name it <code>music_dashboard.png</code> → click “Export.”",
+            "File → Save As → Plain SVG (<code>music_dashboard.svg</code>) → in the dialog, leave “Convert text to paths” unchecked if you want editable text, or check it if you want fixed outlines → click “Save.”"
+          ],
+          "instructions": [
+            "Export the entire page as a 96 DPI PNG named <code>music_dashboard.png</code>. Save a copy as Plain SVG named <code>music_dashboard.svg</code>."
+          ]
+        }
+      ],
+      "summary": "Your music-themed dashboard is complete and exported!"
+    },
+    {
+      "partId": "part7_optional_mobile",
+      "partTitle": "Part 7: Alternate Background & Mobile-Sized Mockup (Optional)",
+      "partIntroduction": "Try a second dark-mode background (e.g. a night sky with faint notes), then resize everything to a 400 × 400 px “mobile preview.” Export that variant as well.",
+      "steps": [
+        {
+          "stepTitle": "Import “Night Sky Notes” Background",
+          "details": [
+            "File → Import → <code>night_sky_notes.png</code> (a faint white-on-dark PNG of scattered music notes).",
+            "Scale it to fill the 600 × 400 canvas, set Opacity to 15 %."
+          ],
+          "instructions": [
+            "Optionally, import <code>tutorials/applied_design_principles_music/night_sky_notes.png</code>. Scale it to cover the canvas and set opacity to 15% as an alternative background."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles_music/night_sky_notes.png",
+            "alt": "Faint night sky with scattered notes at 15% opacity"
+          }
+        },
+        {
+          "stepTitle": "Resize Canvas & Elements for 400 × 400 px",
+          "details": [
+            "File → Document Properties → set Width = 400, Height = 400 → click “Resize page to drawing or selection.”",
+            "Select and scale elements proportionally:",
+            "  - Music stat cards → 140 × 80 px each, spaced evenly.",
+            "  - Audio track → 360 × 15 px.",
+            "  - Text sizes → reduce headings to ~20 px, subtitles to 12 px.",
+            "  - Title bar → 400 × 50 px.",
+            "  - Music-note icon → 20 × 20 px.",
+            "Maintain ~10 px–15 px vertical gaps."
+          ],
+          "instructions": [
+            "Optionally, change Document Properties to 400x400px. Select all dashboard elements, group them, and scale proportionally to fit the new canvas size, adjusting layout and text sizes as needed."
+          ]
+        },
+        {
+          "stepTitle": "Export Mobile Version",
+          "details": [
+            "File → Export PNG Image → Export area = Page → DPI = 96 → name it <code>music_dashboard_mobile.png</code> → click “Export.”",
+            "File → Save As → Plain SVG (<code>music_dashboard_mobile.svg</code>) → click “Save.”"
+          ],
+          "instructions": [
+            "If you created a mobile version, export it as <code>music_dashboard_mobile.png</code> and <code>music_dashboard_mobile.svg</code>."
+          ]
+        }
+      ],
+      "summary": "You've explored an alternative background and created a mobile-sized version of your dashboard."
+    }
+  ]
+}
