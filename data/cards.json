@@ -352,12 +352,12 @@
   },
 
   {
-  "id": "button_glow", // Or another unique ID you prefer
-  "title": "Glowing Push Button", // Or similar title
+  "id": "button_glow",  
+  "title": "Glowing Push Button", 
   "category": "control",
-  "difficulty": "intermediate", // Or your preferred difficulty
+  "difficulty": "intermediate",  
   "tags": ["button", "push-button", "glow", "states"],
-  "contentJsonPath": "tutorials/button_glow/content.json", // Path to where its content will be
+  "contentJsonPath": "tutorials/button_glow/content.json",  
   "tutorial": {
     "status": "in progress", // Or "outline"
     "notes": "Detailed tutorial for a standard glowing push button with states."
