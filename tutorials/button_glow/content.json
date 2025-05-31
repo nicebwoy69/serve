@@ -1,1 +1,145 @@
-
+{
+  "id": "button_glow",
+  "title": "Glowing Button Design",
+  "overallIntroduction": "This tutorial guides you through creating a tactile, interactive button in Inkscape, complete with distinct visual states (default, hover, pressed, and an optional active/toggle state), all fitting within a dark, modern, glowing GUI aesthetic.",
+  "parts": [
+    {
+      "partId": "button_part1_default",
+      "partTitle": "Part 1: Default State",
+      "partIntroduction": "This part focuses on creating the button's standard appearance when it's not being interacted with, establishing its basic shape, 3D feel, and label.",
+      "steps": [
+        {
+          "stepTitle": "Define Button Shape & Size",
+          "instructions": [
+            "Ensure Inkscape's snapping is enabled (View > Show/Hide > Snap Controls Bar). Useful options: 'Snap to Bounding Boxes' and 'Snap to Grids'.",
+            "Select the <strong>Rectangle Tool (<code>R</code>)</strong>.",
+            "Draw a rectangle for the button base (e.g., 100px wide, 30px high).",
+            "Apply a corner radius (e.g., 4-6px) using the circular handles on the rectangle when the Rectangle Tool is active, or via Object > Rectangle and Square properties dialog."
+          ],
+          "tip": "If creating multiple buttons for a panel, plan their alignment and spacing (e.g., 8-12px apart) using a grid or guides.",
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x200/0f172a/38bdf8?text=Button%0AShape",
+            "alt": "Basic rounded rectangle for the button."
+          }
+        },
+        {
+          "stepTitle": "Base Button Styling (Matte & 3D Form)",
+          "instructions": [
+            "Select the button shape.",
+            "Open the <strong>Fill and Stroke panel (<code>Shift+Ctrl+F</code>)</strong>. Remove any existing stroke (Stroke paint tab > 'No paint').",
+            "In the 'Fill' tab, apply a subtle linear gradient. For a top-left light source:",
+            "  - Top/Left Stop: Slightly lighter dark color (e.g., <code>#3c3e52</code>).",
+            "  - Bottom/Right Stop: Base dark color (e.g., <code>#2d2e45</code>).",
+            "Use the Gradient Tool (<code>G</code>) or the Gradient Editor in the Fill and Stroke panel to adjust the angle and stop positions."
+          ],
+          "parameters": {
+            "Base Fill Color (Darker Stop)": {"value": "#2d2e45", "notes": "main button color"},
+            "Gradient Highlight Color (Lighter Stop)": {"value": "#3c3e52", "notes": "subtle highlight"}
+          },
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x200/0f172a/38bdf8?text=Button%0ABase+Gradient",
+            "alt": "Button shape with base gradient applied."
+          }
+        },
+        {
+          "stepTitle": "Add Bevels & Edge Highlights",
+          "details": ["Purpose: To make the button appear slightly raised. Rule of Thumb: Light on top/left edges, Dark on bottom/right edges (assuming a top-left light source)."],
+          "instructions": [
+            "<strong>Method: Stroke Gradient (Recommended)</strong>",
+            "Apply a stroke to the main button shape (e.g., 1px width).",
+            "In 'Stroke paint' tab (Fill & Stroke panel), choose 'Linear Gradient'.",
+            "Use the Gradient Tool (<code>G</code>) to adjust the gradient angle (e.g., -45 degrees for a top-left light source).",
+            "Edit the gradient stops for the stroke:",
+            "  - Stop 1 (for lit edges): Light color (e.g., <code>#4d4d70</code>, possibly with some transparency).",
+            "  - Stop 2 (for shaded edges): Dark color (e.g., <code>#11121f</code>, possibly with some transparency)."
+          ],
+          "parameters": {
+            "Bevel Highlight Color": {"value": "#4d4d70", "notes": "light gray-blue"},
+            "Bevel Shadow Color": {"value": "#11121f", "notes": "very dark"}
+          },
+          "tip": "Adjust stroke width and gradient stop positions to control the bevel's appearance. Ensure the stroke is aligned to the inside or center if possible to maintain original dimensions, or account for its width in your design."
+        },
+        {
+          "stepTitle": "Create the Button Label Text",
+          "instructions": [
+            "Select the <strong>Text tool (<code>T</code>)</strong>. Click on the button area and type your label (e.g., \"PLAY\").",
+            "Choose a clean, sans-serif font (e.g., Inter, Roboto) and appropriate size.",
+            "Set text color (e.g., light grey <code>#aaaaaa</code> or a subtle accent color).",
+            "Use the <strong>Align and Distribute panel (<code>Shift+Ctrl+A</code>)</strong> to center the text horizontally and vertically relative to the button shape.",
+            "<em>Optional:</em> For all-caps text, consider adjusting letter spacing (tracking) for better readability.",
+            "<em>Optional & Subtle Glow:</em> Apply a very subtle text shadow or a tight outer glow (Filters > Shadows and Glows > Outer Glow) using an accent color (e.g., <code>#00cfff</code>) with very low opacity and blur. Use sparingly."
+          ],
+          "parameters": {
+            "Label Text Color": {"value": "#cbd5e1", "notes": "default light text"},
+            "Optional Glow Color": {"value": "#38bdf8", "notes": "subtle cyan"}
+          }
+        }
+      ],
+      "summary": "The default state of your button is now designed, appearing slightly raised with clear labeling."
+    },
+    {
+      "partId": "button_part2_states",
+      "partTitle": "Part 2: Hover & Pressed States",
+      "partIntroduction": "This part covers creating distinct visual appearances for when the user hovers over or actively clicks/presses the button. These are static representations you'll create as separate groups in Inkscape.",
+      "steps": [
+        {
+          "stepTitle": "Designing the Hover State",
+          "details": ["<em>Workflow Tip:</em> Duplicate your entire 'Default State' button group (Ctrl+D). Rename the new group (e.g., 'Button_Hover'). Lock or hide other state groups while working."],
+          "instructions": [
+            "<em>Usability Heuristic:</em> The hover state should indicate interactivity with a noticeable but not jarring change (e.g., 10–20% increase in brightness or glow prominence).",
+            "Select elements within your 'Button_Hover' group and apply modifications:",
+            "  - **Base Fill/Gradient:** Make the button shape slightly brighter. You can adjust the gradient stops to be lighter or overlay a semi-transparent light color in 'Screen' or 'Overlay' blend mode.",
+            "  - **Bevels/Highlights:** Slightly enhance the existing highlights on the bevel.",
+            "  - **Border Glow/Outline (if used):** Increase its intensity (opacity, blur radius, or stroke color brightness).",
+            "  - **Label Text:** May become slightly brighter, or its glow effect (if any) more pronounced."
+          ],
+          "tip": "A common technique is to slightly increase the brightness of the main accent color used in glows or highlights."
+        },
+        {
+          "stepTitle": "Designing the Pressed State",
+          "details": ["<em>Workflow Tip:</em> Duplicate your 'Default State' button group again. Rename to 'Button_Pressed'."],
+          "instructions": [
+            "<em>Purpose:</em> To give immediate visual confirmation of a click, making the button appear 'pushed in'.",
+            "Select elements within your 'Button_Pressed' group and apply modifications:",
+            "  - **Invert Bevels/Lighting (Key Effect):** This creates the 'pushed in' look. Reverse the light logic: Top/left edges become darker (shadowed), bottom/right edges become lighter (simulating an internal highlight). If using a stroke gradient for bevels, invert its colors or adjust the gradient direction.",
+            "  - **Base Fill:** Might become slightly darker overall.",
+            "  - **Label Text:** May shift down and to the right by 1 pixel to enhance the 'pushed in' feel.",
+            "  - **Glow Effects:** Any outer glows on the button might diminish or be replaced by a subtle *inner* glow on the button's edge."
+          ],
+          "tip": "For the inverted bevel, if your original highlight was color A and shadow was color B, for the pressed state, the top/left edge might use color B (or darker) and bottom/right might use color A (or lighter)."
+        }
+      ],
+      "summary": "You now have visual representations for the hover and pressed states, providing essential interactive feedback."
+    },
+    {
+      "partId": "button_part3_active_toggle",
+      "partTitle": "Part 3: (Optional) Active/Toggle State",
+      "partIntroduction": "For buttons that act as toggles (on/off switches), this part covers designing a clear 'active' or 'on' state.",
+      "steps": [
+        {
+          "stepTitle": "Visualizing the 'Active/On' State",
+          "details": ["<em>Workflow Tip:</em> Duplicate your 'Default State' button group. Rename to 'Button_Active' or 'Button_Toggle_On'."],
+          "instructions": [
+            "Select elements within your 'Button_Active' group and apply modifications to clearly indicate it's 'On':",
+            "  - **Fill Color (Primary Indicator):** Change the button's base fill to your main bright accent color (e.g., a solid glowing cyan <code>#00cfff</code>).",
+            "  - **Label Text:** Adjust text color for good contrast against the new active fill (e.g., white or a very dark color if the active fill is light).",
+            "  - **Indicator Light (LED Style - Optional):** Add a small, separate glowing dot (like an LED) of a contrasting bright color (e.g., green <code>#22c55e</code> or bright white) to one corner of the button. Ensure consistent placement if used on multiple toggle buttons.",
+            "  - **Border/Bevel:** Might be more pronounced, use the accent color more intensely, or adopt a brighter/thicker border to emphasize its active state."
+          ],
+          "parameters": {
+            "Active State Fill Color": {"value": "#00cfff", "notes": "bright cyan accent"},
+            "Active State LED Color (Optional)": {"value": "#22c55e", "notes": "green"}
+          },
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x200/0f172a/22c55e?text=Button%0AActive+State",
+            "alt": "Button in an active/toggled on state."
+          }
+        }
+      ],
+      "summary": "An active/toggled state design provides clear feedback for on/off type buttons. Remember to organize all states in well-named layers or groups in Inkscape."
+    }
+  ]
+}
