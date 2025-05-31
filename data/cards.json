@@ -541,7 +541,7 @@
   "tutorial": {
     "status": "outline",
     "notes": "Covers using the Layers panel, grouping/ungrouping objects, and precision alignment/distribution."
-  },
+  }, 
   "slug": "inkscape-layers-groups-alignment"
 },
 
@@ -573,6 +573,21 @@
     "notes": "Build a System Dashboard Panel applying core design principles."
   },
   "slug": "applied-design-principles-inkscape"
+},
+
+  {
+  "id": "applied_design_principles_music",
+  "title": "Applied Design Principles (Music-Themed Dashboard)",
+  "category": "design-principles",
+  "difficulty": "intermediate",
+  "tags": ["design principles", "music theme", "dashboard", "inkscape", "ui project", "balance", "contrast", "hierarchy"],
+  "contentJsonPath": "tutorials/applied_design_principles_music/content.json",
+  "tutorial": {
+    "status": "outline",
+    "parts": 7,
+    "notes": "Build a Music Player Dashboard in Inkscape while applying core design principles and music-themed graphics."
+  },
+  "slug": "applied-design-principles-music"
 }
   
 
