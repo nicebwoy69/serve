@@ -559,27 +559,19 @@
   "slug": "inkscape-exporting-assets"
 }  ,
 
-  {
+ {
   "id": "applied_design_principles",
   "title": "Applied Design Principles in Inkscape",
-  "category": "inkscape-basics",
-  "difficulty": "intermediate",
-  "tags": [
-    "balance",
-    "contrast",
-    "hierarchy",
-    "repetition",
-    "whitespace",
-    "color-theory",
-    "layout",
-    "dashboard"
-  ],
+  "category": "design-principles", // Or a category you prefer
+  "difficulty": "intermediate", // Suggestion, adjust as needed
+  "tags": ["design", "principles", "balance", "contrast", "hierarchy", "inkscape", "ui-project"],
   "contentJsonPath": "tutorials/applied_design_principles/content.json",
   "tutorial": {
-    "status": "placeholder",
-    "notes": "A step-by-step exercise that builds a dashboard panel while explicitly applying Balance, Contrast, Hierarchy, Repetition, Whitespace, and Color Theory."
+    "status": "outline", // Or "in progress" once you start adding content
+    "parts": 6, // Based on the document structure
+    "notes": "Build a System Dashboard Panel applying core design principles."
   },
-  "slug": "applied-design-principles"
+  "slug": "applied-design-principles-inkscape"
 }
   
 
