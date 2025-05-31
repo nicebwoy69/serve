@@ -557,7 +557,30 @@
     "notes": "Covers exporting PNGs, SVGs (Plain & Optimized), batch exporting, and preparing assets for web/app use."
   },
   "slug": "inkscape-exporting-assets"
-}  
+}  ,
+
+  {
+  "id": "applied_design_principles",
+  "title": "Applied Design Principles in Inkscape",
+  "category": "inkscape-basics",
+  "difficulty": "intermediate",
+  "tags": [
+    "balance",
+    "contrast",
+    "hierarchy",
+    "repetition",
+    "whitespace",
+    "color-theory",
+    "layout",
+    "dashboard"
+  ],
+  "contentJsonPath": "tutorials/applied_design_principles/content.json",
+  "tutorial": {
+    "status": "placeholder",
+    "notes": "A step-by-step exercise that builds a dashboard panel while explicitly applying Balance, Contrast, Hierarchy, Repetition, Whitespace, and Color Theory."
+  },
+  "slug": "applied-design-principles"
+}
   
 
 
