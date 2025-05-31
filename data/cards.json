@@ -480,7 +480,7 @@
   "contentJsonPath": "tutorials/getting_started_inkscape/content.json",
   "tutorial": {
     "status": "outline",
-    "parts": 3, // Example: UI Overview, Navigation, Document/Preferences
+    "parts": 3,  
     "notes": "Covers the Inkscape UI, canvas navigation, document properties, and preferences."
   },
   "slug": "getting-started-inkscape"
@@ -495,7 +495,7 @@
   "contentJsonPath": "tutorials/basic_shapes_editing/content.json",
   "tutorial": {
     "status": "outline",
-    "parts": 4, // Example: Rectangles, Circles/Ellipses, Stars/Polygons, Boolean Ops
+    "parts": 4, 
     "notes": "Learn to create and modify fundamental shapes like rectangles, circles, stars, and use boolean operations."
   },
   "slug": "basic-shapes-editing"
