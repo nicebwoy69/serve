@@ -17,7 +17,12 @@
             "Open the <strong>Align and Distribute panel (<code>Shift+Ctrl+A</code>)</strong>.",
             "With the circle selected, ensure 'Relative to:' is set to 'Page'. Click 'Center on vertical axis' and 'Center on horizontal axis'."
           ],
-          "tip": "Drawing a large circle initially can make it easier to work on details. You can always scale it down later."
+          "tip": "Drawing a large circle initially can make it easier to work on details. You can always scale it down later.",
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x300/0f172a/38bdf8?text=Step+1.1%0ABase+Circle",
+            "alt": "Preview of the base circle centered on the page."
+          }
         },
         {
           "stepTitle": "Apply the Base Gradient (Matte Look)",
@@ -33,6 +38,11 @@
           "parameters": {
             "Center Stop Color": {"value": "#2d2e45", "notes": "deep indigo"},
             "Outer Stop Color": {"value": "#11121f", "notes": "almost black"}
+          },
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x300/0f172a/38bdf8?text=Step+1.2%0ABase+Gradient",
+            "alt": "Preview of the knob base with radial gradient."
           }
         },
         {
@@ -70,7 +80,12 @@
             "Go to <strong>Filters > Blurs > Gaussian Blur...</strong>. Apply a blur of around 3 to 5 'Standard Deviations'. Check 'Live preview' to adjust.",
             "Open the Objects panel (<code>Shift+Ctrl+O</code>) or use Page Down/Up keys (<code>PgDn</code>, <code>PgUp</code>) to send this blurred shadow layer *below* the main knob base circle but above any background."
           ],
-          "tip": "The amount of blur and offset for the drop shadow will determine how 'lifted' the knob appears."
+          "tip": "The amount of blur and offset for the drop shadow will determine how 'lifted' the knob appears.",
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x300/0f172a/38bdf8?text=Step+1.4%0ADrop+Shadow",
+            "alt": "Preview of the knob with drop shadow."
+          }
         }
       ],
       "summary": "At this point, you should have a clean knob face with a subtle matte gradient, an inner bevel suggesting a rim, and a drop shadow giving it lift from the page."
@@ -129,7 +144,12 @@
           "parameters": {
             "Indicator Dot Fill": {"value": "#00cfff", "notes": "bright cyan"}
           },
-          "tip": "Group the sharp dot and its blur together for easier positioning."
+          "tip": "Group the sharp dot and its blur together for easier positioning.",
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x300/0f172a/38bdf8?text=Step+2.3%0AGlow+Arc+%26+Dot",
+            "alt": "Preview of the knob with glowing arc and indicator dot."
+          }
         },
         {
           "stepTitle": "(Optional) Add Specular Highlight on Arc",
@@ -162,7 +182,12 @@
             "Apply a <strong>Gaussian Blur</strong> (Filters > Blurs > Gaussian Blur...) to it, around 5–8 standard deviations.",
             "Greatly reduce its opacity (e.g., 10–20%).",
             "Optional: Set the blend mode of this highlight layer to 'Screen' via the Layers panel (<code>Shift+Ctrl+L</code>) for a brighter, more additive light effect."
-          ]
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "https://placehold.co/300x300/0f172a/38bdf8?text=Step+3.1%0AHighlight+Sheen",
+            "alt": "Preview of the knob with highlight sheen."
+          }
         },
         {
           "stepTitle": "(Optional) Add a Specular Arc or Overlay",
