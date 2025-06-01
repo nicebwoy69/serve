@@ -1,597 +1,508 @@
 [
   {
-    "id": "knob_skeuomorphic",
+    "id": "skeuomorphic-knob",
     "title": "Skeuomorphic Knob",
+    "description": "Create a photorealistic knob with realistic highlights, shadows, and bevel.",
+    "thumbnail": "/images/cards/skeuomorphic-knob.png",
     "category": "control",
     "difficulty": "intermediate",
+    "status": "done",
     "tags": ["knob", "radial", "highlight", "shadow", "bevel"],
-    "contentJsonPath": "tutorials/knob/content.json",  
-    "tutorial": {
-      "status": "done",
-      "parts": 3,
-      "notes": "Finished knob tutorial with all three parts."
-    },
-    "slug": "skeuomorphic-knob"
+    "contentJsonPath": "tutorials/skeuomorphic-knob/content.json"
   },
   {
-    "id": "vu_meter_analog",
+    "id": "analog-vu-or-led-meter",
     "title": "Analog VU or LED Meter",
+    "description": "Design a vertical VU or LED-style meter, complete with lighting and bar-graph.",
+    "thumbnail": "/images/cards/analog-vu-meter.png",
     "category": "display",
     "difficulty": "intermediate",
+    "status": "in-progress",
     "tags": ["meter", "led", "vertical", "bars", "lighting"],
-    "tutorial": {
-      "status": "in progress",
-      "parts": 3,
-      "notes": "Scale and needle steps drafted; glow zones pending."
-    },
-    "slug": "vu-led-meter"
+    "contentJsonPath": "tutorials/analog-vu-or-led-meter/content.json"
   },
   {
-    "id": "waveform_display",
+    "id": "waveform-display",
     "title": "Waveform Display",
+    "description": "Build an animated oscilloscope-style SVG waveform display.",
+    "thumbnail": "/images/cards/waveform-display.png",
     "category": "display",
     "difficulty": "advanced",
+    "status": "placeholder",
     "tags": ["waveform", "oscilloscope", "svg", "animated"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Outline ready; content to be authored."
-    },
-    "slug": "waveform-display"
+    "contentJsonPath": "tutorials/waveform-display/content.json"
   },
   {
-    "id": "selector_knob_rotary",
+    "id": "rotary-selector-knob",
     "title": "Rotary Selector Knob",
+    "description": "Create a mechanical rotary selector with ticks and rotations.",
+    "thumbnail": "/images/cards/rotary-selector-knob.png",
     "category": "control",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["selector", "rotary", "ticks", "mechanical"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Tick-mark generation and snapping TBD."
-    },
-    "slug": "rotary-selector-knob"
+    "contentJsonPath": "tutorials/rotary-selector-knob/content.json"
   },
   {
-    "id": "toggle_switch_glossy",
+    "id": "glossy-toggle-switch",
     "title": "Glossy Toggle Switch",
+    "description": "Draw a shiny on-off toggle switch with beveled edges.",
+    "thumbnail": "/images/cards/glossy-toggle-switch.png",
     "category": "control",
     "difficulty": "beginner",
+    "status": "in-progress",
     "tags": ["toggle", "on-off", "shiny", "switch"],
-    "tutorial": {
-      "status": "in progress",
-      "notes": "Base shape and states drafted; gloss finish pending."
-    },
-    "slug": "glossy-toggle-switch"
+    "contentJsonPath": "tutorials/glossy-toggle-switch/content.json"
   },
   {
-    "id": "drum_pad_grid",
+    "id": "drum-pad-grid",
     "title": "Drum Pad Grid",
+    "description": "Design a velocity-sensitive drum pad matrix with subtle shading.",
+    "thumbnail": "/images/cards/drum-pad-grid.png",
     "category": "input",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["grid", "buttons", "pads", "velocity", "matrix"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Grid layout and pad styling to author."
-    },
-    "slug": "drum-pad-grid"
+    "contentJsonPath": "tutorials/drum-pad-grid/content.json"
   },
   {
-    "id": "text_label_glow",
+    "id": "label-with-glow-effect",
     "title": "Label with Glow Effect",
+    "description": "Add a soft neon glow around text labels.",
+    "thumbnail": "/images/cards/label-with-glow-effect.png",
     "category": "text",
     "difficulty": "beginner",
+    "status": "done",
     "tags": ["text", "glow", "shadow", "label"],
-    "tutorial": {
-      "status": "done",
-      "notes": "Glow effect and legibility techniques covered."
-    },
-    "slug": "glow-text-label"
+    "contentJsonPath": "tutorials/label-with-glow-effect/content.json"
   },
   {
-    "id": "led_ring_circular",
+    "id": "circular-led-ring",
     "title": "Circular LED Ring",
+    "description": "Create an LED ring around a knob or use as a meter indicator.",
+    "thumbnail": "/images/cards/circular-led-ring.png",
     "category": "indicator",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["led", "ring", "meter", "knob-surround"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Static ring and animated fill pending."
-    },
-    "slug": "circular-led-ring"
+    "contentJsonPath": "tutorials/circular-led-ring/content.json"
   },
   {
-    "id": "toggle_button_mini",
+    "id": "mini-toggle-button",
     "title": "Mini Toggle Button",
+    "description": "Design a minimal low-fi toggle switch with two states.",
+    "thumbnail": "/images/cards/mini-toggle-button.png",
     "category": "control",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["toggle", "switch", "lo-fi"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Basic on/off states to outline."
-    },
-    "slug": "mini-toggle-button"
+    "contentJsonPath": "tutorials/mini-toggle-button/content.json"
   },
   {
-    "id": "preset_browser_panel",
+    "id": "preset-browser-panel",
     "title": "Preset Browser Panel",
+    "description": "Build a scrollable presets panel with pop-up context menus.",
+    "thumbnail": "/images/cards/preset-browser-panel.png",
     "category": "container",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["panel", "presets", "scroll", "popup"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "List styling and scroll behavior TBD."
-    },
-    "slug": "preset-browser-panel"
+    "contentJsonPath": "tutorials/preset-browser-panel/content.json"
   },
   {
-    "id": "button_matrix_grid",
+    "id": "button-matrix-grid",
     "title": "Button Matrix/Grid",
+    "description": "Create a step-sequencer style matrix of programmable buttons.",
+    "thumbnail": "/images/cards/button-matrix-grid.png",
     "category": "input",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["grid", "buttons", "matrix", "step-sequencer"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Button alignment and state colors to define."
-    },
-    "slug": "button-matrix-grid"
+    "contentJsonPath": "tutorials/button-matrix-grid/content.json"
   },
   {
-    "id": "encoder_ring_indicator",
+    "id": "encoder-ring-indicator",
     "title": "Encoder Ring Indicator",
+    "description": "Design a rotating LED ring that indicates encoder position and velocity.",
+    "thumbnail": "/images/cards/encoder-ring-indicator.png",
     "category": "indicator",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["encoder", "velocity", "ring", "motion"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Motion blur and ring segmentation TBD."
-    },
-    "slug": "encoder-ring"
+    "contentJsonPath": "tutorials/encoder-ring-indicator/content.json"
   },
   {
-    "id": "transport_controls_bar",
+    "id": "transport-controls-bar",
     "title": "Transport Controls Bar",
+    "description": "Build a play/stop/record button set with a timeline indicator.",
+    "thumbnail": "/images/cards/transport-controls-bar.png",
     "category": "control",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["play", "stop", "record", "timeline"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Iconography and active states to outline."
-    },
-    "slug": "transport-controls"
+    "contentJsonPath": "tutorials/transport-controls-bar/content.json"
   },
   {
-    "id": "tab_panel_ui",
+    "id": "tab-panel-section-tabs",
     "title": "Tab Panel / Section Tabs",
+    "description": "Create a responsive tab navigation component for your UI.",
+    "thumbnail": "/images/cards/tab-panel-section-tabs.png",
     "category": "layout",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["tabs", "navigation", "ui-layout"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Active/inactive styles and transitions TBD."
-    },
-    "slug": "tab-panel-section-tabs"
+    "contentJsonPath": "tutorials/tab-panel-section-tabs/content.json"
   },
   {
-    "id": "mod_slot_assign",
+    "id": "modulation-slot-assignment",
     "title": "Modulation Slot Assignment",
+    "description": "Design a slot interface for assigning LFOs, envelopes, etc.",
+    "thumbnail": "/images/cards/modulation-slot-assignment.png",
     "category": "modulation",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["slot", "assign", "lfo", "arc", "removal"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Assignment workflow and remove icon to draft."
-    },
-    "slug": "modulation-slot"
+    "contentJsonPath": "tutorials/modulation-slot-assignment/content.json"
   },
   {
-    "id": "routing_matrix_core",
+    "id": "core-routing-matrix-grid",
     "title": "Core Routing Matrix Grid",
+    "description": "Build an advanced routing grid for modulation and audio paths.",
+    "thumbnail": "/images/cards/core-routing-matrix-grid.png",
     "category": "routing",
     "difficulty": "advanced",
+    "status": "placeholder",
     "tags": ["grid", "routing", "modulation", "core"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Connection lines and activation states TBD."
-    },
-    "slug": "routing-matrix-grid-core" 
+    "contentJsonPath": "tutorials/core-routing-matrix-grid/content.json"
   },
   {
-    "id": "inset_glow_shadow_style",
+    "id": "inset-glows-soft-shadows",
     "title": "Inset Glows & Soft Shadows",
+    "description": "Learn to add inner glow and subtle inner shadows to UI elements.",
+    "thumbnail": "/images/cards/inset-glows-soft-shadows.png",
     "category": "style",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["glow", "shadow", "inset", "glass"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Inner and outer glow techniques outline."
-    },
-    "slug": "inset-glows-soft-shadows"
+    "contentJsonPath": "tutorials/inset-glows-soft-shadows/content.json"
   },
   {
-    "id": "radial_gradient_design",
+    "id": "radial-gradient-design-techniques",
     "title": "Radial Gradient Design Techniques",
+    "description": "Master basic radial gradients for depth and lighting effects.",
+    "thumbnail": "/images/cards/radial-gradient-design-techniques.png",
     "category": "style",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["gradient", "radial", "center-weight", "offset"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Center positioning and falloff control to draft."
-    },
-    "slug": "radial-gradient-design"
+    "contentJsonPath": "tutorials/radial-gradient-design-techniques/content.json"
   },
-    {
-    "id": "radial_gradient_tricks",
+  {
+    "id": "advanced-radial-gradient-tricks",
     "title": "Advanced Radial Gradient Tricks",
+    "description": "Push radial gradients further with 3D shading and highlights.",
+    "thumbnail": "/images/cards/advanced-radial-gradient-tricks.png",
     "category": "style",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["gradient", "radial", "lighting", "3d"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Advanced techniques for specific effects."
-    },
-    "slug": "radial-gradient-tricks"
+    "contentJsonPath": "tutorials/advanced-radial-gradient-tricks/content.json"
   },
   {
-    "id": "frosted_glass_panel_style",
+    "id": "frosted-glass-panel-effect",
     "title": "Frosted Glass Panel Effect",
+    "description": "Create a semi-transparent, blurred “frosted” background panel.",
+    "thumbnail": "/images/cards/frosted-glass-panel-effect.png",
     "category": "style",
     "difficulty": "advanced",
+    "status": "placeholder",
     "tags": ["blur", "transparency", "glass", "popup"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Backdrop blur and alpha layering TBD."
-    },
-    "slug": "frosted-glass-panel"
+    "contentJsonPath": "tutorials/frosted-glass-panel-effect/content.json"
   },
   {
-    "id": "feather_mask_glow_style",
+    "id": "feathered-masking-for-glows",
     "title": "Feathered Masking for Glows",
+    "description": "Use feathered masks to achieve soft bloom and neon glow effects.",
+    "thumbnail": "/images/cards/feathered-masking-for-glows.png",
     "category": "style",
     "difficulty": "advanced",
+    "status": "placeholder",
     "tags": ["feather", "mask", "bloom", "neon"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Mask setup and soft-edge control outline."
-    },
-    "slug": "feathered-masking-glow"
+    "contentJsonPath": "tutorials/feathered-masking-for-glows/content.json"
   },
   {
-    "id": "multiblend_layers_style",
+    "id": "multiblend-mode-layering",
     "title": "Multiblend Mode Layering",
+    "description": "Combine layers using overlay, multiply, screen, and other blend modes.",
+    "thumbnail": "/images/cards/multiblend-mode-layering.png",
     "category": "style",
     "difficulty": "advanced",
+    "status": "placeholder",
     "tags": ["blend", "overlay", "multiply", "screen"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Define overlay workflows and mode blending order."
-    },
-    "slug": "multiblend-mode-layers"
+    "contentJsonPath": "tutorials/multiblend-mode-layering/content.json"
   },
   {
-    "id": "text_glow_style",
+    "id": "text-glow-advanced-label-design",
     "title": "Text Glow & Advanced Label Design",
+    "description": "Add glow around text and design advanced label styles.",
+    "thumbnail": "/images/cards/text-glow-advanced-label-design.png",
     "category": "style",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["font", "label", "glow", "shadow", "typography"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Typography pairing and glow intensity control."
-    },
-    "slug": "text-glow-label-design-advanced" 
+    "contentJsonPath": "tutorials/text-glow-advanced-label-design/content.json"
   },
   {
-    "id": "layer_ordering_philosophy",
+    "id": "layer-ordering-philosophy",
     "title": "Layer Ordering Philosophy",
+    "description": "Learn best practices for naming, ordering, and exporting SVG layers.",
+    "thumbnail": "/images/cards/layer-ordering-philosophy.png",
     "category": "style",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["layer", "naming", "svg", "export", "structure"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Best practices for naming and grouping layers."
-    },
-    "slug": "layer-ordering-structure"
+    "contentJsonPath": "tutorials/layer-ordering-philosophy/content.json"
   },
   {
-    "id": "card_panel_container_layout",
+    "id": "card-panel-container-design",
     "title": "Card / Panel Container Design",
+    "description": "Build a UI container with borders, shadows, and glowing accents.",
+    "thumbnail": "/images/cards/card-panel-container-design.png",
     "category": "layout",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["container", "panel", "card", "border", "glow"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Container rules and responsive padding/margins."
-    },
-    "slug": "card-panel-container"
+    "contentJsonPath": "tutorials/card-panel-container-design/content.json"
   },
   {
-    "id": "grid_systems_layout",
+    "id": "layout-grid-systems-2x2-4x4",
     "title": "Layout Grid Systems (2x2, 4x4)",
+    "description": "Use grids to arrange pads, buttons, and step sequencers in a structured layout.",
+    "thumbnail": "/images/cards/layout-grid-systems-2x2-4x4.png",
     "category": "layout",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["grid", "layout", "pads", "step-sequencer"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Defining gutters, alignment, and responsive breakpoints."
-    },
-    "slug": "grid-systems-layout"
+    "contentJsonPath": "tutorials/layout-grid-systems-2x2-4x4/content.json"
   },
   {
-    "id": "side_panel_mod_rack_layout",
+    "id": "side-panel-mod-rack-layout",
     "title": "Side Panel / Mod Rack Layout",
+    "description": "Design a vertical modular rack with tabs and container regions.",
+    "thumbnail": "/images/cards/side-panel-mod-rack-layout.png",
     "category": "layout",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["vertical", "tab", "container", "rack", "modular"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Collapsible sections and nested module styling."
-    },
-    "slug": "side-panel-mod-rack"
+    "contentJsonPath": "tutorials/side-panel-mod-rack-layout/content.json"
   },
   {
-    "id": "modal_window_overlay_layout",
+    "id": "overlay-panel-modal-window-layout",
     "title": "Overlay Panel / Modal Window Layout",
+    "description": "Create a floating modal window or overlay panel for settings and routing.",
+    "thumbnail": "/images/cards/overlay-panel-modal-window-layout.png",
     "category": "layout",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["modal", "popup", "routing", "settings", "floating"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Backdrop fade and entry/exit animations."
-    },
-    "slug": "overlay-modal-window"
+    "contentJsonPath": "tutorials/overlay-panel-modal-window-layout/content.json"
   },
   {
-    "id": "scroll_list_container",
+    "id": "scrollable-list-container",
     "title": "Scrollable List Container",
+    "description": "Build a scrollable list or mapping browser with custom scrollbars.",
+    "thumbnail": "/images/cards/scrollable-list-container.png",
     "category": "container",
-    "difficulty": "beginner", 
+    "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["scroll", "list", "browser", "mapping"],
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Scrollbar styling and inertia scrolling tips."
-    },
-    "slug": "scrollable-list"
+    "contentJsonPath": "tutorials/scrollable-list-container/content.json"
   },
-
   {
-  "id": "button_glow",  
-  "title": "Glowing Push Button", 
-  "category": "control",
-  "difficulty": "intermediate",  
-  "tags": ["button", "push-button", "glow", "states"],
-  "contentJsonPath": "tutorials/button_glow/content.json",  
-  "tutorial": {
-    "status": "in progress",
-    "notes": "Detailed tutorial for a standard glowing push button with states."
+    "id": "glowing-push-button",
+    "title": "Glowing Push Button",
+    "description": "Design a push button that glows in different states (hover, active, pressed).",
+    "thumbnail": "/images/cards/glowing-push-button.png",
+    "category": "control",
+    "difficulty": "intermediate",
+    "status": "in-progress",
+    "tags": ["button", "push-button", "glow", "states"],
+    "contentJsonPath": "tutorials/glowing-push-button/content.json"
   },
-  "slug": "glowing-push-button"
-},
-
- 
   {
-    "id": "inkscape_color_gradients_patterns",
+    "id": "color-gradients-patterns",
     "title": "Color, Gradients & Patterns",
+    "description": "Learn the basics of fills: flat colors, linear/radial gradients, and patterns in Inkscape.",
+    "thumbnail": "/images/cards/color-gradients-patterns.png",
     "category": "inkscape-basics",
     "difficulty": "beginner",
+    "status": "outline",
     "tags": ["color", "gradients", "patterns", "fill", "stroke", "inkscape", "style"],
-    "contentJsonPath": "tutorials/inkscape_color_gradients_patterns/content.json",
-    "tutorial": {
-      "status": "outline",
-      "notes": "Covers solid fills, linear/radial gradients, pattern fills, color palettes, transparency, and blend modes."
-    },
-    "slug": "inkscape-color-gradients-patterns"
+    "contentJsonPath": "tutorials/color-gradients-patterns/content.json"
   },
   {
-    "id": "project_poster_infographic",
+    "id": "mini-project-simple-poster-infographic",
     "title": "Mini-Project: Simple Poster/Infographic",
+    "description": "Apply basic Inkscape skills to design a simple poster or infographic layout.",
+    "thumbnail": "/images/cards/mini-project-simple-poster-infographic.png",
     "category": "mini-project",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["poster", "infographic", "layout", "typography", "export-pdf", "inkscape", "project"],
-    "contentJsonPath": "tutorials/project_poster_infographic/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "A project-based tutorial on creating a multi-column poster or infographic from concept to final export."
-    },
-    "slug": "project-poster-infographic"
+    "contentJsonPath": "tutorials/mini-project-simple-poster-infographic/content.json"
   },
   {
-    "id": "gui_breadcrumb_menu",
+    "id": "breadcrumb-navigation-horizontal-menu",
     "title": "Breadcrumb Navigation / Horizontal Menu",
+    "description": "Design a horizontal breadcrumb or menu bar with text and hover states.",
+    "thumbnail": "/images/cards/breadcrumb-navigation-horizontal-menu.png",
     "category": "gui-component",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["navigation", "menu", "breadcrumb", "text-layout", "ui"],
-    "contentJsonPath": "tutorials/gui_breadcrumb_menu/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Designing horizontal text-based navigation elements like breadcrumbs or simple menu bars."
-    },
-    "slug": "gui-breadcrumb-menu"
+    "contentJsonPath": "tutorials/breadcrumb-navigation-horizontal-menu/content.json"
   },
   {
-    "id": "gui_toolbar_icons",
+    "id": "toolbar-with-icons",
     "title": "Toolbar with Icons",
+    "description": "Create a toolbar with clickable icons and hover/active states.",
+    "thumbnail": "/images/cards/toolbar-with-icons.png",
     "category": "gui-component",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["toolbar", "icon-button", "panel", "layout", "ui"],
-    "contentJsonPath": "tutorials/gui_toolbar_icons/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Creating a toolbar panel with multiple icon buttons, focusing on grouping and spacing."
-    },
-    "slug": "gui-toolbar-icons"
+    "contentJsonPath": "tutorials/toolbar-with-icons/content.json"
   },
   {
-    "id": "gui_tooltips_popovers",
+    "id": "tooltips-popovers-design",
     "title": "Tooltips & Popovers Design",
+    "description": "Build contextual UI hints and information popovers for buttons and icons.",
+    "thumbnail": "/images/cards/tooltips-popovers-design.png",
     "category": "gui-component",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["tooltip", "popover", "ui-hint", "overlay"],
-    "contentJsonPath": "tutorials/gui_tooltips_popovers/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Designing small informational popups like tooltips or simple popovers."
-    },
-    "slug": "gui-tooltips-popovers"
+    "contentJsonPath": "tutorials/tooltips-popovers-design/content.json"
   },
   {
-    "id": "gui_notification_toast",
+    "id": "notification-toast-message",
     "title": "Notification / Toast Message",
+    "description": "Design a toast/notification popup with auto-dismiss and subtle animations.",
+    "thumbnail": "/images/cards/notification-toast-message.png",
     "category": "gui-component",
     "difficulty": "beginner",
+    "status": "placeholder",
     "tags": ["notification", "toast", "alert", "ui-feedback"],
-    "contentJsonPath": "tutorials/gui_notification_toast/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Designing transient message popups like toasts or notifications."
-    },
-    "slug": "gui-notification-toast"
+    "contentJsonPath": "tutorials/notification-toast-message/content.json"
   },
   {
-    "id": "inkscape_clipping_masking",
+    "id": "clipping-masking-techniques",
     "title": "Clipping & Masking Techniques",
+    "description": "Learn to clip, mask, and combine objects using Inkscape’s clipping paths.",
+    "thumbnail": "/images/cards/clipping-masking-techniques.png",
     "category": "inkscape-basics",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["clipping", "masking", "transparency", "inkscape", "effects"],
-    "contentJsonPath": "tutorials/inkscape_clipping_masking/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Learn how to use clipping paths and masks to show/hide parts of objects or create transparency effects."
-    },
-    "slug": "inkscape-clipping-masking"
+    "contentJsonPath": "tutorials/clipping-masking-techniques/content.json"
   },
   {
-    "id": "inkscape_filters_effects",
+    "id": "introduction-to-filters-effects",
     "title": "Introduction to Filters & Effects",
+    "description": "Get started with Inkscape’s built-in filters: blur, shadow, emboss, and more.",
+    "thumbnail": "/images/cards/introduction-to-filters-effects.png",
     "category": "inkscape-basics",
     "difficulty": "intermediate",
+    "status": "placeholder",
     "tags": ["filters", "effects", "blur", "shadow", "bevels", "inkscape"],
-    "contentJsonPath": "tutorials/inkscape_filters_effects/content.json",
-    "tutorial": {
-      "status": "placeholder",
-      "notes": "Exploring common built-in Inkscape filters like blurs, shadows, and bevels."
-    },
-    "slug": "inkscape-filters-effects"
+    "contentJsonPath": "tutorials/introduction-to-filters-effects/content.json"
   },
-
   {
-  "id": "getting_started_inkscape",
-  "title": "Getting Started: Interface, Navigation & Preferences",
-  "category": "inkscape-basics",
-  "difficulty": "beginner",
-  "tags": ["inkscape", "interface", "navigation", "setup", "preferences", "beginner"],
-  "contentJsonPath": "tutorials/getting_started_inkscape/content.json",
-  "tutorial": {
+    "id": "getting-started-interface-navigation-preferences",
+    "title": "Getting Started: Interface, Navigation & Preferences",
+    "description": "Learn the basics of Inkscape’s interface, panels, toolbars, and preferences.",
+    "thumbnail": "/images/cards/getting-started-interface-navigation-preferences.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
     "status": "outline",
-    "parts": 3,  
-    "notes": "Covers the Inkscape UI, canvas navigation, document properties, and preferences."
+    "tags": ["inkscape", "interface", "navigation", "setup", "preferences", "beginner"],
+    "contentJsonPath": "tutorials/getting-started-interface-navigation-preferences/content.json"
   },
-  "slug": "getting-started-inkscape"
-},
-
   {
-  "id": "basic_shapes_editing",
-  "title": "Drawing & Editing Basic Shapes",
-  "category": "inkscape-basics",
-  "difficulty": "beginner",
-  "tags": ["shapes", "rectangle", "circle", "star", "polygon", "boolean-operations", "inkscape"],
-  "contentJsonPath": "tutorials/basic_shapes_editing/content.json",
-  "tutorial": {
+    "id": "drawing-editing-basic-shapes",
+    "title": "Drawing & Editing Basic Shapes",
+    "description": "Practice drawing rectangles, circles, stars, and polygons; apply boolean operations.",
+    "thumbnail": "/images/cards/drawing-editing-basic-shapes.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
     "status": "outline",
-    "parts": 4, 
-    "notes": "Learn to create and modify fundamental shapes like rectangles, circles, stars, and use boolean operations."
+    "tags": ["shapes", "rectangle", "circle", "star", "polygon", "boolean-operations", "inkscape"],
+    "contentJsonPath": "tutorials/drawing-editing-basic-shapes/content.json"
   },
-  "slug": "basic-shapes-editing"
-},
-
-
   {
-  "id": "paths_nodes_mastery",
-  "title": "Working with Paths & Nodes",
-  "category": "inkscape-basics",
-  "difficulty": "intermediate",
-  "tags": ["paths", "nodes", "vector", "editing", "bezier", "inkscape"],
-  "contentJsonPath": "tutorials/paths_nodes_mastery/content.json",
-  "tutorial": {
+    "id": "working-with-paths-nodes",
+    "title": "Working with Paths & Nodes",
+    "description": "Learn to edit Bezier curves, adjust nodes, and fine-tune path segments.",
+    "thumbnail": "/images/cards/working-with-paths-nodes.png",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
     "status": "placeholder",
-    "notes": "Covers converting objects to paths, node editing techniques, splitting/joining paths, and path simplification."
+    "tags": ["paths", "nodes", "vector", "editing", "bezier", "inkscape"],
+    "contentJsonPath": "tutorials/working-with-paths-nodes/content.json"
   },
-  "slug": "paths-nodes-mastery"
-},
-
-
-{
-  "id": "project_icon_set_design",
-  "title": "Mini-Project: Designing an Icon Set",
-  "category": "mini-project",
-  "difficulty": "intermediate",
-  "tags": ["icons", "pixel-grid", "exporting", "vector-art", "inkscape", "project"],
-  "contentJsonPath": "tutorials/project_icon_set_design/content.json",
-  "tutorial": {
+  {
+    "id": "mini-project-designing-an-icon-set",
+    "title": "Mini-Project: Designing an Icon Set",
+    "description": "Apply path and shape techniques to create a cohesive icon set for web or UI.",
+    "thumbnail": "/images/cards/mini-project-designing-an-icon-set.png",
+    "category": "mini-project",
+    "difficulty": "intermediate",
     "status": "placeholder",
-    "notes": "A project-based tutorial on creating a consistent set of icons at multiple resolutions."
+    "tags": ["icons", "pixel-grid", "exporting", "vector-art", "inkscape", "project"],
+    "contentJsonPath": "tutorials/mini-project-designing-an-icon-set/content.json"
   },
-  "slug": "project-icon-set-design"
-},
-
   {
-  "id": "inkscape_layers_groups_align",
-  "title": "Layers, Groups & Alignment",
-  "category": "inkscape-basics",
-  "difficulty": "beginner",
-  "tags": ["layers", "groups", "alignment", "distribution", "organization", "inkscape"],
-  "contentJsonPath": "tutorials/inkscape_layers_groups_align/content.json",
-  "tutorial": {
+    "id": "layers-groups-alignment",
+    "title": "Layers, Groups & Alignment",
+    "description": "Master organizing objects into layers, grouping elements, and using align/distribute.",
+    "thumbnail": "/images/cards/layers-groups-alignment.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
     "status": "outline",
-    "notes": "Covers using the Layers panel, grouping/ungrouping objects, and precision alignment/distribution."
-  }, 
-  "slug": "inkscape-layers-groups-alignment"
-},
-
-{
-  "id": "inkscape_exporting_assets",
-  "title": "Exporting & Preparing Assets",
-  "category": "inkscape-basics",
-  "difficulty": "intermediate",
-  "tags": ["export", "png", "svg", "assets", "dpi", "batch-export", "inkscape"],
-  "contentJsonPath": "tutorials/inkscape_exporting_assets/content.json",
-  "tutorial": {
-    "status": "outline",
-    "notes": "Covers exporting PNGs, SVGs (Plain & Optimized), batch exporting, and preparing assets for web/app use."
+    "tags": ["layers", "groups", "alignment", "distribution", "organization", "inkscape"],
+    "contentJsonPath": "tutorials/layers-groups-alignment/content.json"
   },
-  "slug": "inkscape-exporting-assets"
-}  ,
-
-
- {
-  "id": "applied_design_principles",
-  "title": "Applied Design Principles in Inkscape",
-  "category": "design-principles",  
-  "difficulty": "intermediate",  
-  "tags": ["design", "principles", "balance", "contrast", "hierarchy", "inkscape", "ui-project"],
-  "contentJsonPath": "tutorials/applied_design_principles/content.json",
-  "tutorial": {
-    "status": "outline",  
-    "parts": 6,  
-    "notes": "Build a System Dashboard Panel applying core design principles."
-  },
-  "slug": "applied-design-principles-inkscape"
-},
-
   {
-  "id": "applied_design_principles_music",
-  "title": "Applied Design Principles (Music-Themed Dashboard)",
-  "category": "design-principles",
-  "difficulty": "intermediate",
-  "tags": ["design principles", "music theme", "dashboard", "inkscape", "ui project", "balance", "contrast", "hierarchy"],
-  "contentJsonPath": "tutorials/applied_design_principles_music/content.json",
-  "tutorial": {
+    "id": "exporting-preparing-assets",
+    "title": "Exporting & Preparing Assets",
+    "description": "Learn to export PNGs and SVGs, set DPI, batch-export, and optimize for web/dev.",
+    "thumbnail": "/images/cards/exporting-preparing-assets.png",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
     "status": "outline",
-    "parts": 7,
-    "notes": "Build a Music Player Dashboard in Inkscape while applying core design principles and music-themed graphics."
+    "tags": ["export", "png", "svg", "assets", "dpi", "batch-export", "inkscape"],
+    "contentJsonPath": "tutorials/exporting-preparing-assets/content.json"
   },
-  "slug": "applied-design-principles-music"
-}
-  
-
-
-  
+  {
+    "id": "applied-design-principles-in-inkscape",
+    "title": "Applied Design Principles in Inkscape",
+    "description": "Explore basic design principles—balance, contrast, hierarchy—using vector tools.",
+    "thumbnail": "/images/cards/applied-design-principles-in-inkscape.png",
+    "category": "design-principles",
+    "difficulty": "intermediate",
+    "status": "outline",
+    "tags": ["design", "principles", "balance", "contrast", "hierarchy", "inkscape", "ui-project"],
+    "contentJsonPath": "tutorials/applied-design-principles-in-inkscape/content.json"
+  },
+  {
+    "id": "applied-design-principles-music-themed-dashboard",
+    "title": "Applied Design Principles (Music-Themed Dashboard)",
+    "description": "Build a music dashboard UI in Inkscape, applying color, layout, and typography rules.",
+    "thumbnail": "/images/cards/applied-design-principles-music-themed-dashboard.png",
+    "category": "design-principles",
+    "difficulty": "intermediate",
+    "status": "outline",
+    "tags": ["design-principles", "music-theme", "dashboard", "inkscape", "ui-project"],
+    "contentJsonPath": "tutorials/applied-design-principles-music-themed-dashboard/content.json"
+  }
 ]
- 
