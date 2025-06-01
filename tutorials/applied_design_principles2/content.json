@@ -1,1 +1,393 @@
+{
+  "id": "applied_design_principles",
+  "title": "Applied Design Principles in Inkscape",
+  "overallIntroduction": "In this comprehensive tutorial, you’ll learn the core design rules—Color Theory, Typography, Grid Systems, and Gestalt/Spacing—each in its own deep‐dive section. Finally, you’ll build a “System Dashboard” capstone that puts all those principles into practice. Every Part has multiple Steps with preview images so you can follow along exactly.",
+  "parts": [
+   
+    {
+      "partId": "part1_color_theory",
+      "partTitle": "Part 1: Color Theory Deep Dive",
+      "partIntroduction": "Learn how to build and manage harmonious, accessible palettes in Inkscape—using a color wheel, sampling complementary/analogous/triadic schemes, and checking WCAG contrast. You’ll finish by saving swatches and generating light/dark variants.",
+      "steps": [
+        {
+          "stepTitle": "Step 1.1: Draw/Import a Color Wheel",
+          "instructions": [
+            "Create a new circle (hold <code>Ctrl</code>)—e.g. 250×250 px. Center it on the canvas.",
+            "With the circle selected, open <strong>Fill & Stroke</strong> → go to Fill tab → choose “Radial gradient.” Two gradient stops will appear on your circle.",
+            "Switch to the <strong>Gradient tool (<code>G</code>)</strong>. Drag the center handle to a new spot to emphasize full spectrum. Then manually add stops: click on the circle’s gradient line to add a stop, and set its color to these hues (in order): Red (#ff0000), Orange (#ffaa00), Yellow (#ffff00), Green (#00ff00), Cyan (#00ffff), Blue (#0000ff), Magenta (#ff00ff), and back to Red. Now you have a continuous hue wheel.",
+            "Lock this circle on a separate layer named “Color Wheel.”"
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step1_color_wheel.png",
+            "alt": "A perfect circle filled with a smooth radial gradient cycling through the full color spectrum"
+          }
+        },
+        {
+          "stepTitle": "Step 1.2: Sample Complementary, Analogous & Triadic Swatches",
+          "details": [
+            "We’ll pick one base hue, then find its complement (opposite on the wheel), two analogous neighbors, and a triad set."
+          ],
+          "instructions": [
+            "Select the <strong>Dropper tool (<code>D</code>)</strong> and click on a point of the wheel (e.g. pure Green at 120°). This becomes Swatch #1 (“Base-Green”).",
+            "Immediately open the <strong>Swatches panel (<code>Shift+Ctrl+W</code>)</strong>, click “New Swatch from Selected Object(s) Fill,” and name it “Base-Green.”",
+            "Use Dropper to sample the point directly opposite (e.g. pure Magenta at 300°). Save it as “Complement-Magenta.”",
+            "Sample the two neighbors of your base (e.g. Yellow-Green at ~90° and Blue-Green at ~150°). Save as “Analog-1” and “Analog-2.”",
+            "Sample points at 120° intervals to get a triad set (Green at 120°, Blue at 240°, Red at 0°). Save them as “Triad-1,” “Triad-2,” “Triad-3.”"
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step2_sample_swatches.png",
+            "alt": "Six small rectangles, each filled with Base-Green, Complement-Magenta, Analog-1, Analog-2, Triad-2 (Blue), Triad-3 (Red), all saved in the Swatches panel"
+          }
+        },
+        {
+          "stepTitle": "Step 1.3: Create & Save a Harmonious Palette",
+          "instructions": [
+            "Draw a horizontal row of 8 rectangles (each 40×40 px) at the bottom of your canvas—leave some white space above to keep the swatch set separate.",
+            "Fill rectangle 1 with “Base-Green”; rectangle 2 with “Complement-Magenta”; 3 with “Analog-1”; 4 with “Analog-2”; 5–6 use “Triad-1” & “Triad-2”; 7 with “Triad-3”; 8 leave blank for a neutral gray (#cbd5e1).",
+            "Select all 8 rectangles, open <strong>Swatches panel</strong>, click “New Swatch from Selected Object(s) Fill.” Name the entire group “Harmonious-Palette.”",
+            "Ungroup and delete the individual rectangles if you like, as you now have a single, reusable “Harmonious-Palette” swatch set."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step3_palette_set.png",
+            "alt": "Eight small swatch squares at bottom, labeled Harmonious-Palette in Swatches panel"
+          }
+        },
+        {
+          "stepTitle": "Step 1.4: WCAG Contrast & Light/Dark Variants",
+          "details": [
+            "Now verify that white (#ffffff) or black (#000000) text over each swatch meets accessibility ratios."
+          ],
+          "instructions": [
+            "Draw a text object “Aa” in white and place it over each swatch rectangle sequentially.",
+            "Use an online contrast‐checker (e.g. webaim.org/resources/contrastchecker/) by manually entering the hex of each swatch as “Background” and white (#ffffff) as “Foreground.” Confirm the ratio is ≥ 4.5:1 for body text. If it fails, darken or lighten that swatch’s hex just enough to meet 4.5:1, then update your swatch.",
+            "Repeat for black text (#000000) over any very light swatch that might need checking (e.g. neutral gray) to ensure a minimum of 3:1 if used for large headings.",
+            "Duplicate your “Harmonious-Palette” swatch group and rename it “Dark-Mode-Palette.” For each color, use Fill & Stroke’s HSL editor to reduce lightness (e.g. move L from 50% to 20%) so that your background becomes #121212, your base‐green becomes a brighter variant, and your neutrals shift darker—then save the updated group."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part1_step4_contrast.png",
+            "alt": "White “Aa” text on several swatches, and a small contrast‐checker screenshot showing a 4.5:1 result"
+          }
+        }
+      ],
+      "summary": "You’ve now built a full set of harmonious swatches: base, complementary, analogous, triadic, and a neutral. You’ve checked WCAG contrast, and created a dark‐mode variant. These swatches are saved for reuse."
+    },
+
+   
+    {
+      "partId": "part2_typography_baseline",
+      "partTitle": "Part 2: Typography & Baseline Grids Deep Dive",
+      "partIntroduction": "Master type hierarchy, line heights, and baseline grids in Inkscape. By the end, you’ll know how to set up an 8 px baseline, choose sizes for H1/H2/Body/Caption, and align text blocks perfectly.",
+      "steps": [
+        {
+          "stepTitle": "Step 2.1: Choose Fonts & Build a Typographic Scale",
+          "instructions": [
+            "Open a fresh artboard. Select the <strong>Text tool (<code>T</code>)</strong> and type 'Heading 1'.",
+            "Open <strong>Text and Font (<code>Shift+Ctrl+T</code>)</strong>, set Font family to 'Inter', Style 'Bold', Size 32 px. Click Apply.",
+            "Below it, type 'Heading 2'; set Style 'SemiBold', Size 24 px. Click Apply.",
+            "Below that, type 'Body Text Example'; set Style 'Regular', Size 16 px. Click Apply.",
+            "Finally, type 'Caption Example'; set Style 'Italic', Size 12 px. Click Apply.",
+            "Arrange these four text objects vertically, leaving roughly 16 px between them just by eye—this is our starting typographic scale."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step1_typo_scale.png",
+            "alt": "Four lines of text: H1 (32px), H2 (24px), Body (16px), Caption (12px) stacked with some vertical spacing"
+          }
+        },
+        {
+          "stepTitle": "Step 2.2: Set Up an 8 px Baseline Grid",
+          "instructions": [
+            "Go to File → Document Properties (<code>Shift+Ctrl+D</code>), switch to the “Grids” tab.",
+            "Click “New Rectangular Grid.” In X spacing, type 0 px (we only want horizontal lines). In Y spacing, type 8 px. Click “Create.”",
+            "You should see faint horizontal lines every 8 px. If they overwhelm you, select them (via the “Grids” panel) and reduce the stroke opacity to ~20%.",
+            "Lock the grid so it cannot be moved by mistake."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step2_baseline_grid.png",
+            "alt": "Canvas with horizontal guides every 8 px (faint lines across the width)"
+          }
+        },
+        {
+          "stepTitle": "Step 2.3: Snap Text to the Baseline Grid",
+          "instructions": [
+            "Click to select your H1 text (32 px). Drag it until its bottom edge (baseline) snaps exactly onto the horizontal guide at Y = 32 px from the top. The text height (32 px) is a multiple of the 8 px grid, so its baseline should align perfectly.",
+            "Select your H2 text (24 px). Drag it down so its baseline lands on the guide at Y = 64 px (two grid cells below the previous line). If it doesn’t snap, zoom in to 400 % and adjust by holding <code>Ctrl</code> while nudging.",
+            "Select the Body text (16 px), snap its baseline to Y = 96 px. For a paragraph, draw a text box (click+drag) instead of clicking once, paste some multi-line lorem ipsum, and set line spacing to 24 px (i.e., 1.5 × 16 px). Ensure each line’s bottom aligns on a horizontal guide.",
+            "Select the Caption text (12 px). Since 12 px is not a multiple of 8, set its line height to 16 px so each baseline still matches an 8 px grid intersection (snap its baseline to Y = 120 px)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step3_snap_text.png",
+            "alt": "Text objects (H1, H2, Body, Caption) whose bottom baselines align perfectly on horizontal grid lines"
+          }
+        },
+        {
+          "stepTitle": "Step 2.4: Adjust Kerning & Letter Spacing",
+          "instructions": [
+            "Select your H1 text. In the <strong>Text and Font panel</strong>, click “Spacing” and increase “Letter Spacing” (tracking) to ~50–100 units to give headings an airy feel.",
+            "For Body text, leave Letter Spacing at 0 but confirm Line Spacing (leading) is exactly 24 px so multi-line paragraphs align to every third horizontal guide.",
+            "Select Caption. Reduce Letter Spacing by ~20 units for a compact look if desired.",
+            "Visually inspect each line at 100 % zoom—text should feel balanced and easy to read, with strong baseline alignment throughout."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part2_step4_spacing.png",
+            "alt": "Close-up of H1 with wider letter spacing, Body with 24px line height, Caption with tighter spacing—all snapping to grid"
+          }
+        }
+      ],
+      "summary": "You’ve built a full typographic scale (H1 → Caption), set up an 8 px baseline grid, and snapped every text object to that grid. You also tweaked letter spacing and line height to keep everything legible and rhythmically aligned."
+    },
+
+  
+    {
+      "partId": "part3_grid_systems",
+      "partTitle": "Part 3: Grid Systems & Layout Guides Deep Dive",
+      "partIntroduction": "Explore modular 8 pt grids, 12-column layouts, rule-of-thirds guides, and a golden-ratio rectangle. By the end, you’ll know how to set up each guide—and why it matters—before proceeding to actual UI components.",
+      "steps": [
+        {
+          "stepTitle": "Step 3.1: Modular 8-Pt Grid (Revisited)",
+          "details": [
+            "We already saw horizontal 8 px guides for typography. Now let’s create a full rectangular 8-pt grid for both directions."
+          ],
+          "instructions": [
+            "Open File → Document Properties (<code>Shift+Ctrl+D</code>) → “Grids.”",
+            "Click “New Rectangular Grid.” Set X spacing = 8 px, Y spacing = 8 px, Origin (X=0, Y=0). Keep “Visible” on.",
+            "Close the dialog. You should see faint vertical and horizontal lines at every 8 px. If you’d like, select the grid (in the “Grids” panel) and reduce its opacity to ~20% so it doesn’t overpower your work.",
+            "Draw a test rectangle (e.g. 32×32 px) with the <strong>Rectangle tool</strong>. Hold <code>Ctrl</code> so its dimensions snap to 8-pt increments. Position it so its top-left corner lands exactly on a grid intersection."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step1_rect_grid.png",
+            "alt": "Canvas overlaid by a full 8 px x 8 px grid, with a 32×32 px square snapped to it"
+          }
+        },
+        {
+          "stepTitle": "Step 3.2: 12-Column Layout with Guides",
+          "details": [
+            "Whether building dashboards or web pages, a 12-column structure helps maintain consistent widths and gutters."
+          ],
+          "instructions": [
+            "Draw a vertical guide manually: click on the left ruler and drag to X = 50 px, then repeat at X = 100 px, X = 150 px, … up to X = 550 px—this gives you 11 guides, dividing the 600 px width into twelve 50 px columns (assuming no gutters).",
+            "To add gutters, decide on a gutter width (e.g. 10 px). Draw a narrow rectangle (10 px wide × 400 px tall) filled with a temporary color, and duplicate it across between columns so each column block becomes 40 px content + 10 px gutter. Convert those rectangles into guides by dragging from the left ruler (or keep them as locked “gutter” shapes).",
+            "Lock all guides/shapes so nothing shifts inadvertently.",
+            "Test by drawing a card that should span 4 columns: width = 4 × 50 px + 3 × 10 px gutters = 230 px. Place it so its left edge lands on X = 0 px guide and right edge on X = 230 px position."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step2_12col_guides.png",
+            "alt": "Canvas showing 11 vertical guides at every 50 px, plus narrow 10 px gutter guides between (or colored rectangles)"
+          }
+        },
+        {
+          "stepTitle": "Step 3.3: Overlay Rule-of-Thirds Guides",
+          "instructions": [
+            "Create two vertical guides at X = 200 px (33.3% of 600 px) and X = 400 px (66.6%).",
+            "Create two horizontal guides at Y = 133 px (33.3% of 400 px) and Y = 266 px (66.6%).",
+            "These four lines form nine equal “thirds” squares. Notice the intersection points—those are strong focal areas. Keep these guides locked.",
+            "Place a temporary rectangle (e.g. 100×100 px) so its center aligns to one of those intersections, and observe how your eye is drawn there."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step3_rule_of_thirds.png",
+            "alt": "Canvas with two vertical and two horizontal guides dividing it into nine thirds"
+          }
+        },
+        {
+          "stepTitle": "Step 3.4: Draw & Use a Golden-Ratio Rectangle (Optional)",
+          "details": [
+            "The golden ratio (≈ 1 : 1.618) is another classical guide for harmonious proportions."
+          ],
+          "instructions": [
+            "Draw a rectangle 600 px wide and 372 px tall (600 ÷ 1.618 ≈ 370 px; round to 372 for neatness). Position it center-vertically: Y = (400 − 372)/2 = 14 px.",
+            "Switch to the <strong>Ellipse tool (<code>F5</code> or <code>Ctrl+5</code>)</strong>. Hold <code>Ctrl</code> and drag a quarter-circle from the top-left corner of that golden rectangle (0, 14) to the bottom-left corner (372, 14 + 372).",
+            "Lock both the golden rectangle and the spiral path. These can guide where you place key UI elements—e.g., aligning a prominent icon or card so it touches the spiral edge."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part3_step4_golden_ratio.png",
+            "alt": "Golden-ratio rectangle and quarter-circle spiral overlaid on canvas"
+          }
+        }
+      ],
+      "summary": "You’ve created a full 8-pt modular grid, a 12-column layout with gutters, rule-of-thirds guides, and an optional golden-ratio overlay—equipping you to place elements with precision and harmonious balance."
+    },
+
+   
+    {
+      "partId": "part4_gestalt_spacing",
+      "partTitle": "Part 4: Gestalt Principles & Spacing Deep Dive",
+      "partIntroduction": "Explore how proximity, similarity, figure/ground, visual weight, and consistent padding/margins keep your UI clear and balanced. You’ll see small examples illustrating each Gestalt rule.",
+      "steps": [
+        {
+          "stepTitle": "Step 4.1: Proximity & Grouping",
+          "instructions": [
+            "Draw four small circles (20×20 px) in a row, each 10 px apart. Observe how you see them as a group of four.",
+            "Now move two of those circles 40 px to the right—so two circles are closely spaced, then a gap, then two more. Your eye immediately sees two clusters of two (due to proximity).",
+            "Convert each cluster into a group (<code>Ctrl+G</code>) and label them “cluster1” and “cluster2” in the Objects panel. Notice how grouping reinforces that sense of unity."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step1_proximity.png",
+            "alt": "Four circles: first two 10 px apart, next two 10 px apart with a 40 px gap in between"
+          }
+        },
+        {
+          "stepTitle": "Step 4.2: Similarity & Color Grouping",
+          "instructions": [
+            "Draw four rectangles (50×30 px). Fill two with “Accent-Blue” and two with “Complement-Magenta.”",
+            "Arrange them in a 2×2 Grid so that each row has two blues, each column has two magentas. Notice you naturally see two ‘blue items’ and two ‘magenta items’ because of color similarity.",
+            "Now change the fill of one “blue” rectangle to “Analog-1” (a slightly different hue). That breaks the “identical” similarity, drawing your eye to that shape as odd. Change it back to restore visual consistency."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step2_similarity.png",
+            "alt": "2×2 grid of rectangles: top row accent-blue, bottom row complementary-magenta; then one blue changed to analogous hue"
+          }
+        },
+        {
+          "stepTitle": "Step 4.3: Figure/Ground & Drop Shadows",
+          "instructions": [
+            "Draw a square (100×100 px) in the center of the canvas, fill it with a mid-gray (#475569).",
+            "Select that square and go to Filters → Shadows and Glows → Drop Shadow… Set Blur = 4 px, X=0, Y=2, Opacity=50 %, color=black. Click Apply. The shadow creates separation, making the square appear “above” the background.",
+            "Draw a second square (100×100 px) behind the first (fill with a slightly lighter gray, e.g. #334155) and apply no shadow. Notice how the drop-shadowed square pops forward—that’s figure/ground in action."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step3_drop_shadow_figure_ground.png",
+            "alt": "Two overlapping squares: front one has a faint drop shadow, making it stand out"
+          }
+        },
+        {
+          "stepTitle": "Step 4.4: Visual Weight & Balance",
+          "instructions": [
+            "Draw one large circle (100 px diameter) on the left side, fill it with Accent-Blue. Draw three small circles (30 px diameter) on the right side, fill them with “Light-Slate.”",
+            "Visually adjust the vertical positions so the three small circles—though lighter—balance the large dark-blue circle. You may need to nudge the small circles slightly up or down to compensate for color brightness. This demonstrates how dark, saturated shapes feel “heavier.”",
+            "Group the three small circles as “clusterSmall” and the large circle as “circleLarge.” If you move “circleLarge” closer to center, move “clusterSmall” accordingly so the overall composition still feels balanced."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step4_visual_weight.png",
+            "alt": "Large blue circle on left, three small light-slate circles on right, arranged so they balance visually"
+          }
+        },
+        {
+          "stepTitle": "Step 4.5: Spacing & Padding in a Small Form",
+          "instructions": [
+            "Draw a rounded rectangle (200×100 px, Rx=8, Ry=8) to serve as a “form container.”",
+            "Inside it, draw two smaller rectangles (100×30 px) as “input fields,” one above the other, spacing them 16 px apart vertically (i.e. top field Y=20, bottom field Y=20+30+16=66).",
+            "Select the container and the two fields, open Align & Distribute (<code>Shift+Ctrl+A</code>), choose “Relative to: First selected” (if container was selected), then “Center on horizontal axis.” Ensure each field is horizontally centered within the container with equal left/right padding (e.g. 50 px).",
+            "Draw two text labels above each field (e.g. “Username” & “Password”), set their font size to 12 px, and place them 8 px above their respective input boxes so you see consistent margin vs. padding."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part4_step5_form_spacing.png",
+            "alt": "Small form: a rounded rectangle with two input fields inside, each 16 px apart, labels 8 px above fields, all centered"
+          }
+        }
+      ],
+      "summary": "You’ve seen how proximity and similarity group elements, how subtle shadows create figure/ground separation, how to balance heavy versus light shapes, and how to maintain consistent spacing/padding in a mini form."
+    },
+
+ 
+    {
+      "partId": "part5_dashboard_capstone",
+      "partTitle": "Part 5: Dashboard Capstone (Putting It All Together)",
+      "partIntroduction": "Now that you’ve mastered color, typography, grids, and Gestalt/spacing, let’s build a complete “System Dashboard Panel.” You’ll use your 8 pt grid, 12-column guides, baseline grid, swatches, and Gestalt rules to create a polished UI component—then export it.",
+      "steps": [
+        {
+          "stepTitle": "Step 5.1: Set Up Canvas & Grids",
+          "instructions": [
+            "Open a new 600×400 px document. In Document Properties, confirm Units=px, Width=600, Height=400.",
+            "Create a full 8 pt rectangular grid (X spacing=8, Y spacing=8). Lower its opacity to ~20%.",
+            "Add vertical guides at X = 50 px, 100 px, 150 px, … 550 px to form a 12-column layout. Lock these guides.",
+            "Add horizontal guides at Y = 133 px and Y = 266 px for rule-of-thirds (optional). Lock those too."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step1_setup.png",
+            "alt": "Blank 600×400 canvas with faint 8 px grid, vertical 12-column guides, and horizontal rule-of-thirds guides"
+          }
+        },
+        {
+          "stepTitle": "Step 5.2: Draw Title Bar & Align Text to Baseline",
+          "instructions": [
+            "Draw a rectangle (600×60 px) at Y=0, fill it with Accent-Blue (#38bdf8). No stroke.",
+            "Select the <strong>Text tool (<code>T</code>)</strong>, click at X=20, Y=40, type “System Dashboard.” In Text & Font, set Font=Inter Bold, Size=24 px, Fill=White. Snap its baseline to the horizontal grid at Y=56 (60 − 4 to align text vertically within the 60 px bar).",
+            "Click at X=22, Y=85, type “Real-Time Status Overview.” In Text & Font, set Font=Inter Regular, Size=16 px, Fill=Neutral-Gray (#cbd5e1). Snap its baseline to Y=72 (next multiple of 8 below the title baseline)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step2_title.png",
+            "alt": "Blue title bar with 'System Dashboard' (24px) and 'Real-Time Status Overview' (16px), text baselines aligned to 8 px grid"
+          }
+        },
+        {
+          "stepTitle": "Step 5.3: Create & Clone Stat Cards Using Grid Guides",
+          "instructions": [
+            "Draw your first stat card: a rounded rectangle (160×100 px, Rx=8) at X=50 px (column 1), Y=100 px. Fill with Light-Slate (#334155).",
+            "Add a label inside: Text “CPU Usage” at X=60 px, Y=125 px. Font=Inter SemiBold 14 px, Fill=Accent-Blue (#38bdf8). Snap its baseline to the 8 px grid.",
+            "Below the label, draw a highlight strip: rounded rectangle (120×40 px, Rx=6) at X=60 px, Y=145 px. Fill with #475569. On top, place text “42 %” (Font=Inter Bold 24 px, Fill=White), center it via Align & Distribute relative to the strip.",
+            "Group those three objects as 'stat_card_1'.",
+            "Duplicate (Ctrl+D) ‘stat_card_1’ → name 'stat_card_2' → move so its left edge sits on X=230 px (column 5). Double-click to change label to “Memory” and value to “68 %.” Adjust the strip width if needed.",
+            "Duplicate again → name 'stat_card_3' → move to X=410 px (column 9). Update label to “Network” and value to “128 Mbps.” Adjust strip width to fit.",
+            "Select all three stat_card groups → use Align & Distribute (Relative to: Page) → Center on horizontal axis so they sit symmetrically under the title."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step3_stat_cards.png",
+            "alt": "Three stat cards placed in columns 1–4, 5–8, and 9–12 respectively, centered under the title"
+          }
+        },
+        {
+          "stepTitle": "Step 5.4: Add Contrast & Whitespace Refinements (Gestalt)",
+          "instructions": [
+            "Select the three stat cards. Increase their Y position from 100 px to 120 px—this adds extra whitespace (20 px) between subtitle and cards.",
+            "Select ‘stat_card_1’, go to Filters → Shadows and Glows → Drop Shadow. Set Blur=4 px, X=0, Y=2, Opacity=50 %. Apply. Copy this filter to ‘stat_card_2’ and ‘stat_card_3’ (select stat_card_1 → Edit → Copy; select stat_card_2 → Path → Paste Path Effect; repeat for stat_card_3). This subtle shadow creates figure/ground separation.",
+            "Group all three into “stat_cards_row” temporarily if needed."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step4_whitespace_shadow.png",
+            "alt": "Stat cards moved down, each with a faint drop shadow, creating clear separation"
+          }
+        },
+        {
+          "stepTitle": "Step 5.5: Build Progress Bar with WCAG Contrast",
+          "instructions": [
+            "Draw a rectangle for the empty track: 540×20 px at X=30, Y=300. Fill with Neutral-Gray (#cbd5e1).",
+            "Draw a second rectangle 75 % of that width: 405×20 px at the same position. Fill with Highlight-Green (#10b981).",
+            "Select the highlight text “75 %” (Font=Inter Bold 14 px, Fill=White). Place it inside the green bar and use Align & Distribute to center vertically and horizontally near the bar’s end.",
+            "Duplicate the green fill, change its fill to Light-Slate (#334155). Place “75 %” on it. Notice the white text no longer meets 4.5:1 contrast. Delete the gray variant once observed."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step5_progress_bar.png",
+            "alt": "Progress bar track and 75 % fill in green with white text, plus gray version illustrating low contrast"
+          }
+        },
+        {
+          "stepTitle": "Step 5.6: Final Review & Export",
+          "instructions": [
+            "Select everything on the canvas (<code>Ctrl+A</code>). In Align & Distribute, set “Relative to: Page” and click “Center on vertical axis” and “Center on horizontal axis” to ensure the entire dashboard is perfectly centered.",
+            "Zoom to 100 % and inspect all spacing—title bar to subtitle (~8 px), subtitle to cards (~8 px), cards to progress bar (~8 px). Adjust as needed so every vertical gap is a multiple of 8 px.",
+            "<strong>Export PNG:</strong> File → Export PNG Image (<code>Shift+Ctrl+E</code>) → Export area = Page → DPI=96 → Export As… → choose location/name “dashboard_panel.png” → Save → Export.",
+            "<strong>Export SVG:</strong> File → Save As… → choose “Plain SVG (*.svg)” → name “dashboard_panel.svg” → OK (keep defaults)."
+          ],
+          "stepPreview": {
+            "type": "image",
+            "source": "tutorials/applied_design_principles/previews/part5_step6_export.png",
+            "alt": "Dashboard fully centered on canvas; Export dialog open for PNG and SVG settings"
+          }
+        }
+      ],
+      "summary": "You’ve applied every major design principle—color harmony, typography, grids, Gestalt, spacing—into one cohesive Dashboard. The final PNG/SVG exports are ready for use."
+    }
+  ]
+}
 
