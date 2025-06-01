@@ -504,5 +504,72 @@
     "status": "outline",
     "tags": ["design-principles", "music-theme", "dashboard", "inkscape", "ui-project"],
     "contentJsonPath": "tutorials/applied-design-principles-music-themed-dashboard/content.json"
+  },
+
+  {
+    "id": "drawing-with-the-pen-tool",
+    "title": "Drawing with the Pen Tool (Bezier Curves)",
+    "description": "Learn to draw and edit Bezier curves with the Pen tool for precise vector shapes.",
+    "thumbnail": "/images/cards/drawing-with-the-pen-tool.png",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
+    "status": "outline",
+    "tags": ["pen tool", "bezier", "curves", "paths", "vector"],
+    "contentJsonPath": "tutorials/drawing-with-the-pen-tool/content.json"
+  },
+  {
+    "id": "combining-shapes-for-complex-icons",
+    "title": "Combining Shapes for Complex Icons",
+    "description": "Use Boolean operations (Union, Difference, Intersection, Exclusion) to build complex icons from simple shapes.",
+    "thumbnail": "/images/cards/combining-shapes-for-complex-icons.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
+    "status": "outline",
+    "tags": ["boolean operations", "union", "difference", "icon design", "paths"],
+    "contentJsonPath": "tutorials/combining-shapes-for-complex-icons/content.json"
+  },
+  {
+    "id": "using-guides-grids-snapping",
+    "title": "Using Guides, Grids & Snapping",
+    "description": "Master guides, custom grids, and snapping options to align and position objects precisely.",
+    "thumbnail": "/images/cards/using-guides-grids-snapping.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
+    "status": "outline",
+    "tags": ["guides", "grids", "snapping", "alignment", "precision"],
+    "contentJsonPath": "tutorials/using-guides-grids-snapping/content.json"
+  },
+  {
+    "id": "text-basics-fonts-kerning-leading",
+    "title": "Text Basics: Fonts, Kerning & Leading",
+    "description": "Get started with text in Inkscape—choose fonts, adjust spacing, and convert text to paths.",
+    "thumbnail": "/images/cards/text-basics-fonts-kerning-leading.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
+    "status": "outline",
+    "tags": ["text", "typography", "font", "kerning", "leading"],
+    "contentJsonPath": "tutorials/text-basics-fonts-kerning-leading/content.json"
+  },
+  {
+    "id": "document-setup-units-templates-dpi",
+    "title": "Document Setup: Units, Templates & DPI",
+    "description": "Configure document size, units, templates, and DPI settings for consistent exports.",
+    "thumbnail": "/images/cards/document-setup-units-templates-dpi.png",
+    "category": "inkscape-basics",
+    "difficulty": "beginner",
+    "status": "outline",
+    "tags": ["document setup", "units", "dpi", "templates", "export"],
+    "contentJsonPath": "tutorials/document-setup-units-templates-dpi/content.json"
+  },
+  {
+    "id": "symbols-and-reusable-assets",
+    "title": "Symbols & Reusable Assets for UI Kits",
+    "description": "Create and manage Symbols in Inkscape to build a library of reusable UI components.",
+    "thumbnail": "/images/cards/symbols-and-reusable-assets.png",
+    "category": "inkscape-basics",
+    "difficulty": "intermediate",
+    "status": "outline",
+    "tags": ["symbols", "reusable", "assets", "UI kits", "components"],
+    "contentJsonPath": "tutorials/symbols-and-reusable-assets/content.json"
   }
 ]
