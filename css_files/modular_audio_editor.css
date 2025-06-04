@@ -374,3 +374,96 @@
     h2.audio-title-main, h3.panel-header-title, h3.inspector-header {
         display: block; /* Or whatever their previous display was if changed by reset */
     }
+
+
+/* === Styles for Sequence Strip Enhancements === */
+
+.sequence-strip {
+    /* Existing styles */
+    position: relative; /* Needed for absolute positioning of ruler and playhead */
+    display: flex;
+    flex-direction: column; /* Stack ruler and content area */
+    overflow: hidden; /* Prevent playhead/ruler from making strip scrollable */
+}
+
+.strip-ruler {
+    width: 100%;
+    height: 20px; /* Height of the ruler */
+    background-color: var(--bg-input); /* Slightly different from strip bg */
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--padding-xs);
+    font-size: 0.7em;
+    color: var(--text-dark);
+    flex-shrink: 0; /* Prevent ruler from shrinking */
+    position: relative; /* To contain tick marks absolutely if needed later */
+}
+
+.strip-ruler span { /* Basic styling for time markers */
+    margin-right: 30px; /* Adjust spacing as needed */
+    white-space: nowrap;
+}
+
+.strip-playhead {
+    position: absolute;
+    top: 0; /* Align with the top of the strip (ruler area) */
+    bottom: 0; /* Stretch to the bottom of the strip */
+    width: 2px;
+    background-color: var(--accent-red);
+    z-index: 5; /* Above strip items but below anything interactable on top */
+    pointer-events: none; /* So it doesn't interfere with clicks on items */
+}
+.strip-playhead::before { /* Optional: top handle for playhead */
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-red);
+    border-radius: 2px; /* Triangle shape: border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid var(--accent-red); background: none;*/
+}
+
+
+.strip-content-area {
+    flex-grow: 1; /* Takes remaining space in the strip */
+    position: relative; /* For positioning strip items absolutely if needed later */
+    padding: var(--padding-xs); /* Add some padding for items */
+    display: flex; /* To align items, or could be block if items are positioned absolutely */
+    align-items: center;
+    gap: var(--padding-xs);
+    overflow-x: auto; /* If many items make it wider than strip */
+    overflow-y: hidden;
+}
+
+.strip-item.selected {
+    outline: 2px solid var(--accent-blue);
+    box-shadow: 0 0 5px var(--accent-blue);
+}
+
+/* Styles for the new inspector section */
+#strip-item-inspector-content .inspector-group {
+    margin-bottom: var(--padding-md);
+}
+#strip-item-inspector-content label {
+    display: block;
+    font-size: 0.85em;
+    color: var(--text-medium);
+    margin-bottom: var(--padding-xs);
+    font-weight: 500;
+}
+#strip-item-inspector-content .input-field[readonly] {
+    background-color: var(--bg-input); /* Or a slightly different color for readonly */
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* General inspector section styling for better hidden/shown behavior */
+.inspector-section.hidden {
+    display: none;
+}
+.inspector-section {
+    /* Add any common padding or margin for sections if needed,
+       but inspector-content-area already has padding */
+}
