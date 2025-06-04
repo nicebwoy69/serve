@@ -1,1 +1,376 @@
-css
+ 
+    /* ============================================================
+        1) CORE STYLES & THEME
+        ========================================================= */
+    :root {
+      /* Backgrounds */
+      --bg-canvas: #1A1D21; /* Deep dark for the main canvas */
+      --bg-toolbar: #23272C; /* Toolbar and static panels */
+      --bg-snippet: #2C3137; /* Default snippet background */
+      --bg-snippet-selected: #3A76F7; /* Selected snippet */
+      --bg-node: #282C30; /* Effect nodes */
+      --bg-input: #16181B; /* Input fields */
+      --bg-inspector-item: #202327; /* Background for items within inspector */
+      --bg-inspector-item-hover: #282C30;
+
+
+      /* Text */
+      --text-light: #EAEBEE;
+      --text-medium: #A8ADB3;
+      --text-dark: #6C7075;
+      --text-on-accent: #FFFFFF;
+
+      /* Accents & Borders */
+      --accent-blue: #3A76F7;
+      --accent-blue-hover: #5C8FFF;
+      --accent-green: #28A745;
+      --accent-red: #DC3545;
+      --border-color: #363B42;
+      --connection-color: #5A6067;
+
+      /* Sizing & Radius */
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --padding-xs: 0.25rem;
+      --padding-sm: 0.5rem;
+      --padding-md: 1rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Prevent body scroll */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    /* ============================================================
+        2) APP LAYOUT: TOOLBAR, CANVAS, INSPECTOR
+        ========================================================= */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .main-toolbar { /* Now role="toolbar" */
+      background-color: var(--bg-toolbar);
+      padding: var(--padding-sm) var(--padding-md);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: var(--padding-md);
+      flex-shrink: 0;
+      height: 50px;
+    }
+
+    .toolbar-group .btn { margin-right: var(--padding-sm); }
+    .toolbar-title { font-size: 1.1em; font-weight: 600; margin-right: auto; }
+
+    .editor-body { /* Now <main> element */
+      display: flex;
+      flex-grow: 1;
+      overflow: hidden; /* Important for child scrolling */
+    }
+
+    .editing-canvas-wrapper { /* Now role="region" */
+      flex-grow: 1;
+      position: relative; /* For absolute positioning of canvas elements */
+      overflow: auto; /* Allow panning/scrolling of the canvas */
+      background-color: var(--bg-canvas);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .editing-canvas { /* The actual scrollable/zoomable canvas */
+        width: 3000px; /* Large enough for scrolling */
+        height: 2000px;
+        position: relative;
+    }
+
+
+    .inspector-panel { /* Now role="complementary" */
+      width: 300px; /* Slightly wider for more controls */
+      background-color: var(--bg-toolbar);
+      border-left: 1px solid var(--border-color);
+      padding: 0; /* Remove padding to allow full-width sections */
+      overflow-y: auto;
+      transition: width 0.2s ease-in-out;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .inspector-panel.hidden { display: none; }
+
+    .inspector-header { /* Now an H3 */
+      font-size: 1em;
+      font-weight: 600;
+      padding: var(--padding-md);
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+    .inspector-content-area { /* Scrollable area for groups */
+        padding: var(--padding-md);
+        overflow-y: auto;
+        flex-grow: 1;
+    }
+
+    .inspector-group { margin-bottom: var(--padding-md); }
+    .inspector-group label {
+      display: block;
+      font-size: 0.85em;
+      color: var(--text-medium);
+      margin-bottom: var(--padding-xs);
+      font-weight: 500;
+    }
+    .inspector-group input[type="text"],
+    .inspector-group input[type="number"],
+    .inspector-group select {
+      width: 100%;
+      padding: var(--padding-sm);
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-light);
+      font-size: 0.9em;
+    }
+    .inspector-group input[type="range"] { width: 100%; }
+
+
+    /* Inspector Effects Chain Styling */
+    .inspector-effects-chain {
+        border-top: 1px solid var(--border-color);
+        padding-top: var(--padding-sm);
+    }
+    .inspector-effect-item {
+        background-color: var(--bg-inspector-item);
+        padding: var(--padding-sm);
+        border-radius: var(--radius-sm);
+        margin-bottom: var(--padding-xs);
+        border: 1px solid var(--border-color);
+        transition: background-color 0.15s;
+    }
+    .inspector-effect-item:hover {
+        background-color: var(--bg-inspector-item-hover);
+    }
+    .effect-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--padding-sm);
+    }
+    .effect-item-name {
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+    .effect-item-controls button {
+        font-size: 0.8em;
+        padding: var(--padding-xs);
+    }
+    .effect-item-params { /* Placeholder for actual effect parameters */
+        font-size: 0.8em;
+        color: var(--text-dark);
+    }
+    .btn-add-effect-inspector {
+        width: 100%;
+        margin-top: var(--padding-sm);
+        background-color: var(--bg-elements);
+        color: var(--text-medium);
+    }
+     .btn-add-effect-inspector:hover {
+        background-color: var(--bg-elements-hover);
+        color: var(--text-light);
+    }
+
+
+    /* ============================================================
+        3) BUTTONS & INTERACTIVE ELEMENTS
+        ========================================================= */
+    .btn {
+      background-color: var(--bg-elements);
+      color: var(--text-light);
+      border: 1px solid var(--border-color);
+      padding: var(--padding-sm) var(--padding-md);
+      border-radius: var(--radius-md);
+      font-size: 0.9em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s, border-color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--padding-xs);
+    }
+    .btn:hover { background-color: var(--bg-elements-hover); border-color: var(--accent-blue); }
+    .btn i { margin-right: var(--padding-xs); }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: var(--text-on-accent);
+    }
+    .btn-primary:hover { background-color: var(--accent-blue-hover); border-color: var(--accent-blue-hover); }
+
+    .btn-icon {
+      background: none;
+      border: none;
+      color: var(--text-medium);
+      padding: var(--padding-sm);
+      font-size: 1.1em;
+      line-height: 1; /* Ensure icons align well */
+    }
+    .btn-icon:hover { color: var(--text-light); background-color: var(--bg-elements); }
+
+    .btn-expose-node {
+        background-color: transparent;
+        border: 1px solid var(--accent-blue);
+        color: var(--accent-blue);
+        padding: 2px 4px;
+        font-size: 0.7em !important; /* Override general button styles */
+        margin-left: var(--padding-sm);
+    }
+    .btn-expose-node:hover {
+        background-color: var(--accent-blue);
+        color: var(--text-on-accent);
+    }
+
+
+    /* ============================================================
+        4) AUDIO SNIPPETS & EFFECT NODES (on canvas)
+        ========================================================= */
+    .audio-snippet, .effect-node {
+      position: absolute; /* Positioned on the canvas */
+      background-color: var(--bg-snippet);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: var(--padding-sm);
+      cursor: grab;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      min-width: 200px;
+    }
+    .audio-snippet.selected, .effect-node.selected {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px var(--accent-blue), 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .audio-snippet:active, .effect-node:active { cursor: grabbing; }
+
+    .snippet-header, .node-header {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--text-medium);
+      margin-bottom: var(--padding-sm);
+      padding-bottom: var(--padding-xs);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .snippet-header .filename { color: var(--text-light); }
+    .node-header .node-type { color: var(--accent-blue); }
+
+
+    .waveform-preview {
+      height: 60px;
+      background-color: var(--bg-input); /* Darker area for waveform */
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--padding-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      font-size: 0.8em;
+      overflow: hidden; /* Clip actual waveform */
+    }
+    .waveform-preview svg { width: 100%; height: 100%; stroke: var(--accent-blue); stroke-width: 1.5; fill: none;}
+
+
+    .snippet-controls, .node-controls {
+      display: flex;
+      gap: var(--padding-xs);
+      margin-top: auto; /* Push to bottom if snippet has fixed height */
+    }
+    .snippet-controls .btn-icon, .node-controls .btn-icon {
+      padding: var(--padding-xs);
+      font-size: 0.9em;
+    }
+
+    /* Connection Ports (visual only for now) */
+    .port {
+      width: 10px;
+      height: 10px;
+      background-color: var(--connection-color);
+      border-radius: 50%;
+      position: absolute;
+      border: 1px solid var(--bg-snippet); /* To make it seem inset */
+    }
+    .port.in { left: -5px; top: 50%; transform: translateY(-50%); }
+    .port.out { right: -5px; top: 50%; transform: translateY(-50%); }
+
+
+    /* ============================================================
+        5) SEQUENCE STRIPS
+        ========================================================= */
+    .sequence-strip-container { /* Now role="region" */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-toolbar);
+        border-top: 1px solid var(--border-color);
+        padding: var(--padding-sm);
+        display: flex;
+        gap: var(--padding-sm);
+        overflow-x: auto;
+        height: 120px; /* Example height */
+        z-index: 10; /* Above canvas items if needed */
+    }
+    .sequence-strip {
+        background-color: var(--bg-canvas); /* Slightly different from container */
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        min-width: 300px; /* Each strip has a min width */
+        height: 100%;
+        padding: var(--padding-xs);
+        display: flex; /* For items on the strip */
+        align-items: center;
+        gap: var(--padding-xs);
+        position: relative; /* For timeline markers */
+    }
+    .sequence-strip-placeholder {
+        font-size: 0.8em;
+        color: var(--text-dark);
+        margin: auto;
+    }
+    .strip-item { /* Represents a snippet dragged onto a strip */
+        background-color: var(--bg-snippet);
+        color: var(--text-light);
+        padding: var(--padding-xs) var(--padding-sm);
+        border-radius: var(--radius-sm);
+        font-size: 0.8em;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Ensure headings inherit display properties if needed */
+    h2.audio-title-main, h3.panel-header-title, h3.inspector-header {
+        display: block; /* Or whatever their previous display was if changed by reset */
+    }
