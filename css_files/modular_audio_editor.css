@@ -1,590 +1,593 @@
- 
-    /* ============================================================
-        1) CORE STYLES & THEME
-        ========================================================= */
-    :root {
-      /* Backgrounds */
-      --bg-canvas: #1A1D21; /* Deep dark for the main canvas */
-      --bg-toolbar: #23272C; /* Toolbar and static panels */
-      --bg-snippet: #2C3137; /* Default snippet background */
-      --bg-snippet-selected: #3A76F7; /* Selected snippet */
-      --bg-node: #282C30; /* Effect nodes */
-      --bg-input: #16181B; /* Input fields */
-      --bg-inspector-item: #202327; /* Background for items within inspector */
-      --bg-inspector-item-hover: #282C30;
+:root {
+  --bg-canvas: #1A1D21;
+  --bg-toolbar: #23272C;
+  --bg-snippet: #2C3137;
+  --bg-snippet-selected: #3A76F7;
+  --bg-node: #282C30;
+  --bg-input: #16181B;
+  --bg-inspector-item: #202327;
+  --bg-inspector-item-hover: #282C30;
+
+  --text-light: #EAEBEE;
+  --text-medium: #A8ADB3;
+  --text-dark: #6C7075;
+  --text-on-accent: #FFFFFF;
+
+  --accent-blue: #3A76F7;
+  --accent-blue-hover: #5C8FFF;
+  --accent-green: #28A745;
+  --accent-red: #DC3545;
+  --border-color: #363B42;
+  --connection-color: #5A6067;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --padding-xs: 0.25rem;
+  --padding-sm: 0.5rem;
+  --padding-md: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+/* === App Layout === */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-toolbar {
+  background-color: var(--bg-toolbar);
+  padding: var(--padding-sm) var(--padding-md);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: var(--padding-md);
+  flex-shrink: 0;
+  height: 50px;
+}
+
+.toolbar-group .btn {
+  margin-right: var(--padding-sm);
+}
+.toolbar-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.editor-body {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.editing-canvas-wrapper {
+  flex-grow: 1;
+  position: relative;
+  overflow: auto;
+  background-color: var(--bg-canvas);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.editing-canvas {
+  width: 3000px;
+  height: 2000px;
+  position: relative;
+}
+
+.inspector-panel {
+  width: 300px;
+  background-color: var(--bg-toolbar);
+  border-left: 1px solid var(--border-color);
+  padding: 0;
+  overflow-y: auto;
+  transition: width 0.2s ease-in-out;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-panel.hidden {
+  display: none;
+}
+
+.inspector-header {
+  font-size: 1em;
+  font-weight: 600;
+  padding: var(--padding-md);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.inspector-content-area {
+  padding: var(--padding-md);
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.inspector-group {
+  margin-bottom: var(--padding-md);
+}
+.inspector-group label {
+  display: block;
+  font-size: 0.85em;
+  color: var(--text-medium);
+  margin-bottom: var(--padding-xs);
+  font-weight: 500;
+}
+
+.inspector-group input[type="text"],
+.inspector-group input[type="number"],
+.inspector-group select {
+  width: 100%;
+  padding: var(--padding-sm);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-light);
+  font-size: 0.9em;
+}
+
+.inspector-group input[type="range"] {
+  width: 100%;
+}
+.inspector-effects-chain {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--padding-sm);
+}
+.inspector-effect-item {
+  background-color: var(--bg-inspector-item);
+  padding: var(--padding-sm);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--padding-xs);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.15s;
+}
+.inspector-effect-item:hover {
+  background-color: var(--bg-inspector-item-hover);
+}
+.effect-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--padding-sm);
+}
+.effect-item-name {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.effect-item-controls button {
+  font-size: 0.8em;
+  padding: var(--padding-xs);
+}
+.effect-item-params {
+  font-size: 0.8em;
+  color: var(--text-dark);
+}
+.btn-add-effect-inspector {
+  width: 100%;
+  margin-top: var(--padding-sm);
+  background-color: var(--bg-elements);
+  color: var(--text-medium);
+}
+.btn-add-effect-inspector:hover {
+  background-color: var(--bg-elements-hover);
+  color: var(--text-light);
+}
+
+/* === Buttons === */
+.btn {
+  background-color: var(--bg-elements);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  padding: var(--padding-sm) var(--padding-md);
+  border-radius: var(--radius-md);
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--padding-xs);
+}
+.btn:hover {
+  background-color: var(--bg-elements-hover);
+  border-color: var(--accent-blue);
+}
+.btn i {
+  margin-right: var(--padding-xs);
+}
+.btn-primary {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: var(--text-on-accent);
+}
+.btn-primary:hover {
+  background-color: var(--accent-blue-hover);
+  border-color: var(--accent-blue-hover);
+}
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-medium);
+  padding: var(--padding-sm);
+  font-size: 1.1em;
+  line-height: 1;
+}
+.btn-icon:hover {
+  color: var(--text-light);
+  background-color: var(--bg-elements);
+}
+.btn-expose-node {
+  background-color: transparent;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  padding: 2px 4px;
+  font-size: 0.7em !important;
+  margin-left: var(--padding-sm);
+}
+.btn-expose-node:hover {
+  background-color: var(--accent-blue);
+  color: var(--text-on-accent);
+}
 
 
-      /* Text */
-      --text-light: #EAEBEE;
-      --text-medium: #A8ADB3;
-      --text-dark: #6C7075;
-      --text-on-accent: #FFFFFF;
+/* === Snippets and Effect Nodes === */
+.audio-snippet, .effect-node {
+  position: absolute;
+  background-color: var(--bg-snippet);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--padding-sm);
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+.audio-snippet.selected, .effect-node.selected {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px var(--accent-blue), 0 2px 8px rgba(0,0,0,0.3);
+}
+.audio-snippet:active, .effect-node:active {
+  cursor: grabbing;
+}
 
-      /* Accents & Borders */
-      --accent-blue: #3A76F7;
-      --accent-blue-hover: #5C8FFF;
-      --accent-green: #28A745;
-      --accent-red: #DC3545;
-      --border-color: #363B42;
-      --connection-color: #5A6067;
+.snippet-header, .node-header {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-medium);
+  margin-bottom: var(--padding-sm);
+  padding-bottom: var(--padding-xs);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.snippet-header .filename {
+  color: var(--text-light);
+}
+.node-header .node-type {
+  color: var(--accent-blue);
+}
 
-      /* Sizing & Radius */
-      --radius-sm: 4px;
-      --radius-md: 6px;
-      --padding-xs: 0.25rem;
-      --padding-sm: 0.5rem;
-      --padding-md: 1rem;
-    }
+.waveform-preview {
+  height: 60px;
+  background-color: var(--bg-input);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--padding-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-size: 0.8em;
+  overflow: hidden;
+}
+.waveform-preview svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent-blue);
+  stroke-width: 1.5;
+  fill: none;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.snippet-controls, .node-controls {
+  display: flex;
+  gap: var(--padding-xs);
+  margin-top: auto;
+}
+.snippet-controls .btn-icon, .node-controls .btn-icon {
+  padding: var(--padding-xs);
+  font-size: 0.9em;
+}
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* Prevent body scroll */
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-canvas);
-      color: var(--text-light);
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-    }
-
-    /* ============================================================
-        2) APP LAYOUT: TOOLBAR, CANVAS, INSPECTOR
-        ========================================================= */
-    .app-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-
-    .main-toolbar { /* Now role="toolbar" */
-      background-color: var(--bg-toolbar);
-      padding: var(--padding-sm) var(--padding-md);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      gap: var(--padding-md);
-      flex-shrink: 0;
-      height: 50px;
-    }
-
-    .toolbar-group .btn { margin-right: var(--padding-sm); }
-    .toolbar-title { font-size: 1.1em; font-weight: 600; margin-right: auto; }
-
-    .editor-body { /* Now <main> element */
-      display: flex;
-      flex-grow: 1;
-      overflow: hidden; /* Important for child scrolling */
-    }
-
-    .editing-canvas-wrapper { /* Now role="region" */
-      flex-grow: 1;
-      position: relative; /* For absolute positioning of canvas elements */
-      overflow: auto; /* Allow panning/scrolling of the canvas */
-      background-color: var(--bg-canvas);
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .editing-canvas { /* The actual scrollable/zoomable canvas */
-        width: 3000px; /* Large enough for scrolling */
-        height: 2000px;
-        position: relative;
-    }
-
-
-    .inspector-panel { /* Now role="complementary" */
-      width: 300px; /* Slightly wider for more controls */
-      background-color: var(--bg-toolbar);
-      border-left: 1px solid var(--border-color);
-      padding: 0; /* Remove padding to allow full-width sections */
-      overflow-y: auto;
-      transition: width 0.2s ease-in-out;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    .inspector-panel.hidden { display: none; }
-
-    .inspector-header { /* Now an H3 */
-      font-size: 1em;
-      font-weight: 600;
-      padding: var(--padding-md);
-      border-bottom: 1px solid var(--border-color);
-      flex-shrink: 0;
-    }
-    .inspector-content-area { /* Scrollable area for groups */
-        padding: var(--padding-md);
-        overflow-y: auto;
-        flex-grow: 1;
-    }
-
-    .inspector-group { margin-bottom: var(--padding-md); }
-    .inspector-group label {
-      display: block;
-      font-size: 0.85em;
-      color: var(--text-medium);
-      margin-bottom: var(--padding-xs);
-      font-weight: 500;
-    }
-    .inspector-group input[type="text"],
-    .inspector-group input[type="number"],
-    .inspector-group select {
-      width: 100%;
-      padding: var(--padding-sm);
-      background-color: var(--bg-input);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-light);
-      font-size: 0.9em;
-    }
-    .inspector-group input[type="range"] { width: 100%; }
-
-
-    /* Inspector Effects Chain Styling */
-    .inspector-effects-chain {
-        border-top: 1px solid var(--border-color);
-        padding-top: var(--padding-sm);
-    }
-    .inspector-effect-item {
-        background-color: var(--bg-inspector-item);
-        padding: var(--padding-sm);
-        border-radius: var(--radius-sm);
-        margin-bottom: var(--padding-xs);
-        border: 1px solid var(--border-color);
-        transition: background-color 0.15s;
-    }
-    .inspector-effect-item:hover {
-        background-color: var(--bg-inspector-item-hover);
-    }
-    .effect-item-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: var(--padding-sm);
-    }
-    .effect-item-name {
-        font-size: 0.9em;
-        font-weight: 500;
-    }
-    .effect-item-controls button {
-        font-size: 0.8em;
-        padding: var(--padding-xs);
-    }
-    .effect-item-params { /* Placeholder for actual effect parameters */
-        font-size: 0.8em;
-        color: var(--text-dark);
-    }
-    .btn-add-effect-inspector {
-        width: 100%;
-        margin-top: var(--padding-sm);
-        background-color: var(--bg-elements);
-        color: var(--text-medium);
-    }
-     .btn-add-effect-inspector:hover {
-        background-color: var(--bg-elements-hover);
-        color: var(--text-light);
-    }
-
-
-    /* ============================================================
-        3) BUTTONS & INTERACTIVE ELEMENTS
-        ========================================================= */
-    .btn {
-      background-color: var(--bg-elements);
-      color: var(--text-light);
-      border: 1px solid var(--border-color);
-      padding: var(--padding-sm) var(--padding-md);
-      border-radius: var(--radius-md);
-      font-size: 0.9em;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.15s, border-color 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: var(--padding-xs);
-    }
-    .btn:hover { background-color: var(--bg-elements-hover); border-color: var(--accent-blue); }
-    .btn i { margin-right: var(--padding-xs); }
-
-    .btn-primary {
-      background-color: var(--accent-blue);
-      border-color: var(--accent-blue);
-      color: var(--text-on-accent);
-    }
-    .btn-primary:hover { background-color: var(--accent-blue-hover); border-color: var(--accent-blue-hover); }
-
-    .btn-icon {
-      background: none;
-      border: none;
-      color: var(--text-medium);
-      padding: var(--padding-sm);
-      font-size: 1.1em;
-      line-height: 1; /* Ensure icons align well */
-    }
-    .btn-icon:hover { color: var(--text-light); background-color: var(--bg-elements); }
-
-    .btn-expose-node {
-        background-color: transparent;
-        border: 1px solid var(--accent-blue);
-        color: var(--accent-blue);
-        padding: 2px 4px;
-        font-size: 0.7em !important; /* Override general button styles */
-        margin-left: var(--padding-sm);
-    }
-    .btn-expose-node:hover {
-        background-color: var(--accent-blue);
-        color: var(--text-on-accent);
-    }
-
-
-    /* ============================================================
-        4) AUDIO SNIPPETS & EFFECT NODES (on canvas)
-        ========================================================= */
-    .audio-snippet, .effect-node {
-      position: absolute; /* Positioned on the canvas */
-      background-color: var(--bg-snippet);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: var(--padding-sm);
-      cursor: grab;
-      user-select: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      min-width: 200px;
-    }
-    .audio-snippet.selected, .effect-node.selected {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 0 2px var(--accent-blue), 0 2px 8px rgba(0,0,0,0.3);
-    }
-    .audio-snippet:active, .effect-node:active { cursor: grabbing; }
-
-    .snippet-header, .node-header {
-      font-size: 0.8em;
-      font-weight: 600;
-      color: var(--text-medium);
-      margin-bottom: var(--padding-sm);
-      padding-bottom: var(--padding-xs);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .snippet-header .filename { color: var(--text-light); }
-    .node-header .node-type { color: var(--accent-blue); }
-
-
-    .waveform-preview {
-      height: 60px;
-      background-color: var(--bg-input); /* Darker area for waveform */
-      border-radius: var(--radius-sm);
-      margin-bottom: var(--padding-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-dark);
-      font-size: 0.8em;
-      overflow: hidden; /* Clip actual waveform */
-    }
-    .waveform-preview svg { width: 100%; height: 100%; stroke: var(--accent-blue); stroke-width: 1.5; fill: none;}
-
-
-    .snippet-controls, .node-controls {
-      display: flex;
-      gap: var(--padding-xs);
-      margin-top: auto; /* Push to bottom if snippet has fixed height */
-    }
-    .snippet-controls .btn-icon, .node-controls .btn-icon {
-      padding: var(--padding-xs);
-      font-size: 0.9em;
-    }
-
-    /* Connection Ports (visual only for now) */
-    .port {
-      width: 10px;
-      height: 10px;
-      background-color: var(--connection-color);
-      border-radius: 50%;
-      position: absolute;
-      border: 1px solid var(--bg-snippet); /* To make it seem inset */
-    }
-    .port.in { left: -5px; top: 50%; transform: translateY(-50%); }
-    .port.out { right: -5px; top: 50%; transform: translateY(-50%); }
-
-
-    /* ============================================================
-        5) SEQUENCE STRIPS
-        ========================================================= */
-    .sequence-strip-container { /* Now role="region" */
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-toolbar);
-        border-top: 1px solid var(--border-color);
-        padding: var(--padding-sm);
-        display: flex;
-        gap: var(--padding-sm);
-        overflow-x: auto;
-        height: 120px; /* Example height */
-        z-index: 10; /* Above canvas items if needed */
-    }
-    .sequence-strip {
-        background-color: var(--bg-canvas); /* Slightly different from container */
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-md);
-        min-width: 300px; /* Each strip has a min width */
-        height: 100%;
-        padding: var(--padding-xs);
-        display: flex; /* For items on the strip */
-        align-items: center;
-        gap: var(--padding-xs);
-        position: relative; /* For timeline markers */
-    }
-    .sequence-strip-placeholder {
-        font-size: 0.8em;
-        color: var(--text-dark);
-        margin: auto;
-    }
-    .strip-item { /* Represents a snippet dragged onto a strip */
-        background-color: var(--bg-snippet);
-        color: var(--text-light);
-        padding: var(--padding-xs) var(--padding-sm);
-        border-radius: var(--radius-sm);
-        font-size: 0.8em;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        border: 1px solid var(--border-color);
-    }
-
-    /* Ensure headings inherit display properties if needed */
-    h2.audio-title-main, h3.panel-header-title, h3.inspector-header {
-        display: block; /* Or whatever their previous display was if changed by reset */
-    }
-
-
-/* === Styles for Sequence Strip Enhancements === */
-
+/* Connection Ports */
+.port {
+  width: 10px;
+  height: 10px;
+  background-color: var(--connection-color);
+  border-radius: 50%;
+  position: absolute;
+  border: 1px solid var(--bg-snippet);
+}
+.port.in {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.port.out {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* === Sequence Strips === */
+.sequence-strip-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-toolbar);
+  border-top: 1px solid var(--border-color);
+  padding: var(--padding-sm);
+  display: flex;
+  gap: var(--padding-sm);
+  overflow-x: auto;
+  height: 120px;
+  z-index: 10;
+}
 .sequence-strip {
-    /* Existing styles */
-    position: relative; /* Needed for absolute positioning of ruler and playhead */
-    display: flex;
-    flex-direction: column; /* Stack ruler and content area */
-    overflow: hidden; /* Prevent playhead/ruler from making strip scrollable */
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-width: 300px;
+  height: 100%;
+  padding: var(--padding-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--padding-xs);
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sequence-strip.selected {
+  outline: 2px solid var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue);
+}
+
+.sequence-strip-placeholder {
+  font-size: 0.8em;
+  color: var(--text-dark);
+  margin: auto;
+}
+.strip-item {
+  background-color: var(--bg-snippet);
+  color: var(--text-light);
+  padding: var(--padding-xs) var(--padding-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.8em;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.strip-item.selected {
+  outline: 2px solid var(--accent-blue);
+  box-shadow: 0 0 5px var(--accent-blue);
 }
 
 .strip-ruler {
-    width: 100%;
-    height: 20px; /* Height of the ruler */
-    background-color: var(--bg-input); /* Slightly different from strip bg */
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    padding: 0 var(--padding-xs);
-    font-size: 0.7em;
-    color: var(--text-dark);
-    flex-shrink: 0; /* Prevent ruler from shrinking */
-    position: relative; /* To contain tick marks absolutely if needed later */
+  width: 100%;
+  height: 20px;
+  background-color: var(--bg-input);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--padding-xs);
+  font-size: 0.7em;
+  color: var(--text-dark);
+  flex-shrink: 0;
+  position: relative;
 }
-
-.strip-ruler span { /* Basic styling for time markers */
-    margin-right: 30px; /* Adjust spacing as needed */
-    white-space: nowrap;
+.strip-ruler span {
+  margin-right: 30px;
+  white-space: nowrap;
 }
-
 .strip-playhead {
-    position: absolute;
-    top: 0; /* Align with the top of the strip (ruler area) */
-    bottom: 0; /* Stretch to the bottom of the strip */
-    width: 2px;
-    background-color: var(--accent-red);
-    z-index: 5; /* Above strip items but below anything interactable on top */
-    pointer-events: none; /* So it doesn't interfere with clicks on items */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--accent-red);
+  z-index: 5;
+  pointer-events: none;
 }
-.strip-playhead::before { /* Optional: top handle for playhead */
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: -4px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--accent-red);
-    border-radius: 2px; /* Triangle shape: border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid var(--accent-red); background: none;*/
+.strip-playhead::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-red);
+  border-radius: 2px;
 }
-
 
 .strip-content-area {
-    flex-grow: 1; /* Takes remaining space in the strip */
-    position: relative; /* For positioning strip items absolutely if needed later */
-    padding: var(--padding-xs); /* Add some padding for items */
-    display: flex; /* To align items, or could be block if items are positioned absolutely */
-    align-items: center;
-    gap: var(--padding-xs);
-    overflow-x: auto; /* If many items make it wider than strip */
-    overflow-y: hidden;
+  flex-grow: 1;
+  position: relative;
+  padding: var(--padding-xs);
+  display: block;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* === Inspector Section for Sequence Strip Properties === */
+#sequence-strip-inspector-content .inspector-group {
+  margin-bottom: var(--padding-md);
+}
+#sequence-strip-inspector-content label {
+  display: block;
+  font-size: 0.85em;
+  color: var(--text-medium);
+  margin-bottom: var(--padding-xs);
+  font-weight: 500;
+}
+#sequence-strip-inspector-content .input-field {
+  width: 100%;
+}
+#sequence-strip-inspector-content input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
-.strip-item.selected {
-    outline: 2px solid var(--accent-blue);
-    box-shadow: 0 0 5px var(--accent-blue);
-}
-
-/* Styles for the new inspector section */
+/* === Strip Item Inspector Section === */
 #strip-item-inspector-content .inspector-group {
-    margin-bottom: var(--padding-md);
+  margin-bottom: var(--padding-md);
 }
 #strip-item-inspector-content label {
-    display: block;
-    font-size: 0.85em;
-    color: var(--text-medium);
-    margin-bottom: var(--padding-xs);
-    font-weight: 500;
+  display: block;
+  font-size: 0.85em;
+  color: var(--text-medium);
+  margin-bottom: var(--padding-xs);
+  font-weight: 500;
 }
 #strip-item-inspector-content .input-field[readonly] {
-    background-color: var(--bg-input); /* Or a slightly different color for readonly */
-    opacity: 0.7;
-    cursor: default;
+  background-color: var(--bg-input);
+  opacity: 0.7;
+  cursor: default;
 }
 
-/* General inspector section styling for better hidden/shown behavior */
+/* === General Inspector Visibility Toggles === */
 .inspector-section.hidden {
-    display: none;
+  display: none;
 }
 .inspector-section {
-    /* Add any common padding or margin for sections if needed,
-       but inspector-content-area already has padding */
+  /* Optional extra styling per section */
 }
-
-
-
-
 
 /* === Video Panel === */
 .video-panel-container {
-    background-color: var(--bg-toolbar); /* Similar to other panels */
-    border-bottom: 1px solid var(--border-color);
-    padding: var(--padding-sm);
-    position: fixed; /* Or absolute if you prefer it within a specific container */
-    top: 50px; /* Below main toolbar */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 480px; /* Example width */
-    max-width: 90%;
-    z-index: 100; /* Above other content */
-    box-shadow: var(--shadow-md);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    display: flex;
-    flex-direction: column;
+  background-color: var(--bg-toolbar);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--padding-sm);
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  max-width: 90%;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  display: flex;
+  flex-direction: column;
 }
-
 .video-panel-container.hidden {
-    display: none;
+  display: none;
 }
-
 .video-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--padding-sm);
-    color: var(--text-light);
-    font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--padding-sm);
+  color: var(--text-light);
+  font-weight: 500;
 }
-
 .video-panel-header .btn-icon {
-    padding: var(--padding-xs);
-    font-size: 0.9em;
+  padding: var(--padding-xs);
+  font-size: 0.9em;
 }
-
 .video-placeholder {
-    width: 100%;
-    height: 270px; /* Corresponds to a 16:9 aspect ratio for 480px width */
-    background-color: var(--bg-canvas);
-    border: 1px dashed var(--border-color-strong);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-dark);
+  width: 100%;
+  height: 270px;
+  background-color: var(--bg-canvas);
+  border: 1px dashed var(--border-color-strong);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
 }
-
 .video-placeholder i {
-    font-size: 3em;
-    margin-bottom: var(--padding-sm);
-}
-
-/* === Sequence Strip Item Visuals === */
-.sequence-strip .strip-content-area {
-    position: relative; /* Crucial for absolute positioning of strip items */
-    height: 100%; /* Ensure it fills the available space after ruler */
-    /* remove flex if items are absolutely positioned, or keep if they flow first then get positioned */
-    display: block; /* Changed from flex to allow absolute positioning */
-}
-
-.strip-item {
-    /* Existing styles: background, color, padding, radius, font-size, height, border */
-    position: absolute; /* Now positioned based on offset and duration */
-    top: 50%; /* Vertically center */
-    transform: translateY(-50%);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer; /* To indicate it's selectable */
-    /* width and left will be set by JS */
+  font-size: 3em;
+  margin-bottom: var(--padding-sm);
 }
 
 /* === Toolbar Video Button Styling === */
-#btn-toggle-video i.fa-video-slash { /* Style for when video is hidden, if you toggle icon */
-    /* color: var(--accent-red); */
+#btn-toggle-video i.fa-video-slash {
+  /* Optional red or inactive color styles */
+  /* color: var(--accent-red); */
 }
 
-/* === Styles for Selectable Sequence Strips === */
-
-.sequence-strip {
-    /* Add/ensure focus styles if you want keyboard navigation to strips */
-    outline: none; /* Remove default browser focus outline if you add custom */
+/* === Accessibility & Misc Fixes === */
+h2.audio-title-main,
+h3.panel-header-title,
+h3.inspector-header {
+  display: block;
 }
 
-.sequence-strip.selected {
-    outline: 2px solid var(--accent-blue);
-    box-shadow: 0 0 8px var(--accent-blue); /* More prominent selection */
-    /* You might want to adjust background or border slightly too if needed */
+/* === Fallbacks & Clarifications === */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 1px;
 }
 
-/* === Inspector Section for Sequence Strip Properties === */
-#sequence-strip-inspector-content .inspector-group {
-    margin-bottom: var(--padding-md);
+/* === Prevent select from intercepting drag if needed === */
+.effect-node select {
+  pointer-events: auto; /* If using pointer-events none elsewhere */
+  user-select: none;
 }
 
-#sequence-strip-inspector-content label {
-    display: block;
-    font-size: 0.85em;
-    color: var(--text-medium);
-    margin-bottom: var(--padding-xs);
-    font-weight: 500;
+/* === Utility spacing for stacked groups === */
+.inspector-group + .inspector-group {
+  margin-top: var(--padding-sm);
 }
 
-#sequence-strip-inspector-content .input-field {
-    width: 100%;
-    /* Uses existing .input-field styles */
+/* === Scrollbar Styling (optional) === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-#sequence-strip-inspector-content input[type="checkbox"] {
-    /* Basic styling for checkbox, can be improved */
-    width: auto;
-    margin-right: 5px;
-    vertical-align: middle;
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-blue);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--bg-toolbar);
 }
