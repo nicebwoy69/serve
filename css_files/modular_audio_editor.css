@@ -467,3 +467,86 @@
     /* Add any common padding or margin for sections if needed,
        but inspector-content-area already has padding */
 }
+
+
+
+
+
+/* === Video Panel === */
+.video-panel-container {
+    background-color: var(--bg-toolbar); /* Similar to other panels */
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--padding-sm);
+    position: fixed; /* Or absolute if you prefer it within a specific container */
+    top: 50px; /* Below main toolbar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px; /* Example width */
+    max-width: 90%;
+    z-index: 100; /* Above other content */
+    box-shadow: var(--shadow-md);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.video-panel-container.hidden {
+    display: none;
+}
+
+.video-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--padding-sm);
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.video-panel-header .btn-icon {
+    padding: var(--padding-xs);
+    font-size: 0.9em;
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 270px; /* Corresponds to a 16:9 aspect ratio for 480px width */
+    background-color: var(--bg-canvas);
+    border: 1px dashed var(--border-color-strong);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+}
+
+.video-placeholder i {
+    font-size: 3em;
+    margin-bottom: var(--padding-sm);
+}
+
+/* === Sequence Strip Item Visuals === */
+.sequence-strip .strip-content-area {
+    position: relative; /* Crucial for absolute positioning of strip items */
+    height: 100%; /* Ensure it fills the available space after ruler */
+    /* remove flex if items are absolutely positioned, or keep if they flow first then get positioned */
+    display: block; /* Changed from flex to allow absolute positioning */
+}
+
+.strip-item {
+    /* Existing styles: background, color, padding, radius, font-size, height, border */
+    position: absolute; /* Now positioned based on offset and duration */
+    top: 50%; /* Vertically center */
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer; /* To indicate it's selectable */
+    /* width and left will be set by JS */
+}
+
+/* === Toolbar Video Button Styling === */
+#btn-toggle-video i.fa-video-slash { /* Style for when video is hidden, if you toggle icon */
+    /* color: var(--accent-red); */
+}
