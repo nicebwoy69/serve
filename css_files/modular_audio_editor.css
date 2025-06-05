@@ -550,3 +550,41 @@
 #btn-toggle-video i.fa-video-slash { /* Style for when video is hidden, if you toggle icon */
     /* color: var(--accent-red); */
 }
+
+/* === Styles for Selectable Sequence Strips === */
+
+.sequence-strip {
+    /* Add/ensure focus styles if you want keyboard navigation to strips */
+    outline: none; /* Remove default browser focus outline if you add custom */
+}
+
+.sequence-strip.selected {
+    outline: 2px solid var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue); /* More prominent selection */
+    /* You might want to adjust background or border slightly too if needed */
+}
+
+/* === Inspector Section for Sequence Strip Properties === */
+#sequence-strip-inspector-content .inspector-group {
+    margin-bottom: var(--padding-md);
+}
+
+#sequence-strip-inspector-content label {
+    display: block;
+    font-size: 0.85em;
+    color: var(--text-medium);
+    margin-bottom: var(--padding-xs);
+    font-weight: 500;
+}
+
+#sequence-strip-inspector-content .input-field {
+    width: 100%;
+    /* Uses existing .input-field styles */
+}
+
+#sequence-strip-inspector-content input[type="checkbox"] {
+    /* Basic styling for checkbox, can be improved */
+    width: auto;
+    margin-right: 5px;
+    vertical-align: middle;
+}
