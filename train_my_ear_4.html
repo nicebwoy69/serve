@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Ear Trainer v3.1</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --panel-bg: #1e1e1e;
+            --accent: #00e5ff;
+            --accent-dim: #007885;
+            --danger: #ff4081;
+            --success: #00e676;
+            --warning: #ffb74d;
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* --- Layout --- */
+        header {
+            background-color: var(--panel-bg);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+
+        h1 { margin: 0; font-size: 1.1rem; letter-spacing: 1px; color: var(--accent); }
+
+        /* --- Main Stage --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            position: relative;
+            overflow-y: auto;
+            align-items: center;
+        }
+
+        /* --- Visualizer --- */
+        #visualizer-container {
+            width: 100%;
+            max-width: 800px;
+            height: 120px;
+            background: #000;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            position: relative;
+            flex-shrink: 0;
+        }
+        canvas { width: 100%; height: 100%; display: block; }
+        
+        .correction-badge {
+            position: absolute;
+            top: 5px; right: 5px;
+            font-size: 0.7rem;
+            background: var(--accent-dim);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            display: none;
+        }
+
+        /* Only shown if Advanced Viz + Lines enabled */
+        .legend {
+            position: absolute;
+            bottom: 5px; left: 5px;
+            font-size: 0.7rem;
+            display: flex; gap: 10px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        .legend span { display: flex; align-items: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; }
+
+        /* --- Controls Container --- */
+        .game-controls {
+            width: 100%;
+            max-width: 800px;
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- Settings Row --- */
+        .settings-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .control-group.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        select, button {
+            background: #2c2c2c;
+            color: white;
+            border: 1px solid #444;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        select:hover, button:hover { border-color: var(--accent); }
+
+        /* --- Advanced Options (Collapsible) --- */
+        .advanced-toggle {
+            font-size: 0.8rem; 
+            color: var(--accent); 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+            user-select: none;
+        }
+        .advanced-options {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            background: #252525;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        .advanced-options.open { display: grid; }
+
+        .toggle-row { display: flex; align-items: center; gap: 8px; }
+        .toggle-label { font-size: 0.8rem; color: var(--text-main); }
+
+        /* --- Slider Section & Fine Tuning --- */
+        .slider-section {
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .freq-display {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-variant-numeric: tabular-nums;
+        }
+        .note-display { font-size: 1rem; color: var(--text-dim); height: 1.2rem; margin-bottom: 10px; }
+
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .fine-tune-btn {
+            width: 44px; height: 44px;
+            padding: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: #333;
+            font-size: 1.4rem;
+            font-weight: bold;
+            touch-action: manipulation;
+        }
+
+        input[type=range] {
+            flex: 1;
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]:focus { outline: none; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 28px; width: 14px;
+            border-radius: 3px;
+            background: var(--accent);
+            cursor: pointer;
+            margin-top: -12px;
+            box-shadow: 0 0 15px var(--accent);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px;
+            background: #444; border-radius: 2px;
+        }
+
+        /* --- Buttons --- */
+        .actions-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-big {
+            padding: 12px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            flex: 1;
+            min-width: 100px;
+            max-width: 180px;
+        }
+        .btn-play { background: var(--success); color: #000; }
+        .btn-play.playing { background: var(--danger); color: white; animation: pulse 2s infinite; }
+        
+        .btn-check { background: var(--accent); color: #000; }
+        .btn-new { background: #444; }
+        
+        .btn-hint { 
+            background: transparent; 
+            border: 1px solid var(--accent-dim); 
+            color: var(--accent-dim);
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+        .btn-hint:hover { background: var(--accent-dim); color: white; }
+
+        /* --- Feedback --- */
+        #feedback {
+            text-align: center;
+            min-height: 50px;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+        }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: var(--panel-bg);
+            width: 90%; max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #444;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .calib-grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .calib-controls { margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end; }
+        .file-status { font-size: 0.8rem; color: var(--success); display: none; margin-top:5px; padding: 4px; background: rgba(255,255,255,0.05); border-radius: 4px; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 64, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0); } }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <h1>👂 ProTrainer v3.1</h1>
+        <div id="active-indicator" style="width:8px; height:8px; border-radius:50%; background:#444;"></div>
+    </div>
+    <div class="header-right">
+        <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+            <input type="checkbox" id="correctionToggle" checked> 
+            <span>Correction Active</span>
+        </label>
+        <button onclick="ui.openCalibration()">Calibrate</button>
+    </div>
+</header>
+
+<main>
+    <div id="visualizer-container">
+        <canvas id="visualizer"></canvas>
+        <div class="correction-badge" id="correctionBadge">Correction Applied</div>
+        <div class="legend" id="vizLegend" style="display:none;">
+            <span style="color:var(--success)"><div class="dot" style="background:var(--success)"></div> Target</span>
+            <span style="color:var(--danger)"><div class="dot" style="background:var(--danger)"></div> You</span>
+        </div>
+    </div>
+
+    <div id="feedback">Press Start Audio to begin.</div>
+
+    <div class="game-controls">
+        
+        <!-- Config Row -->
+        <div class="settings-row">
+            <div class="control-group">
+                <label>Mode & Difficulty</label>
+                <select id="modeSelect" style="margin-bottom:5px;">
+                    <option value="resonance">Resonance (Boost)</option>
+                    <option value="surgeon">Surgeon (Cut)</option>
+                    <option value="bandpass">Band Match (Noise)</option>
+                    <option value="range">Range Finder (HPF)</option>
+                    <option value="musical">Musical Pitch</option>
+                </select>
+                <select id="diffSelect">
+                    <option value="1">Level 1 (Easy)</option>
+                    <option value="2">Level 2 (Medium)</option>
+                    <option value="3">Level 3 (Hard)</option>
+                </select>
+            </div>
+
+            <div class="control-group" id="sourceControlGroup">
+                <label>Source</label>
+                <select id="sourceSelect">
+                    <option value="pink">Pink Noise</option>
+                    <option value="file">User File</option>
+                </select>
+                <div id="fileUploadContainer" style="display:none; margin-top:5px;">
+                    <input type="file" id="fileInput" accept="audio/*" style="display:none">
+                    <button id="uploadBtn" style="width:100%; font-size:0.75rem;" onclick="document.getElementById('fileInput').click()">
+                        📂 Load
+                    </button>
+                </div>
+                <div class="file-status" id="fileStatus">No file loaded</div>
+            </div>
+        </div>
+
+        <!-- Advanced Toggle -->
+        <div style="margin-top:5px;">
+            <div class="advanced-toggle" onclick="ui.toggleAdvanced()">
+                <span id="advChevron">▶</span> Advanced Options
+            </div>
+            <div class="advanced-options" id="advOptions">
+                <div class="toggle-row">
+                    <input type="checkbox" id="adaptiveToggle">
+                    <span class="toggle-label" title="Focuses on frequencies you miss most">Adaptive Target</span>
+                </div>
+                <div class="toggle-row">
+                    <input type="checkbox" id="mixedQToggle">
+                    <span class="toggle-label" title="Randomly alternates between Wide and Narrow Q">Mixed Q</span>
+                </div>
+                <div class="toggle-row">
+                    <input type="checkbox" id="logVizToggle">
+                    <span class="toggle-label" title="Show Logarithmic Spectrum (Heavier CPU)">Log Visualizer</span>
+                </div>
+                <div class="toggle-row">
+                    <input type="checkbox" id="overlayToggle">
+                    <span class="toggle-label" title="Show Target vs You lines on check">Visual Overlay</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Area -->
+        <div class="slider-section">
+            <div class="freq-display"><span id="freqVal">1000</span> <span style="font-size:1rem; color:#666;">Hz</span></div>
+            <div class="note-display" id="noteVal"></div>
+            
+            <div class="slider-wrapper">
+                <button class="fine-tune-btn" id="fineDec">&lt;</button>
+                <input type="range" id="mainSlider" min="0" max="1000" value="500">
+                <button class="fine-tune-btn" id="fineInc">&gt;</button>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#666; margin-top:5px;">
+                <span>20Hz</span>
+                <span>100Hz</span>
+                <span>1kHz</span>
+                <span>10kHz</span>
+                <span>20kHz</span>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="actions-row">
+            <button class="btn-big btn-play" id="playBtn">Start</button>
+            <button class="btn-big btn-new" id="newRoundBtn">New Round</button>
+            <button class="btn-big btn-check" id="checkBtn">Check</button>
+            <button class="btn-big" id="bypassBtn" style="background:#333;">Bypass</button>
+        </div>
+
+        <div class="actions-row" style="margin-top:5px;">
+            <button class="btn-hint" onclick="game.triggerHint('surge')">Surge</button>
+            <button class="btn-hint" onclick="game.triggerHint('tone')">Tone</button>
+            <button class="btn-hint" onclick="game.triggerHint('visual')">Desc</button>
+        </div>
+        
+    </div>
+</main>
+
+<!-- Calibration Modal -->
+<div id="calibModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color:var(--accent); margin-top:0;">Headphone Calibration</h2>
+        <p style="font-size:0.9rem; color:#aaa;">
+            1. Click "Start Test Tone" (Reference 1kHz).<br>
+            2. Adjust other bands until they sound <b>equally loud</b> to the Reference.<br>
+            3. This profile will be saved locally.
+        </p>
+
+        <div style="background:#111; padding:10px; margin-bottom:15px; border:1px solid #333; display:flex; justify-content:space-between; align-items:center;">
+            <span>Reference (1kHz)</span>
+            <button id="refToneBtn" style="width:100px;">Play Ref</button>
+        </div>
+
+        <div id="calibBandsContainer"></div>
+
+        <div class="calib-controls">
+            <button onclick="calib.exportJSON()">Export JSON</button>
+            <button onclick="document.getElementById('calibImport').click()">Import JSON</button>
+            <input type="file" id="calibImport" style="display:none" accept=".json">
+            <button onclick="ui.closeCalibration()" style="background:var(--success); color:#000;">Save & Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * AUDIO CORE
+ */
+const AudioCore = {
+    ctx: null,
+    masterGain: null,
+    correctionNode: null, 
+    gameNode: null,       
+    sourceNode: null,
+    userBuffer: null,
+    analyser: null,
+    
+    correctionFilters: [],
+    gameFilter: null,
+    
+    isPlaying: false,
+    sourceType: 'pink',
+    correctionActive: true,
+
+    init() {
+        if (!this.ctx) {
+            this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            this.masterGain = this.ctx.createGain();
+            this.masterGain.gain.value = 0.1;
+            this.masterGain.connect(this.ctx.destination);
+
+            this.analyser = this.ctx.createAnalyser();
+            this.analyser.fftSize = 2048;
+            this.analyser.smoothingTimeConstant = 0.85;
+            this.masterGain.connect(this.analyser);
+
+            this.gameFilter = this.ctx.createBiquadFilter();
+            this.gameFilter.connect(this.masterGain);
+
+            this.buildCorrectionChain();
+        }
+    },
+
+    async toggle(forceState) {
+        await this.init();
+        if (this.ctx.state === 'suspended') await this.ctx.resume();
+        const shouldPlay = forceState !== undefined ? forceState : !this.isPlaying;
+        if (shouldPlay) {
+            const success = this.startSource();
+            if (success) this.isPlaying = true;
+            else this.isPlaying = false;
+        } else {
+            this.stopSource();
+            this.isPlaying = false;
+        }
+        return this.isPlaying;
+    },
+
+    startSource() {
+        this.stopSource();
+        const mode = document.getElementById('modeSelect').value;
+        const requestedSource = document.getElementById('sourceSelect').value;
+
+        // 1. MUSICAL
+        if (mode === 'musical') {
+            this.sourceNode = this.ctx.createOscillator();
+            this.sourceNode.type = 'sine';
+            this.sourceNode.connect(this.correctionInput);
+            if(Game.targetFreq) this.sourceNode.frequency.value = Game.targetFreq;
+            this.sourceNode.start();
+            return true;
+        }
+
+        // 2. USER FILE
+        if (requestedSource === 'file') {
+            if (this.userBuffer) {
+                this.sourceNode = this.ctx.createBufferSource();
+                this.sourceNode.buffer = this.userBuffer;
+                this.sourceNode.loop = true;
+                this.sourceNode.connect(this.correctionInput);
+                this.sourceNode.start();
+                return true;
+            } else {
+                ui.feedback('<span style="color:var(--warning)">⚠️ Load a file first.</span>');
+                return false;
+            }
+        }
+
+        // 3. PINK NOISE
+        this.sourceNode = this.ctx.createBufferSource();
+        this.sourceNode.buffer = this.createPinkNoise();
+        this.sourceNode.loop = true;
+        this.sourceNode.connect(this.correctionInput);
+        this.sourceNode.start();
+        return true;
+    },
+
+    stopSource() {
+        if (this.sourceNode) {
+            try { this.sourceNode.stop(); } catch(e){}
+            this.sourceNode.disconnect();
+            this.sourceNode = null;
+        }
+    },
+
+    buildCorrectionChain() {
+        this.correctionInput = this.ctx.createGain();
+        this.correctionFilters = [];
+        let previousNode = this.correctionInput;
+        const centers = [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+        centers.forEach(freq => {
+            const f = this.ctx.createBiquadFilter();
+            f.type = 'peaking';
+            f.frequency.value = freq;
+            f.Q.value = 1.4;
+            f.gain.value = 0;
+            previousNode.connect(f);
+            previousNode = f;
+            this.correctionFilters.push(f);
+        });
+        previousNode.connect(this.gameFilter);
+    },
+
+    applyCalibration(profile) {
+        this.correctionFilters.forEach(node => {
+            const freq = node.frequency.value;
+            if (profile[freq] !== undefined) {
+                node.gain.value = profile[freq];
+            }
+        });
+    },
+
+    toggleCorrection(active) {
+        this.correctionActive = active;
+        this.correctionInput.disconnect();
+        if (active && this.correctionFilters.length > 0) {
+            this.correctionInput.connect(this.correctionFilters[0]);
+        } else {
+            this.correctionInput.connect(this.gameFilter);
+        }
+    },
+
+    createPinkNoise() {
+        const bSize = 2 * this.ctx.sampleRate;
+        const b = this.ctx.createBuffer(1, bSize, this.ctx.sampleRate);
+        const out = b.getChannelData(0);
+        let b0=0, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0;
+        for(let i=0; i<bSize; i++){
+            const w = Math.random()*2-1;
+            b0 = 0.99886*b0 + w*0.0555179;
+            b1 = 0.99332*b1 + w*0.0750759;
+            b2 = 0.96900*b2 + w*0.1538520;
+            b3 = 0.86650*b3 + w*0.3104856;
+            b4 = 0.55000*b4 + w*0.5329522;
+            b5 = -0.7616*b5 - w*0.0168980;
+            out[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362) * 0.11;
+            b6 = w*0.115926;
+        }
+        return b;
+    },
+
+    hintSurge(baseGain) {
+        if(!this.isPlaying) return;
+        const now = this.ctx.currentTime;
+        const f = this.gameFilter;
+        f.gain.cancelScheduledValues(now);
+        f.gain.setValueAtTime(f.gain.value, now);
+        const surgeTarget = baseGain < 0 ? 0 : 20; 
+        f.gain.linearRampToValueAtTime(surgeTarget, now + 0.1);
+        f.gain.linearRampToValueAtTime(surgeTarget, now + 0.6);
+        f.gain.linearRampToValueAtTime(baseGain, now + 1.0);
+    },
+
+    hintTone(freq) {
+        if(!this.isPlaying) return;
+        const osc = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        osc.frequency.value = freq;
+        g.gain.value = 0;
+        osc.connect(g);
+        g.connect(this.masterGain);
+        osc.start();
+        g.gain.linearRampToValueAtTime(0.1, this.ctx.currentTime + 0.1);
+        g.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1.5);
+        osc.stop(this.ctx.currentTime + 1.6);
+    }
+};
+
+/**
+ * ADAPTIVE LEARNING
+ */
+const Adaptive = {
+    enabled: false,
+    bands: {
+        low:     { min: 20,   max: 160,   attempts: 0, totalError: 0 },
+        lowMid:  { min: 160,  max: 800,   attempts: 0, totalError: 0 },
+        highMid: { min: 800,  max: 4000,  attempts: 0, totalError: 0 },
+        high:    { min: 4000, max: 20000, attempts: 0, totalError: 0 }
+    },
+    getBandKey(freqHz) {
+        for (const key in this.bands) {
+            const b = this.bands[key];
+            if (freqHz >= b.min && freqHz < b.max) return key;
+        }
+        return 'high';
+    },
+    record(targetFreq, errorOct) {
+        if(!this.enabled) return;
+        const key = this.getBandKey(targetFreq);
+        const band = this.bands[key];
+        band.attempts += 1;
+        band.totalError += errorOct;
+    },
+    chooseFrequency() {
+        const weights = [];
+        let totalWeight = 0;
+        for (const key in this.bands) {
+            const b = this.bands[key];
+            let w = 1;
+            if(b.attempts > 0) {
+                const avgError = b.totalError / b.attempts;
+                w = 1 + (avgError * 10);
+            }
+            weights.push({ key, weight: w });
+            totalWeight += w;
+        }
+        let r = Math.random() * totalWeight;
+        let selectedBandKey = weights[weights.length-1].key;
+        for (const w of weights) {
+            if ((r -= w.weight) <= 0) {
+                selectedBandKey = w.key;
+                break;
+            }
+        }
+        const b = this.bands[selectedBandKey];
+        const validFreqs = Game.isoFreqs.filter(f => f >= b.min && f < b.max);
+        if(validFreqs.length > 0) {
+            const idx = Math.floor(Math.random() * validFreqs.length);
+            return validFreqs[idx];
+        }
+        return 1000;
+    }
+};
+
+/**
+ * GAME LOGIC
+ */
+const Game = {
+    targetFreq: 1000,
+    baseGain: 0,
+    currentQ: 1.4,
+    currentMode: 'resonance',
+    
+    // Snapshot for Bypass
+    filterSnapshot: { type: 'peaking', gain: 0, Q: 1.4, freq: 1000 },
+
+    // Visualization State
+    showResult: false,
+    lastUserFreq: 0,
+
+    isoFreqs: [31.5, 40, 50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3150, 4000, 5000, 6300, 8000, 10000, 12500, 16000],
+    notes: ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"],
+    
+    minLog: Math.log(20),
+    maxLog: Math.log(20000),
+    scale: 0,
+
+    init() {
+        this.scale = (this.maxLog - this.minLog) / 1000;
+        Calibration.load();
+        document.getElementById('adaptiveToggle').addEventListener('change', (e) => {
+            Adaptive.enabled = e.target.checked;
+        });
+    },
+
+    sliderToFreq(val) {
+        return Math.exp(this.minLog + this.scale * val);
+    },
+
+    freqToSlider(freq) {
+        return (Math.log(freq) - this.minLog) / this.scale;
+    },
+
+    getNoteName(freq) {
+        const noteNum = 12 * (Math.log(freq / 440) / Math.log(2));
+        const midi = Math.round(noteNum) + 69;
+        const noteIndex = midi % 12;
+        const noteName = this.notes[noteIndex < 0 ? noteIndex + 12 : noteIndex];
+        const octave = Math.floor(midi / 12) - 1;
+        return `${noteName}${octave}`;
+    },
+
+    newRound() {
+        AudioCore.toggle(false); 
+        ui.updatePlayBtn(false);
+        this.showResult = false;
+        document.getElementById('vizLegend').style.display = 'none';
+
+        if(Adaptive.enabled && this.currentMode !== 'musical') {
+            this.targetFreq = Adaptive.chooseFrequency();
+        } else {
+            const idx = Math.floor(Math.random() * (this.isoFreqs.length - 4)) + 2;
+            this.targetFreq = this.isoFreqs[idx];
+        }
+
+        this.currentMode = document.getElementById('modeSelect').value;
+        const diff = parseInt(document.getElementById('diffSelect').value);
+        const useMixedQ = document.getElementById('mixedQToggle').checked;
+        
+        // Q Logic
+        let targetQ = 1.4;
+        if (useMixedQ) {
+            targetQ = Math.random() > 0.5 ? 0.7 : 4.3;
+        } else {
+            const qMap = {1: 0.7, 2: 1.4, 3: 4.3};
+            targetQ = qMap[diff];
+        }
+        this.currentQ = targetQ;
+
+        // Symmetric Gain Maps (Realistic)
+        const boostMap = {1: 12, 2: 9, 3: 6}; 
+        const cutMap = {1: -12, 2: -9, 3: -6};
+
+        let uiMsg = "";
+        
+        switch(this.currentMode) {
+            case 'resonance':
+                this.baseGain = boostMap[diff];
+                uiMsg = `Find the BOOST (${useMixedQ ? (targetQ<1?"Wide":"Narrow") : "Level "+diff}).`;
+                break;
+            case 'surgeon':
+                this.baseGain = cutMap[diff];
+                uiMsg = `Find the CUT (${useMixedQ ? (targetQ<1?"Wide":"Narrow") : "Level "+diff}).`;
+                break;
+            case 'bandpass':
+                this.baseGain = 0;
+                uiMsg = "Identify the center of the noise.";
+                break;
+            case 'range':
+                this.baseGain = 0;
+                uiMsg = "Identify the High Pass Cutoff.";
+                break;
+            case 'musical':
+                const noteOffset = Math.floor(Math.random() * 24) - 12; 
+                this.targetFreq = 440 * Math.pow(2, noteOffset/12);
+                uiMsg = "Identify the Musical Pitch.";
+                break;
+        }
+        
+        ui.feedback(uiMsg);
+        ui.updateSlider(500); 
+
+        if (AudioCore.gameFilter) {
+            const f = AudioCore.gameFilter;
+            // Master gain tweaks
+            if(this.currentMode === 'bandpass') {
+                AudioCore.masterGain.gain.setValueAtTime(0.5, AudioCore.ctx.currentTime);
+            } else {
+                AudioCore.masterGain.gain.setValueAtTime(0.1, AudioCore.ctx.currentTime);
+            }
+
+            f.gain.value = 0;
+            
+            // Set Filter Props
+            if (this.currentMode === 'resonance' || this.currentMode === 'surgeon') {
+                 f.type = 'peaking';
+                 f.frequency.value = this.targetFreq;
+                 f.Q.value = targetQ;
+                 f.gain.value = this.baseGain;
+            } else if (this.currentMode === 'bandpass') {
+                 f.type = 'bandpass';
+                 f.frequency.value = this.targetFreq;
+                 f.Q.value = targetQ;
+            } else if (this.currentMode === 'range') {
+                 f.type = 'highpass';
+                 f.frequency.value = this.targetFreq;
+                 f.Q.value = 1;
+            } else if (this.currentMode === 'musical') {
+                 f.type = 'allpass';
+            }
+            
+            // Snapshot for Bypass
+            this.filterSnapshot = {
+                type: f.type,
+                freq: f.frequency.value,
+                Q: f.Q.value,
+                gain: f.gain.value
+            };
+        }
+    },
+
+    check(userFreq) {
+        let isCorrect = false;
+        let detail = "";
+        let errorToRecord = 0;
+
+        this.lastUserFreq = userFreq;
+        this.showResult = true;
+        
+        // Show legend only if overlay enabled
+        if(document.getElementById('overlayToggle').checked) {
+            document.getElementById('vizLegend').style.display = 'flex';
+        }
+
+        if (this.currentMode === "musical") {
+            const ratio = userFreq / this.targetFreq;
+            const semitoneDiffSigned = 12 * Math.log2(ratio);
+            const semitoneDiff = Math.abs(semitoneDiffSigned);
+            
+            isCorrect = semitoneDiff < 0.5;
+            const direction = semitoneDiffSigned > 0 ? "sharp" : "flat";
+            const targetNote = this.getNoteName(this.targetFreq);
+            const guessNote = this.getNoteName(userFreq);
+
+            detail = `
+                <div style="margin-top:4px; font-size:0.9rem; color:#aaa;">
+                    Target: <strong>${targetNote}</strong> (${Math.round(this.targetFreq)} Hz)<br>
+                    Your guess: <strong>${guessNote}</strong> (${Math.round(userFreq)} Hz)<br>
+                    Error: ${semitoneDiff.toFixed(2)} semitones ${direction}
+                </div>
+            `;
+        } else {
+            const ratio = userFreq / this.targetFreq;
+            const octDiffSigned = Math.log2(ratio);
+            const octDiff = Math.abs(octDiffSigned);
+            errorToRecord = octDiff;
+
+            const threshold = 0.33;
+            isCorrect = octDiff < threshold;
+            const direction = octDiffSigned > 0 ? "above" : "below";
+            const semitoneDiff = octDiff * 12;
+
+            detail = `
+                <div style="margin-top:4px; font-size:0.9rem; color:#aaa;">
+                    Target: <strong>${Math.round(this.targetFreq)} Hz</strong><br>
+                    Your guess: <strong>${Math.round(userFreq)} Hz</strong><br>
+                    Error: ${octDiff.toFixed(2)} octaves (${semitoneDiff.toFixed(1)} st) ${direction}
+                </div>
+            `;
+            
+            if(Adaptive.enabled) Adaptive.record(this.targetFreq, octDiff);
+        }
+
+        const baseMsg = isCorrect
+            ? `<span style="color:var(--success); font-weight:bold;">Correct!</span>`
+            : `<span style="color:var(--danger); font-weight:bold;">Not quite.</span>`;
+
+        ui.feedback(baseMsg + detail);
+    },
+
+    triggerHint(type) {
+        if(type === 'surge') AudioCore.hintSurge(this.baseGain);
+        if(type === 'tone') AudioCore.hintTone(this.targetFreq);
+        if(type === 'visual') {
+            let t = "";
+            const f = this.targetFreq;
+            if(f<100) t="Bottom / Rumble";
+            else if(f<300) t="Warmth / Mud";
+            else if(f<800) t="Boxy / Body";
+            else if(f<2000) t="Nasal / Honk";
+            else if(f<5000) t="Presence / Bite";
+            else t="Air / Sizzle";
+            ui.feedback(`Hint: ${t}`);
+        }
+    }
+};
+
+/**
+ * CALIBRATION
+ */
+const Calibration = {
+    profile: {},
+    tempBands: [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000],
+    currentTestNode: null,
+    refNode: null,
+
+    initUI() {
+        const container = document.getElementById('calibBandsContainer');
+        container.innerHTML = '';
+        this.tempBands.forEach(freq => {
+            if(freq === 1000) return; 
+            const currentVal = this.profile[freq] !== undefined ? this.profile[freq] : 0;
+            const row = document.createElement('div');
+            row.className = 'calib-grid';
+            row.innerHTML = `
+                <div style="font-size:0.9rem">${freq} Hz</div>
+                <input type="range" class="calib-slider" data-freq="${freq}" min="-15" max="15" value="${currentVal}" step="0.5">
+                <button onmousedown="calib.playTestTone(${freq})" onmouseup="calib.stopTones()" onmouseleave="calib.stopTones()">Test</button>
+            `;
+            container.appendChild(row);
+        });
+    },
+
+    playRefTone() {
+        this.stopTones();
+        AudioCore.init();
+        const noise = AudioCore.createPinkNoise();
+        const src = AudioCore.ctx.createBufferSource();
+        src.buffer = noise;
+        src.loop = true;
+        const filter = AudioCore.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1000;
+        filter.Q.value = 4.3; 
+        src.connect(filter);
+        filter.connect(AudioCore.masterGain); 
+        src.start();
+        this.refNode = src;
+    },
+
+    playTestTone(freq) {
+        this.stopTones();
+        AudioCore.init();
+        const noise = AudioCore.createPinkNoise();
+        const src = AudioCore.ctx.createBufferSource();
+        src.buffer = noise;
+        src.loop = true;
+        const filter = AudioCore.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = freq;
+        filter.Q.value = 4.3;
+        const gain = AudioCore.ctx.createGain();
+        const slider = document.querySelector(`.calib-slider[data-freq="${freq}"]`);
+        const db = parseFloat(slider.value);
+        gain.gain.value = Math.pow(10, db / 20);
+        src.connect(filter);
+        filter.connect(gain);
+        gain.connect(AudioCore.masterGain);
+        src.start();
+        this.currentTestNode = src;
+
+        slider.oninput = (e) => {
+            const val = parseFloat(e.target.value);
+            gain.gain.value = Math.pow(10, val / 20);
+        }
+    },
+
+    stopTones() {
+        if(this.refNode) { this.refNode.stop(); this.refNode = null; }
+        if(this.currentTestNode) { this.currentTestNode.stop(); this.currentTestNode = null; }
+    },
+
+    save() {
+        const sliders = document.querySelectorAll('.calib-slider');
+        sliders.forEach(s => {
+            const freq = s.dataset.freq;
+            const db = parseFloat(s.value);
+            this.profile[freq] = db;
+        });
+        this.profile["1000"] = 0; 
+        localStorage.setItem('earTrainerProfile', JSON.stringify(this.profile));
+        AudioCore.applyCalibration(this.profile);
+        document.getElementById('correctionBadge').style.display = 'block';
+    },
+
+    load() {
+        const saved = localStorage.getItem('earTrainerProfile');
+        if(saved) {
+            this.profile = JSON.parse(saved);
+            AudioCore.applyCalibration(this.profile);
+            document.getElementById('correctionBadge').style.display = 'block';
+        }
+    },
+
+    exportJSON() {
+        this.save(); 
+        const blob = new Blob([JSON.stringify(this.profile)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'hearing-profile.json';
+        a.click();
+    }
+};
+const calib = Calibration;
+
+/**
+ * UI CONTROLLER
+ */
+const ui = {
+    updateSlider(val) {
+        const slider = document.getElementById('mainSlider');
+        slider.value = Game.freqToSlider(val);
+        this.updateReadout(val);
+    },
+
+    updateReadout(freq) {
+        document.getElementById('freqVal').innerText = Math.round(freq);
+        if(Game.currentMode === 'musical') {
+            document.getElementById('noteVal').innerText = Game.getNoteName(freq);
+        } else {
+            document.getElementById('noteVal').innerText = "";
+        }
+    },
+
+    updatePlayBtn(isPlaying) {
+        const btn = document.getElementById('playBtn');
+        const dot = document.getElementById('active-indicator');
+        if(isPlaying) {
+            btn.innerText = "Stop";
+            btn.classList.add('playing');
+            dot.style.background = "#00e676";
+            dot.style.boxShadow = "0 0 10px #00e676";
+        } else {
+            btn.innerText = "Start";
+            btn.classList.remove('playing');
+            dot.style.background = "#444";
+            dot.style.boxShadow = "none";
+        }
+    },
+
+    feedback(msg) {
+        document.getElementById('feedback').innerHTML = msg;
+    },
+
+    toggleAdvanced() {
+        const el = document.getElementById('advOptions');
+        const chev = document.getElementById('advChevron');
+        if(el.classList.contains('open')) {
+            el.classList.remove('open');
+            chev.innerText = "▶";
+        } else {
+            el.classList.add('open');
+            chev.innerText = "▼";
+        }
+    },
+
+    updateSourceVisibility() {
+        const mode = document.getElementById('modeSelect').value;
+        const source = document.getElementById('sourceSelect').value;
+        const group = document.getElementById('sourceControlGroup');
+        const upload = document.getElementById('fileUploadContainer');
+
+        if (mode === 'musical') {
+            group.classList.add('disabled');
+        } else {
+            group.classList.remove('disabled');
+        }
+
+        if (source === 'file' && mode !== 'musical') {
+            upload.style.display = 'block';
+        } else {
+            upload.style.display = 'none';
+        }
+    },
+
+    openCalibration() {
+        document.getElementById('calibModal').classList.add('active');
+        AudioCore.toggle(false); 
+        Calibration.initUI();
+    },
+
+    closeCalibration() {
+        Calibration.stopTones();
+        Calibration.save();
+        document.getElementById('calibModal').classList.remove('active');
+    }
+};
+
+/**
+ * INITIALIZATION
+ */
+window.addEventListener('DOMContentLoaded', () => {
+    Game.init();
+
+    const slider = document.getElementById('mainSlider');
+    
+    // Main Slider Logic
+    const handleSlider = (val) => {
+        let freq = Game.sliderToFreq(val);
+        if(Game.currentMode === 'musical') {
+            const noteNum = Math.round(12 * Math.log2(freq / 440));
+            freq = 440 * Math.pow(2, noteNum/12);
+        } else {
+            const closest = Game.isoFreqs.reduce((prev, curr) => 
+                Math.abs(curr - freq) < Math.abs(prev - freq) ? curr : prev
+            );
+            if (Math.abs(closest - freq) / freq < 0.1) freq = closest;
+        }
+        ui.updateReadout(freq);
+    };
+
+    slider.addEventListener('input', (e) => handleSlider(e.target.value));
+
+    // Fine Tune Buttons
+    const fineTune = (amount) => {
+        let current = parseInt(slider.value);
+        let next = current + amount;
+        if(next < 0) next = 0;
+        if(next > 1000) next = 1000;
+        slider.value = next;
+        handleSlider(next);
+    };
+    document.getElementById('fineDec').addEventListener('click', () => fineTune(-10));
+    document.getElementById('fineInc').addEventListener('click', () => fineTune(10));
+
+    document.getElementById('playBtn').addEventListener('click', async () => {
+        const isPlaying = await AudioCore.toggle();
+        ui.updatePlayBtn(isPlaying);
+    });
+
+    document.getElementById('sourceSelect').addEventListener('change', (e) => {
+        AudioCore.sourceType = e.target.value;
+        ui.updateSourceVisibility();
+        if(AudioCore.isPlaying) AudioCore.startSource(); 
+    });
+
+    document.getElementById('modeSelect').addEventListener('change', () => {
+        AudioCore.toggle(false); 
+        ui.updatePlayBtn(false);
+        ui.updateSourceVisibility();
+        Game.newRound(); 
+    });
+
+    document.getElementById('diffSelect').addEventListener('change', () => Game.newRound());
+
+    document.getElementById('checkBtn').addEventListener('click', () => {
+        const val = parseFloat(document.getElementById('freqVal').innerText);
+        Game.check(val);
+    });
+
+    document.getElementById('newRoundBtn').addEventListener('click', () => Game.newRound());
+
+    // Shortcuts
+    document.addEventListener('keydown', (e) => {
+        if(document.querySelector('.modal.active')) return; 
+        switch(e.key.toLowerCase()) {
+            case ' ': e.preventDefault(); document.getElementById('playBtn').click(); break;
+            case 'n': document.getElementById('newRoundBtn').click(); break;
+            case 'c': document.getElementById('checkBtn').click(); break;
+            case 'b': 
+                if(!e.repeat) document.getElementById('bypassBtn').dispatchEvent(new Event('pointerdown')); 
+                break;
+            case 'arrowleft': fineTune(-10); break;
+            case 'arrowright': fineTune(10); break;
+        }
+    });
+    document.addEventListener('keyup', (e) => {
+        if(e.key.toLowerCase() === 'b') {
+            document.getElementById('bypassBtn').dispatchEvent(new Event('pointerup'));
+        }
+    });
+
+    // Bypass with CORRECT State Restoration
+    const bypassBtn = document.getElementById('bypassBtn');
+    
+    const startBypass = (e) => {
+        e.preventDefault(); 
+        if(AudioCore.gameFilter) {
+            // Flatten gain
+            AudioCore.gameFilter.gain.setTargetAtTime(0, AudioCore.ctx.currentTime, 0.05);
+            // If bandpass, broaden Q to hear full signal context
+            if(Game.currentMode === 'bandpass') {
+                AudioCore.gameFilter.Q.setTargetAtTime(0.1, AudioCore.ctx.currentTime, 0.05);
+            }
+        }
+    };
+    
+    const endBypass = (e) => {
+        e.preventDefault();
+        if(AudioCore.gameFilter) {
+            const snap = Game.filterSnapshot;
+            // Restore snapshot
+            AudioCore.gameFilter.gain.setTargetAtTime(snap.gain, AudioCore.ctx.currentTime, 0.05);
+            AudioCore.gameFilter.Q.setTargetAtTime(snap.Q, AudioCore.ctx.currentTime, 0.05);
+        }
+    };
+    
+    bypassBtn.addEventListener('pointerdown', startBypass);
+    bypassBtn.addEventListener('pointerup', endBypass);
+    bypassBtn.addEventListener('pointerleave', endBypass);
+
+    document.getElementById('correctionToggle').addEventListener('change', (e) => {
+        AudioCore.toggleCorrection(e.target.checked);
+        document.getElementById('correctionBadge').style.display = e.target.checked ? 'block' : 'none';
+    });
+
+    document.getElementById('refToneBtn').addEventListener('mousedown', () => Calibration.playRefTone());
+    document.getElementById('refToneBtn').addEventListener('mouseup', () => Calibration.stopTones());
+    
+    document.getElementById('calibImport').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            Calibration.profile = JSON.parse(ev.target.result);
+            Calibration.save();
+        };
+        reader.readAsText(file);
+    });
+
+    document.getElementById('fileInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if(file) {
+            AudioCore.init();
+            const r = new FileReader();
+            document.getElementById('fileStatus').innerText = "Loading...";
+            document.getElementById('fileStatus').style.display = 'block';
+            r.onload = (ev) => {
+                AudioCore.ctx.decodeAudioData(ev.target.result).then(buff => {
+                    AudioCore.userBuffer = buff;
+                    document.getElementById('fileStatus').innerText = "File Ready";
+                    document.getElementById('sourceSelect').value = 'file';
+                    ui.updateSourceVisibility();
+                });
+            };
+            r.readAsArrayBuffer(file);
+        }
+    });
+
+    // DUAL VISUALIZER LOOP
+    function drawViz() {
+        requestAnimationFrame(drawViz);
+        if(!AudioCore.analyser) return;
+        
+        const canvas = document.getElementById('visualizer');
+        const c = canvas.getContext('2d');
+        const useLog = document.getElementById('logVizToggle').checked;
+        const useOverlay = document.getElementById('overlayToggle').checked;
+        
+        // High-DPI handling
+        const rect = canvas.getBoundingClientRect();
+        if(canvas.width !== rect.width || canvas.height !== rect.height) {
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const buffer = new Uint8Array(AudioCore.analyser.frequencyBinCount);
+        AudioCore.analyser.getByteFrequencyData(buffer);
+        
+        c.fillStyle = '#111';
+        c.fillRect(0,0,w,h);
+
+        // 1. SIMPLE BAR VISUALIZER (Low CPU)
+        if (!useLog) {
+             const barW = (w / buffer.length) * 2.5; 
+             let x = 0;
+             for(let i=0; i<buffer.length; i++) {
+                 const barH = buffer[i] / 255 * h; 
+                 const hue = i/buffer.length * 300 + 180; 
+                 c.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                 c.fillRect(x, h-barH, barW, barH);
+                 x += barW + 1;
+             }
+        } 
+        // 2. ADVANCED LOG VISUALIZER (High CPU)
+        else {
+            const minLog = Math.log(20);
+            const maxLog = Math.log(20000);
+            const logScale = (maxLog - minLog);
+            const nyquist = AudioCore.ctx.sampleRate / 2;
+
+            c.beginPath();
+            c.moveTo(0, h);
+            
+            // Optimization: Skip pixels
+            for (let x = 0; x < w; x+=2) {
+                const fraction = x / w;
+                const freq = Math.exp(minLog + (fraction * logScale));
+                const index = Math.floor(freq / nyquist * buffer.length);
+                if(index < buffer.length) {
+                    const value = buffer[index];
+                    const y = h - (value / 255 * h);
+                    c.lineTo(x, y);
+                }
+            }
+            c.strokeStyle = '#00e5ff';
+            c.lineWidth = 2;
+            c.stroke();
+        }
+
+        // 3. OVERLAYS (Conditional)
+        if (useOverlay && Game.showResult) {
+            // Helper to find X for frequency
+            const getX = (freq) => {
+                if(useLog) {
+                    const minLog = Math.log(20);
+                    const maxLog = Math.log(20000);
+                    return ((Math.log(freq) - minLog) / (maxLog - minLog)) * w;
+                } else {
+                    // Approximate linear (not accurate for bar graph but usable)
+                    const nyquist = AudioCore.ctx.sampleRate / 2;
+                    return (freq / nyquist) * w * 2.5; // *2.5 fudge factor matching bar width
+                }
+            };
+
+            const drawLine = (freq, color) => {
+                if(freq < 20 || freq > 20000) return;
+                const x = getX(freq);
+                c.beginPath();
+                c.moveTo(x, 0);
+                c.lineTo(x, h);
+                c.strokeStyle = color;
+                c.lineWidth = 2;
+                c.setLineDash([5, 3]);
+                c.stroke();
+                c.setLineDash([]);
+            };
+
+            drawLine(Game.targetFreq, '#00e676');
+            drawLine(Game.lastUserFreq, '#ff4081');
+        } else {
+             document.getElementById('vizLegend').style.display = 'none';
+        }
+    }
+    
+    ui.updateSourceVisibility();
+    Game.newRound();
+    drawViz();
+});
+</script>
+</body>
+</html>
