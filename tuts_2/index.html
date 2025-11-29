@@ -1,1 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychoacoustics Research Index</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the read status and sidebar transitions */
+        .read-item a {
+            color: #6b7280; /* Gray out text */
+            text-decoration: line-through;
+            transition: all 0.3s ease;
+        }
+        .read-item a:after {
+            content: ' ✓';
+            color: #10b981; /* Green checkmark */
+            font-weight: bold;
+        }
 
+        /* Sidebar transition and collapse state */
+        #sidebar {
+            transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+            transform-origin: left;
+        }
+        .sidebar-collapsed #sidebar {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+            transform: translateX(-100%);
+        }
+        .sidebar-collapsed #main-content {
+            width: 100%;
+        }
+        
+        /* Ensures smooth content shift */
+        #main-container {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Customize scrollbar appearance for a cleaner look */
+        #file-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        #file-list::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 3px;
+        }
+        #file-list::-webkit-scrollbar-track {
+            background: #f9fafb;
+        }
+    </style>
+    <!-- Set default font to Inter -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md p-4 sticky top-0 z-10 flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-gray-900">Research Index</h1>
+        <button id="toggle-sidebar" class="text-gray-600 hover:text-indigo-600 transition duration-150 p-2 rounded-full hover:bg-gray-100">
+            <!-- Icon for the toggle button (Hamburger/X) -->
+            <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <div id="main-container" class="flex flex-1 overflow-hidden">
+
+        <!-- Collapsible Sidebar -->
+        <nav id="sidebar" class="bg-white w-72 md:w-80 border-r border-gray-200 flex-shrink-0 h-full overflow-y-auto">
+            <div class="p-6">
+                <h2 class="text-lg font-semibold mb-4 text-indigo-700">Available Files</h2>
+                <p class="text-sm text-gray-500 mb-4">Click a file to mark it as read.</p>
+                <ul id="file-list" class="space-y-3 text-sm overflow-y-auto max-h-[calc(100vh-180px)]">
+                    <!-- File links will be injected here by JavaScript -->
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <button id="reset-button" class="w-full text-center text-xs text-red-500 hover:text-red-700 transition duration-150">
+                        Clear Read Status
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Viewing Area -->
+        <main id="main-content" class="flex-1 p-8 overflow-y-auto transition-all duration-300">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Welcome to Your Research Dashboard</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    This index provides an organized and trackable view of your Psychoacoustics and Auditory Perception research files.
+                </p>
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-lg shadow-sm">
+                    <p class="text-indigo-700">
+                        <span class="font-semibold">Navigation:</span> Use the sidebar to find files. Clicking a link will open the file in a new tab and automatically mark it as read on this dashboard.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Firebase SDK Imports (required for runtime environment) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // --- Global Variables (Provided by Canvas Environment) ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        let app, db, auth;
+        let userId = null;
+
+        /**
+         * Initializes Firebase and authenticates the user.
+         */
+        async function initFirebase() {
+            try {
+                if (firebaseConfig) {
+                    app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+                    
+                    // Set logging for debugging, optional
+                    // setLogLevel('Debug'); 
+
+                    await new Promise(resolve => {
+                        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+                            if (!user) {
+                                // Attempt sign-in if not authenticated
+                                if (initialAuthToken) {
+                                    await signInWithCustomToken(auth, initialAuthToken);
+                                } else {
+                                    await signInAnonymously(auth);
+                                }
+                            }
+                            userId = auth.currentUser?.uid || crypto.randomUUID();
+                            unsubscribe();
+                            resolve();
+                        });
+                    });
+                }
+            } catch (error) {
+                console.error("Firebase initialization or authentication failed:", error);
+            }
+        }
+        
+        // Array of all file names provided by the user
+        const FILE_LIST_DATA = [
+            { path: "Evaluation of Objective Loudness Meters.html", title: "Evaluation of Objective Loudness Meters" },
+            { path: "interleaved_Bayesian.html", title: "Interleaved Bayesian" },
+            { path: "lit_review.html", title: "Literature Review" },
+            { path: "Mix Clarity Prediction using Multiresolution Inter-Band Relationship Analysis.html", title: "Mix Clarity Prediction using Multiresolution Inter-Band Relationship Analysis" },
+            { path: "Psychoacoustic Loudness Mechanisms Spectral Sensitivity and Integration With Experimental Protocols.html", title: "Psychoacoustic Loudness Mechanisms, Spectral Sensitivity and Integration" },
+            { path: "Representations of Pitch and Timbre Variation in Human Auditory Cortex.html", title: "Representations of Pitch and Timbre Variation in Human Auditory Cortex" },
+            { path: "Simple Reaction Time for Broadband Sounds Compared to Pure Tones.html", title: "Simple Reaction Time for Broadband Sounds vs. Pure Tones" },
+            { path: "Spectral Loudness Summation Takes Place in the Primary Auditory Cortex.html", title: "Spectral Loudness Summation in Primary Auditory Cortex" },
+            { path: "spectro_temporal_loudness_b.html", title: "Spectro-Temporal Loudness (B)" },
+            { path: "Spectro-Temporal Weighting of Loudness.html", title: "Spectro-Temporal Weighting of Loudness" },
+            { path: "Stereo and Multichannel Loudness Perception and Metering.html", title: "Stereo and Multichannel Loudness Perception and Metering" },
+            { path: "Summary_Binaural_Loudness_Model.html", title: "Summary: Binaural Loudness Model" },
+            { path: "Summary_Computational_Models_ASA.html", title: "Summary: Computational Models (ASA)" },
+            { path: "Summary_Duplex_Perception_Chords.html", title: "Summary: Duplex Perception Chords" },
+            { path: "Summary_Electric_Truck_Loudness.html", title: "Summary: Electric Truck Loudness" },
+            { path: "Summary_Frequency_Analysis_Musicianship.html", title: "Summary: Frequency Analysis Musicianship" },
+            { path: "Summary_ISO_226_Modeling.html", title: "Summary: ISO 226 Modeling" },
+            { path: "Summary_ITU_R_BS1770_Pestana.html", title: "Summary: ITU-R BS1770 (Pestana)" },
+            { path: "Summary_Loudness_Models_Schmidt.html", title: "Summary: Loudness Models (Schmidt)" },
+            { path: "Summary_Lower_Limit_Pitch.html", title: "Summary: Lower Limit Pitch" },
+            { path: "Summary_Master_Protocol_Loudspeaker.html", title: "Summary: Master Protocol Loudspeaker" },
+            { path: "Summary_Multi_Tonal_Loudness.html", title: "Summary: Multi Tonal Loudness" },
+            { path: "Summary_Neural_Correlates_ASA_Perception.html", title: "Summary: Neural Correlates ASA Perception" },
+            { path: "Summary_Nonlinearity_Modeling.html", title: "Summary: Nonlinearity Modeling" },
+            { path: "Summary_Practical_Applications_Psychoacoustics_fastl.html", title: "Summary: Practical Applications Psychoacoustics (Fastl)" },
+            { path: "Summary_Precedence_Effect_in_Noise.html", title: "Summary: Precedence Effect in Noise" },
+            { path: "Summary_Real_Time_Binaural_Meters.html", title: "Summary: Real Time Binaural Meters" },
+            { path: "Summary_SHM_Environmental_Noise.html", title: "Summary: SHM Environmental Noise" },
+            { path: "Summary_Subcritical_Loudness.html", title: "Summary: Subcritical Loudness" },
+            { path: "Summary_Ward_PhD_Thesis.html", title: "Summary: Ward PhD Thesis" },
+            { path: "The Dynamic Range Paradox - A Central Auditory Model of Intensity Change Detection.html", title: "The Dynamic Range Paradox - Model of Intensity Change Detection" },
+            { path: "The Spectral Centroid---- Foundational Acoustics, Digital Implementation, and its Critical Role in Computational Models of Timbre, Sharpness, and Loudness Perception.html", title: "The Spectral Centroid (Foundational)" },
+            { path: "v2__The Spectral Centroid---- Foundational Acoustics, Digital Implementation, and its Critical Role in Computational Models of Timbre, Sharpness, and Loudness Perception.html", title: "The Spectral Centroid (V2)" },
+            { path: "Psychoacoustic Determinants of Loud.html", title: "Psychoacoustic Determinants of Loudness" }
+        ];
+
+        const FILE_STORAGE_KEY = 'research_read_files';
+        const fileListContainer = document.getElementById('file-list');
+        const mainContainer = document.getElementById('main-container');
+        const toggleButton = document.getElementById('toggle-sidebar');
+        const resetButton = document.getElementById('reset-button');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        /**
+         * Loads the list of read files from localStorage.
+         * @returns {Set<string>} A set of filenames that have been marked as read.
+         */
+        function getReadFiles() {
+            try {
+                const readFiles = localStorage.getItem(FILE_STORAGE_KEY);
+                return new Set(readFiles ? JSON.parse(readFiles) : []);
+            } catch (e) {
+                console.error("Error retrieving read files from localStorage:", e);
+                return new Set();
+            }
+        }
+
+        /**
+         * Saves the current set of read files to localStorage.
+         * @param {Set<string>} readSet The set of filenames to save.
+         */
+        function saveReadFiles(readSet) {
+            try {
+                localStorage.setItem(FILE_STORAGE_KEY, JSON.stringify(Array.from(readSet)));
+            } catch (e) {
+                console.error("Error saving read files to localStorage:", e);
+            }
+        }
+
+        /**
+         * Renders the file list in the sidebar, applying 'read' status from localStorage.
+         */
+        function renderFileList() {
+            const readFiles = getReadFiles();
+            fileListContainer.innerHTML = ''; // Clear existing list
+
+            FILE_LIST_DATA.forEach(file => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                
+                // Use path as the key for localStorage
+                const filename = file.path; 
+
+                link.href = filename;
+                link.textContent = file.title;
+                link.target = "_blank"; // Open in a new tab
+
+                listItem.classList.add('p-2', 'rounded-md', 'hover:bg-indigo-50', 'transition', 'duration-150', 'block', 'cursor-pointer');
+                
+                // Apply read status class if necessary
+                if (readFiles.has(filename)) {
+                    listItem.classList.add('read-item');
+                }
+
+                link.addEventListener('click', (e) => handleLinkClick(e, listItem, filename));
+
+                listItem.appendChild(link);
+                fileListContainer.appendChild(listItem);
+            });
+        }
+
+        /**
+         * Handles the click event for a file link. Marks the file as read and opens the link.
+         * @param {Event} e The click event.
+         * @param {HTMLElement} listItem The <li> element to update.
+         * @param {string} filename The path/name of the file.
+         */
+        function handleLinkClick(e, listItem, filename) {
+            e.preventDefault(); // Temporarily prevent default action
+            
+            // 1. Mark as Read
+            const readFiles = getReadFiles();
+            if (!readFiles.has(filename)) {
+                readFiles.add(filename);
+                saveReadFiles(readFiles);
+                listItem.classList.add('read-item');
+            }
+
+            // 2. Open the file in a new tab (using the link's href)
+            window.open(e.currentTarget.href, '_blank');
+        }
+
+        /**
+         * Toggles the collapsible state of the sidebar.
+         */
+        function toggleSidebar() {
+            mainContainer.classList.toggle('sidebar-collapsed');
+            const isCollapsed = mainContainer.classList.contains('sidebar-collapsed');
+            
+            // Toggle icons
+            if (isCollapsed) {
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        }
+        
+        /**
+         * Resets the read status for all files in localStorage.
+         */
+        function resetReadStatus() {
+            // Use a custom modal instead of alert/confirm
+            const modalHtml = `
+                <div id="confirmation-modal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
+                    <div class="bg-white p-6 rounded-lg shadow-2xl w-96">
+                        <h3 class="text-xl font-bold mb-4 text-red-600">Confirm Reset</h3>
+                        <p class="text-gray-700 mb-6">Are you sure you want to clear the 'read' status for ALL files? This action cannot be undone.</p>
+                        <div class="flex justify-end space-x-3">
+                            <button id="modal-cancel" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">Cancel</button>
+                            <button id="modal-confirm" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">Reset All</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            const modal = document.getElementById('confirmation-modal');
+            const confirmBtn = document.getElementById('modal-confirm');
+            const cancelBtn = document.getElementById('modal-cancel');
+
+            const closeModal = () => modal.remove();
+
+            confirmBtn.onclick = () => {
+                localStorage.removeItem(FILE_STORAGE_KEY);
+                renderFileList(); // Re-render the list to show all are unread
+                closeModal();
+                // Brief message box for feedback
+                showFeedback('Read status cleared successfully!');
+            };
+            cancelBtn.onclick = closeModal;
+        }
+
+        /**
+         * Displays a temporary feedback message.
+         * @param {string} message The message to display.
+         */
+        function showFeedback(message) {
+            const feedbackBox = document.createElement('div');
+            feedbackBox.textContent = message;
+            feedbackBox.className = 'fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-lg shadow-xl transition-opacity duration-300';
+            document.body.appendChild(feedbackBox);
+
+            setTimeout(() => {
+                feedbackBox.style.opacity = '0';
+                setTimeout(() => feedbackBox.remove(), 300);
+            }, 3000);
+        }
+
+        /**
+         * Main application setup function.
+         */
+        async function initApp() {
+            // 1. Initialize Firebase first
+            await initFirebase();
+            
+            // 2. Render the file list based on localStorage
+            renderFileList();
+
+            // 3. Set up event listeners
+            toggleButton.addEventListener('click', toggleSidebar);
+            resetButton.addEventListener('click', resetReadStatus);
+
+            // Ensure the main container is flexible after initial load
+            mainContainer.style.minHeight = 'calc(100vh - 64px)'; // Adjust for header height
+        }
+        
+        window.onload = initApp;
+    </script>
+
+</body>
+</html>
