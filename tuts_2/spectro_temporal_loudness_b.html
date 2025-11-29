@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectro-Temporal Weighting of Loudness (PLOS ONE) - Explained</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.2em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #3498db;
+        }
+        .citation {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .jargon-box {
+            background-color: #fff3e0;
+            border-left: 3px solid #ff9800;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        .authors {
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Spectro-Temporal Weighting of Loudness</h1>
+    <p class="authors">Daniel Oberfeld¹, Wiebke Heeren², Jan Rennies³, Jesko Verhey²</p>
+    <p class="citation">Citation: Oberfeld D, Heeren W, Rennies J, Verhey J (2012) Spectro-Temporal Weighting of Loudness. PLoS ONE 7(11): e50184. doi:10.1371/journal.pone.0050184</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>Real-world sounds like speech or traffic noise typically exhibit spectro-temporal variability because the energy in different spectral regions evolves differently as a sound unfolds in time. However, it is currently not well understood how the energy in different spectral and temporal portions contributes to loudness. This study investigated how listeners weight different temporal and spectral components of a sound when judging its overall loudness. Spectral weights were measured for the combination of three loudness-matched narrowband noises with different center frequencies. To measure temporal weights, $1,020\text{-ms}$ stimuli were presented, which randomly changed in level every $100\text{ ms}$. Temporal weights were measured for each narrowband noise separately, and for a broadband noise containing the combination of the three noise bands. Finally, spectro-temporal weights were measured with stimuli where the level of the three narrowband noises randomly and independently changed every $100\text{ ms}$. The data consistently showed that (i) the first $300\text{ ms}$ of the sounds had a greater influence on overall loudness perception than later temporal portions (primacy effect), and (ii) the lowest noise band contributed significantly more to overall loudness than the higher bands. The temporal weights did not differ between the three frequency bands. Notably, the spectral weights and temporal weights estimated from the conditions with only spectral or only temporal variability were very similar to the corresponding weights estimated in the spectro-temporal condition. The results indicate that the temporal and the spectral weighting of the loudness of a time-varying sound are independent processes. The spectral weights remain constant across time, and the temporal weights do not change across frequency. The results are discussed in the context of current loudness models.</p>
+    </div>
+
+    <h2>Introduction</h2>
+    <p>Loudness is the sensation which is most closely related to the intensity of a sound. However, loudness also depends on other characteristics of the sound such as its duration or its spectral content. Several studies demonstrated that at equal sound pressure level a broadband signal is usually louder than a narrow-band signal. This effect is commonly referred to as <strong>spectral loudness summation</strong>. It can be accounted for by assuming that the auditory system analyzes the incoming sound with a bank of overlapping band-pass filters (critical bands) followed by a compressive nonlinearity and a summation across critical bands.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Spectral Loudness Summation</strong><br>
+        This refers to the perceptual effect where a sound spread across a wide range of frequencies (broadband) is perceived as louder than a sound with the same total energy concentrated in a narrow frequency band. This happens because our ear processes sound using multiple frequency channels (critical bands), and the total loudness is the sum of activity across these channels.
+    </div>
+
+    <p>Apart from the integration across frequency, the auditory system also seems to integrate over time: The level of a short signal is usually higher than the level of an equally loud long signal with the same spectrum. This <strong>temporal integration</strong> is usually accounted for by assuming a leaky integrator as a temporal integration stage and a decision device that uses the maximum or a percentile of the output of this stage. Current elaborate loudness models include both a spectral and a temporal stage of the kind described above to account for loudness of time-varying sounds like speech or the noise of a vehicle passing by.</p>
+
+    <p>The traditional technical measures for the loudness of time-varying sounds, for example $L_{\text{Aeq}}$ (the A-weighted energy-equivalent sound pressure level) or $N_{5}$ (the $95^{\text{th}}$ percentile of the loudness distribution), are based on the assumption that all temporal portions of the sound contribute in the same way to overall loudness. However, this assumption was recently challenged by studies of <strong>temporal weights</strong> in loudness judgments. These studies investigated the importance of different temporal segments for global loudness judgments based on stimuli with only small, random level fluctuations. Studies on the temporal weighting of loudness consistently showed that the first $100\text{-}300\text{ ms}$ receive a higher weight than later portions of the stimulus. This <strong>primacy effect</strong> (highest weight assigned to the beginning of a sound) only occurs for signals with a similar level across the complete duration of the signal. Some studies also showed a recency effect, i.e., higher weights on the last $100\text{-}200\text{ ms}$ of the signal. In any case, the data show that not all temporal portions contribute to loudness to the same extent, contrary to what is assumed by technical measures of loudness such as $L_{\text{Aeq}}$ or $N_{5}$.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Temporal Weights & Primacy Effect</strong><br>
+        <strong>Temporal Weights</strong> measure how much influence a specific short segment of a changing sound has on your final judgment of its overall loudness. <br>
+        The <strong>Primacy Effect</strong> means the first $100\text{-}300\text{ milliseconds}$ of a sound contribute significantly more to perceived loudness than identical segments that occur later.
+    </div>
+
+    <p>Apart from temporal weights, <strong>spectral weights</strong> have been investigated for sounds without temporal variability. These studies generally reported a non-uniform spectral weighting of auditory intensity, for example, higher weights on the lowest and/or highest frequency component than on the middle components.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Spectral Weights</strong><br>
+        These weights measure how much influence a specific frequency band (like high pitch or low pitch) has on your judgment of the sound's overall loudness, especially when multiple frequency bands are present simultaneously.
+    </div>
+
+    <p>Previous studies either considered only temporal or only spectral weights. Outside the laboratory, real-world sounds often have energy in different spectral regions that evolves differently over time. In the present study, spectro-temporal weights for global loudness judgments were estimated by introducing independent temporal variations in level in different spectral regions within each stimulus. These weights were compared to temporal and spectral weights measured for the same listeners.</p>
+
+    <h2>Methodology and Test Protocol</h2>
+
+    <p>The study used methods from <strong>molecular psychophysics</strong>, which involves analyzing trial-by-trial variation to quantify the relationship between stimulus features and a listener's response. The goal was to measure how listeners mentally "weight" different parts of a complex sound when deciding its overall loudness.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Molecular Psychophysics</strong><br>
+        A powerful method used in perception research where random, independent variations are applied to multiple components of a stimulus (like the level of a specific sound segment). By correlating these subtle component variations with the listener's decision (e.g., classifying the sound as "loud" or "soft"), researchers can calculate the precise weight (influence) each component had on the judgment.
+    </div>
+
+    <h3>A. Stimulus Design (The Sounds)</h3>
+    <p>The stimuli were $1,020\text{-ms}$ in total duration, composed of 10 overlapping $100\text{-ms}$ segments.</p>
+    <ul>
+        <li><strong>Frequency Bands:</strong> Each segment contained three distinct narrowband noises, each $3.0\text{ Bark}$ wide and separated by $4.0\text{ Bark}$.
+            <ul>
+                <li>Low Center Frequency (CF): $355\text{ Hz}$</li>
+                <li>Middle CF: $1,400\text{ Hz}$</li>
+                <li>High CF: $4,225\text{ Hz}$</li>
+            </ul>
+        </li>
+        <li><strong>Loudness Matching:</strong> Crucially, the three frequency bands were carefully adjusted in level for each listener to be <strong>equally loud</strong> before the main experiment. This controlled for the natural tendency of certain frequencies to sound louder than others at the same physical level.</li>
+        <li><strong>Level Variation:</strong> For all conditions, the level of each component (e.g., segment 1 of the low CF band) was randomly drawn from a normal distribution ($\sigma = 2.5\text{ dB}$). An overall offset of $\pm 0.75\text{ dB}$ was applied to all components on each trial to create "loud" or "soft" trials for the identification task.</li>
+    </ul>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>B. Experimental Conditions</h3>
+    <p>Listeners participated in six conditions, designed to isolate spectral and temporal weighting effects:</p>
+    <ol>
+        <li><strong>Spectro-Temporal Condition:</strong> The most complex condition. It involved $30\text{ components}$ ($3\text{ bands} \times 10\text{ segments}$) where the level of every single component varied <strong>independently and randomly</strong>. (The primary measurement for the paper).</li>
+        <li><strong>Spectral-Weights Condition:</strong> The level varied <strong>across the three frequency bands</strong>, but the level of each band was held <strong>constant across time</strong> ($10\text{ segments}$) within a single trial.</li>
+        <li><strong>Temporal-Weights Conditions (4 types):</strong>
+            <ul>
+                <li><strong>Broadband Noise:</strong> The level varied <strong>across time</strong> ($10\text{ segments}$), but the levels of the three frequency bands were <strong>perfectly correlated</strong> within each segment (spectral composition was constant).</li>
+                <li><strong>Single-Noise-Band Conditions (Low CF, Mid CF, High CF):</strong> Only one frequency band was presented, and its level varied <strong>across time</strong> ($10\text{ segments}$).</li>
+            </ul>
+        </li>
+    </ol>
+    
+
+    <h3>C. Task and Data Analysis</h3>
+    <ul>
+        <li><strong>Loudness Identification Task:</strong> Listeners performed a one-interval, absolute intensity identification task. They used a four-point rating scale to classify the sound as "soft" or "loud" and express their confidence (e.g., "Loud rather sure," "Soft rather unsure"). No feedback was provided.</li>
+        <li><strong>Weight Estimation:</strong> <strong>Multiple logistic regression</strong> was performed on the trial-by-trial responses and the component levels. The resulting regression coefficients were the <strong>decision weights</strong>, which indicate the relative influence of each $100\text{-ms}$ segment or frequency band on the listener's final classification.</li>
+        <li><strong>Sensitivity Metric:</strong> The Area Under the ROC Curve ($\text{AUC}$) was used to quantify the listener's overall sensitivity in the task.</li>
+    </ul>
+
+    <h2>Results Summary</h2>
+
+    <h3>Primary Findings</h3>
+    <ul>
+        <li><strong>Strong Primacy Effect (Temporal Weighting):</strong> The first $300\text{ ms}$ (segments 1-3) of the sound received significantly higher decision weights than later segments.</li>
+        <li><strong>Non-Uniform Spectral Weighting:</strong> The low-CF noise band ($355\text{ Hz}$) received a significantly higher weight than the middle- and high-CF bands.</li>
+        <li><strong>Independence of Processes:</strong> A critical finding was that the spectral weights estimated from the spectro-temporal condition were virtually identical to those from the spectral-weights-only condition. Likewise, the temporal weights were consistent across all conditions.</li>
+    </ul>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>Conclusions on Auditory Processing</h3>
+    <p>The results indicate that the temporal and the spectral weighting of loudness are <strong>independent processes</strong> in the auditory system. This means that:</p>
+    <ol>
+        <li>The spectral weights (which frequencies matter most) remain constant across the duration of the sound.</li>
+        <li>The temporal weights (the primacy effect) do not change across different frequencies.</li>
+    </ol>
+    <p>The non-uniform spectral weighting (low frequency dominance) is not fully explained by peripheral auditory models (like the frequency-dependent slope of the loudness function), suggesting that <strong>central cognitive processes</strong>, possibly related to memory or attention, are responsible for how we judge the overall loudness of complex, real-world sounds.</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Neural Correlates of Auditory Scene Analysis and Perception</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary</h1>
+    <p class="meta-info"><strong>Paper:</strong> Neural correlates of auditory scene analysis and perception<br>
+    <strong>Authors:</strong> Christison-Lagay, Gifford, & Cohen (2015)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>How does the brain transform raw acoustic signals into meaningful perceptual units (auditory objects) and streams? This review paper explores the neural mechanisms—from single neurons to large networks—that allow us to separate a voice from background noise and categorize sounds.</p>
+    </div>
+
+    <h2>1. The Conceptual Framework: Predictive Regularity</h2>
+    <p>The authors argue that auditory perception is not a passive reception of sound but an active, predictive process.</p>
+    <ul>
+        <li><strong>The Cocktail Party Problem:</strong> In a noisy room, the brain must segregate sounds (voices, music, rings) into distinct streams.</li>
+        <li><strong>Competition:</strong> The brain forms multiple "organizational schemes" (interpretations) of the sound scene. These schemes compete for your conscious perception. For example, a sequence of tones can be heard as one galloping rhythm or two separate streams.</li>
+        <li><strong>Prediction:</strong> The brain constantly predicts what should happen next based on detected regularities (patterns). When a sound violates this prediction, the brain generates an error signal (Mismatch Negativity) to update its model.</li>
+    </ul>
+
+    <h2>2. Neural Mechanisms of Streaming</h2>
+    <p>How does the brain physically separate these streams?</p>
+    
+    <h3>A. Place Code (Tonotopy)</h3>
+    <p>The Primary Auditory Cortex (A1) is organized by frequency (tonotopy). When two sounds are far apart in frequency, they stimulate physically distinct populations of neurons. The suppression between these populations creates a clear "spatial" separation in the brain, allowing them to be perceived as two separate streams.</p>
+
+    <h3>B. Temporal Coherence</h3>
+    <p>What if sounds overlap in frequency or time? The authors discuss the "Temporal Coherence Model." Sounds that change together (synchronous modulation) are grouped together by the brain. Neurons that fire in sync bind these features into a single object. Conversely, sounds that are "anti-coherent" (out of sync) are segregated.</p>
+
+    <h2>3. The Role of Attention</h2>
+    <p>Selective attention acts as a neural amplifier.</p>
+    <ul>
+        <li><strong>Enhancement:</strong> When you focus on a speaker, the neural representation of their voice is enhanced (stronger signal).</li>
+        <li><strong>Suppression:</strong> Simultaneously, the neural activity for the background noise is actively suppressed.</li>
+        <li><strong>Oscillations:</strong> This might be achieved through "neural oscillations" (brain waves). The brain aligns its excitability cycles to the rhythm of the attended sound, boosting processing at key moments.</li>
+    </ul>
+
+    <h2>4. Categorization</h2>
+    <p>Beyond just hearing sounds, we group them into categories (e.g., "speech," "music," "dog bark").</p>
+    <ul>
+        <li><strong>Hierarchy:</strong> While basic features are processed early in the auditory cortex, complex categorization (like understanding meaning) often involves higher brain areas like the Ventrolateral Prefrontal Cortex (vlPFC).</li>
+        <li><strong>Plasticity:</strong> Learning new categories changes how the brain responds. Neurons can shift their tuning to become more sensitive to the features that define a category.</li>
+    </ul>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Medical Terminology Buster</h2>
+        <p><em>A breakdown of the complex terms used in the paper.</em></p>
+
+        <div class="jargon-term">Auditory Scene Analysis (ASA)</div>
+        <div class="jargon-def">
+            The brain's version of "Photoshop layers" for sound. It's the process of separating a complex mixture of sounds (like a busy street) into individual sources (a car, a siren, a person talking).
+        </div>
+
+        <div class="jargon-term">Ventral Auditory Pathway</div>
+        <div class="jargon-def">
+            <strong>Neuroscience Term.</strong> Often called the "What" pathway. A specific chain of brain regions that processes the <em>identity</em> and <em>meaning</em> of a sound (e.g., "That is a cat"). It is distinct from the Dorsal ("Where") pathway.
+        </div>
+
+        <div class="jargon-term">Mismatch Negativity (MMN)</div>
+        <div class="jargon-def">
+            <strong>Neuroscience Term.</strong> An automatic electrical signal (brain wave) generated by the brain when it detects a "deviant" sound that breaks a predictable pattern. It's the brain saying, "Wait, that wasn't what I expected."
+        </div>
+
+        <div class="jargon-term">Tonotopy / Place Code</div>
+        <div class="jargon-def">
+            <strong>Medical/Anatomical Term.</strong> The physical mapping of sound frequencies on the brain's surface. Like a piano keyboard, neurons at one end respond to low bass notes, and neurons at the other end respond to high treble notes. "Place coding" means identifying a sound based on <em>where</em> in the brain it activates.
+        </div>
+
+        <div class="jargon-term">Temporal Coherence</div>
+        <div class="jargon-def">
+            A theory of binding. It suggests the brain groups different sound features (like pitch and timbre) together if they change at the same time (synchrony). If they change independently, the brain separates them.
+        </div>
+
+        <div class="jargon-term">Neural Oscillations</div>
+        <div class="jargon-def">
+            <strong>Neuroscience Term.</strong> Rhythmic or repetitive patterns of neural activity (brain waves). The paper suggests these waves can "entrain" (sync up) with the rhythm of a sound stream to help you pay attention to it.
+        </div>
+
+        <div class="jargon-term">Ventrolateral Prefrontal Cortex (vlPFC)</div>
+        <div class="jargon-def">
+            <strong>Medical/Anatomical Term.</strong> A higher-level brain region involved in complex cognitive tasks, including decision-making, working memory, and processing the meaning of auditory objects.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

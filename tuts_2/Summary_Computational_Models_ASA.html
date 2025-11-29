@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Computational Models of Auditory Scene Analysis</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Computational Models of Auditory Scene Analysis (ASA)</h1>
+    <p class="meta-info"><strong>Paper:</strong> Computational Models of Auditory Scene Analysis: A Review<br>
+    <strong>Authors:</strong> Szabó, Denham, & Winkler (2016)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Objective</h3>
+        <p>This paper reviews and classifies computational theories that model **Auditory Scene Analysis (ASA)**—the process by which the brain parses complex acoustic input into coherent, segregated perceptual objects (auditory streams or sources).</p>
+    </div>
+
+    <h2>1. The Theoretical Landscape (Competing Models)</h2>
+    
+    <p>The core problem in ASA is explaining **grouping** (integrating components into one sound) versus **segregation** (separating them into multiple sounds). The review divides computational models into three major, often conflicting, classes:</p>
+
+    <h3>A. Temporal Coherence Models (Common Fate)</h3>
+    <p>This class assumes the sound input carries sufficient information for the causes to be extracted in a single step. Grouping is based on the Gestalt principle of **"common fate."**</p>
+    <ul>
+        <li><strong>Principle:</strong> Acoustic features that **change together** (e.g., synchronous modulation or co-modulation) belong to the same source and are bound together.</li>
+        <li><strong>Strength:</strong> Good at explaining how features are bound initially.</li>
+        <li><strong>Weakness:</strong> They struggle to explain why perception is often **multi-stable** (i.e., why the brain switches between two interpretations of the same sound over time).</li>
+    </ul>
+
+    <h3>B. Bayesian Inference Models (Prediction and Competition)</h3>
+    <p>This class follows the empiricist tradition, viewing perception as testing multiple competing hypotheses against the environment.</p>
+    <ul>
+        <li><strong>Principle:</strong> The brain acts as an **ideal Bayesian observer**, generating multiple **predictive models** of the sound environment simultaneously. These models compete, and the one that is most successful at predicting the next sound event wins perception.</li>
+        <li><strong>Strength:</strong> Excellent at modeling **prior knowledge** and the continuous, spontaneous fluctuations observed in **multi-stable perception** (like switching between one stream and two streams).</li>
+        <li><strong>Weakness:</strong> Highly abstract and difficult to implement using plausible biological neural networks.</li>
+    </ul>
+
+    <h3>C. Neural Processing Models (Local Inhibition)</h3>
+    <p>This class uses neural units (oscillators) inspired by the architecture of the brain to simulate competition.</p>
+    <ul>
+        <li><strong>Principle:</strong> Objects are represented by coupled neural units. Competition is mediated by **mutual inhibition** between units that attempt to claim the same sound events (e.g., if one unit claims a sound for 'Stream A', it inhibits the unit trying to claim it for 'Stream B').</li>
+        <li><strong>Strength:</strong> Good at modeling the emergence of competing objects and can be linked to physical neural network architecture.</li>
+    </ul>
+
+    <h2>2. ASA Phenomena and Relevance to Loudness</h2>
+
+    <p>The paper reviews several phenomena that are directly addressed by your project's variables:</p>
+    <ul>
+        <li><strong>Auditory Streaming Paradigm:</strong> The core test of ASA (ABAB- sequence of alternating high/low tones). It shows that large frequency differences and fast rates favor **segregation** (two streams), while small differences favor **integration** (one stream).</li>
+        <li><strong>Multi-stable Perception:</strong> Perception does not settle; it switches back and forth between integration and segregation even when the stimulus is constant. Models must account for this continuous competition.</li>
+        <li><strong>Concurrent Grouping:</strong> Manipulations like **mistuning** (inharmonicity) a single component from a complex tone is a powerful concurrent cue that forces the brain to segregate that component, resulting in the perception of two sounds. (This is the mechanism proven by the **Fishman (2010)** paper that leads to a loudness boost).</li>
+        <li><strong>Temporal Cues:</strong> The encoding of **temporal coherence** (synchrony/roughness) is crucial, as features that recur together are grouped together.</li>
+    </ul>
+
+    <h2>3. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Auditory Scene Analysis (ASA)</div>
+        <div class="jargon-def">
+            The process of interpreting a complex sound input by separating it into distinct sources or patterns (auditory objects).
+        </div>
+
+        <div class="jargon-term">Temporal Coherence</div>
+        <div class="jargon-def">
+            The principle that features belonging to the same sound source vary synchronously over time (e.g., a musical instrument's pitch, timbre, and volume rise and fall together).
+        </div>
+
+        <div class="jargon-term">Multi-stable Perception</div>
+        <div class="jargon-def">
+            The phenomenon where a constant sensory input (like an ambiguous rhythmic tone sequence) causes a person's conscious perception to switch spontaneously back and forth between two or more interpretations (e.g., one stream vs. two streams).
+        </div>
+
+        <div class="jargon-term">Mismatch Negativity (MMN)</div>
+        <div class="jargon-def">
+            A neurological signal that reflects the brain's automatic error response when a sound violates its expectation or prediction about the sequence.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Binaural Loudness Model</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Binaural Loudness Model for Time-Varying Sounds</h1>
+    <p class="meta-info"><strong>Paper:</strong> A Loudness Model for Time-Varying Sounds Incorporating Binaural Inhibition<br>
+    <strong>Authors:</strong> Moore, Glasberg, Varathanathan, & Schlittenlacher (2016)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Problem</h3>
+        <p>The standard assumption that loudness simply doubles when a sound is heard in both ears (Binaural Loudness Summation) is inaccurate. This paper introduces a new model structure—the binaural TVL model—to correctly predict loudness when sound enters both ears, addressing a key failure point in previous loudness standards.</p>
+    </div>
+
+    <h2>1. Methodology and Model Structure</h2>
+    
+    <h3>A. The Binaural Inhibition Concept</h3>
+    <p>The central hypothesis is that a sound in one ear **inhibits (suppresses)** the neural response to a sound in the contralateral (opposite) ear. This inhibition prevents the loudness from perfectly doubling, accurately predicting the observed 5-6 dB difference (BLDEL).</p>
+
+    <h3>B. Model Cascade</h3>
+    <p>The model processes signals from the Left and Right ears separately before a dedicated inhibition stage:</p>
+    <ol>
+        <li><strong>Peripheral Processing:</strong> Filters simulate the outer/middle ear and analyze the spectrum.</li>
+        <li><strong>Specific Loudness:</strong> Applies compressive nonlinearity (cochlear compression) to the auditory filter outputs.</li>
+        <li><strong>Binaural Inhibition:</strong> **New Step.** Broadly tuned inhibition functions are calculated based on the relative loudness patterns of the two ears. This function *reduces* the short-term specific loudness in the opposite ear.</li>
+        <li><strong>Summation:</strong> The inhibited loudness patterns are summed across frequencies and then across ears to yield the final overall loudness.</li>
+    </ol>
+    
+    <h2>2. Key Findings and Validation</h2>
+
+    <h3>A. Loudness Summation</h3>
+    <ul>
+        <li><strong>Prediction Success:</strong> The model successfully predicts that the difference required for equal loudness between a monaural (one-ear) sound and a diotic (two-ear) sound is approximately **5–6 dB**, aligning with modern human listening data, and correcting the large error found in the older ISO 532-3 model (which predicted nearly 10 dB).</li>
+    </ul>
+
+    <h3>B. Spatial and Dichotic Effects</h3>
+    <ul>
+        <li><strong>Dichotic Loudness:</strong> Accurately modeled the decrease in loudness of a tone in one ear when a tone of a different frequency was presented to the other ear (Schärf, 1969 data).</li>
+        <li><strong>Directional Sensitivity:</strong> The model gives reasonably accurate predictions of **Directional Loudness Sensitivity (DLS)**, showing how loudness changes based on the sound source's angle (azimuth).</li>
+        <li><strong>Temporal/Phase Effects:</strong> The model correctly predicted the subtle increase in loudness of Amplitude-Modulated (AM) tones when the modulation was out-of-phase ($180^{\circ}$ difference) between the two ears.</li>
+    </ul>
+
+    <h3>C. Unresolved Issues</h3>
+    <ul>
+        <li>The model, like its predecessors, still fails to fully predict a small **increase in loudness for uncorrelated noise** compared to perfectly correlated noise for narrow-band sounds, suggesting that interaural correlation effects (related to the **tonality/roughness** problem) are still not fully captured.</li>
+        <li>The predictions are intended for the **mean results of large groups** and may not be accurate for individual listeners due to high biological variability.</li>
+    </ul>
+
+    <h2>3. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Binaural Inhibition</div>
+        <div class="jargon-def">
+            The mechanism by which the neural response from one ear actively suppresses or reduces the loudness signal coming from the other ear. This explains why sounds in both ears aren't twice as loud as in one.
+        </div>
+
+        <div class="jargon-term">Binaural Loudness Difference (BLDEL)</div>
+        <div class="jargon-def">
+            The difference in decibels required for a monaural (one-ear) sound to match the loudness of a diotic (two-ear) sound. The true value is around 5–6 dB.
+        </div>
+
+        <div class="jargon-term">Time-Varying Loudness (TVL)</div>
+        <div class="jargon-def">
+            A class of models (like the original ISO 532-3) designed to predict the loudness of fluctuating sounds over time, incorporating both short-term (syllable) and long-term (phrase) loudness estimates.
+        </div>
+
+        <div class="jargon-term">Excitation Pattern / Specific Loudness</div>
+        <div class="jargon-def">
+            An internal representation of sound in the cochlea. The specific loudness is the perceived loudness magnitude across a small segment of frequency.
+        </div>
+
+        <div class="jargon-term">Dichotic / Diotic / Monaural</div>
+        <div class="jargon-def">
+            Terms describing stimulus presentation: **Dichotic** (different signals to each ear); **Diotic** (identical signals to both ears); **Monaural** (signal to only one ear).
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

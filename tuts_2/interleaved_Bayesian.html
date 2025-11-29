@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feasibility of Interleaved Bayesian Adaptive Procedures in Estimating the Equal-Loudness Contour</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #a03232;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #a03232;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #fcebeb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #e74c3c;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .symbol-explanation {
+            border: 1px solid #ffcc80;
+            background-color: #fff8e1;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Feasibility of Interleaved Bayesian Adaptive Procedures in Estimating the Equal-Loudness Contour</h1>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>A Bayesian adaptive procedure, the <strong>interleaved-equal-loudness contour (IELC) procedure</strong>, was developed to improve the efficiency in estimating the equal-loudness contour. Experiment 1 evaluated the test-retest reliability of the IELC procedure using six naive normal-hearing listeners. Two IELC runs of 200 trials were conducted and excellent test-retest reliability was found at both the group and individual levels. Using the same group of listeners, Experiment 2 compared the IELC procedure to two other procedures that required frequency-by-frequency testing: the commonly adopted <strong>interleaved staircase (ISC)</strong> procedure and the <strong>interleaved maximum-likelihood (IML)</strong> procedure. The accuracies of all three procedures measured in Experiment 2 were similar, which was superior to the accuracies of the initial IELC runs, indicating a potential training effect. The study concludes that the IELC procedure demonstrates satisfactory efficiency and reliability for estimating equal-loudness contours.</p>
+    </div>
+
+    <h2>I. Introduction and Background</h2>
+    <p>Loudness quantification is often difficult and time-consuming. A common method involves finding the <strong>point of subjective equality (PSE)</strong>—the level of a test stimulus required to match the loudness of a standard stimulus. PSE measurements are sensitive to biases from stimulus range and sequential order.</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Equal-Loudness Contour</strong><br>
+        This is a curve on a graph that shows the sound pressure levels (in dB SPL) across a range of frequencies (like $250\text{ Hz}$ to $4000\text{ Hz}$) that are all perceived as having the same loudness level as a fixed reference tone. Estimating this curve efficiently is the primary goal of the paper.
+    </div>
+
+    <h3>The Need for Efficiency and the Adaptive Procedures</h3>
+    <p>Traditionally, equal-loudness contours are measured frequency-by-frequency, which is inefficient. The study proposes the <strong>Interleaved Equal-Loudness Contour (IELC) procedure</strong> to estimate the entire contour simultaneously, taking advantage of the assumed correlation (or smoothness) among PSEs in adjacent frequency regions.</p>
+
+    <p>The IELC procedure is compared against two predecessors that estimate PSE one frequency at a time:</p>
+    <ul>
+        <li><strong>ISC (Interleaved Staircase) Procedure:</strong> Proposed by Jesteadt (1980), this procedure simultaneously measures two adaptive tracks: a high-probability track (e.g., $71\%$ "louder" responses) and a low-probability track (e.g., $29\%$ "louder" responses). The PSE is the average of the stimulus levels at these two points on the psychometric function.</li>
+        <li><strong>IML (Interleaved Maximum-Likelihood) Procedure:</strong> This is a Bayesian adaptive procedure (a modification of the Updated Maximum-Likelihood, UML, procedure) which iteratively optimizes stimulus choice based on previous responses to estimate the PSE one frequency at a time. It also uses two interleaved tracks for high and low response probabilities.</li>
+    </ul>
+
+    <h2>II. The Interleaved Equal-Loudness Contour (IELC) Procedure</h2>
+
+    <h3>A. Overview and Computational Steps</h3>
+    <p>The IELC procedure estimates two tracks simultaneously: a <strong>high-probability contour</strong> (e.g., $75\%$ response probability) and a <strong>low-probability contour</strong> (e.g., $25\%$ response probability). The PSE contour is the average of these two contours.</p>
+    <p>The core innovation is modeling the entire equal-loudness contour as a piece-wise cubic interpolation curve based on a small number of <strong>anchor points</strong> (five in this study). This model assumes covariance across adjacent frequencies, meaning data collected at one frequency informs the estimate at nearby frequencies, which significantly speeds up testing.</p>
+    <p>Following each trial, the procedure uses the response to update:</p>
+    <ol>
+        <li>The likelihood of all $M=462$ candidate models via <strong>Extended Kalman Filtering</strong> (a technique to treat noisy observations from a dynamical system).</li>
+        <li>The model with the <strong>maximum-likelihood</strong> provides the current best estimate of the contour (the "Interim Model").</li>
+        <li>This Interim Model is used to select the optimal stimulus level for the next trial, ensuring stimuli are sampled near the estimated high- or low-probability contours.</li>
+    </ol>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h3>B. Psychometric Functions (Link Functions)</h3>
+    <p>The procedure uses logistic functions as link functions between the stimulus level ($L$) and the probability of a "louder" response ($p$). These functions define the dynamic range of the psychometric function.</p>
+
+    <h4>High-Probability Track (75% Threshold)</h4>
+    <p>The probability of a "louder" response ($p_{H,m}$) for the $m^{\text{th}}$ candidate model is:</p>
+    <div class="formula-box">
+        $$p_{H,m}[f,L;\Theta_{H,m}(f;\phi_{H,m,i}),\beta] = 0.5 + 0.5 \left\{ 1 + e^{-\beta[L - \Theta_{H,m}(f;\phi_{H,m,i})]} \right\}^{-1}$$
+    </div>
+
+    <h4>Low-Probability Track (25% Threshold)</h4>
+    <p>The probability of a "louder" response ($p_{L,m}$) for the $m^{\text{th}}$ candidate model is:</p>
+    <div class="formula-box">
+        $$p_{L,m}[f,L;\Theta_{L,m}(f;\phi_{L,m,i}),\beta] = 0.5 \left\{ 1 + e^{-\beta[L - \Theta_{L,m}(f;\phi_{L,m,i})]} \right\}^{-1}$$
+    </div>
+
+    <div class="symbol-explanation">
+        <strong>Explanation of Parameters and Symbols:</strong>
+        <ul>
+            <li>$p_{H,m}, p_{L,m}$: The predicted probability of a "louder" response for the high ($H$) or low ($L$) track, based on the $m^{\text{th}}$ candidate model.</li>
+            <li>$f$: The frequency of the test stimulus (e.g., $500\text{ Hz}$). The PSE is estimated as a function of this variable.</li>
+            <li>$L$: The sound pressure level (in $\text{dB SPL}$) of the test stimulus presented in the trial.</li>
+            <li>$\Theta_{H,m}, \Theta_{L,m}$: The predicted threshold contour (high or low probability) from the $m^{\text{th}}$ candidate model. This is the **estimated sound level** that corresponds to the target response probability ($75\%$ or $25\%$) at a given frequency $f$.</li>
+            <li>$\phi_{H,m,i}, \phi_{L,m,i}$: A vector containing the five free parameters (levels of the anchor points) that define the $m^{\text{th}}$ model's threshold contour following the $i^{\text{th}}$ trial.</li>
+            <li>$\beta$: The slope parameter of the logistic psychometric function. A larger value of $\beta$ indicates a steeper slope, meaning listeners are more precise in their judgments (a smaller change in $L$ results in a larger change in response probability). In this study, $\beta=0.25$ was fixed.</li>
+            <li>$e$: The base of the natural logarithm (approximately $2.718$).</li>
+        </ul>
+        <p>In essence, these formulas ensure that if the stimulus level ($L$) is close to the estimated threshold contour ($\Theta$), the response probability is near $75\%$ (or $25\%$).</p>
+    </div>
+
+    <h3>C. Post Hoc Model Fit</h3>
+    <p>After data collection, the PSE for each test frequency is calculated by fitting a logistic regression model to the collected trial data from both tracks:</p>
+    <div class="formula-box">
+        $$p(r_{i}=1) = \left[ 1 + e^{-b(L_{i}-\text{PSE})} \right]^{-1}$$
+        <p>where $r_i=1$ indicates a "louder" response.</p>
+    </div>
+    <div class="symbol-explanation">
+        <strong>Explanation of Post Hoc Symbols:</strong>
+        <ul>
+            <li>$r_i$: The response collected on the $i^{\text{th}}$ trial ($1$ for "louder," $0$ for "weaker").</li>
+            <li>$b$: The fitted slope parameter (similar to $\beta$, but fitted to the pooled data post-experiment).</li>
+            <li>$\text{PSE}$: The final estimated **Point of Subjective Equality** for a given frequency. This corresponds to the $50\%$ response probability point on the fitted psychometric function.</li>
+        </ul>
+    </div>
+
+    <h2>III. Experiment 1: Test-Retest Reliability of IELC</h2>
+
+    <h3>Methods</h3>
+    <ul>
+        <li><strong>Subjects:</strong> Six naive normal-hearing listeners.</li>
+        <li><strong>Stimuli:</strong> A standard $1\text{ kHz}$ pure tone at $60\text{ dB SPL}$ was compared against a test tone (frequency and level determined by IELC). Tone duration was $300\text{ ms}$.</li>
+        <li><strong>Task:</strong> Two pure tones were presented sequentially; listeners indicated which tone sounded louder.</li>
+        <li><strong>Procedure:</strong> Two IELC runs (Test and Retest) of <strong>200 trials each</strong> were conducted. The second run used slightly different prior parameter distributions to test the robustness of convergence.</li>
+    </ul>
+
+    <h3>Results (Experiment 1)</h3>
+    <p>The estimated high- and low-probability contours were consistent across the two $200\text{-trial}$ IELC runs for individual listeners, demonstrating convergence.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <p>The <strong>root-mean-square (rms) deviation</strong> between the two estimated equal-loudness contours ranged from $3.0\text{ to } 5.5\text{ dB}$ (mean of $4.3\text{ dB}$), indicating <strong>excellent test-retest reliability</strong> despite the low trial count and lack of prior training. The difference in prior configurations did not significantly affect the reliability, suggesting the procedure is robust.</p>
+
+    <h2>IV. Experiment 2: Comparison with ISC and IML Procedures</h2>
+
+    <h3>A. General Methods</h3>
+    <p>The same six listeners participated. This experiment included $ISC$ runs, $IML$ runs (approximately $500\text{ trials}$ each), and a third $IELC$ run to test reliability over a longer time interval.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h3>B. Results (Experiment 2)</h3>
+    <ul>
+        <li><strong>Reliability Comparison:</strong> The rms deviation for the ISC ($4.5\text{ dB}$) and IML ($5.2\text{ dB}$) procedures (both using $\sim 500\text{ trials}$) was comparable to the IELC ($4.3\text{ dB}$, using only $200\text{ trials}$). This suggests the IELC procedure offers superior efficiency for a given reliability target.</li>
+        <li><strong>Long-Term Reliability:</strong> The PSEs from the first and third IELC runs (tested at least one week apart) were not significantly different, showing the general shape of the contour is stable.</li>
+        <li><strong>Accuracy Comparison:</strong> All procedures in Experiment 2 (after listeners were trained) showed similar accuracy ($\text{rms error}$ typically between $3\text{ and } 4\text{ dB}$) when compared against a "best estimate" contour derived from pooling all data. The initial IELC runs in Experiment 1 were less accurate, indicating a potential training effect.</li>
+    </ul>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h3>C. Stimulus Sampling Patterns</h3>
+    <p>The procedures sampled the stimulus space differently, reflecting their distinct algorithms:</p>
+    <ul>
+        <li><strong>IELC:</strong> Stimuli were sampled along the high- ($75\%$) and low- ($25\%$) probability contours, leading to a <strong>bimodal distribution</strong> of sampled levels just above or below the PSE. This design successfully prevented listeners from being forced to compare two very similar loudness levels ($50\%$ point), which often causes difficulty and bias.</li>
+        <li><strong>ISC & IML:</strong> These procedures sampled stimuli most frequently near the PSE itself ($0\text{ dB deviation}$), often leading to a <strong>unimodal distribution</strong> clustered around the $50\%$ point.</li>
+    </ul>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h2>V. General Discussion and Limitations</h2>
+
+    <h3>A. Performance of the IELC Procedure</h3>
+    <p>The IELC procedure successfully estimated the equal-loudness contour across multiple frequencies simultaneously with excellent test-retest reliability using only $200\text{ trials}$. This time efficiency is achieved by modeling the contour using a small number of parameters, assuming the PSEs across adjacent frequencies are correlated.</p>
+
+    <h3>B. Limitations of the IELC Procedure</h3>
+    <p>The IELC procedure relies on the assumption that the equal-loudness contour is relatively smooth. If the contour exhibits fine, complex structures (known as cochlear fine structure), the simple model used (piece-wise cubic interpolation across five anchor points) may not be sufficient to capture local details.</p>
+    <p>Monte-Carlo simulations confirmed this limitation:</p>
+    <ul>
+        <li>If the "true" contour is highly complex, the accuracy of the IELC estimate decreases.</li>
+        <li>The optimal number of anchor points ($k_{IELC}$) depends on the complexity of the contour being measured. Choosing too few points results in insufficient detail, while choosing too many can lead to <strong>overfitting</strong> (fitting noise instead of the true contour shape).</li>
+    </ul>
+
+    <h3>C. Individual Differences</h3>
+    <p>Despite the high intra-subject reliability (test-retest), substantial individual differences were observed across the six listeners. The standard deviation across listeners was highest at the lowest and highest test frequencies (up to $10.4\text{ dB}$ at $4000\text{ Hz}$), confirming the known variability of the equal-loudness contour across individuals.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h2>VI. Summary</h2>
+    <p>The <strong>IELC procedure</strong> is a robust and efficient Bayesian adaptive technique for estimating the equal-loudness contour. With only $200\text{ trials}$, it achieved reliability comparable to the $ISC$ and $IML$ procedures requiring over $500\text{ trials}$. The procedure is recommended for individualized loudness control applications, though further study is needed on the duration and type of initial training required to achieve maximum accuracy.</p>
+
+</div>
+
+</body>
+</html>

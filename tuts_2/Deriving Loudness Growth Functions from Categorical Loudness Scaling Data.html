@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deriving Loudness Growth Functions from Categorical Loudness Scaling Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #2ecc71;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #27ae60;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.2em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e8f8f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #27ae60;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Deriving Loudness Growth Functions from Categorical Loudness Scaling Data</h1>
+    <p style="text-align: center; font-style: italic;">Marcin Wróblewski, Daniel M. Rasetshwane, Stephen T. Neely, and Walt Jesteadt</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>The goal of this study was to reconcile the differences between measures of loudness obtained with continuous, unbounded scaling procedures (like <strong>magnitude estimation</strong>, known as Ratio-Scale or <strong>RS</strong> procedures) and those obtained using a limited number of discrete categories (like <strong>Categorical Loudness Scaling</strong> or <strong>CLS</strong>). CLS is an easier task but yields numerical values (Categorical Units or CUs) that are not proportional to loudness (sones). The solution developed here is the <strong>$CU_{\text{sone}}$ metric</strong>, which assigns loudness values in sones to the verbal loudness categories. This metric was demonstrated by reanalyzing a large CLS dataset, resulting in loudness growth functions well fitted by power functions. The transformed data showed general agreement with previously published RS results obtained with magnitude estimation, magnitude production, and cross-modality matching. This approach allows CLS data to be summarized by a single number (the power-law exponent) and facilitates comparison with loudness models.</p>
+    </div>
+
+    <h2>I. Introduction and Loudness Measurement Methods</h2>
+
+    <p>Loudness is primarily the perceptual correlate of the physical strength of a sound. Measurement procedures can be categorized based on whether the scale is <strong>bounded/unbounded</strong> and <strong>discrete/continuous</strong>.</p>
+
+    <h3>Categorical Scaling (CS) Procedures</h3>
+    <p>CLS is bounded and discrete (e.g., using 11 categories from "not heard" to "extremely loud"). It is an easier task for listeners, and reliability is generally good. However, the resulting numerical values, known as <strong>Categorical Units (CUs)</strong> (typically $0$ to $50$ in steps of $5$), are arbitrary and <strong>not proportional to loudness</strong>.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Categorical Loudness Scaling (CLS)</strong><br>
+        A psychoacoustic procedure where a listener rates the loudness of a sound stimulus by selecting a label from a predefined, fixed list of verbal categories (e.g., "Very soft," "Medium," "Very loud"). This procedure is easy but yields results (Categorical Units) that do not directly represent proportional loudness.
+    </div>
+
+    <h3>Ratio-Scale (RS) Procedures</h3>
+    <p>RS procedures, such as magnitude estimation and magnitude production, are usually unbounded and continuous. The results are thought to have <strong>ratio properties</strong>, meaning one can state that sound X is twice as loud as sound Y. Measures developed with RS procedures are proportional to loudness and are measured in <strong>sones</strong>, where $1\text{ sone}$ is the loudness of a $1000\text{ Hz}$ tone presented binaurally at $40\text{ dB}$ sensation level ($\text{SL}$). The main drawback is that some listeners find generating numbers proportional to loudness difficult, and comparisons across listeners can be complex.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Ratio-Scale (RS) and Sone</strong><br>
+        <strong>RS Procedures</strong> (e.g., Magnitude Estimation) require listeners to assign numbers directly proportional to their perception of loudness. <br>
+        The <strong>Sone</strong> is the official unit of loudness on a ratio scale, meaning $2\text{ sones}$ are twice as loud as $1\text{ sone}$.
+    </div>
+
+    <h2>II. The $CU_{\text{sone}}$ Conversion Metric (Methods)</h2>
+    <p>The goal is to give CLS data the ratio properties of RS data, making it possible to measure loudness in sones using the CLS procedure.</p>
+
+    <h3>A. Data Source and Participants</h3>
+    <p>The primary analysis involved reanalyzing a large CLS dataset obtained by Rasetshwane et al. (2015), consistent with the ISO standard. Participants included $61$ listeners with normal hearing ($\text{NH}$) and $87$ with sensorineural hearing loss ($\text{SNHL}$).</p>
+    <ul>
+        <li><strong>Stimuli:</strong> Pure tones ($1000\text{ ms}$ duration) at octave frequencies ($250\text{ Hz}$ to $8000\text{ Hz}$).</li>
+        <li><strong>Task:</strong> Adaptive CLS procedure to determine the level of pure tones corresponding to different loudness categories.</li>
+    </ul>
+
+    <h3>B. Developing the $CU_{\text{sone}}$ Metric</h3>
+    <p>The conversion relies on work by Heeren et al. (2013), who fitted a polynomial function describing the relation between CUs and sones. The transformation is based on the assumption that the median sound pressure levels ($\text{SPL}$) for the $11\text{ CLS}$ categories at $1000\text{ Hz}$ can be interpreted as loudness levels (phons), which can then be converted to sones using the loudness growth function from the ANSI (2007) standard.</p>
+    <p>The original Heeren et al. (2013) polynomial is (plotted in Fig. 2):</p>
+    <div class="formula-box">
+        $$\text{CU} = 2.6253 \log_{10}(\text{sone}+0.0887)^3 + 0.7799 \log_{10}(\text{sone}+0.0887)^2 - 0.0856 \log_{10}(\text{sone}+0.0887) + 13.4493$$
+    </div>
+    <p>By determining the sone value that corresponds to each integer CU (Categorical Unit), the study developed the $CU_{\text{sone}}$ metric. This metric directly substitutes loudness values in sones for the arbitrary CU values (Table I). The categories of $CU=0$ ("cannot hear") and $CU=50$ ("too loud") were excluded due to broad or unknown ranges.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <div class="table-container">
+        <table>
+            <caption>Table I: CLS Category Labels, CU Values, and Corresponding Transformed $CU_{\text{sone}}$ Values (Partial List)</caption>
+            <thead>
+                <tr>
+                    <th>Label</th>
+                    <th>CU</th>
+                    <th>$CU_{\text{sone}}$ (Sones)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Very loud</td><td>45</td><td>59.71</td></tr>
+                <tr><td></td><td>40</td><td>42.35</td></tr>
+                <tr><td>Loud</td><td>35</td><td>28.54</td></tr>
+                <tr><td></td><td>30</td><td>17.87</td></tr>
+                <tr><td>Medium</td><td>25</td><td>9.99</td></tr>
+                <tr><td></td><td>20</td><td>4.58</td></tr>
+                <tr><td>Soft</td><td>15</td><td>1.45</td></tr>
+                <tr><td>Very soft</td><td>5</td><td>0.04</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>C. Data Analysis Approaches</h3>
+    <p>The transformed data were analyzed using two approaches, both aimed at fitting a <strong>power-law function</strong> (a linear fit on a log-log plot) that describes the growth of loudness.</p>
+    <ol>
+        <li><strong>Median SPL Approach (Historical):</strong> Outliers were removed, non-monotonic median $\text{SPL}$ values were excluded, and the resulting median $\text{SPL}$ values were fitted with the power-law function.</li>
+        <li><strong>Raw Trial-by-Trial Approach (New Method):</strong> The raw trial-by-trial data (level in $\text{dB SPL}$ vs. $CU_{\text{sone}}$ value) were fitted directly with a power-law function, minimizing squared deviations in $\log CU_{\text{sone}}$ values. This method bypasses the need for complex data manipulation and outlier exclusion.</li>
+    </ol>
+    <p>Since the two approaches yielded comparable results at $1000\text{ Hz}$ ($r=0.96$), the raw trial-by-trial approach was used for all other frequencies.</p>
+
+    <h2>III. Results and Comparison to Ratio-Scale Data</h2>
+
+    <h3>A. Loudness Growth Functions</h3>
+    <p>When plotted using the $CU_{\text{sone}}$ metric, the CLS data for listeners with $\text{SNHL}$ show clear <strong>loudness recruitment</strong> (the abnormally rapid growth of loudness with intensity). The mean data for different hearing loss groups clearly show steeper functions for greater hearing loss, consistent with previous RS data.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h3>B. Slope as a Function of Hearing Loss</h3>
+    <p>The power-law <strong>exponent</strong> (which describes the slope of the loudness function on a log-log plot) obtained from the reanalyzed CLS data was compared directly to summary data published by Hellman (1999), a classic RS study based on magnitude estimation and CMM.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+    <p>The results show that the power-law slopes obtained via the $CU_{\text{sone}}$ reanalysis closely approximate the slopes reported by Hellman (1999) across increasing degrees of hearing loss and across all tested octave frequencies ($250\text{ Hz}$ to $8000\text{ Hz}$). Both data sets demonstrate a systematic increase in recruitment (steeper slopes) as a function of increasing hearing threshold.</p>
+
+    <h3>C. Reliability</h3>
+    <p>The test-retest reliability of the loudness function slopes derived from the raw $CU_{\text{sone}}$ data was high. The correlation coefficients ($r$) between the slopes from Visit 1 and Visit 2 ranged from $r=0.78$ to $r=0.96$ across different frequencies. This reliability is comparable to the high reliability reported in Hellman's classic CMM studies, further validating the $CU_{\text{sone}}$ approach.</p>
+    <div class="figure-placeholder">
+        
+    </div>
+
+    <h2>IV. Discussion and Conclusions</h2>
+
+    <h3>A. Advantages of the $CU_{\text{sone}}$ Transform</h3>
+    <p>The substitution of $CU_{\text{sone}}$ values for arbitrary CUs brings CLS data in line with RS data, offering several major benefits:</p>
+    <ul>
+        <li><strong>Simplified Analysis:</strong> The raw data can be fitted directly with simple power-law functions by minimizing errors on the loudness axis.</li>
+        <li><strong>Interpretation:</strong> CLS data can now be summarized by a single, meaningful number (the power-law exponent) and compared directly with loudness models.</li>
+        <li><strong>Preserves Individual Differences:</strong> The $CU_{\text{sone}}$ values preserve the verbal meaning of the categories, allowing CLS to continue being a tool for exploring individual differences.</li>
+        <li><strong>Consistency Check:</strong> For $\text{NH}$ listeners at $1000\text{ Hz}$, the monaural $CU_{\text{sone}}$ data showed a loudness estimate of $0.53\text{ sone}$ at $40\text{ dB SPL}$, which is consistent with the established RS value of $0.5\text{ sone}$ for monaural listening.</li>
+    </ul>
+
+    <h3>B. Limitations</h3>
+    <p>Despite the success, the conversion does not eliminate all issues associated with categorical scaling, such as the listener's tendency to use categories equally often. Furthermore, the $11\text{-point CLS}$ scale (reduced to 9 points in this analysis) may have limited the resolution, as the resulting functions did not consistently show the expected curvature at very low levels (below $40\text{ dB SPL}$) or at very high levels for $\text{SNHL}$ listeners, which is typically seen in RS data.</p>
+
+    <h3>V. Conclusion</h3>
+    <p>The <strong>$CU_{\text{sone}}$ metric</strong> successfully converts CLS data into a ratio scale proportional to loudness. This simple and straightforward conversion yields reliable loudness growth functions that closely match the recruitment patterns observed using more complex and time-consuming RS methods. This validated approach facilitates the use of CLS in both clinical practice and auditory research.</p>
+
+</div>
+
+</body>
+</html>

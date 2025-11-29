@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: ITU-R BS.1770 Modification</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: ITU-R BS.1770 Modification for Multitrack Audio</h1>
+    <p class="meta-info"><strong>Paper:</strong> Loudness Measurement of Multitrack Audio Content Using Modifications of ITU-R BS.1770<br>
+    <strong>Authors:</strong> Pestana & Reiss (2013)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>Does the standard ITU-R BS.1770 algorithm (used widely for broadcast mixes) accurately measure the loudness of **individual tracks** within a multitrack context? The study hypothesizes that the algorithm fails for narrow-band, high-frequency material and proposes minimal parameter modifications to improve accuracy.</p>
+    </div>
+
+    <h2>1. Methodology and Test Protocol (Subjective Evaluation)</h2>
+    
+    <h3>A. Loudness Matching Task</h3>
+    <ul>
+        <li><strong>Subjects:</strong> 40 individuals (including professional engineers and audio students).</li>
+        <li><strong>Stimuli:</strong> Tracks (stems) from five different songs (9–11 tracks per song).</li>
+        <li><strong>Baseline Condition:</strong> All tracks were initially normalized to the same loudness value according to the standard ITU-R BS.1770 algorithm (0 LU).</li>
+        <li><strong>Protocol:</strong> Subjects were given a **fixed reference track** (either Kick drum or Vocals) and used faders to adjust the level of the remaining tracks until they sounded **equally loud**.</li>
+    </ul>
+
+    <h3>B. Measurement and Analysis</h3>
+    <ul>
+        <li><strong>Dependent Variable:</strong> **Loudness Difference (D)** in Loudness Units (LU). This was the difference between the subject's required level (Evaluation, E) and the algorithm's predicted level (Measurement, M).
+        <p>D = Evaluation - Measurement</p></li>
+        <li><strong>Statistical Testing:</strong> Used the **Wilcoxon test** to confirm that the mean differences were statistically significant (not due to random chance), despite high inter-subject variance.</li>
+    </ul>
+
+    <h2>2. Key Findings: Failures of the Standard</h2>
+    
+    <h3>A. Systemic Disagreement with Perception</h3>
+    <p>The standard ITU-R algorithm showed major, consistent disagreements with subjective listening:</p>
+    <ul>
+        <li><strong>Reference Bias:</strong> The mean errors differed significantly depending on whether the Kick Drum or the Vocals were used as the reference track.</li>
+        <li><strong>Overall Error:</strong> Mean errors ranged from **-2 LU** (Vocals) to over **-8 LU** (Piano, sampled beat) relative to the Kick Drum reference. This means the standard grossly underestimated the perceived loudness of certain tracks.</li>
+    </ul>
+
+    <h3>B. Correlation with Spectral Content</h3>
+    <p>A correlation analysis identified the primary cause of the algorithm’s failure:</p>
+    <p>The error in prediction was most strongly correlated with the **$log_{2}$ Spectral Centroid** (a measure of brightness). The relationship showed that the higher the spectral centroid (the brighter/sharper the sound), the more the algorithm underestimated the track’s true perceived loudness. </p>
+    <p>This suggests the standard ITU-R BS.1770 high-frequency weighting (Pre-filter and RLB-filter) is not aggressive enough for narrow-band, bright content.</p>
+
+    <h2>3. Proposed Algorithm Modifications and Validation</h2>
+
+    <h3>A. Parameter Tweaks</h3>
+    <p>The authors analyzed the effects of minimally modifying two parameters within the ITU algorithm:</p>
+    <ul>
+        <li><strong>Pre-filter Gain:</strong> Varied the high-shelf boost (standard is +4 dB) to increase high-end sensitivity.</li>
+        <li><strong>Time Constant:</strong> Varied the integration window (standard is 400 ms) to see how temporal processing affected the results.</li>
+    </ul>
+
+    <h3>B. Optimal Result</h3>
+    <p>Four optimization scenarios were tested, revealing that the most appropriate modifications always involved a **higher Pre-filter Gain** than the standard +4 dB.</p>
+    <ul>
+        <li><strong>Scenario Alpha (Minimal Error):</strong> The best parameters were found to be a **280 ms Time Constant** and a **+10 dB Pre-filter Gain**. This combination improved accuracy by 14% over the standard.</li>
+    </ul>
+
+    <h3>C. Expert Validation</h3>
+    <p>A small follow-up test (MUSHRA-style) with three professional mixing engineers validated the findings. The resulting mixes using the **280 ms / +10 dB** parameters scored significantly higher (better equal-loudness achievement) than the mixes produced using the standard ITU/EBU recommendation.</p>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Technical Terminology Buster</h2>
+        
+        <div class="jargon-term">ITU-R BS.1770 / EBU R128</div>
+        <div class="jargon-def">
+            Industry standards for measuring audio program loudness (the algorithm that yields LUFS). They combine frequency weighting (K-weighting) and energy integration.
+        </div>
+
+        <div class="jargon-term">Spectral Centroid</div>
+        <div class="jargon-def">
+            A metric that represents the "center of mass" of a sound's spectrum. A higher centroid means the sound is perceived as brighter, sharper, or thinner (e.g., a hi-hat).
+        </div>
+
+        <div class="jargon-term">Pre-filter Gain</div>
+        <div class="jargon-def">
+            The amount of boost (gain) applied by the first filter in the ITU algorithm, which specifically emphasizes high frequencies. The standard uses +4 dB.
+        </div>
+
+        <div class="jargon-term">Time Constant / Windowing</div>
+        <div class="jargon-def">
+            The time duration over which the average signal level is measured. This affects how the meter responds to quick, short-term changes.
+        </div>
+
+        <div class="jargon-term">Loudness Unit (LU)</div>
+        <div class="jargon-def">
+            A logarithmic unit of loudness used by ITU and EBU standards. 1 LU is equivalent to 1 dB.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

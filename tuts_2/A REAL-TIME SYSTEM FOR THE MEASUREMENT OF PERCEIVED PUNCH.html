@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Real-Time System for the Measurement of Perceived Punch</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #ff5722; /* Deep Orange */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #ff5722;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #ffe0b2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #ff9800;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>A REAL-TIME SYSTEM FOR THE MEASUREMENT OF PERCEIVED PUNCH</h1>
+    <p style="text-align: center; font-style: italic;">Andrew Parker, Steven Fenton, and Hyunkook Lee, Applied Psychoacoustics Lab (APL), The University of Huddersfield</p>
+
+    <div class="abstract-box">
+        <h2>ABSTRACT</h2>
+        <p>This paper details the development of a real-time metering plug-in based on a perceptually motivated model for the objective measurement of **punch** in music. The system provides metrics including $P95$ ($\text{95}^{\text{th}}$ percentile punch measure), Mean punch score, and $P95M$ (ratio of $P95$ to Mean punch). When compared to subjective punch scores from a controlled listening test, the meter's outputs demonstrated a **strong correlation** ($r=0.840, \rho=0.937$). The real-time objective measure is designed to be a useful tool for optimizing the punch attribute during mixing, mastering, and broadcast applications.</p>
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>'Punch' is defined as a degree of change in the power of a musical signal, specifically related to the transient change and energy density at a given moment in time. The objective measurement model for punch uses transient information and weights the score based on the frequencies and duration of the change, giving it relevance to music with dynamic transients.</p>
+    <p>This paper focuses on the **real-time implementation** of the punch model to allow for minimal latency and frame-by-frame operation, achieved primarily by modifying the signal separation method to remove look-ahead dependency.</p>
+
+    <h2>2. Real-Time Measurement System</h2>
+    <p>The punch meter generates scores by detecting and measuring transient elements, which are then weighted based on octave frequency band and onset duration.</p>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>2.1 Transient Extraction (The Low-Latency Solution)</h3>
+    <p>The core challenge for real-time performance was replacing the original, high-latency median filter method. The chosen method relies on analyzing a complex spectrogram generated via Short Time Fourier Transform ($\text{STFT}$, block size $2048$ samples, $50\%$ overlap).</p>
+    <ul>
+        <li><strong>Separation Method:</strong> The signal separation uses deviation of both the magnitude and phase of the signal (variation in Euclidean distance of the rotating vector) for each frequency bin across successive $\text{STFT}$ frames. Transient signals yield a high deviation value.</li>
+        <li><strong>Binary Mask Generation:</strong> An adaptive threshold is used. If a bin's deviation is greater than the weighted adaptive threshold, the bin is preserved in the mask (transient). Otherwise, it is nulled (steady state).</li>
+        <li><strong>Minimal Latency:</strong> Since the mask generation relies only on current and previous frames, it **does not require any look-ahead**, incurring minimal latency beyond the $\text{STFT}$ requirement.</li>
+    </ul>
+
+    <h3>2.2 Filtering and Band Splitting</h3>
+    <p>The extracted transient signal is first filtered to account for loudness, using the $\text{ITU-R BS.1770-4}$ recommendation with modifications to the shelf corner frequency and pre-filter gain. The signal is then filtered into five octave bands, which feed the next stage:</p>
+    <ul>
+        <li>$63\text{ Hz}$</li>
+        <li>$125\text{ Hz}$</li>
+        <li>$250\text{ Hz}$</li>
+        <li>$500\text{ Hz}$</li>
+        <li>$1000\text{ Hz}$</li>
+    </ul>
+
+    <h3>2.3 Onset Detection and Weighting</h3>
+    <p>This stage assigns a weight based on the frequency band and the temporal duration of the transient onset, prioritizing faster onsets and specific frequencies.</p>
+    <p>Energy is calculated for $100\text{ ms}$ frames. A real-time adaptive threshold is used for **peak-picking**, given as:</p>
+    <div class="formula-box">
+        $$\sigma_{n} = \text{median}[O(n_{m})] + \text{mean}[O(n_{m})]$$
+        <p>where $\sigma_{n}$ is the threshold of the current frame, and $O(n_{m})$ are the previous $m$ frames of energy at frame $n$.</p>
+    </div>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <p>If a peak is found, the **onset duration** is calculated as the time between the preceding minimum energy value (Onset Start) and the maximum energy value (Onset Peak) within the $100\text{ ms}$ frame.</p>
+    
+    <div class="figure-placeholder">
+            </div>
+    <p>The detected onset time and the octave band number are used to calculate a weighting coefficient. **Faster onsets yield a higher weighting coefficient.** Frames without an onset are nulled.</p>
+
+    <h3>2.4 Score Calculation</h3>
+    <p>Weighted energy from the corresponding $100\text{ ms}$ frames of all five bands is summed, and a decibel power value is calculated. This is the **'punch score'** for the given frame.</p>
+
+    <h2>3. Definition of Metrics</h2>
+    <p>The metering plug-in calculates three primary statistical metrics over a moving window history (arbitrarily $141$ frames, approximately $7.05\text{ seconds}$ at $44.1\text{ kHz}$):</p>
+    <ul>
+        <li><strong>Mean:</strong> The running mean of the punch scores (in $\text{dB}$).</li>
+        <li><strong>P95:</strong> The **$95^{\text{th}}$ percentile** of punch scores (in $\text{dB}$), representing the boundary of the top $5\%$ of frames with the highest punch scores.</li>
+        <li><strong>P95M:</strong> The **P95 value divided by the Mean** punch score. This is a ratio similar to the peak-to-loudness ratio in loudness metering, reflecting the dynamic range of the punch attribute.</li>
+    </ul>
+
+    <h2>4. Interface and Ballistics</h2>
+    <p>The proposed interface displays the evolution of punch scores and the three statistical metrics via a time graph and a histogram.</p>
+    <div class="figure-placeholder">
+            </div>
+    <ul>
+        <li><strong>Time Graph:</strong> Shows the history of the $141$ most recent punch scores and the three statistical measures, giving a momentary view of punch variation.</li>
+        <li><strong>Histogram:</strong> Represents the same $141\text{-frame}$ history as punch score vs. relative frequency density, providing a short-to-long-term overview of the signal's punchiness.</li>
+        <li><strong>Ballistics:</strong> As punch is a momentary attribute, studies suggest a faster decay than the $400\text{ ms}$ time constant used for 'live' loudness measurement may be required. Further research is planned to define the most appropriate ballistics.</li>
+    </ul>
+
+    <h2>5. Objective Output Test Results</h2>
+    <p>The real-time system's outputs ($P95$ and $P95M$) were compared against subjective punch scores derived from a forced pairwise comparison listening test (Fenton et al., 2016) using loudness-normalized musical audio stimuli.</p>
+
+    <p>The correlation coefficients demonstrate a strong relationship between the objective measure and perceived punch:</p>
+    <div class="jargon-box">
+        <strong>Correlation with Subjective Data:</strong>
+        <ul>
+            <li><strong>P95:</strong> Pearson correlation ($r$) of $0.840$ and Spearman correlation ($\rho$) of $0.937$.</li>
+            <li><strong>P95M:</strong> Pearson correlation ($r$) of $-0.824$ and Spearman correlation ($\rho$) of $-0.958$. (Inverted due to its definition as a ratio).</li>
+        </ul>
+        <p>All coefficients were highly significant ($p < 0.001$).</p>
+    </div>
+
+    <h2>6. Conclusions</h2>
+    <p>The real-time punch metering system successfully implemented a perceptually motivated model using low-latency transient separation and onset detection, and demonstrated a strong objective correlation with subjective punch perception. The $P95$ and $P95M$ metrics are robust indicators of perceived punch, useful for objective control and optimization in audio production and broadcast.</p>
+
+</div>
+
+</body>
+</html>

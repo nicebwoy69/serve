@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binaural Loudness Summation for Speech with Visual Cues</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #03a9f4; /* Cyan/Light Blue */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #03a9f4;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e1f5fe;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #039be5;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Binaural Loudness Summation for Speech Presented Via Earphones and Loudspeaker with and without Visual Cues</h1>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>This study investigates <strong>Binaural Loudness Summation ($\text{BLS}$)</strong> for recorded speech (spondees) in various presentation conditions to test the hypothesis of <strong>Binaural Loudness Constancy ($\text{BLC}$)</strong>. Traditional laboratory measures show that binaural tones are significantly louder than monaural tones ($\text{BLS} \approx 2.0$ ratio). However, preliminary data suggested $\text{BLS}$ is significantly reduced when listening to a visually present talker via loudspeakers. Twelve normal listeners estimated loudness using magnitude estimation across conditions involving earphones vs. loudspeaker, and audio only vs. audio + video. The results confirmed that $\text{BLS}$ is significantly less for speech presented via a loudspeaker with visual cues (ratio of 1.09) than for any other test parameter combination. This supports $\text{BLC}$ and emphasizes the importance of <strong>ecological validity</strong> in loudness research, suggesting that in daily environments, the loudness of a visually present talker is largely unaffected by switching between one and two ears.</p>
+    </div>
+
+    <h2>I. Introduction: The Paradox of Binaural Loudness</h2>
+
+    <p>The core finding of classical psychoacoustics is that a tone presented binaurally is louder than the same tone presented monaurally. This is known as **Binaural Loudness Summation ($\text{BLS}$)**. While earlier data suggested a binaural-to-monaural loudness ratio of $2.0$ (twice as loud), more recent studies typically find a lower ratio, ranging from $1.29$ to $1.7$.</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Binaural Loudness Summation (BLS)</strong><br>
+        The phenomenon where loudness perceived when listening with two ears (binaural) is greater than the sum of the loudness perceived in each ear separately (monaural). The ratio of binaural loudness to monaural loudness is the key metric.
+    </div>
+
+    <h3>The Hypothesis of Binaural Loudness Constancy (BLC)</h3>
+    <p>When listening conditions approximate daily environments (e.g., reverberant rooms with sighted listeners), phenomena like **loudness constancy** (loudness remains stable despite changing source distance) emerge. Recent data suggest a similar effect for binaural listening, termed **Binaural Loudness Constancy ($\text{BLC}$)**: speech from a visually present talker heard under ecologically valid conditions is not much louder when listening with two ears than with one ear (i.e., significantly reduced $\text{BLS}$).</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Binaural Loudness Constancy (BLC)</strong><br>
+        A proposed perceptual constancy where the perceived loudness of a sound source (especially a visually present talker) remains stable regardless of whether the listener is using one ear or two ears. This leads to a $\text{BLS}$ ratio near $1.0$.
+    </div>
+
+    <h2>II. Methodology</h2>
+
+    <h3>A. Stimuli and Experimental Conditions</h3>
+    <p>The study used $16$ recorded speech stimuli (spondees) from $4$ talkers ( $2\text{ males}$, $2\text{ females}$) combined with video. Each stimulus was presented at five $\text{rms}$ levels: $25, 40, 55, 70$, and $80\text{ dB SPL}$.</p>
+    <p>The experiment utilized a within-subject design examining two factors crossed with the number of ears (monaural vs. binaural):</p>
+    <ol>
+        <li><strong>Transducer Type:</strong> Earphones (Sony MDR-V6) vs. Loudspeaker (M-Audio BX8a, $1\text{ m}$ frontal presentation).</li>
+        <li><strong>Presentation Mode:</strong> Audio Only vs. Video combined with Audio.</li>
+    </ol>
+    <p>The most ecologically valid condition was defined as: **Video combined with Audio presented via a Loudspeaker.** For monaural loudspeaker conditions, a foam earplug was used to attenuate the sound in the non-tested ear.</p>
+
+    <h3>B. Procedure and Analysis</h3>
+    <ul>
+        <li><strong>Task:</strong> Listeners estimated loudness using a **magnitude estimation paradigm**, assigning a number whose magnitude matched the loudness of each stimulus, with no reference given.</li>
+        <li><strong>Data:</strong> $1920$ total speech-stimuli trials per listener were collected over multiple days.</li>
+        <li><strong>Key Metric:</strong> The **Binaural-to-Monaural Loudness Ratio** (calculated using geometric means of magnitude estimates). This ratio tests the degree of $\text{BLS}$.</li>
+        <li><strong>Hypothesis Test:</strong> A General Linear Model ($\text{ANOVA}$) was used to test the three-way interaction: Transducer Type $\times$ Presentation Mode $\times$ Number of Ears.</li>
+    </ul>
+
+    <h2>III. Results</h2>
+
+    <h3>A. Binaural-to-Monaural Loudness Ratios</h3>
+    <p>The interaction of Transducer Type $\times$ Presentation Mode $\times$ Number of Ears was **highly significant** ($F(1,11)=15.73, p<0.01$), confirming that the degree of $\text{BLS}$ depends critically on the combination of presentation mode and transducer.</p>
+
+    <div class="figure-placeholder">
+            </div>
+
+    <p>Average $\text{BLS}$ ratios (collapsed across level) for the four core conditions were:</p>
+    <ol>
+        <li>**Video + Audio via Loudspeaker:** $1.09$ (Lowest $\text{BLS}$)</li>
+        <li>**Audio Only via Loudspeaker:** $1.22$</li>
+        <li>**Audio Only via Earphones:** $1.29$</li>
+        <li>**Video + Audio via Earphones:** $1.34$ (Highest $\text{BLS}$)</li>
+    </ol>
+    <p>The most ecologically valid condition (Loudspeaker + Video) resulted in a ratio of $1.09$, indicating that the speech was perceived as only $9\%$ louder when listening with two ears compared to one. This finding is in strong support of the $\text{BLC}$ hypothesis.</p>
+
+    <h3>B. Post Hoc Analysis and Level Dependence</h3>
+    <ul>
+        <li><strong>Significance:</strong> The condition of **Video combined with Audio via a Loudspeaker** was found to be significantly different (smaller ratio) than all three other conditions.</li>
+        <li><strong>Transducer Effect:</strong> Loudspeaker presentation generally resulted in less $\text{BLS}$ than earphone presentation ($1.16$ vs. $1.32$ overall).</li>
+        <li><strong>Level Dependence:</strong> The binaural-to-monaural ratio was **not constant as a function of level** for speech stimuli (significant interaction, $p<0.01$), contradicting the Binaural Equal-Loudness-Ratio Hypothesis ($\text{BELRH}$) often applied to tones.</li>
+        <li><strong>Loudness Functions:</strong> All eight monaural/binaural functions had similar slopes, indicating that loudness grew at an approximately equal rate across all conditions, which is consistent with the speech stimuli being recorded at a steady vocal effort.</li>
+    </ul>
+
+    <h2>IV. Discussion and Implications</h2>
+
+    <h3>A. Support for Binaural Loudness Constancy</h3>
+    <p>The results corroborate the existence of $\text{BLC}$: speech from a visually present talker heard under ecologically valid conditions is not much louder when listening binaurally than monaurally. This phenomenon is analogous to visual binocular brightness judgments, where closing one eye does not make the world appear markedly less bright.</p>
+
+    <p>The results show that $\text{BLC}$ is dependent on the **multisensory interaction** between the visual presence of the talker and the auditory stimulus being presented via a loudspeaker in a room environment. Neither condition alone (Video via Earphones, or Audio Only via Loudspeaker) was sufficient to significantly reduce $\text{BLS}$.</p>
+
+    <h3>B. Challenge to Loudness Models and Standards</h3>
+    <p>The present data challenge current loudness models (e.g., Glasberg and Moore) and standards ($\text{ANSI}, \text{ISO}$) because these models typically ignore context, transducer type, and the influence of other modalities. Current models generally use only the physical characteristics of sound and cannot account for $\text{BLC}$.</p>
+    <p>The findings underscore that caution must be used when applying laboratory-derived loudness standards to daily environmental conditions, particularly when the stimuli are speech or other ecologically relevant sounds.</p>
+
+    <h3>C. Clinical Relevance</h3>
+    <p>The results support the recommendation to verify loudness perception in hearing-aid users using **loudspeakers** and **accompanying visual stimuli** after fitting, as these conditions more accurately reflect the reduced $\text{BLS}$ experienced in daily life compared to traditional earphone measurements.</p>
+
+    <h2>V. Conclusion</h2>
+    <p>The phenomenon of <strong>Binaural Loudness Constancy</strong> is confirmed to be dependent on the synergistic effect of audio presented via a loudspeaker and simultaneous visual cues from the talker. This multisensory effect significantly reduces $\text{BLS}$, demonstrating that loudness perception in complex, real-world environments is a multi-dimensional concept that current loudness models must evolve to include.</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Threshold of the Precedence Effect in Noise</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Threshold of the Precedence Effect in Noise</h1>
+    <p class="meta-info"><strong>Paper:</strong> Threshold of the precedence effect in noise<br>
+    <strong>Authors:</strong> Freyman, Griffin, & Zurek (2014)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>At what level of background noise do different forms of temporal and onset dominance (Precedence Effects) stop working? The study compares three types of spatial processing to determine their robustness in challenging acoustic environments.</p>
+    </div>
+
+    <h2>1. Methodology and Stimuli</h2>
+    
+    <h3>A. Phenomenon Studied (The Three Effects)</h3>
+    <p>The study uses white noise bursts to compare three phenomena where early spatial cues dominate later cues (important for understanding sound in reverberant spaces):</p>
+    <ol>
+        <li><strong>Transient Precedence Effect:</strong> Spatial dominance of a brief leading sound (simulating a direct sound) over a similar lagging sound (a reflection).</li>
+        <li><strong>Ongoing Precedence Effect:</strong> Spatial dominance based on ongoing interaural cues within long-duration signals.</li>
+        <li><strong>Onset Capture Effect:</strong> A phenomenon where an initial abrupt onset determines the lateral position of an extended, spatially ambiguous trailing sound.</li>
+    </ol>
+
+    <h3>B. Protocol and Measurement</h3>
+    <ul>
+        <li><strong>Masker:</strong> Diotic (identical to both ears) white noise at a constant level (75 dBA).</li>
+        <li><strong>Signal:</strong> Noise-burst stimuli with precisely controlled Interaural Time Differences (ITDs) of 500 $\mu$s (the critical difference for spatial perception).</li>
+        <li><strong>Tasks:</strong> 
+            <ul>
+                <li>**Detection:** Measure the Signal-to-Noise Ratio (SNR) needed to just *detect* the signal.</li>
+                <li>**Discrimination:** Measure the SNR needed to *discriminate* between two spatially different signals (e.g., left-leading ITD vs. right-leading ITD). This measures the threshold for the spatial effect itself.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>2. Key Findings and Quantitative Thresholds</h2>
+    
+    <h3>A. Detection vs. Spatial Processing</h3>
+    <p>None of the three effects were found to be operative at the **masked detection threshold**. This means that when a sound is barely audible above background noise, the Precedence Effect and Onset Capture do not provide an advantage in simply detecting that the sound is present (no Masking Level Difference benefit).</p>
+
+    <h3>B. Robustness Thresholds (The Survival Test)</h3>
+    <p>The discrimination task revealed huge differences in the robustness of the effects once the signal was audible:</p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Spatial Effect</th>
+                    <th>Discrimination Threshold (dB SL)</th>
+                    <th>Robustness (Above Detection Threshold)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>**Transient Precedence**</td>
+                    <td>10 dB SL</td>
+                    <td>Relatively Robust</td>
+                </tr>
+                <tr>
+                    <td>**Ongoing Precedence**</td>
+                    <td>13 dB SL</td>
+                    <td>Relatively Robust</td>
+                </tr>
+                <tr>
+                    <td>**Onset Capture**</td>
+                    <td>**33 dB SL**</td>
+                    <td>**Extremely Fragile**</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>The **Onset Capture Effect** (where the first burst controls the localization of a long, jumbled signal) is far more fragile in noise than the traditional Precedence Effect, suggesting it relies on a different, weaker mechanism.</p>
+
+    <h2>3. Relevance to Your Protocol</h2>
+    <p>This paper provides strong empirical backing for your transient and masking evaluation:</p>
+    <ul>
+        <li>**Masking Robustness (Task 3):** The study provides **dB Sensation Level (SL) thresholds** for spatial processing in noise. Your protocol measures Masking Thresholds (Survival Contour) for onsets (Kick, Snare). This study's finding that **Onset Capture requires 33 dB SL** strongly suggests that the high-Crest Factor impulses in your protocol must be substantially louder than the noise floor to be perceived spatially, supporting the necessity of your $\Delta L$ measurements.</li>
+        <li>**Onset Significance:** It reinforces the theoretical importance of onsets/transients in Auditory Scene Analysis, even if their spatial robustness varies greatly. The **Onset Capture Effect**, while fragile, demonstrates that the very first portion of a signal can define the perception of the entire event.</li>
+    </ul>
+
+    <h2>4. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Precedence Effect</div>
+        <div class="jargon-def">
+            The psychoacoustic phenomenon where the first arriving sound (the "lead") determines the perceived direction and distance of a sound, effectively suppressing subsequent echoes or reflections.
+        </div>
+
+        <div class="jargon-term">Onset Capture Effect</div>
+        <div class="jargon-def">
+            A specific and fragile form of the precedence effect where an abrupt initial burst (onset) determines the spatial location of an extended, complex sound that follows.
+        </div>
+
+        <div class="jargon-term">Interaural Time Difference (ITD)</div>
+        <div class="jargon-def">
+            The difference in arrival time of a sound between the two ears, a primary cue for horizontal localization.
+        </div>
+
+        <div class="jargon-term">dB SL (Sensation Level)</div>
+        <div class="jargon-def">
+            The measure of a sound's intensity relative to an individual listener's hearing threshold. (e.g., 10 dB SL means 10 dB louder than the quietest sound the listener can hear).
+        </div>
+
+        <div class="jargon-term">Masking Level Difference (MLD)</div>
+        <div class="jargon-def">
+            The improvement (reduction in detection threshold) that occurs when a target signal and a masking noise have different interaural parameters (e.g., the signal is in stereo, the noise is in mono).
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stereo and Multichannel Loudness Perception and Metering</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #ff9800; /* Amber */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #ff9800;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #fff3e0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #ffc107;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Stereo and Multichannel Loudness Perception and Metering</h1>
+    <p style="text-align: center; font-style: italic;">Gilbert A. Soulodre and Michel C. Lavoie, Communications Research Centre</p>
+
+    <div class="abstract-box">
+        <h2>ABSTRACT</h2>
+        <p>Motivated by $\text{ITU-R}$ efforts to standardize broadcast loudness, this study extends previous research on monophonic loudness metering to the **stereo and multichannel cases**. Formal subjective tests using typical broadcast material were conducted to create a database for evaluation. Simple extensions of the $\text{weighted energy sum}$ meter, $L_{\text{eq}}(\text{RLB})$, were tested using either a **dummy head** or a **spherical model** to simulate human hearing in the summation process. The results show that the simplest approach—using a sphere microphone model combined with the $L_{\text{eq}}(\text{RLB})$ measure—provides the best performance, successfully working across mono, stereo, and multichannel formats.</p>
+    </div>
+
+    <h2>1. Introduction: The Need for Loudness Control</h2>
+    <p>Measuring and controlling the subjective loudness of audio signals is necessary in many applications, especially in television and radio broadcasting where the audio content frequently switches between music, speech, and sound effects. Variations in program material and dynamics processing can cause significant changes in perceived loudness, leading to listener fatigue.</p>
+    <p>The International Telecommunication Union ($\text{ITU-R}$) has been actively working to recommend a reliable loudness metering system for broadcast applications. The first phase of this effort, focused on monophonic signals, found that a simple loudness meter based on a **weighted $\text{RMS}$ measure**, $L_{\text{eq}}(\text{RLB})$, provided the best performance.</p>
+
+    <h2>2. Background: The $L_{\text{eq}}(\text{RLB})$ Meter</h2>
+    <p>The $\text{ITU-R}$ developed a subjective test method, based on loudness matching to a reference sequence, to evaluate the performance of potential loudness meters. In conjunction with these tests, the simple, energy-based $L_{\text{eq}}(\text{RLB})$ meter was found to provide the best performance for monophonic signals (correlation $r=0.982$).</p>
+    <div class="figure-placeholder">
+            </div>
+    <p>The success of this simple, energy-based measure suggests that for typical monophonic broadcast material, complex perceptual models are not necessary.</p>
+
+    <h3>2.1. Description of the $L_{\text{eq}}(\text{RLB})$ Meter</h3>
+    <p>The $L_{\text{eq}}(\text{RLB})$ loudness meter is designed to be computationally simple. It consists of two main blocks:</p>
+    <ol>
+        <li><strong>Frequency Weighting Filter ($W$):</strong> A high-pass filter using the Revised Low-frequency B-curve ($\text{RLB}$) to provide a perceptually relevant weighting of the spectral content.</li>
+        <li><strong>Energy Measurement:</strong> A block that sums the energy and computes the average over time, equivalent to an Equivalent Sound Level ($L_{\text{eq}}$) measure.</li>
+    </ol>
+    <div class="figure-placeholder">
+            </div>
+    <p>The formula for the Equivalent Sound Level with weighting $W$ is:</p>
+    <div class="formula-box">
+        $$L_{\text{eq}}(W) = 10 \log_{10} \left[ \frac{1}{T} \int_{0}^{T} \frac{x_{W}^2}{x_{\text{Ref}}^2} dt \right], \text{dB}$$
+        <p>Where $x_{W}$ is the signal at the output of the weighting filter, $x_{\text{Ref}}$ is the reference level, and $T$ is the audio sequence length.</p>
+    </div>
+    <div class="figure-placeholder">
+            </div>
+
+    <h2>3. Subjective Tests (Multichannel Loudness Database)</h2>
+    <p>To evaluate potential multichannel loudness measures, formal subjective tests were conducted to create a database of perceived loudness ratings for mono, stereo, and multichannel program material.</p>
+
+    <h3>3.1. Subjective Test Set-up</h3>
+    <ul>
+        <li><strong>Task:</strong> Loudness matching. Subjects adjusted the level of a test item until its perceived loudness matched that of a reference signal.</li>
+        <li><strong>Reference:</strong> English female speech with low-level background music, presented in stereo at a fixed level of $60\text{ dBA}$.</li>
+        <li><strong>Listening Environment:</strong> $\text{ITU-R BS.1116-compliant}$ room using five Tannoy 800A loudspeakers arranged in the $\text{ITU-R BS.775-1}$ configuration.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+    <p>The test software allowed listeners to instantly switch and adjust the level of test items in $0.25\text{ dB}$ steps. Subjects were instructed to match the loudness of the **overall signal**, not just the speech component.</p>
+
+    <h3>3.2. Test Sequences</h3>
+    <p>A total of $144$ audio sequences were used, comprising $48\text{ mono}$ (split into center-channel and left/right playback, called "dual mono"), $48\text{ stereo}$, and $48\text{ multichannel}$ items. Sequences were classified into categories like "Speech only," "Instrumental music," and "Sound effects." Special attention was paid to including a broad range of imaging styles and dynamics, making the task inherently more complex than the previous mono-only studies.</p>
+
+    <h2>4. Multichannel Loudness Meters: Extending $L_{\text{eq}}(\text{RLB})$</h2>
+    <p>The goal was to extend the monophonic $L_{\text{eq}}(\text{RLB})$ meter to work for $\text{ITU-R 5.1}$ multichannel signals, treating mono and stereo as special cases. The paper focused on the **second approach**: combining all multichannel signals into composite signals reflecting the signals at the listener's ears.</p>
+    <div class="figure-placeholder">
+            </div>
+    <p>The challenge was designing a **summation block** that accounts for the acoustical effects of the listener's head. Two physical devices were tested for this summation block:</p>
+    <ol>
+        <li><strong>Dummy Head (Neumann KU-81):</strong> Placed at the listener's position to sum the multichannel signals while accounting for complex head-related acoustics.</li>
+        <li><strong>Sphere Microphone (T.H.E. Audio BS3D):</strong> A simpler model whose acoustical effects are more readily modeled mathematically, making it more attractive for a practical meter.</li>
+    </ol>
+
+    <h3>4.1. Results</h3>
+    <p>The objective measurements from both the dummy head and the sphere microphone models were compared against the subjective loudness ratings.</p>
+    <ul>
+        <li><strong>$L_{\text{eq}}(\text{RLB})$ Performance:</strong> Both the dummy head model ($r=0.963$) and the sphere microphone model ($r=0.963$) showed **very good and virtually identical performance** in predicting subjective loudness across all $144$ test sequences.</li>
+        <li><strong>$L_{\text{eq}}$ (Unweighted $\text{RMS}$):</strong> A simple unweighted $L_{\text{eq}}$ meter performed worse ($r \approx 0.959$ for the dummy head, $r \approx 0.958$ for the sphere) than the weighted $L_{\text{eq}}(\text{RLB})$ meter. This confirms the necessity of the $\text{RLB}$ frequency weighting.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>Outlier Analysis</h3>
+    <p>The outliers (sequences where the meter was least accurate) tended to occur in the mono and multichannel formats, not the dual mono or stereo formats.</p>
+    <ul>
+        <li>The sequences with the **largest subjective variance** (lowest subject agreement) were also the worst outliers: a solo acoustic bass (mono) and a sword fight/rain and footsteps (multichannel).</li>
+        <li>Removing these three severe outliers raised the sphere microphone $L_{\text{eq}}(\text{RLB})$ correlation to $r=0.972$.</li>
+        <li>The meter performed **very well** at predicting the perceived loudness of sequences containing a **speech component** (the majority of broadcast content).</li>
+    </ul>
+
+    <h2>5. Summary and Conclusions</h2>
+    <p>The simplest approach—the $L_{\text{eq}}(\text{RLB})$ measure combined with a **sphere microphone summation block**—yielded the best practical performance ($r=0.963$). The spherical model is preferred because it can be modeled mathematically, making it suitable for a deployable multichannel loudness meter.</p>
+    <p>The results demonstrate that the proposed method works successfully across mono, dual mono, stereo, and multichannel signals, meeting the critical requirement for broadcast applications. The fact that the dummy head and sphere results were nearly identical suggests that any further improvement in metering must address **cognitive effects**, rather than simply acoustical modeling refinements.</p>
+
+</div>
+
+</body>
+</html>

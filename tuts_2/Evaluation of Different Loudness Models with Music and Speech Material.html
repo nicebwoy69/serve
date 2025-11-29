@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of Different Loudness Models with Music and Speech Material</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #0056b3;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e8f4f8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #3498db;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Evaluation of Different Loudness Models with Music and Speech Material</h1>
+    <p style="text-align: center; font-style: italic;">Esben Skovenborg and Søren H. Nielsen</p>
+
+    <div class="abstract-box">
+        <h2>ABSTRACT</h2>
+        <p>This study evaluates twelve objective models of loudness perception against subjective long-term loudness data derived from two independent listening experiments using music and speech material. The models include various implementations of standard algorithms ($\text{Zwicker}, L_{\text{eq}}$ variants) and two newly developed models ($\text{HEIMDAL}$ and $\text{LARM}$). The evaluation found that the new models ($\text{HEIMDAL}, \text{LARM}$) achieved superior accuracy. Surprisingly, traditional standardized measures like $L_{\text{eq}}(\text{A})$ and the classic $\text{Zwicker}$ model performed relatively poorly when assessed against real-world, fluctuating audio content.</p>
+    </div>
+
+    <h2>1. Introduction: The Need for Accurate Metering</h2>
+    <p>Listeners frequently experience undesirable 'jumps' in loudness between different broadcast channels or programme segments, often due to aggressive dynamics processing. An accurate loudness model is needed to measure and control the perceived loudness of music and speech segments, which are typically broadband and fluctuating signals, posing a challenge to traditional psychoacoustic models developed under strict laboratory conditions.</p>
+
+    <h2>2. Previous Loudness Models and Principles</h2>
+
+    <p>Loudness models are categorized as either **single-band** or **multi-band**. The evaluation included ten implementations of common algorithms and two new models ($\text{LARM}, \text{HEIMDAL}$).</p>
+
+    <h3>2.1 Core Loudness Perception Principles</h3>
+    <ul>
+        <li><strong>Intensity Perception (Stevens' Power Law):</strong> Loudness ($\text{S}$) relates non-linearly to intensity ($\text{I}$) by $S = KI^n$. For loudness, the exponent $n \approx 0.3$, representing auditory compression. Loudness is measured on a ratio scale ($\text{sone}$) or a level scale ($\text{phon}$).</li>
+        <li><strong>Spectral Aspects:</strong> **Spectral Loudness Summation** states loudness increases with bandwidth for constant total power. This is tied to the **critical bandwidth** concept ($\approx 1/3$ octave).</li>
+        <li><strong>Temporal Aspects:</strong> Loudness integrates over time; proportional to energy for bursts up to $\approx 100\text{ ms}$.</li>
+    </ul>
+
+    <h3>2.2 Single-Band Models: $L_{\text{eq}}$ and $\text{RMS}$ Measures</h3>
+    <p>These models use a frequency weighting (based on equal loudness contours) followed by an energy average. They cannot model spectral loudness summation, limiting their accuracy for broadband signals.</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Equivalent Continuous Sound Level ($L_{\text{eq}}$)</strong><br>
+        $L_{\text{eq}}$ is an energy-domain average over a time interval ($T$), representing the $\text{RMS}$ value converted to $\text{dB}$. When used as a loudness measure, it assumes the measurement period equals the segment duration.
+    </div>
+
+    <h4>$L_{\text{eq}}$ Variants Evaluated:</h4>
+    <p>Six standardized frequency weightings were applied to $L_{\text{eq}}$ measurements:</p>
+    <div class="figure-placeholder">
+            </div>
+    <ul>
+        <li>$L_{\text{eq}}(\text{Lin})$: Unweighted $\text{RMS}$.</li>
+        <li>$L_{\text{eq}}(\text{A}), L_{\text{eq}}(\text{B}), L_{\text{eq}}(\text{C}), L_{\text{eq}}(\text{D}), L_{\text{eq}}(\text{M})$: Standardized weightings (A-weighting is the most common).</li>
+        <li>$L_{\text{eq}}(\text{RLB})$: Revised Low-frequency B-weighting (a high-pass filter), previously shown to perform well.</li>
+    </ul>
+
+    <h4>PPM + Percentile Models</h4>
+    <p>This model uses a Peak Program Meter ($\text{PPM}$) envelope (fast attack, slow release) and replaces the engineer's assessment with a statistical function—a **percentile** of the $\text{dB}$ envelope distribution—to estimate long-term loudness. The $\text{PPM}(50\%)$ variant was selected as the best performing of the percentile options.</p>
+
+    <h3>2.4 Multi-Band Models: $\text{Zwicker}$ and New Models</h3>
+    <p>Multi-band models use frequency band filters (typically critical bandwidth/third-octave) to account for spectral summation. The $\text{Zwicker}$ model ($\text{ISO 532-B}$) is a classic example.</p>
+    <ul>
+        <li><strong>Zwicker&Fastl($95\%)$</strong>: An implementation using the $\text{Zwicker}$ model with temporal extensions (post-masking) where the long-term loudness is estimated as the $\text{95}^{\text{th}}$ percentile of the instantaneous $\text{sone}$ values.</li>
+        <li><strong>Zwicker-ISO</strong>: An implementation of $\text{ISO 532-B}$, where loudness is calculated after the signal's time dimension is collapsed (i.e., using third-octave $L_{\text{eq}}$ levels).</li>
+    </ul>
+
+    <h2>3. New Loudness Models ($\text{TC Electronic}$)</h2>
+    <p>The two new models were developed specifically for accurate, robust estimation of long-term loudness for music and speech segments.</p>
+    <ul>
+        <li><strong>LARM (Single-band):</strong> Combines a frequency-weighted $\text{RMS}$ measure with a pseudo-peak detector. It generalizes the $\text{RMS}$ calculation using a **power mean** ($M_p$), found to be optimal at $p \approx 1.5$.</li>
+        <li><strong>HEIMDAL (Multi-band):</strong> A novel algorithm using an **octave-band filterbank** (9 channels) as a compromise between complexity and spectral resolution. The model avoids the $\text{FFT}$ time/frequency trade-off and uses non-linear combination of multiple features extracted per frequency band.</li>
+    </ul>
+
+    <h2>4. Methodology: Subjective Reference Data</h2>
+    <p>Reliable subjective reference data were needed since no standard set existed for music and speech material. The data were derived from two independent listening experiments (McGill University and $\text{TC Electronic}$) using a **balanced pair-matching method** and $\text{General Linear Model}$ ($\text{GLM}$) analysis to calculate robust loudness estimates.</p>
+
+    <h3>4.1 Statistical Analysis</h3>
+    <p>The $\text{GLM}$ estimated two types of loudness levels for each sound segment, correcting for adjustment and $\text{A/B-order}$ biases:</p>
+    <ul>
+        <li><strong>Common Loudness:</strong> The single best estimate of loudness, based on adjustments from all subjects.</li>
+        <li><strong>Subjective Loudness:</strong> A distribution of loudness level estimates for each individual subject, characterizing the **between-listener disagreement** (or 'subjective spread').</li>
+    </ul>
+    <p>The final reference data set included a selection of $145\text{ segments}$ (McGill) and $48\text{ segments}$ ($\text{TC}$), encompassing rock, pop, classical, jazz, and speech material.</p>
+
+    <h2>5. Evaluation Measures and Statistics</h2>
+    <p>To evaluate model accuracy, a zero-order correction was first applied to all models to remove systematic calibration errors.</p>
+
+    <h3>5.1 Measures of Absolute Error (Target: Common Loudness)</h3>
+    <ul>
+        <li><strong>AAE (Average Absolute Error):</strong> Mean of the absolute error, measured in $\text{dB}$.</li>
+        <li><strong>RMSE (Root Mean Squared Error):</strong> Emphasizes larger errors, measured in $\text{dB}$.</li>
+        <li><strong>P95AE:</strong> The $95^{\text{th}}$ percentile of the absolute error, representing the model's worst-case prediction error.</li>
+        <li><strong>R (Pearson Correlation Coefficient):</strong> Measures the strength of the linear association between model prediction and common loudness.</li>
+    </ul>
+
+    <h3>5.2 Measure of Subjective Deviation (Target: Subjective Loudness)</h3>
+    <p>This metric quantifies the model's error relative to the variability of human perception (the subjective spread):</p>
+    <div class="formula-box">
+        $$\text{SubjDev}(i) = \frac{\text{ModelPrediction}(i) - \text{SegmentLevel}(i)}{\text{InterQuartileRange}(\text{SegmentLevels}(i))}$$
+        <p>This makes the evaluation more tolerant if a stimulus was inherently difficult for human subjects to assess (wider $\text{InterQuartileRange}$). $\text{SDmean}$ (average $\text{SubjDev}$) and $\text{SDprod}$ (a penalty-based product of $\text{SubjDev}$) are the summary scores.</p>
+    </div>
+
+    <p><strong>Bootstrap Resampling</strong> was used to compute the $95\%$ confidence intervals ($\text{CI}$) for all statistics, assessing the uncertainty caused by the limited selection of sound segments.</p>
+    <div class="figure-placeholder">
+            </div>
+
+    <h2>6. Comparative Study: Performance of the Loudness Models</h2>
+
+    <h3>Model Performance Grouping</h3>
+    <p>Based on the evaluation measures ($\text{SDmean}, \text{SDprod}, \text{AAE}, \text{RMSE}$), the twelve models were grouped into four performance classes. The rankings were robust across both the McGill and $\text{TC}$ reference data sets.</p>
+
+    <table>
+        <caption>Loudness Model Performance Classes</caption>
+        <thead>
+            <tr>
+                <th>Class</th>
+                <th>Models (Best-in-Class listed first)</th>
+                <th>Key Performance Metrics (McGill Data)</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Class 1 (Superior)</td>
+                <td>TC HEIMDAL, TC LARM</td>
+                <td>AAE: $0.58\text{ dB} (\text{HEIMDAL})$, RMSE: $0.75\text{ dB}$</td>
+                <td>Achieved superior accuracy with small worst-case error ($\text{P95AE} \approx 1.5\text{ dB}$).</td>
+            </tr>
+            <tr>
+                <td>Class 2 (Good $L_{\text{eq}}$)</td>
+                <td>$L_{\text{eq}}(\text{RLB}), L_{\text{eq}}(\text{C}), L_{\text{eq}}(\text{Lin})$</td>
+                <td>AAE: $0.86\text{ dB}$ to $0.98\text{ dB}$, RMSE: $1.08\text{ dB}$ to $1.33\text{ dB}$</td>
+                <td>Significantly better than Class 4. Showed the efficacy of $\text{RLB}$ and $\text{C}$ weighting over A/M/D.</td>
+            </tr>
+            <tr>
+                <td>Class 3 (Zwicker)</td>
+                <td>$L_{\text{eq}}(\text{B})$, $\text{PPM}(50\%)$, $\text{Zwicker-ISO}$, $\text{Zwicker&Fastl}(95\%)$</td>
+                <td>RMSE: $1.23\text{ dB}$ to $2.18\text{ dB}$</td>
+                <td>The complexity of the $\text{Zwicker}$ multi-band models did not provide better accuracy than the simplest $L_{\text{eq}}$ models.</td>
+            </tr>
+            <tr>
+                <td>Class 4 (Poor)</td>
+                <td>$L_{\text{eq}}(\text{D}), L_{\text{eq}}(\text{A}), L_{\text{eq}}(\text{M})$</td>
+                <td>RMSE: $2.16\text{ dB}$ to $3.36\text{ dB}$</td>
+                <td>Made large prediction errors, often greater than $4.1\text{ dB}$ (P95AE). The worst performer was $L_{\text{eq}}(\text{M})$.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Key Conclusions</h3>
+    <ul>
+        <li><strong>Superiority of New Models:</strong> The two new models ($\text{HEIMDAL}, \text{LARM}$) achieved superior accuracy, with the $\text{HEIMDAL}$ model performing better than any other evaluated model.</li>
+        <li><strong>Importance of Weighting:</strong> Specific frequency weighting is crucial. The unweighted $L_{\text{eq}}(\text{Lin})$ performed better than four of the six standardized weightings.</li>
+        <li><strong>Failure of Standard Measures:</strong> The classical **Zwicker model** and the widespread **$L_{\text{eq}}(\text{A})$** (A-weighted $\text{RMS}$) performed poorly (Class 3 and 4), suggesting they are not accurate measures of relative loudness for fluctuating music and speech segments.</li>
+        <li><strong>Statistical Certainty:</strong> The Class 1 models were found to be statistically more accurate than the Class 3 and 4 models, confirming the differences were significant and not caused by the specific data sample.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

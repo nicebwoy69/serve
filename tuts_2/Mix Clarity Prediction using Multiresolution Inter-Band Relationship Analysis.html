@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix Clarity Prediction using Multiresolution Inter-Band Relationship Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #2196f3; /* Blue */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #2196f3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #42a5f5;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Mix Clarity Prediction using Multiresolution Inter-Band Relationship Analysis</h1>
+    <p style="text-align: center; font-style: italic;">Andrew Parker and Steven Fenton, University of Huddersfield</p>
+
+    <div class="abstract-box">
+        <h2>ABSTRACT</h2>
+        <p>This paper introduces a **multiresolution approach** to the **Inter-Band Relationship ($\text{IBR}$) measure** to enhance its effectiveness in objectively predicting mix clarity. The $\text{IBR}$ measures the correlation of dynamic range across different frequency bands. Two controlled listening tests were performed to gather subjective mix clarity scores, which guided a grid search to tune the optimal integration window sizes for the multiresolution $\text{IBR}$. The results confirm that the multiresolution $\text{IBR}$ outperforms the original fixed-window measure, achieving strong Spearman correlation coefficients ($\rho$) up to $\mathbf{0.7882}$ with subjective clarity scores.</p>
+    </div>
+
+    <h2>1. Introduction and Defining Mix Clarity</h2>
+    <p>Music production engineers aim to optimize perceptual criteria like 'clarity' and 'punch'. Objective measurements of these attributes are vital for developing monitoring tools and applications in Music Information Retrieval ($\text{MIR}$).</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Mix Clarity</strong><br>
+        Mix clarity is generally related to the ease with which the different timbres (instruments) in a piece of music can be separated and identified. It is linked to the phenomenon of auditory masking; maximizing clarity often means minimizing masking between competing sound sources.
+    </div>
+
+    <p>The **Inter-Band Relationship ($\text{IBR}$) Analysis** system, proposed in previous work, measures multi-band dynamic range. A key hypothesis is that a lack of dynamic range uniformity across the frequency spectrum (e.g., due to excessive compression or over-layering) reduces the dynamic contrast of note onsets, leading to a loss of clarity.</p>
+
+    <h2>2. Listening Tests (Subjective Reference Data)</h2>
+    <p>Two controlled listening tests were conducted to gather the necessary subjective clarity scores to tune and evaluate the objective $\text{IBR}$ measure. Participants listened passively via Sennheiser HD650 headphones at $76\text{ dB(A)}$. After post-screening for consistency ($\text{ICC} \ge 0.75$), $15$ listeners remained for analysis in both tests.</p>
+
+    <h3>2.1 Listening Test 1: Variation in Mix Quality</h3>
+    <ul>
+        <li><strong>Stimuli:</strong> $10$ different mixes of the same rock song ("Blood to Bone"), selected across various quality categories from a mixing competition.</li>
+        <li><strong>Procedure:</strong> Modified $\text{MUSHA}$ test with an anchor (a band-restricted version of a mix). Listeners rated the **relative level** of mix clarity on a $0\text{-}100$ scale.</li>
+        <li><strong>Goal:</strong> To compare the objective measure against clarity scores resulting from varying levels of mix quality, where instrumentation and arrangement are identical.</li>
+    </ul>
+
+    <h3>2.2 Listening Test 2: Variation Across Musical Styles</h3>
+    <ul>
+        <li><strong>Stimuli:</strong> $16$ excerpts from the $\text{Free Music Archive}$ ($\text{FMA}$) representing a variety of different musical styles and parent genres (e.g., Hip-Hop, Rock, Electronic).</li>
+        <li><strong>Procedure:</strong> Absolute rating of perceived mix clarity on a $0\text{-}100$ scale.</li>
+        <li><strong>Goal:</strong> To assess the $\text{IBR}$'s performance on the absolute impression of mix clarity across highly diverse acoustic material.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+    <div class="figure-placeholder">
+            </div>
+
+    <h2>3. The Multiresolution Inter-Band Relationship ($\text{IBR}$) Metric</h2>
+
+    <p>The $\text{IBR}$ measure calculates the **correlation of the Crest Factor ($\text{CF}$) envelope** across three broad frequency bands ($\text{low}, \text{middle}, \text{high}$).</p>
+
+    <h3>A. System Architecture</h3>
+    <p>The method employs three analysis bands, corresponding to groups of $\text{8 Bark-scale}$ critical bandwidths (Table 2). The Crest Factor ($\text{CF}$), expressed in $\text{dB}$ ($\text{peak}$ minus $\text{RMS}$), is used as the indicator of dynamic range within each band, measured from overlapping frames over time.</p>
+    
+    <div class="table-container">
+        <table>
+            <caption>Table 2: Cutoff Frequencies of IBR Filters</caption>
+            <thead>
+                <tr>
+                    <th>Filter Type</th>
+                    <th>Low Cutoff (Hz)</th>
+                    <th>High Cutoff (Hz)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Lowpass (Low)</td><td></td><td>$947$</td></tr>
+                <tr><td>Bandpass (Middle)</td><td>$947$</td><td>$3186$</td></tr>
+                <tr><td>Highpass (High)</td><td>$3186$</td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>B. Multiresolution Extension and Formula</h3>
+    <p>The key extension is the **multiresolution approach**, allowing different sized integration windows to be used in each band, replacing the original fixed $400\text{ ms}$ window. The windows across bands are aligned by time-delaying them to ensure the center of each integration window corresponds to the same point in time.</p>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <p>The frame-wise $\text{IBR}$ is calculated as the standard deviation of the $\text{CF}$ values across the bands:</p>
+    <div class="formula-box">
+        $$\text{IBR} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(\text{Cf}_{i} - \overline{\text{Cf}})^{2}}$$
+        <p>Where $\text{Cf}_{i}$ is the $\text{CF}$ value in band $i$, $\overline{\text{Cf}}$ is the mean $\text{CF}$ across all $n$ bands, and $n=3$ (low, mid, high). A **high $\text{IBR}$ score** indicates **low correlation** (i.e., high dynamic contrast) between bands, which is hypothesized to equate to **high clarity**.</p>
+    </div>
+
+    <h3>C. Final Metric ($\text{IBR\_diff}$)</h3>
+    <p>The final summary metric, **$\text{IBR\_diff}$**, is calculated as the difference between the upper ($\text{90}^{\text{th}}$ percentile) and lower ($\text{10}^{\text{th}}$ percentile) values of the frame-wise $\text{IBR}$ envelope. This measures the range of the $\text{IBR}$ score over time.</p>
+
+    <h2>4. Objective Evaluation and Parameter Grid Search</h2>
+
+    <h3>A. Parameter Grid Search Procedure</h3>
+    <p>Two grid searches were performed to find the combination of integration window sizes (ranging from $5\text{ ms}$ to $550\text{ ms}$) in the $\text{low}, \text{mid},$ and $\text{high}$ bands that correlated maximally with the subjective clarity scores.</p>
+    <p>The performance was measured using **Spearman's rank correlation coefficient ($\rho$)**, which is robust to outliers and does not assume a linear relationship.</p>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>B. Grid Search Results and Optimal Parameters</h3>
+    <p>The maxima and centroids of the highly correlated ($\rho \ge 0.7$) groups in the grid search spaces indicated the optimal multiresolution window settings, which performed better than the original $400\text{ ms}$ fixed windows.</p>
+    
+    <div class="table-container">
+        <table>
+            <caption>Table 3: Multiresolution IBR Optimal Window Sizes and Correlations</caption>
+            <thead>
+                <tr>
+                    <th>Tuning Method</th>
+                    <th>Low-Band Window Size (ms)</th>
+                    <th>Mid-Band Window Size (ms)</th>
+                    <th>High-Band Window Size (ms)</th>
+                    <th>Correlation ($\rho$) to Test 1</th>
+                    <th>Correlation ($\rho$) to Test 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Original IBR (Fixed)</td>
+                    <td>400</td>
+                    <td>400</td>
+                    <td>400</td>
+                    <td>$0.6970$</td>
+                    <td>$0.6088$</td>
+                </tr>
+                <tr>
+                    <td>Multiresolution (Maximum) - Tuned to Test 1</td>
+                    <td>350</td>
+                    <td>350</td>
+                    <td>400</td>
+                    <td>$\mathbf{0.7697}$</td>
+                    <td>$0.6206$</td>
+                </tr>
+                <tr>
+                    <td>Multiresolution (Maximum) - Tuned to Test 2</td>
+                    <td>50</td>
+                    <td>550</td>
+                    <td>150</td>
+                    <td>$0.4424$</td>
+                    <td>$\mathbf{0.7882}$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>The **Maximum Multiresolution $\text{IBR}$** settings yielded the best overall performance, with a correlation of $\mathbf{\rho = 0.7882}$ when specifically tuned to the diverse Test 2 data.</p>
+
+    <h2>5. Conclusions</h2>
+    <p>The multiresolution $\text{IBR}$ measure significantly **outperforms the original fixed-window $\text{IBR}$** as a single predictor of perceived mix clarity for both comparative mix quality and absolute clarity impressions across styles.</p>
+    <p>The tuning procedure successfully identified window settings that maximize the correlation with subjective scores, suggesting that the human auditory system uses different temporal integration windows across the frequency spectrum when assessing mix clarity.</p>
+    <p>The strong correlation between $\text{IBR}$ (dynamic contrast) and clarity re-affirms the suggested link between dynamic range and mix clarity. However, the study notes that factors like **low-frequency transient power** and **brightness contrast** may also influence judgments, suggesting that a successful future clarity model should adopt a **multi-feature approach** that incorporates the multiresolution $\text{IBR}$ as a primary component.</p>
+
+</div>
+
+</body>
+</html>

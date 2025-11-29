@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Real-Time Binaural Loudness Meters</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Real-Time Excitation Based Binaural Loudness Meters</h1>
+    <p class="meta-info"><strong>Paper:</strong> REAL-TIME EXCITATION BASED BINAURAL LOUDNESS METERS<br>
+    <strong>Authors:</strong> Ward, Enderby, Athwal, & Reiss (2015)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Problem</h3>
+        <p>Multiband loudness models (like GM02 and CH12) are accurate but computationally slow, preventing their use in real-time applications (like mixing software). The goal was to optimize these complex models to run efficiently while incorporating modern loudness theory (like binaural processing).</p>
+    </div>
+
+    <h2>1. Methodology and Implementation</h2>
+    
+    <h3>A. Models and Theory</h3>
+    <ul>
+        <li><strong>Models:</strong> Glasberg and Moore (GM02/ISO 532-3 predecessor) and Chen and Hu (CH12).</li>
+        <li><strong>Extension:</strong> Both models were modified to include **Binaural Inhibition** (Moore & Glasberg, 2007) to accurately predict stereo/binaural loudness.</li>
+    </ul>
+    
+    <h3>B. The Bottleneck and Optimization</h3>
+    <p>The models were profiled to identify the computational choke point:</p>
+    <ul>
+        <li><strong>Bottleneck:</strong> The **Excitation Transformation Stage** (converting spectral data into a specific loudness pattern) consumed up to 87% of the CPU time. </li>
+        <li><strong>Optimization:</strong> The execution time was drastically reduced by treating three parameters as variables that control the "speed-accuracy trade-off":
+            <ol>
+                <li><strong>Hop Size (R):</strong> The time interval between analysis frames.</li>
+                <li><strong>Spectral Compression ($\alpha$):</strong> Grouping frequency components into fewer composite bins.</li>
+                <li><strong>Filter Spacing ($\beta$):</strong> Increasing the spacing between auditory filters.</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h2>2. Key Findings and Performance</h2>
+
+    <h3>A. Efficiency and Accuracy</h3>
+    <ul>
+        <li><strong>Computational Savings:</strong> By combining spectral compression and filter spacing optimization, the total complexity of the bottleneck stage was reduced by approximately **99%**.</li>
+        <li><strong>Speedup:</strong> This optimization, combined with a $2$ ms hop size, achieved **real-time performance** for continuous music and speech, with the GM02 being the fastest.</li>
+    </ul>
+
+    <h3>B. Error Analysis (The Trade-Off)</h3>
+    <p>The approximations introduced errors (nRMSE), which were quantified by measuring the **Global Loudness Descriptor Error** (the decibel level change, $\Delta L$, required for equal loudness between the fast and slow model predictions). </p>
+    <ul>
+        <li><strong>Maximum Error:</strong> The largest deviation introduced by the optimized parameters was only **0.15 dB** (for the short-term loudness of the GM02).</li>
+        <li><strong>Perceptual Implication:</strong> Since the error is far below the **Just Noticeable Difference (JND)** for typical program material (~1.24 dB), the loss of accuracy is negligible, allowing the fast model to be used confidently in practical audio engineering applications.</li>
+    </ul>
+
+    <h3>C. Model Differences</h3>
+    <p>The CH12 model was found to be more sensitive to changes in filter spacing and compression, often producing specific loudness patterns with larger peak-to-valley ratios (spikier curves) than the GM02 model.</p>
+
+    <h2>3. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Excitation Transformation Stage</div>
+        <div class="jargon-def">
+            The most computationally expensive part of the loudness model, where the raw sound spectrum is converted into a compressed, frequency-mapped signal on the perceptual (Cam) scale.
+        </div>
+
+        <div class="jargon-term">Hop Size (R)</div>
+        <div class="jargon-def">
+            The time interval (in milliseconds) between successive measurements. Increasing the hop size speeds up the model but loses temporal accuracy.
+        </div>
+
+        <div class="jargon-term">Spectral Compression ($\alpha$)</div>
+        <div class="jargon-def">
+            An optimization technique where many close-together frequency components are grouped into a smaller number of "composite bins" to speed up calculations.
+        </div>
+
+        <div class="jargon-term">nRMSE / Global Loudness Descriptor Error ($\Delta L$)</div>
+        <div class="jargon-def">
+            Metrics used to quantify error. The **Global Loudness Descriptor Error** is the practical measure, indicating how many decibels the faster model is wrong by compared to the reference model.
+        </div>
+
+        <div class="jargon-term">GM02 and CH12</div>
+        <div class="jargon-def">
+            Two dynamic auditory loudness models: GM02 (Glasberg and Moore, 2002) and CH12 (Chen and Hu, 2012). Both are refinements of the older Zwicker model.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

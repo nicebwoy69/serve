@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectral Loudness Summation Takes Place in the Primary Auditory Cortex</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #4a148c; /* Deep Purple */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #4a148c;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.6em;
+            color: #34495e;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #f3e5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #8e24aa;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Spectral Loudness Summation Takes Place in the Primary Auditory Cortex</h1>
+    <p style="text-align: center; font-style: italic;">Markus Röhl, Birger Kollmeier, and Stefan Uppenkamp</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>This study used auditory functional magnetic resonance imaging ($\text{fMRI}$) and Categorical Loudness Scaling ($\text{CLS}$) to assess neural activation in the Auditory Brainstem ($\text{AB}$) and Primary Auditory Cortex ($\text{PAC}$) as a function of stimulus bandwidth ($\text{BW}$) at a fixed level ($\text{70 dB SPL}$). Perceived loudness followed a concave-shaped curve influenced by <strong>Spectral Loudness Summation ($\text{SLS}$)</strong> at high $\text{BW}$ and **peak-listening** at low $\text{BW}$. While $\text{AB}$ activation was tuned solely to the <strong>physical bandwidth</strong> in a linear fashion, $\text{PAC}$ activation reflected the <strong>nonlinear trend of perceived loudness</strong>. The difference in Percent Signal Change ($\text{PSC}$) between $\text{PAC}$ and $\text{AB}$ was able to predict loudness gains associated with $\text{SLS}$ and peak-listening with high accuracy, suggesting that the integration required to form a unified loudness percept is completed in the $\text{PAC}$.</p>
+    </div>
+
+    <h2>Introduction: Where is Loudness Integrated?</h2>
+
+    <p>Loudness is influenced not just by sound pressure level ($\text{SPL}$), but also by factors like bandwidth and duration. <strong>Spectral Loudness Summation ($\text{SLS}$)</strong> is the phenomenon where perceived loudness increases with increasing bandwidth, even if the total $\text{SPL}$ remains constant.</p>
+
+    <div class="jargon-box">
+        <strong>Jargon Explained: Spectral Loudness Summation (SLS)</strong><br>
+        This refers to the perceptual gain in loudness that occurs when sound energy is spread across multiple auditory channels or "critical bands" rather than being concentrated within one narrow band. The overall loudness is assumed to be an integral of the partial loudness across these channels.
+    </div>
+
+    <p>Since the tonotopic (frequency) organization of the auditory nerve is maintained up to the primary auditory cortex, the question arises: at what stage in the auditory pathway does the final summation of loudness across independent channels take place? This study hypothesizes that the integration of auditory channels to form a unified loudness percept is not completed before the **Primary Auditory Cortex ($\text{PAC}$)**.</p>
+
+    <h2>Methodology and Test Protocol</h2>
+
+    <h3>Participants and Stimuli</h3>
+    <ul>
+        <li><strong>Participants:</strong> $22$ normal-hearing listeners.</li>
+        <li><strong>Stimuli:</strong> Band-pass filtered uncorrelated continuous pink noise with a center frequency of $4,000\text{ Hz}$. The total sound pressure level was fixed at **$70\text{ dB SPL}$** for all fMRI scans.</li>
+        <li><strong>Tested Bandwidths ($\text{BW}$):</strong> $50\text{ Hz}$, $500\text{ Hz}$, $1,500\text{ Hz}$, $3,000\text{ Hz}$, $6,000\text{ Hz}$, and $8,000\text{ Hz}$.</li>
+    </ul>
+
+    <h3>Psychoacoustic Measurement (CLS)</h3>
+    <p>Prior to $\text{fMRI}$, **Categorical Loudness Scaling ($\text{CLS}$)** was performed in a silent booth for all stimuli across a range of levels. This standardized method uses an $11\text{-category}$ scale (transformed into $0\text{ to } 50\text{ categorical units, cu}$) to register subjective loudness perception. This provided the perceptual benchmark against which neural activity was compared.</p>
+
+    <h3>fMRI Data Acquisition</h3>
+    <ul>
+        <li><strong>Scanner:</strong> SIEMENS Sonata $1.5\text{T}$.</li>
+        <li><strong>Technique:</strong> Functional $\text{MRI}$ using a **sparse imaging paradigm** ($\text{TR}=7.7\text{ s}$). This technique acquires images *after* the stimulus presentation ($5\text{ s}$ stimulus interval), avoiding masking by scanner noise.</li>
+        <li><strong>Task:</strong> Participants performed a simple detection task to ensure they were attending to the acoustic stimuli.</li>
+        <li><strong>Regions of Interest ($\text{ROI}$):</strong> Activation was analyzed in the **Auditory Brainstem ($\text{AB}$)** (mostly Inferior Colliculi) and the **Primary Auditory Cortex ($\text{PAC}$)**.</li>
+    </ul>
+
+    <h2>Psychoacoustic Results: The Concave Loudness Curve</h2>
+
+    <p>At the fixed fMRI level of $70\text{ dB SPL}$, the mean loudness ratings across participants followed a **concave-shaped curve** as a function of bandwidth, with the minimum loudness occurring at approximately $1,500\text{ Hz}$ $\text{BW}$ ($\text{22.6 cu}$).</p>
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>Two Key Phenomena Explained:</h3>
+    <ol>
+        <li><strong>Spectral Loudness Summation (SLS):</strong> For $\text{BW}$ greater than $1,500\text{ Hz}$, loudness increased linearly. This reflects $\text{SLS}$ taking effect once the bandwidth exceeds the critical band ($456\text{ Hz}$ at $4\text{ kHz}$). $\text{SLS}$ was **most pronounced at medium $\text{SPLs}$** ($\approx 65\text{ dB SPL}$).</li>
+        <li><strong>Peak-Listening (Low BW):</strong> For $\text{BW}$ below $1,500\text{ Hz}$ (specifically $50\text{ Hz}$), perceived loudness **increased significantly**. This is explained by the <strong>peak-listening</strong> hypothesis: for very narrow-band stimuli with large random amplitude fluctuations, perceived loudness is determined by the maximum sound pressure level (peak value) rather than the mean $\text{SPL}$.</li>
+    </ol>
+
+    <h2>fMRI Results: Distinguishing Brainstem and Cortex</h2>
+
+    <p>The core finding lies in the differential response patterns of the subcortical and cortical auditory structures, measured as the Percent Signal Change ($\text{PSC}$) from baseline:</p>
+
+    <h3>1. Auditory Brainstem (AB) Response (Physical BW)</h3>
+    <p>Neural activation in the $\text{AB}$ followed a predictable, monotonous relationship based on the physical parameter of the sound, regardless of the perceptual experience:</p>
+    <ul>
+        <li>The $\text{AB}$ response ($\text{PSC}$) was primarily **linear** and **monotonously increasing** with physical bandwidth.</li>
+        <li>The linear systems analysis showed the $\text{AB}$ to be the region with the **most statistically satisfying linear response** and exhibited **no significant nonlinear response** at all.</li>
+        <li>This suggests the $\text{AB}$ acts as a physiological relay, faithfully coding the increasing total energy (bandwidth) received from the periphery in a simple, linear manner.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>2. Primary Auditory Cortex (PAC) Response (Perceived Loudness)</h3>
+    <p>In contrast to the $\text{AB}$, the $\text{PAC}$ response mirrored the complex perceptual experience:</p>
+    <ul>
+        <li>The $\text{PAC}$ response comprised a **significant nonlinear (quadratic, U-shaped) component**, reflecting the concave shape of the perceived loudness curve.</li>
+        <li>The ratio of the nonlinear to linear growth coefficients ($Q_{\text{NL/L}}$) in the $\text{PAC}$ ($\approx 0.33$) was statistically close to the ratio found in the psychoacoustic loudness data ($\approx 0.28$).</li>
+        <li>$\text{PSC}$ increased significantly stronger with $\text{BW}$ in the $\text{PAC}$ compared to the $\text{AB}$, specifically reflecting the gain due to $\text{SLS}$.</li>
+    </ul>
+
+    <h3>3. Predicting Loudness Gain from Neural Difference</h3>
+    <p>The most compelling piece of evidence came from a simple subtraction procedure: the total $\text{PSC}$ detected in the $\text{AB}$ was subtracted from the total $\text{PSC}$ detected in the $\text{PAC}$. This difference, representing the additional processing gained at the cortical level, was used to predict the loudness gains (relative to the minimum loudness at $1,500\text{ Hz}$ $\text{BW}$) measured by $\text{CLS}$.</p>
+    <ul>
+        <li>The predicted loudness gain (in $\text{cu}$) from the $\text{PAC}$ minus $\text{AB}$ difference showed a **significant correlation** ($r=0.92$) with the measured $\text{CLS}$ gain.</li>
+        <li>The mean difference between the $\text{fMRI}$ prediction and the psychoacoustic measurement was very small ($0.7\pm 2.4\text{ cu}$), corresponding to an accuracy of just $1\text{-}2\text{ dB}$.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+
+    <h2>Conclusion</h2>
+    <p>The study provides **strong neuroimaging evidence** that <strong>Spectral Loudness Summation ($\text{SLS}$) is a central auditory process that takes place in the Primary Auditory Cortex ($\text{PAC}$)</strong>, and is not complete at the level of the Auditory Brainstem ($\text{AB}$).</p>
+    <p>The $\text{AB}$ simply codes the physical input ($\text{BW}$) linearly, while the $\text{PAC}$ processes this input and adds a nonlinear component that reflects the actual perceived loudness, incorporating both $\text{SLS}$ and the $\text{peak-listening}$ effect.</p>
+
+</div>
+
+</body>
+</html>

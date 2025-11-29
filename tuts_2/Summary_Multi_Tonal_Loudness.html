@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Modeling Perceived Tonal Loudness</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Modeling Perceived Tonal Loudness</h1>
+    <p class="meta-info"><strong>Paper:</strong> Modeling the perceived tonal loudness of multiple tonal components<br>
+    <strong>Authors:</strong> Lobato & Sottek (2023)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>How does the loudness of complex tones (multiple harmonics or partials) change when a single component is altered? This study tests the accuracy of the Sottek Hearing Model's Tonal Loudness component against empirical data from listening tests involving multi-tone signals.</p>
+    </div>
+
+    <h2>1. Methodology and Test Protocol</h2>
+    
+    <h3>A. Models and Structure</h3>
+    <p>The core model under investigation is the **Sottek Hearing Model (SHM)**, standardized in ECMA 418-2, which separates sound into tonal and noise components. The calculation steps involve filtering, auditory bank analysis, and specific weighing of the separated components. </p>
+    
+    <h3>B. Listening Test Design</h3>
+    <ul>
+        <li><strong>Subjects:</strong> 16 participants with self-reported normal hearing.</li>
+        <li><strong>Task:</strong> Loudness Matching (Method of Adjustment). Subjects adjusted a slider to make a modified complex tone sound equally loud as the original reference tone.</li>
+        <li><strong>Stimuli:</strong> Harmonic complex tones with fundamental frequencies (f0) of 700 Hz and 1000 Hz. The number of harmonics was varied (2 or 4).</li>
+        <li><strong>Key Manipulation:</strong> The amplitude of only **one harmonic** was changed (e.g., multiplied by a factor of 3x or 9x, corresponding to a level increase of 9.5 dB or 19 dB).</li>
+    </ul>
+
+    <h3>C. Statistical Methods</h3>
+    <ul>
+        <li><strong>Analysis:</strong> Measured the **Level Difference at Equally Perceived Loudness** (dB).</li>
+        <li><strong>Bayesian Framework:</strong> Applied **Bayes' rule** to the results to increase robustness, calculating the probability of the *parameters given the experimental data* ($P(\mu,\sigma|E)$), which is more reliable for small sample sizes than traditional statistics.</li>
+        <li><strong>Metric:</strong> Calculated the **Mean Absolute Error (MAE)** to compare the error of the three models.</li>
+    </ul>
+
+    <h2>2. Key Findings and Model Comparison</h2>
+
+    <p>The study compared the Sottek Hearing Model's tonal loudness calculation (Tonal Loudness) against the overall loudness prediction of the older ISO 532-1 and ISO 532-3 standards. </p>
+    
+    <h3>A. Model Agreement on Tonal Loudness</h3>
+    <p>For the core tests (multi-tone signals with altered amplitude), the predictions of all three models fell largely within the 95% credible interval of the listening experiment. This suggests that all three models can generally handle the spectral summation effects of multi-tone complexes well.</p>
+
+    <h3>B. Superior Accuracy of SHM</h3>
+    <p>When evaluated using the Mean Absolute Error (MAE), the models ranked as follows (lower error is better):</p>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Mean Absolute Error [dB]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Sottek Hearing Model</strong></td>
+                    <td><strong>0.60 dB</strong></td>
+                </tr>
+                <tr>
+                    <td>ISO 532-3</td>
+                    <td>0.69 dB</td>
+                </tr>
+                <tr>
+                    <td>ISO 532-1</td>
+                    <td>0.77 dB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>The Sottek Hearing Model (ECMA 418-2) showed the lowest error, making it the most accurate predictor for these multi-tone signals.</p>
+
+    <h3>C. Tonality Metric Shortcoming</h3>
+    <p>The paper noted that while **SHM Tonal Loudness** is excellent, the older **SHM Tonality** *metric* (which estimates the prominence of a tone, not its loudness) fails for signals with multiple prominent components because it was designed only for a single dominant tone.</p>
+    
+    <h3>D. Conclusion</h3>
+    <p>The Tonal Loudness component of the Sottek Hearing Model accurately predicts the perceived loudness of complex multi-tone signals and is slightly superior to the current ISO standards. This confirms the model's strength in handling signals with complex spectral content.</p>
+
+    <h2>3. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Tonal Loudness</div>
+        <div class="jargon-def">
+            The perceived loudness contributed specifically by the pure tone components (harmonics, partials) of a sound, separate from the surrounding noise.
+        </div>
+
+        <div class="jargon-term">Harmonic Complex Tone</div>
+        <div class="jargon-def">
+            A sound composed of a fundamental frequency (f0) and integer multiples (harmonics) of that frequency.
+        </div>
+
+        <div class="jargon-term">Bayesian Framework / Prior</div>
+        <div class="jargon-def">
+            A statistical approach used to analyze the listening data. A "prior" is initial knowledge (e.g., that loudness is usually based on signal energy) that helps make the experimental results more robust, especially with smaller groups of participants.
+        </div>
+
+        <div class="jargon-term">Mean Absolute Error (MAE)</div>
+        <div class="jargon-def">
+            A statistical metric used to compare model accuracy. It measures the average magnitude of the difference (error) between the model's prediction and the real human judgment. A lower MAE means higher accuracy.
+        </div>
+
+        <div class="jargon-term">95% Credible Interval</div>
+        <div class="jargon-def">
+            The range around the experimental mean where the true average result is expected to fall 95% of the time, according to Bayesian statistics.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Loudness Models & Neural Correlates</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary</h1>
+    <p class="meta-info"><strong>Dissertation:</strong> Loudness models examined in the light of findings from loudness judgements and neural loudness correlates<br>
+    <strong>Author:</strong> Florian Schmidt (2019)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>Why do complex psychoacoustic models fail to predict the loudness of music accurately, often performing worse than simple level meters? This dissertation aims to benchmark these models against human listeners and identify specific "correction" factors (like sharpness and temporal smoothing) to fix them.</p>
+    </div>
+
+    <h2>Part 1: Benchmarking Loudness Models (Psychoacoustics)</h2>
+    
+    <h3>Methodology & Test Protocol</h3>
+    <ul>
+        <li><strong>Stimuli:</strong> 14 music excerpts (10 seconds each) covering diverse genres (Classical, Jazz, Rock, Hip Hop, Pop). Levels ranged from 70–85 dB SPL.</li>
+        <li><strong>Subjects:</strong> 29 normal-hearing listeners.</li>
+        <li><strong>Protocol:</strong> A <strong>Paired Comparison Task</strong>. Subjects heard two music clips in sequence (separated by 500ms silence) and had to choose: "Which of the two signals was louder?" (2-Alternative Forced Choice).</li>
+        <li><strong>Models Tested:</strong> 
+            <ul>
+                <li><em>Level Measures:</em> dB SPL, dB(A), dB(B), EBU R-128.</li>
+                <li><em>Loudness Models:</em> Zwicker (DIN 45631/A1), Time-Varying Loudness (TVL/ISO 532-3), Dynamic Loudness Model (DLM).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Statistical Methods</h3>
+    <ul>
+        <li><strong>Bradley-Terry-Luce (BTL) Model:</strong> Used to transform the subjects' simple "A is louder than B" choices (ordinal data) into a continuous interval scale (ratio data). This created a "Ground Truth" loudness scale.</li>
+        <li><strong>Leave-One-Out Cross-Validation:</strong> Used to test how well the models predicted the BTL scale. This method prevents overfitting by training the regression on **N-1** samples and testing on the remaining one.</li>
+        <li><strong>Multiple Linear Regression:</strong> Used to test if adding extra variables (like Sharpness) improved the model's fit.</li>
+    </ul>
+
+    <h3>Key Findings</h3>
+    <p><strong>1. Simple Levels Win:</strong> Standard frequency-weighted levels (dB(A), dB(B), EBU R-128) outperformed the sophisticated loudness models (TVL, Zwicker) in predicting music loudness.</p>
+    <p><strong>2. The "Correction Vector":</strong> The loudness models failed because they reacted too strongly to short-term fluctuations and ignored spectral balance. They were significantly improved by:</p>
+    <ul>
+        <li><strong>Low-Pass Filtering:</strong> Smoothing the instantaneous loudness with a ~4 Hz cutoff (simulating a "Short-Term" memory window).</li>
+        <li><strong>Adding Sharpness:</strong> Including a metric for spectral sharpness (high-frequency content) drastically improved accuracy (R² increased to ~0.95).</li>
+    </ul>
+    <p><strong>3. Categorical Units (CU):</strong> The study found that a linear relationship existed between the human judgments (BTL scale) and "Categorical Units" (soft/loud/very loud), whereas the traditional "Sone" scale showed non-linear deviations. This suggests humans categorize music loudness rather than scaling it mathematically.</p>
+
+    <h2>Part 2: Neural Correlates (EEG Studies)</h2>
+
+    <h3>Methodology & Test Protocol</h3>
+    <ul>
+        <li><strong>Stimuli:</strong> A 20-second excerpt of Tchaikovsky's Piano Concerto No. 1, presented at 6 different levels (40–90 dB SPL).</li>
+        <li><strong>Protocol (Passive):</strong> Subjects watched a silent movie while the music played. EEG was recorded to measure the <strong>Envelope Following Response (EFR)</strong>.</li>
+        <li><strong>Protocol (Active Recalibration):</strong> A "Loudness Recalibration" task. A loud "Context Tone" (80 dB) was followed by a "Target Tone" (60 dB). Subjects matched the loudness of the Target. This tested if the brain adapts to context.</li>
+    </ul>
+
+    <h3>Key Findings</h3>
+    <p><strong>1. Neural Tracking:</strong> The amplitude of the brain's response (EFR) at 1.25 Hz (the tempo of the music) correlated significantly with the overall loudness.</p>
+    <p><strong>2. Cortical "Loudness" vs. "Level":</strong> Specific brain waves (N1 and P2 potentials) tracked the <em>perceived</em> loudness, not just the physical sound level. When context reduced the perceived loudness (recalibration), the neural signal dropped, even though the physical sound level stayed the same.</p>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Medical Terminology Buster</h2>
+        
+        <div class="jargon-term">Bradley-Terry-Luce (BTL) Model</div>
+        <div class="jargon-def">
+            A statistical method used to turn rankings into a ruler. If you ask people "Is A louder than B?" many times, BTL calculates exactly <em>how much</em> louder A is on a mathematical scale.
+        </div>
+
+        <div class="jargon-term">Envelope Following Response (EFR)</div>
+        <div class="jargon-def">
+            A neural response where brain waves synchronize with the rhythmic "envelope" (the beat or volume contour) of a sound. If the music beats at 75 BPM, the brain waves oscillate at that same frequency.
+        </div>
+
+        <div class="jargon-term">Leave-One-Out Cross-Validation</div>
+        <div class="jargon-def">
+            A strict way to test a model. If you have 14 songs, you train the model on 13 and ask it to predict the loudness of the 14th. You repeat this 14 times. It ensures the model actually works on new data it hasn't seen before.
+        </div>
+
+        <div class="jargon-term">Categorical Units (CU)</div>
+        <div class="jargon-def">
+            A loudness scale based on named categories (e.g., "Very Soft," "Soft," "Medium," "Loud"). The study found this matched human perception of music better than the "Sone" scale, which tries to treat loudness like a physics equation (doubling the number = doubling the loudness).
+        </div>
+
+        <div class="jargon-term">Loudness Recalibration</div>
+        <div class="jargon-def">
+            A context effect where a loud sound makes subsequent sounds seem quieter than they really are. It's like walking into a dim room after being in bright sunlight; the room feels darker until you adapt.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

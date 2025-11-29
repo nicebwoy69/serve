@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leq, SEL: What? Why? When? (Application Notes)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #0056b3;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: 3px solid #0056b3;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-top: 35px;
+            padding-left: 10px;
+            border-left: 4px solid #3498db;
+        }
+        .formula-box {
+            background-color: #e8f4f8;
+            border: 1px solid #b3e5fc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .image-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>$L_{\text{eq}}$, SEL: WHAT? WHY? WHEN?</h1>
+    <p style="text-align: center; font-style: italic;">Application Notes by Pierre Bernard, Brüel & Kjær</p>
+    
+    <div class="image-placeholder">
+        
+    </div>
+
+    <h2 class="section-header">What are $L_{\text{eq}}$ and SEL?</h2>
+
+    <p>$L_{\text{eq}}$ and SEL are energy parameters which provide a very useful means of describing fluctuating sounds. In this application note we will look at what $L_{\text{eq}}$ and SEL are, why we use them and when we use them.</p>
+
+    <h3>Equivalent Continuous Sound Level ($L_{\text{eq}}$) - Unweighted Definition</h3>
+    <p>$L_{\text{eq}}$ (equivalent continuous sound level) is defined as the steady sound pressure level which, over a given period of time, has the same total energy as the actual fluctuating noise. Thus, the $L_{\text{eq}}$ is in fact the RMS sound level with the measurement duration used as the averaging time.</p>
+    
+    <div class="formula-box">
+        <!-- This formula represents the UNWEIGHTED energy integral -->
+        $$L_{\text{eq}} = 10 \log \left( \frac{1}{T} \int_{0}^{T} \frac{p^2(t)}{p_0^2} dt \right)$$
+        <ul>
+            <li>$T = \text{measurement duration}$</li>
+            <li>$p(t) = \text{unweighted sound pressure}$</li>
+            <li>$p_0 = \text{reference sound pressure of } 20 \mu \text{Pa}$</li>
+        </ul>
+    </div>
+    <p>For most community noise and industrial noise measurements an **A-weighted $L_{\text{eq}}$** or $L_{\text{Aeq}}$ is commonly used, which introduces a frequency filter to $p(t)$. However, the base formula above is **unweighted**.</p>
+
+    <h3>Sound Exposure Level (SEL) - Unweighted Definition</h3>
+    <p>SEL or Sound Exposure Level is defined as that constant sound level which has the same amount of energy in one second as the original noise event. Thus, SEL is similar to $L_{\text{eq}}$ in that the total sound energy is integrated over the measurement period, but instead of then averaging it over the entire measurement period, a reference duration of 1 s is used. Sound Exposure Level measurements using A-weighted sound pressure levels are denoted by the symbol $L_{\text{AE}}$.</p>
+    
+    <div class="formula-box">
+        <!-- This formula represents the UNWEIGHTED energy integral -->
+        $$\text{SEL} = 10 \log \left( \frac{1}{T_0} \int_{-\infty}^{+\infty} \frac{p^2(t)}{p_0^2} dt \right)$$
+        <ul>
+            <li>$T_0 = \text{reference duration of } 1 \text{ s}$</li>
+            <li>$p(t) = \text{unweighted sound pressure}$</li>
+            <li>$p_0 = \text{reference sound pressure of } 20 \mu \text{Pa}$</li>
+        </ul>
+    </div>
+    
+    <div class="image-placeholder">
+        
+    </div>
+
+    <h2 class="section-header">Why use $L_{\text{eq}}$ and SEL?</h2>
+
+    <p>$L_{\text{eq}}$ and SEL are used because in many measurement situations the widely fluctuating display of a traditional sound level meter makes it extremely difficult to determine the correct sound level.</p>
+    
+    <p>Traditional sound level meters display a time-varying RMS value using either the "F" (fast) or "S" (slow) time weighting. The "S" response attempts to steady the readings when the noise is of a fluctuating nature. However, if the sound levels fluctuate too much to allow a meaningful reading, Integrating Sound Level Meters should be used. These instruments summate noise energy on a relatively long-term basis and provide a direct $L_{\text{eq}}$ reading.</p>
+    
+    <p>Often national legislation and standards are based on "A-weighted" sound energy measurements, for both industrial and environmental situations. This is normally expressed in terms of an A-weighted $L_{\text{eq}}$.</p>
+
+    <h2 class="section-header">When and how do you use $L_{\text{eq}}$ and SEL?</h2>
+
+    <h3>1. $L_{\text{eq}}$ measurements</h3>
+    
+    <h4>Fluctuating Machinery Noise</h4>
+    <p>With cyclical noise, the measurement period should include an integer number of cycles so that an $L_{\text{eq}}$ measurement effectively represents the true average SPL, having the same energy as the fluctuating sound. The traditional sound level meter does not provide time constants which are of sufficient duration for complex cycles, making $L_{\text{eq}}$ necessary.</p>
+    
+    <div class="image-placeholder">
+        
+    </div>
+    
+    <h4>Long-term Noise Exposure</h4>
+    <p>It is often necessary to rate noise on a long-term basis (e.g., worker's exposure over an eight-hour day or community noise from traffic). Recordings of a time-varying RMS do not allow either direct comparison or simple rating of noise exposure.</p>
+    
+    <p>$L_{\text{eq}}$ measurements for long-term exposure rating require the selection of representative measurement periods. Community noise exposure can be assessed by measurement of $L_{\text{eq}}$ over a whole day, or by taking "period" $L_{\text{eq}}$ measurements of representative intervals (e.g., rush hours, night).</p>
+
+    <h3>2. SEL measurements</h3>
+
+    <h4>Transient Noise</h4>
+    <p>$L_{\text{eq}}$ measurement does not remove ambiguity in the case of transient noise (e.g., aircraft fly-over or vehicle drive-by). If an $L_{\text{eq}}$ measurement begins and ends in the background noise, the resulting $L_{\text{eq}}$ will depend on the measurement period, even though the total energy is the same.</p>
+    
+    <p>The use of Sound Exposure Level (SEL) eliminates the influence of the measurement duration, as it normalizes the total sound energy to a reference duration of 1 s. This allows for direct comparison of transient noises regardless of their specific event duration.</p>
+    
+    <h4>Calculating $L_{\text{eq}}$ from SEL</h4>
+    <p>The second application of SEL is to calculate the corresponding $L_{\text{eq}}$ for a given period $T$ using the individual SEL values for different events occurring within that period. For just one event occurring during the time interval $T$, the relationship is:</p>
+    
+    <div class="formula-box">
+        $$L_{\text{eq}} = \text{SEL} - 10 \log \left( \frac{T}{T_0} \right) \quad \text{with } T_0 = 1 \text{ s}$$
+    </div>
+    
+    <p>If there are several events with different individual SEL values, the exposure levels can be added on an energy basis as shown below:</p>
+
+    <div class="formula-box">
+        $$L_{\text{eq}} = 10 \log \left( \sum_{i=1}^{n} 10^{\frac{\text{SEL}_i}{10}} \right) - 10 \log \left( \frac{T}{T_0} \right)$$
+    </div>
+
+    <p>This is useful for cyclical noises or multiple events, provided the number of cycles is known for the exposure period. The example below shows how $L_{\text{eq}}$ is derived from SEL values:</p>
+    
+    <div class="formula-box">
+        <p>What is $L_{\text{eq}}$ over 8 hours for a machine performing 400 operation cycles each with $\text{SEL} = 105 \text{ dB}$?</p>
+        $$L_{\text{eq}} = 10 \log(400) + 105 - 10 \log \left( \frac{8 \times 3600}{1} \right)$$
+        $$L_{\text{eq}} = 26 + 105 - 44.6$$
+        $$L_{\text{eq}} = 86.4 \text{ dB}$$
+    </div>
+
+    <h2 class="section-header">Integrating Sound Level Meters</h2>
+
+    <p>The integrating sound level meter consists basically of a microphone with its preamplifier, an A-weighting filter and an integrator which summantes the noise energy over the measurement period. The measured result may be expressed either as an Equivalent Continuous Sound Level ($L_{\text{eq}}$), or a Sound Exposure Level (SEL).</p>
+
+    <p>The operating principle is similar to an electricity meter, which is an integrating wattmeter. The total energy consumed (analogous to SEL) is measured. Dividing the total energy by the corresponding time period yields the average power consumption (analogous to $L_{\text{eq}}$).</p>
+
+    <h2 class="section-header">Summary</h2>
+
+    <p>Integrating sound level meters can be used to solve a number of noise measurement problems which would be extremely difficult to handle with traditional sound level meters. Much noise legislation is based on $L_{\text{eq}}$ measurements, both for industrial noise exposure in the workplace and noise annoyance in communities.</p>
+    
+    <p>Several international standards also recommend $L_{\text{eq}}$ and SEL as basic noise descriptions, for example:</p>
+    <ul>
+        <li>ISO 1996: "Assessment of noise with respect to community response"</li>
+        <li>ISO 1999: "Assessment of occupational noise exposure for hearing conservation purposes"</li>
+        <li>ISO 3891: "Description of aircraft noise heard on the ground"</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

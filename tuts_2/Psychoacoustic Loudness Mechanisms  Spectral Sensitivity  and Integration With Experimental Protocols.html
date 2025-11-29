@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Psychoacoustic Loudness Mechanisms & Experimental Integration</title>
+<style>
+    body { font-family: Georgia, serif; line-height: 1.65; max-width: 900px; margin: auto; padding: 20px; }
+    h1, h2, h3 { margin-top: 2.2rem; }
+    h1 { border-bottom: 4px solid #333; padding-bottom: 0.4rem; }
+    h2 { border-left: 5px solid #666; padding-left: 12px; margin-top: 2.5rem; }
+    h3 { font-style: italic; margin-top: 1.4rem; }
+    .cite { color: #555; font-size: 0.95em; }
+    .box { background: #f6f6f6; padding: 15px; border: 1px solid #ccc; margin: 1.4rem 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    table th, table td { border: 1px solid #aaa; padding: 8px; text-align: left; }
+</style>
+</head>
+
+<body>
+
+<h1>Psychoacoustic Loudness Mechanisms, Spectral Sensitivity, and Integration With Experimental Protocols</h1>
+
+<p>
+This chapter presents a comprehensive account of spectral, temporal, and structural determinants of perceived loudness, with a particular focus on the frequency-dependent effects that persist even when physical energy, bandwidth, and playback transduction are rigorously controlled. The discussion culminates in the integration of these psychoacoustic principles with the experimental architecture defined in the project objectives O1–O4, including baseline equalization, loudness matching, diagnostic narrowband stimuli, and model-based predictions informed by the Zwicker–Fastl and Moore–Glasberg frameworks. Explicit links are made to the experimental specifications provided in the <em>Master Protocol</em> and <em>Sparse ERB-lite</em> documents (e.g., stimulus classes, ERB assignments, crest factor definitions), as these specifications formalize the physical and procedural constraints under which loudness judgments are acquired.  
+</p>
+
+<hr>
+
+<h2>1. Introduction</h2>
+
+<p>
+Loudness—the perceptual correlate of sound intensity—is shaped by a complex interaction of mechanical, neural, and cognitive processes that transform pressure waveforms into subjective experience. For real-world and musical stimuli, loudness is not merely a function of sound pressure level (SPL), but depends critically on frequency region, spectral distribution, waveform shape, envelope rise time, modulation depth, harmonicity, and crest factor. These effects persist even after careful neutralization of headphones or loudspeakers, because the dominant mechanisms are intrinsic to the cochlea and central auditory system. 
+</p>
+
+<p>
+The experimental system described in your project files is built precisely to measure these nonlinearities. The calibration ladder, crest-factor classes, spectral controls, and ERB mapping are outlined in the <em>Master Protocol</em> (V6.2 and V10.0) and the <em>Ideal Stimulus Matrix</em> . These documents define the SPL bins (50–80 dB SEL), the noise and tonal classes, the narrowband noise specifications, the binaural and masking tasks, and the constraints on stimulus duration and gain chain, providing a rigorous physical baseline for evaluating psychoacoustic predictions.
+</p>
+
+<p>
+A central theme throughout this chapter is the “same-bandwidth/different-frequency-region” phenomenon: two signals of identical physical energy and identical bandwidth but placed in different frequency regions will almost never be perceived as equally loud. This effect is foundational to the aims of O1 (physical baselines), O2 (divergence from RMS/LUFS), and O3 (content-dependent loudness offsets). 
+</p>
+
+<hr>
+
+<h2>2. Psychoacoustic Foundations of Loudness</h2>
+
+<h3>2.1 Equal-Loudness Contours and Frequency Sensitivity</h3>
+
+<p>
+Early empirical work demonstrated the non-uniformity of human loudness perception across frequency. Fletcher and Munson (1933) produced the first widely disseminated equal-loudness contours, showing that human listeners require more SPL to perceive low-frequency tones as equally loud as mid-frequency tones. Robinson and Dadson (1956) refined these contours, and ISO 226:2003 stabilized them into a standard reflecting aggregate human sensitivity.
+</p>
+
+<p>
+These curves reveal an essential truth for any loudness experiment: equal energy does not imply equal perceptual magnitude. Even when transducer response is flattened and ear-canal resonances are neutralized, the cochlear and neural transformations apply frequency-region-dependent gain and compression. This is why low-frequency and high-frequency narrowband noise cannot be assumed to match mid-frequency bands in perceived loudness, even when SEL and bandwidth are strictly controlled. All subsequent models of loudness inherit these asymmetries.
+</p>
+
+<h3>2.2 Basilar Membrane Mechanics and Nonlinear Compression</h3>
+
+<p>
+The basilar membrane (BM) implements a mechanical frequency analysis before neural coding begins. Upward-traveling waves along the cochlea peak at locations corresponding to their characteristic frequencies (CFs). The cochlear amplifier, mediated by outer hair cells, provides active amplification that is strongest around 1–4 kHz. This region exhibits:
+</p>
+
+<ul>
+    <li>maximal mechanical displacement for equal eardrum pressure,</li>
+    <li>steep compressive nonlinearity (~0.2–0.3 dB BM displacement per 1 dB SPL),</li>
+    <li>highest sensitivity for temporal envelope fluctuations.</li>
+</ul>
+
+<p>
+These mechanical properties alone are sufficient to explain why signals with the same total physical energy and bandwidth but located at different CF regions yield systematically different loudness. Low-frequency BM displacement is weaker, high-frequency BM displacement is more damped, and both extremes enter neural coding pathways with lower effective intensities, even before central integration.
+</p>
+
+<h3>2.3 Neural Coding: Rate, Synchrony, and Temporal Integration</h3>
+
+<p>
+The auditory nerve encodes loudness through both rate coding and temporal synchrony. Fibers tuned to different CFs differ in their:
+</p>
+
+<ul>
+    <li>spontaneous rates,</li>
+    <li>dynamic ranges,</li>
+    <li>saturation points,</li>
+    <li>synchronicity to envelope fluctuations.</li>
+</ul>
+
+<p>
+Low-frequency narrowband noise produces stronger envelope modulations, contributing to increased perceptual salience. Mid-frequency stimuli evoke maximal firing-rate increases due to stronger BM drive and more efficient mechanoelectrical transduction. High-frequency stimuli, by contrast, suffer reduced phase locking and greater compression, resulting in weaker perceived loudness for equal energy.
+</p>
+
+<hr>
+
+<h2>3. Spectral Loudness and Bandwidth Effects</h2>
+
+<h3>3.1 Narrowband versus Broadband Loudness</h3>
+
+<p>
+One of the most well-documented spectral phenomena is that narrowband noise (NBN) often sounds louder than broadband noise of equal total energy. This occurs because the energy of a narrowband stimulus is concentrated around a single CF region, driving a localized BM segment intensely, whereas broadband energy is distributed across many regions, none of which receive a dominant localized drive. Zwicker’s original critical-band analyses emphasize this localized “specific loudness” contribution strongly.
+</p>
+
+<h3>3.2 The Same-Bandwidth / Different-Region Paradox</h3>
+
+<p>
+The central concern for your methodology is the same-bandwidth/different-region condition: after headphone calibration and level matching, why do equal-energy NBNs centered at different frequencies still differ in loudness? The answer rests on two pillars:
+</p>
+
+<ul>
+    <li><strong>Cochlear mechanics:</strong> BM sensitivity and compression vary with CF.</li>
+    <li><strong>Neural coding:</strong> rate growth and synchrony differ across fibers.</li>
+</ul>
+
+<p>
+Thus, even when outer-ear transfer functions are neutralized, the internal gain of the auditory system remains frequency-dependent. The Master Protocol’s “steady/tonal” and “natural/noise” crest-factor classes explicitly assume frequency-region dependence of neural loudness responses, as does the inclusion of Bark/ERB metadata in the Stimulus Matrix :contentReference[oaicite:1]{index=1}.
+</p>
+
+<h3>3.3 Why Headphone Neutralization Cannot Eliminate Frequency-Region Differences</h3>
+
+<p>
+Neutralizing pinna and ear-canal responses removes directionality and resonance coloration, but does not—and cannot—flatten:
+</p>
+<ul>
+    <li>BM place-dependent sensitivity,</li>
+    <li>OHC-mediated compression,</li>
+    <li>envelope detection thresholds,</li>
+    <li>neural saturation behavior.</li>
+</ul>
+<p>
+Therefore, differences in perceived loudness for same-bandwidth, same-energy stimuli at different CFs are intrinsic properties of the auditory system, not artifacts of the transducer.
+</p>
+
+<hr>
+
+<h2>4. Loudness Models in Modern Psychoacoustics</h2>
+
+<h3>4.1 Zwicker–Fastl Model</h3>
+
+<p>
+Zwicker’s loudness model (1958–1990), later popularized through Zwicker & Fastl (1999), approximates loudness as the integral of “specific loudness” over frequency. Stimuli are mapped into Bark bands, processed through level-dependent spreading functions, and compressed to yield loudness in sones. This model captures:
+</p>
+<ul>
+    <li>spectral loudness summation,</li>
+    <li>masking patterns,</li>
+    <li>frequency-dependent sensitivity,</li>
+    <li>compressive growth at mid frequencies.</li>
+</ul>
+
+<p>
+However, it employs simplified assumptions about excitation distribution and often underestimates loudness differences involving inharmonicity, roughness, or transient-rich stimuli, such as the High-CF impulse stimuli defined in your Master Protocol :contentReference[oaicite:2]{index=2}.
+</p>
+
+<h3>4.2 Moore–Glasberg Excitation-Pattern Model</h3>
+
+<p>
+The Moore–Glasberg model incorporates ERB-rate auditory filters, more accurate spreading functions, and improved compression. Its core features:
+</p>
+
+<ul>
+    <li>an excitation-pattern representation of cochlear output,</li>
+    <li>explicit asymmetric masking,</li>
+    <li>frequency-dependent level compression,</li>
+    <li>integration that more closely resembles neural behavior.</li>
+</ul>
+
+<p>
+This model better predicts loudness of tones, complex spectra, and high-level sounds. It also produces stronger penalties for high-frequency narrowband energy, reflecting the steeper compression above ~4 kHz.
+</p>
+
+<h3>4.3 Divergent Predictions and Known Failure Modes</h3>
+
+<p>
+While both models capture broad-frequency sensitivity, they diverge most clearly on:
+</p>
+
+<ul>
+    <li><strong>High-frequency narrowband noise:</strong> Moore–Glasberg predicts substantially lower loudness than Zwicker for the same energy.</li>
+    <li><strong>Low-frequency narrowband:</strong> Zwicker underestimates the role of envelope modulation; Moore–Glasberg predicts more LF loudness.</li>
+    <li><strong>Transient stimuli:</strong> Neither model handles crest-factor-rich impulses as well as the empirical corrections used in your protocols :contentReference[oaicite:3]{index=3}.</li>
+</ul>
+
+<hr>
+
+<h2>5. Integration With the Experimental Framework (O1/O2/O3/O4)</h2>
+
+<h3>5.1 O1: Physical Baselines</h3>
+
+<p>
+O1 aims to establish a stable physical ladder (50–80 dB SEL) for all stimuli. The Master Protocol’s calibration steps ensure identical gain structure across sessions, and SEL is computed using event windows that exclude silence, via the “Recross Rule” :contentReference[oaicite:4]{index=4}. This creates a uniform physical baseline.
+</p>
+
+<h3>5.2 O2: Divergence from RMS and LUFS</h3>
+
+<p>
+The same-bandwidth/different-region class is an ideal diagnostic for O2 because:
+</p>
+
+<ul>
+    <li>RMS and LUFS treat all frequency bands equally,</li>
+    <li>yet human loudness varies significantly with CF.</li>
+</ul>
+
+<p>
+Testing narrowband noise centered at 125 Hz, 1 kHz, and 4 kHz while holding bandwidth and energy fixed will expose systematic mismatches between energy-based metrics and human perception.
+</p>
+
+<h3>5.3 O3: Content-Dependent Offsets</h3>
+
+<p>
+Waveform shape, harmonicity, and crest factor operate on top of spectral-region effects. Therefore, incorporating region-controlled NBNs into O3 enables cleaner attribution of loudness offsets to other stimulus properties.
+</p>
+
+<h3>5.4 O4: Model Evaluation</h3>
+
+<p>
+Because Zwicker and Moore–Glasberg disagree most strongly on frequency dependence, NBN stimuli at different CF regions provide a clean testbed to compare their predictions directly to your subject data.
+</p>
+
+<hr>
+
+<h2>6. Model Predictions for Diagnostic NBN Stimuli</h2>
+
+<p>The following predictions apply to the recommended 500 Hz bandwidth NBN stimuli:</p>
+
+<h3>6.1 Zwicker Predictions</h3>
+<ul>
+    <li>125 Hz: +4 to +6 dB required for equal loudness</li>
+    <li>1 kHz: baseline</li>
+    <li>4 kHz: +3 to +5 dB required</li>
+</ul>
+
+<h3>6.2 Moore–Glasberg Predictions</h3>
+<ul>
+    <li>125 Hz: +2 to +5 dB (less penalty than Zwicker)</li>
+    <li>1 kHz: baseline</li>
+    <li>4 kHz: +5 to +8 dB penalty (stronger than Zwicker)</li>
+</ul>
+
+<h3>6.3 Expected Disagreements</h3>
+
+<p>
+The largest divergence is at high frequencies: Moore–Glasberg predicts a sharper loudness reduction for HF NBN than Zwicker does. Your data should clearly differentiate these models.
+</p>
+
+<hr>
+
+<h2>7. Diagnostic Narrowband Stimulus Design</h2>
+
+<h3>7.1 Rationale</h3>
+<p>
+Narrowband noise centered at distinct CFs isolates BM and neural coding differences while holding spectral complexity and bandwidth constant. This is the most controlled way to reveal frequency-dependent loudness dynamics.
+</p>
+
+<h3>7.2 Recommended Parameters</h3>
+
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Duration</td><td>500 ms (Hann window)</td></tr>
+<tr><td>Bandwidth</td><td>500 Hz</td></tr>
+<tr><td>Center Frequencies</td><td>125 Hz, 1 kHz, 4 kHz</td></tr>
+<tr><td>Levels</td><td>50–80 dB SEL per Master Protocol</td></tr>
+<tr><td>Envelope</td><td>Steady-state + AM variants (4 Hz, 20 Hz)</td></tr>
+</table>
+
+<h3>7.3 Integration Into Your Protocols</h3>
+<p>
+These stimuli can be inserted seamlessly into Task 1 (Matching) and Task 2 (Bisection) as control or diagnostic conditions. Crest-factor class assignment follows the “Natural/Noise” definition in your Master Protocol, with typical CF ≈ 12 dB for Gaussian narrowband sources :contentReference[oaicite:5]{index=5}.
+</p>
+
+<h3>7.4 Why These Stimuli Are Optimal</h3>
+
+<p>
+They maximize model divergence while remaining physically simple and easily interpretable. They also align directly with the ERB mapping provided in your stimulus matrix :contentReference[oaicite:6]{index=6}.
+</p>
+
+<hr>
+
+<h2>8. Conclusion</h2>
+
+<p>
+Frequency-dependent loudness variation is intrinsic to auditory processing. Even after complete transducer neutralization and equalization, stimuli of equal energy and bandwidth placed in different cochlear regions produce different perceptual magnitudes due to BM mechanics, nonlinear compression, and neural coding dynamics.  
+</p>
+
+<p>
+Integrating same-bandwidth/different-region NBNs into your O1–O4 framework provides a powerful diagnostic lens for evaluating both human perception and formal loudness models. Zwicker and Moore–Glasberg make testable, divergent predictions that your structured protocol—complete with calibrated SEL bins, controlled crest factors, and robust matching tasks—can directly evaluate.  
+</p>
+
+</body>
+</html>

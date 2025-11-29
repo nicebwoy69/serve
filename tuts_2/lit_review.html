@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Proposal: Waveform Parameters & Loudness Models</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1a3c5e;
+            --secondary: #2980b9;
+            --text: #2c3e50;
+            --bg: #ffffff;
+            --light-bg: #f8f9fa;
+            --border: #e1e4e8;
+        }
+
+        body {
+            font-family: 'Cambria', 'Georgia', serif; /* Academic serif font */
+            line-height: 1.7;
+            color: var(--text);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .paper {
+            max-width: 210mm; /* A4 width */
+            margin: 40px auto;
+            background: var(--bg);
+            padding: 25mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 24pt;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16pt;
+            color: var(--secondary);
+            margin-top: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13pt;
+            font-weight: 600;
+            color: #444;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Abstract Box */
+        .abstract {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Math Blocks */
+        .equation-block {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95em;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
+
+        td {
+            border-bottom: 1px solid var(--border);
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+
+        .model-comparison {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .model-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            background: white;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #eee;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #555;
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="paper">
+
+    <h1>Research Proposal</h1>
+    
+    <div class="abstract">
+        <strong>Research Question:</strong> How do waveform shape, temporal envelope, crest factor, and harmonicity influence loudness perception for synthetic and instrumental sounds between 50–80 dB, and how accurately do existing loudness measures (e.g., RMS, ITU-R BS.1770/LUFS) and psychoacoustic loudness models (ISO 532 series, Sottek) predict those judgments?
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>Loudness is not merely a physical measurement of sound pressure level (SPL) but a complex psychoacoustic sensation derived from the spectral and temporal integration of acoustic energy. While the relationship between SPL and loudness is well-mapped for pure tones (via Equal Loudness Contours, ISO 226), prediction becomes notoriously difficult for complex, time-varying signals.</p>
+    <p>Current broadcasting standards, such as <strong>ITU-R BS.1770 (LUFS)</strong>, rely on simple K-weighting and energy integration. While effective for program levelling, these metrics often fail to predict the loudness of high-crest-factor signals (e.g., percussion, plucked strings) or signals with specific phase relationships, leading to "loudness jumps" despite identical integrated values.</p>
+    <p>This research specifically targets the <strong>50–80 dB SPL</strong> range—the "musical and conversational" range—where the ear's non-linearities (such as the acoustic reflex and basilar membrane compression) behave differently than at near-threshold or pain-threshold levels.</p>
+
+    <h2>2. Independent Variables & Theoretical Impact</h2>
+    
+    <h3>2.1 Crest Factor & Temporal Envelope</h3>
+    <p>The Crest Factor (CF) is defined as the ratio of the peak amplitude to the RMS amplitude of a waveform:</p>
+    <div class="equation-block">
+        \( C = \frac{|x|_{peak}}{x_{RMS}} \)
+    </div>
+    <p><strong>Hypothesis:</strong> High crest factor sounds (transients) are often underestimated by RMS-based meters. However, the ear performs "temporal integration" over a window of approximately 100–200ms. Short bursts of energy within high-CF sounds may trigger different loudness judgements depending on whether the integration window captures the peak effectively. We expect the Sottek model to outperform ISO 532-1 here due to its finer temporal resolution.</p>
+
+    <h3>2.2 Waveform Shape & Harmonicity</h3>
+    <p>While Ohm's Acoustic Law states that the ear is phase-deaf, modern research suggests that phase relationships (which dictate waveform shape) alter the <strong>neural firing patterns</strong>. Inharmonic complex tones (bells, noise) often evoke different masking patterns on the Basilar membrane compared to harmonic stacks (violins, sawtooth waves), potentially resulting in different loudness perception for equal energy.</p>
+
+    <h2>3. Literature Review: Detailed Model Analysis</h2>
+
+    <div class="model-comparison">
+        <!-- ISO 532-1 -->
+        <div class="model-card">
+            <h3>ISO 532-1 (Zwicker Method)</h3>
+            <div><span class="badge">Status: Current</span> <span class="badge">Domain: Frequency (Bark)</span></div>
+            <p>The Zwicker method calculates loudness by transforming the physical spectrum into a specific loudness pattern \(N'\). It accounts for the ear's frequency selectivity using the Bark scale.</p>
+            
+            <strong>Mechanism:</strong>
+            <ul>
+                <li><strong>Filtering:</strong> Signals are separated into 1/3 octave bands.</li>
+                <li><strong>Masking:</strong> A "masking slope" is applied. Low frequencies mask high frequencies. This is critical for the 50-80dB range where upward spread of masking becomes significant.</li>
+                <li><strong>Temporal Integration:</strong> It uses a non-linear temporal decay. When a sound stops, the internal representation "decays" slowly.</li>
+            </ul>
+            <p><strong>Limitation:</strong> The approximation of critical bands using 1/3 octave filters is coarse. Furthermore, Zwicker's handling of very short transients (high crest factor) has been criticized for inaccuracy compared to direct physiological models.</p>
+        </div>
+
+        <!-- ISO 532-2 -->
+        <div class="model-card">
+            <h3>ISO 532-2 (Moore-Glasberg Method)</h3>
+            <div><span class="badge">Status: Current</span> <span class="badge">Domain: Frequency (ERB)</span></div>
+            <p>This model improves upon Zwicker by using the <strong>Equivalent Rectangular Bandwidth (ERB)</strong> scale, which models the cochlear filters more accurately, especially in low frequencies.</p>
+            
+            <strong>Key Differentiators:</strong>
+            <ul>
+                <li><strong>Outer/Middle Ear Transfer:</strong> It explicitly models the transmission through the pinna and ear canal before processing.</li>
+                <li><strong>Excitation Patterns:</strong> Instead of fixed bands, it calculates a continuous excitation pattern.</li>
+                <li><strong>Binaural Inhibition:</strong> It accounts for the fact that a sound presented to both ears is not exactly double the loudness of one ear (summation is non-linear).</li>
+            </ul>
+        </div>
+
+        <!-- Sottek Model -->
+        <div class="model-card">
+            <h3>The Sottek Model (Hearing Model)</h3>
+            <div><span class="badge">Type: Time-Domain / Physiological</span></div>
+            <p>Standardized in part under comparisons for "Roughness" and typically found in advanced analysis suites (HEAD acoustics). The Sottek model is fundamentally different because it operates in the <strong>time domain</strong> before spectral analysis.</p>
+            
+            <strong>Why it matters for your variables:</strong>
+            <ul>
+                <li><strong>Correlation Analysis:</strong> It uses autocorrelation to separate periodic (tonal) from stochastic (noise) components. This directly addresses your "Harmonicity" variable.</li>
+                <li><strong>Modulation Tracking:</strong> It tracks amplitude modulation envelopes to calculate <em>Roughness</em> and <em>Fluctuation Strength</em>. Since "Temporal Envelope" is one of your key variables, Sottek provides outputs that Zwicker ignores.</li>
+                <li><strong>Non-linear Preprocessing:</strong> It models the mechanical compression of the cochlea directly, making it potentially more accurate for the dynamic 50-80dB range.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>4. Comparative Analysis of Metrics</h2>
+    <p>Your study will compare simple metering against these complex models.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Primary Input</th>
+                <th>Integration Time</th>
+                <th>Handling of Spectral Masking</th>
+                <th>Prediction for High Crest Factor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>RMS</strong></td>
+                <td>Voltage / Pressure</td>
+                <td>User Defined (usually 300ms)</td>
+                <td>None (Flat)</td>
+                <td><strong>Very Poor</strong> (Underestimates loudness)</td>
+            </tr>
+            <tr>
+                <td><strong>ITU-R BS.1770</strong></td>
+                <td>K-Weighted Energy</td>
+                <td>Gated (400ms blocks)</td>
+                <td>Minimal (only K-weighting)</td>
+                <td><strong>Poor/Fair</strong> (Better than RMS, but ignores masking)</td>
+            </tr>
+            <tr>
+                <td><strong>ISO 532-1</strong></td>
+                <td>1/3 Octave Bands</td>
+                <td>Non-linear Decay</td>
+                <td><strong>Good</strong> (Bark masking patterns)</td>
+                <td><strong>Fair</strong> (Can struggle with very sharp transients)</td>
+            </tr>
+            <tr>
+                <td><strong>Sottek</strong></td>
+                <td>Time Signal</td>
+                <td>Continuous</td>
+                <td><strong>Excellent</strong> (Tonal vs Noise separation)</td>
+                <td><strong>Excellent</strong> (Tracks micro-modulations)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Proposed Methodology</h2>
+    
+    <h3>5.1 Stimuli Generation</h3>
+    <p>To isolate the variables, a set of synthetic and instrumental sounds will be normalized to:
+    <br>1. Equal RMS
+    <br>2. Equal LUFS
+    </p>
+    <p>This creates the conflict: If the meters work, the sounds should be equal loudness. If the listeners judge them differently, the meters have failed.</p>
+    <ul>
+        <li><strong>Set A (Crest Factor):</strong> Pulse trains with varying duty cycles (High CF) vs. Square waves (Low CF).</li>
+        <li><strong>Set B (Harmonicity):</strong> Sawtooth waves (Harmonic) vs. White Noise (Inharmonic) filtered to the same bandwidth.</li>
+        <li><strong>Set C (Envelope):</strong> Instruments with fast attack (Piano/Drums) vs. slow attack (Violin/Pad).</li>
+    </ul>
+
+    <h3>5.2 Data Analysis</h3>
+    <p>Subjective scores (Perceived Loudness) will be regressed against the objective model outputs. The primary statistic will be the <strong>coefficient of determination (\(R^2\))</strong> for each model across the different sound categories.</p>
+    <div class="equation-block">
+        \( R^2 = 1 - \frac{\sum (y_{subjective} - y_{model})^2}{\sum (y_{subjective} - \bar{y}_{subjective})^2} \)
+    </div>
+
+</div>
+
+</body>
+</html>

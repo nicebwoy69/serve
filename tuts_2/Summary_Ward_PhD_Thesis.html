@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Applications of Loudness Models in Audio Engineering (PhD Thesis)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Applications of Loudness Models in Audio Engineering</h1>
+    <p class="meta-info"><strong>Source:</strong> PhD Thesis (2017) | <strong>Author:</strong> Dominic Ward</p>
+
+    <div class="highlight-box">
+        <h3>Thesis Goal: Bridging Theory and Practice</h3>
+        <p>The thesis investigates two types of loudness models—the complex **Multiband Excitation Pattern (EP)** models and the simple **Heuristic Single-Band** models—to determine which is best suited for real-time applications in music production, particularly automated mixing. The research focuses on the central problem that complex models, despite their theoretical grounding, do not generalize well to complex musical sounds.</p>
+    </div>
+
+    <h2>1. Part I: Efficiency and Optimization (Objective 2)</h2>
+    <p>The initial challenge was making the accurate, complex models computationally viable.</p>
+    
+    <h3>Methodology: Speeding Up Multiband Models</h3>
+    <ul>
+        <li><strong>Models Optimized:</strong> Glasberg & Moore (GM02/ISO 532-3 predecessor) and Chen & Hu (CH12).</li>
+        <li><strong>The Bottleneck:</strong> Profiling identified the **Excitation Transformation Stage** (converting the frequency spectrum into a perceptual map) as the main CPU bottleneck.</li>
+        <li><strong>Optimization Strategy:</strong> The model complexity was drastically reduced by simplifying the spectral and auditory filter resolution. Techniques included Spectral Compression (grouping frequency bins) and reducing Filter Spacing (fewer auditory filters). The goal was a 99% reduction in computational complexity in the bottleneck stage, which was achieved.</li>
+        <li><strong>Result:</strong> Real-time performance was obtained for the complex multiband models, allowing the creation of a real-time binaural loudness meter and an automatic mixer.</li>
+    </ul>
+
+    <h2>2. Part II: Subjective Evaluation and Loudness Disparity (Objectives 1, 3)</h2>
+
+    <h3>A. Test Protocols</h3>
+    <p>The author conducted systematic listening tests to evaluate the performance of five published loudness models (GM02, CH12, CF02, EBU, LARM) when measuring musical instruments.</p>
+    <ul>
+        <li><strong>Subjective Data:</strong> Loudness matches were collected for musical instruments (drums, guitar, bass, vocals) to create a subjective reference dataset.</li>
+        <li><strong>Evaluation Tasks:</strong> The models were evaluated in two key contexts: 
+            <ol>
+                <li>Predicting the Equal-Loudness Gains (Chapter 6/7).</li>
+                <li>Driving an Automatic Fader Controller (Chapter 5).</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>B. Key Findings: Generalization Failure</h3>
+    <p>The central finding was the **domain-specific disparity** between the models:</p>
+    <ul>
+        <li><strong>Failure of Multiband Models (GM02/CF02):</strong> When asked to predict the relative loudness of instruments with marked spectral differences (e.g., bass vs. hi-hats), these sophisticated models showed **poor generalization**. The error distributions were large, and they exhibited a strong tendency to **underestimate the relative loudness of low-frequency instruments** (e.g., boosting the bass and kick drum far too high in automated mixes).</li>
+        <li><strong>Failure Analysis (SLS):</strong> This underestimation was attributed to model-specific issues relating to the calculation of **Spectral Loudness Summation (SLS)**, suggesting that the amount of compression applied in the low-frequency region is incorrect for music.</li>
+        <li><strong>Success of Simple Models:</strong> When subjects rated the quality of automated mixes, they **preferred mixes generated using heuristic single-band models (RMS/EBU)** over those produced by the theoretically accurate multiband procedures.</li>
+    </ul>
+
+    <h2>3. Part III: Conclusions and Future Direction</h2>
+
+    <h3>A. The Revised Model (Objective 3)</h3>
+    <p>The research concluded that a modification to the core algorithm is required. A new multiband model with a **heuristic loudness transformation** (LML) was proposed. This model achieved superior performance over existing methods, supporting the idea that a fundamental **revision of the Spectral Loudness Summation (SLS) stage** is necessary for real-world deployment.</p>
+
+    <h3>B. Overall Summary</h3>
+    <p>The thesis demonstrates that: 1) EP models can be made computationally efficient enough for real-time use. 2) In their current form, EP models are often less reliable than simple single-band models when applied to complex musical sounds. 3) Correcting these shortcomings requires developing a new loudness descriptor or **modifying the existing model's Spectral Loudness Summation (SLS) algorithm** to account for the unique characteristics of music.</p>
+
+    <h2>4. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Excitation Pattern (EP) Model</div>
+        <div class="jargon-def">
+            A complex loudness model that simulates the auditory system by decomposing sound into many frequency bands (multiband processing) and applying psychoacoustic principles like masking and compression.
+        </div>
+
+        <div class="jargon-term">Heuristic Single-Band Model</div>
+        <div class="jargon-def">
+            A simple loudness model (e.g., RMS or ITU-R BS.1770/LUFS) that uses only a single measurement channel and a single fixed filter (like the K-Filter) to approximate loudness based on perceived energy.
+        </div>
+
+        <div class="jargon-term">Spectral Loudness Summation (SLS)</div>
+        <div class="jargon-def">
+            The psychoacoustic phenomenon where the perceived loudness of a complex sound is greater than the sum of its individual components, as they excite different critical bands in the ear.
+        </div>
+
+        <div class="jargon-term">Excitation Transformation Stage</div>
+        <div class="jargon-def">
+            The core computational process in EP models that maps the physical frequency spectrum into the brain's compressed, perceptual representation (the bottleneck).
+        </div>
+
+        <div class="jargon-term">Global Loudness Descriptors</div>
+        <div class="jargon-def">
+            Summary statistics applied to the time-varying loudness function to get a single overall value (e.g., Peak Loudness, Mean Long-Term Loudness).
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

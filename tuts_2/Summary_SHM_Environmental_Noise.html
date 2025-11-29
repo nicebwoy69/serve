@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Sottek Hearing Model for Environmental Noise</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Sottek Hearing Model (SHM) for Environmental Noise</h1>
+    <p class="meta-info"><strong>Paper:</strong> Application of the Sottek Hearing Model for Environmental Noise Assessment<br>
+    <strong>Author:</strong> R. Sottek (HEAD acoustics GmbH)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Objective</h3>
+        <p>To demonstrate the utility of the Sottek Hearing Model (SHM) and its derived psychoacoustic parameters (Loudness, Roughness, Tonality, Sharpness) in developing precise metrics for evaluating and managing complex environmental noise and sound quality (soundscape).</p>
+    </div>
+
+    <h2>1. The Sottek Hearing Model (SHM) Structure</h2>
+    <p>The core concept of SHM (standardized in **ECMA 418-2**) is its ability to perform advanced signal separation based on psychoacoustic principles. </p>
+    
+    <h3>A. Key Processing Steps</h3>
+    <ol>
+        <li><strong>Peripheral Filtering:</strong> Accounts for outer and middle ear filtering, followed by an **auditory filter bank** (simulating the inner ear/cochlea).</li>
+        <li><strong>Tonal/Noise Separation:</strong> Uses an **autocorrelation function** within each critical band to separate the sound into two distinct perceptual components: <strong>Tonal components</strong> and <strong>Noise components</strong>.</li>
+        <li><strong>Loudness Calculation:</strong> The tonal and noise components are weighted differently before being combined non-linearly to yield **SHM Loudness**. This unique approach means the loudness of tonal signals has a stronger influence on the total perceived loudness than noise loudness.</li>
+    </ol>
+
+    <h3>B. SHM Psychoacoustic Parameters</h3>
+    <p>SHM calculates several objective metrics that correlate linearly with subjective perception:</p>
+    <ul>
+        <li><strong>SHM Loudness:</strong> Accounts for tonal components having a greater effect on overall loudness. Works well for sub-critical bandwidth signals.</li>
+        <li><strong>SHM Tonality:</strong> Measures the prominence of pure tones in the noise.</li>
+        <li><strong>SHM Roughness:</strong> Measures the perception of **fast-modulated sounds** (modulation rates > 15 Hz).</li>
+        <li><strong>SHM Fluctuation Strength:</strong> Measures the perception of **slow-modulated sounds** (modulation rates < 15 Hz).</li>
+        <li><strong>Sharpness (DIN 45692):</strong> Measures the spectral brightness/high-frequency energy.</li>
+        <li><strong>SHM Impulsiveness:</strong> Measures the perceived impact of transient or impulsive sounds.</li>
+    </ul>
+
+    <h2>2. Experimental Validation and Application</h2>
+
+    <h3>A. Equal-Loudness Contours</h3>
+    <p>The SHM Loudness method (ECMA 418-2) was tested against the latest reference standard, **ISO 226:2023**. It achieved an **RMS error of 1.57 dB**, making it the most accurate of all standardized models (including ISO 532-1 and ISO 532-3) in replicating human perception of pure tones.</p>
+
+    <h3>B. Subcritical Bandwidth Noise</h3>
+    <p>SHM Loudness was specifically validated for **subcritical bandwidth noise**—sounds difficult for old models to handle—and demonstrated **superior agreement** with listening test data compared to ISO 532-1 and ISO 532-3 models.</p>
+
+    <h3>C. Heat Pump Noise Analysis (Case Study)</h3>
+    <p>The paper analyzed 28 heat pump recordings (all normalized to 55 dB(A)) using SHM metrics to show how the models differentiate noise quality:</p>
+    <ul>
+        <li>Heat pumps with nearly identical **SHM Tonality** values could have drastically different **SHM Roughness** values (Figure 4), resulting in a greater propensity for disturbance or annoyance.</li>
+        <li>This demonstrates that relying on simple A-weighted level (55 dB(A)) or Tonality alone is insufficient for sound quality assessment.</li>
+    </ul>
+
+    <h2>3. Jargon & Technical Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Sottek Hearing Model (SHM)</div>
+        <div class="jargon-def">
+            A comprehensive psychoacoustic model (standardized in ECMA 418-2) that simulates the physical process of human hearing, including the separation of tonal and non-tonal sound energy.
+        </div>
+
+        <div class="jargon-term">Auditory Filter Bank</div>
+        <div class="jargon-def">
+            The mathematical model representing the frequency-selective filters in the inner ear (cochlea). It separates incoming sound into different frequency channels.
+        </div>
+
+        <div class="jargon-term">Subcritical Bandwidth</div>
+        <div class="jargon-def">
+            A frequency band narrower than the ear's critical band. Predicting the loudness of sounds within this narrow band is a major challenge for older models.
+        </div>
+        
+        <div class="jargon-term">SHM Roughness / Fluctuation Strength</div>
+        <div class="jargon-def">
+            Measures of sound modulation. Roughness tracks fast volume changes (>15 Hz), often causing a buzzing perception, while Fluctuation Strength tracks slow changes (<15 Hz), causing a wavering or surging effect.
+        </div>
+        
+        <div class="jargon-term">Tonality / Tonal Loudness</div>
+        <div class="jargon-def">
+            A metric measuring the perceived strength of pure tones (like a whine or whistle) within a noise signal. SHM calculates this separately from general noise loudness.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

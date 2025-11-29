@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Reaction Time for Broadband Sounds Compared to Pure Tones</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #673ab7;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #673ab7;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #f3f0f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #9c27b0;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Simple Reaction Time for Broadband Sounds Compared to Pure Tones</h1>
+    <p style="text-align: center; font-style: italic;">Josef Schlittenlacher, Wolfgang Ellermeier, Gül Avci</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>This work compares <strong>Simple Reaction Times (RTs)</strong> for broadband noise to those for $1\text{-kHz}$ pure tones across three experiments focusing on spectral and binaural summation. RT is used as a correlate of loudness. Experiments 1 and 2 found good quantitative agreement with spectral loudness summation models for <strong>moderate and high sound pressure levels</strong> ($60\text{ dB SPL}$ and higher). However, at <strong>lower levels</strong> ($45\text{ dB SPL}$ and below), an interaction between level and bandwidth occurred, suggesting RT is governed by detection difficulty rather than loudness in this range. Experiment 3 found the binaural gain for white noise to be $9\text{ dB}$, which is somewhat higher than the $5\text{-}6\text{ dB}$ typically found for $1\text{-kHz}$ pure tones.</p>
+    </div>
+
+    <h2>Introduction: RT as a Measure of Loudness</h2>
+    <p>While spectral loudness summation is crucial for determining the loudness of real-world sounds, its quantification remains debated due to variations in psychophysical methods. Simple reaction time (RT)—requiring participants to press a button as soon as a sound is heard—is an attractive alternative measurement method because it avoids biases associated with subjective judgments (like the time-order error in adjustment methods or the mental demands of magnitude estimation).</p>
+    <p>RT depends on loudness: the louder a sound, the faster the reaction. Previous studies have shown RT to correlate well with loudness for effects of frequency and binaural summation, though some evidence suggests RT may be a poor correlate of loudness at very low sound levels ($\le 40\text{ phon}$). This study investigates whether RT holds up when measuring spectral summation, especially when comparing to the $1\text{-kHz}$ pure tone (the reference sound for loudness standardization).</p>
+
+    <h2>General Method</h2>
+    <p><strong>Participants:</strong> Separate groups of normal-hearing listeners participated in the three experiments.</p>
+    <p><strong>Apparatus:</strong> Stimuli were D/A converted and presented via Sennheiser HDA 200 or Beyerdynamics DT-990 headphones in a double-walled sound-proof chamber. RTs were measured using a high-precision electronic timer connected to a custom-made telegraph key.</p>
+    <p><strong>Procedure:</strong> Participants pressed a key immediately upon hearing any sound. Trials included a warning signal followed by a variable foreperiod. Outliers ($\text{RT} < 100\text{ ms}$ or $\text{RT} > 1\text{ s}$) were discarded and repeated.</p>
+
+    <h2>Experiment 1: Bandpass-Filtered Pink Noise</h2>
+
+    <h3>Methodology</h3>
+    <p>This experiment compared RTs to pure tones and noise bands to study the combination of frequency and bandwidth effects, particularly at lower levels where prior loudness studies showed unexpected results.</p>
+    <ul>
+        <li><strong>Stimuli:</strong> Four sounds were tested at three Sound Pressure Levels ($\text{SPL}$): $45\text{ dB}$, $60\text{ dB}$, and $75\text{ dB}$.
+            <ol>
+                <li>$1\text{-kHz}$ Pure Tone (Reference)</li>
+                <li>$3.15\text{-kHz}$ Pure Tone</li>
+                <li>Mid-frequency Noise ($0.5\text{ kHz}$ to $2\text{ kHz}$ pink noise)</li>
+                <li>High-frequency Noise ($1.25\text{ kHz}$ to $5\text{ kHz}$ pink noise)</li>
+            </ol>
+        </li>
+        <li><strong>Loudness Predictions (DIN 45631):</strong> Predicted loudness gains (relative to the $1\text{-kHz}$ tone) were: $3.15\text{-kHz}$ tone ($+6\text{ phon}$), Mid-frequency Noise ($+10\text{ phon}$), High-frequency Noise ($+14\text{ phon}$).</li>
+    </ul>
+
+    <h3>Results and Discussion</h3>
+    <div class="figure-placeholder">
+            </div>
+    <ul>
+        <li><strong>Moderate/High Levels ($60\text{ dB}$ and $75\text{ dB SPL}$):</strong>
+            <ul>
+                <li>The order of RTs matched loudness predictions: $1\text{-kHz}$ tone (longest RT, softest) to High-frequency Noise (shortest RT, loudest).</li>
+                <li>Quantitatively, the $14\text{-phon}$ predicted difference (High-frequency Noise vs. $1\text{-kHz}$ tone) was reflected by the noise at $60\text{ dB}$ producing the same RT as the pure tone at $75\text{ dB}$.</li>
+                <li>At $75\text{ dB SPL}$, the RTs for the two noises were very similar, agreeing with previous subjective loudness evaluations which suggested the effects of frequency and bandwidth do not sum entirely as expected by models.</li>
+            </ul>
+        </li>
+        <li><strong>Low Level ($45\text{ dB SPL}$):</strong>
+            <ul>
+                <li>The four conditions were **not distinguished at all** by RT. This suggests that at the lowest level, RT is dominated by the difficulty of <strong>detecting the onset</strong> rather than being a correlate of perceived loudness.</li>
+            </ul>
+        </li>
+    </ul>
+    <p>Statistical analysis confirmed a significant interaction between level and bandwidth ($F(2,38)=5.48, p<.01$), supporting the conclusion that RT behaves differently at low levels compared to loudness scaling data.</p>
+
+    <h2>Experiment 2: Broadband Pink Noise</h2>
+
+    <h3>Methodology</h3>
+    <p>Experiment 2 focused on the level/sound type interaction found in Experiment 1 by comparing a pure tone against a very broadband noise across a finely graded range of levels.</p>
+    <ul>
+        <li><strong>Stimuli:</strong> $1\text{-kHz}$ Pure Tone ($35\text{ dB}$ to $85\text{ dB SPL}$) vs. Pink Noise ($0.2\text{ kHz}$ to $20\text{ kHz}$, $25\text{ dB}$ to $75\text{ dB SPL}$).</li>
+        <li><strong>Goal:</strong> The level ranges were chosen so that the total loudness range was similar for both sounds.</li>
+    </ul>
+
+    <h3>Results and Discussion</h3>
+    <div class="figure-placeholder">
+            </div>
+    <ul>
+        <li><strong>Moderate/High Levels ($60\text{ dB}$ and higher):</strong> The actual RTs to the pink noise coincided **excellently** with the predictions made by the DIN 45631 loudness model, confirming the strong correlation between RT and calculated loudness in this range.</li>
+        <li><strong>Low Levels:</strong> The statistical analysis confirmed a significant interaction between $\text{SPL}$ and sound type ($F(8,160)=9.79, p<.001$), with the RT curves crossing around $40\text{ dB SPL}$.
+            <ul>
+                <li>The $1\text{-kHz}$ tone starts to deviate from a linear RT regression around $35\text{ dB SPL}$.</li>
+                <li>The Pink Noise departs from model predictions around $50\text{ dB}$ to $55\text{ dB SPL}$.</li>
+            </ul>
+        </li>
+    </ul>
+    <p>This suggests that RT correlates linearly with $\text{SPL}$ for **critical-band levels of $40\text{ dB}$ and higher** for both sounds. Below this point, the slow, steep increase of RT towards threshold dominates the response, overriding the loudness gain provided by spectral summation. This duality might align with loudness-intensity functions (like ISO 532) that also split into two regions around $40\text{ phon}$.</p>
+
+    <h2>Experiment 3: Binaural Effects (Broadband White Noise)</h2>
+
+    <h3>Methodology</h3>
+    <p>This experiment investigated the combination of bandwidth and binaural effects, measuring the binaural gain for white noise.</p>
+    <ul>
+        <li><strong>Stimuli:</strong> White Noise ($20\text{ Hz}$ to $20\text{ kHz}$) presented at $45\text{ dB}$, $60\text{ dB}$, and $75\text{ dB SPL}$.</li>
+        <li><strong>Aural Presentation Modes (APMs):</strong>
+            <ol>
+                <li>Monaural (Left ear only)</li>
+                <li>Monaural (Right ear only)</li>
+                <li>Diotic (Same noise to both ears)</li>
+                <li>Uncorrelated Binaural (Different noise samples to each ear)</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Results and Discussion</h3>
+    <div class="figure-placeholder">
+            </div>
+    <ul>
+        <li><strong>Binaural Gain:</strong> The monaural RTs were systematically longer than the binaural RTs. Linear regression lines fitted to the monaural and binaural data showed a horizontal distance (Level Difference for Equal Reaction Time, $\text{LDERT}$) of **$9\text{ dB}$**.
+            <ul>
+                <li>This $9\text{-dB}$ binaural gain for white noise is higher than the $5\text{-}6\text{ dB}$ previously found for $1\text{-kHz}$ pure tones.</li>
+                <li>The result is at the upper end of the range reported by loudness studies for the Binaural Level Difference for Equal Loudness ($\text{LDEL}$).</li>
+            </ul>
+        </li>
+        <li><strong>Interaural Correlation:</strong> There was **no statistically significant difference** in RTs between diotic (correlated) and uncorrelated binaural presentation, suggesting that any additional gain from interaural decorrelation is negligible for broadband white noise.</li>
+        <li><strong>Lateralization:</strong> A statistically significant difference was found between monaural right and left ear presentation, confirming a slight right ear advantage.</li>
+    </ul>
+
+    <h2>General Conclusions</h2>
+    <p>The study confirms that <strong>Simple Reaction Time is a good correlate of loudness</strong> and its underlying auditory processing effects (spectral summation, frequency weighting, binaural summation) for **moderate and high sound pressure levels** (critical-band levels $\ge 40\text{ dB}$).</p>
+    <p>However, the key finding is the **breakdown of the RT-loudness correlation at low sound levels**. This supports the hypothesis that the underlying mechanism governing RT shifts from a loudness-based process to a threshold- or detection-based process as the stimulus approaches the detection limit.</p>
+
+</div>
+
+</body>
+</html>

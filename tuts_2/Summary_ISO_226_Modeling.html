@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Modeling the ISO 226:2023 Loudness Contours</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Modeling the ISO 226:2023 Loudness Contours</h1>
+    <p class="meta-info"><strong>Paper:</strong> Modeling the ISO 226:2023 Equal-Loudness-Level Contours by Standardized Loudness Methods<br>
+    <strong>Authors:</strong> Sottek, Lobato, Bender, & Becker (2023)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>How accurately do the world's major standardized loudness models—including the latest versions of ISO 532—replicate the most up-to-date human listening data (the **ISO 226:2023 Equal-Loudness-Level Contours**)?</p>
+    </div>
+
+    <h2>1. Methodology and Test Protocol</h2>
+    
+    <h3>A. The Reference Standard (ISO 226:2023)</h3>
+    <p>The **ISO 226:2023** curves are the reference target. These curves define the sound pressure level (in dB) required for pure continuous tones of different frequencies to be perceived as having the same loudness level (in phon) by human listeners. The 2023 version contains minor corrections and clarifications over the 2003 version, and these contours serve as the gold standard for validating loudness models. </p>
+
+    <h3>B. Models Tested</h3>
+    <p>The study tested three major psychoacoustic loudness methods:</p>
+    <ol>
+        <li><strong>ISO 532-1:2017 (Zwicker Method):</strong> Based on the older ISO 226:1987 data. Uses a third-octave filter bank.</li>
+        <li><strong>ISO 532-3:2023 (Moore-Glasberg-Schlittenlacher Method):</strong> The updated standard for time-varying loudness. It aims to match the ISO 226:2003 data.</li>
+        <li><strong>ECMA 418-2 2nd Edition (Sottek Hearing Model):</strong> A newer standardized method that models sub-critical bandwidth and tonal/noise loudness components.</li>
+    </ol>
+
+    <h3>C. Protocol for Model Evaluation</h3>
+    <p>The models were evaluated for 20, 40, 60, and 80 phon levels across frequencies from 100 Hz to 10 kHz.</p>
+    <ul>
+        <li><strong>Matching Procedure:</strong> For each model, the authors calculated the resulting **sone value** (the loudness unit) at 1 kHz for a given phon level. They then determined the necessary dB level for every other frequency required to yield that **same sone value** according to the model's calculation.</li>
+        <li><strong>Metric:</strong> The accuracy of the model-generated contours was quantified using the **Root-Mean-Squared (RMS) difference** in dB between the model's prediction and the official ISO 226:2023 reference table.</li>
+    </ul>
+
+    <h2>2. Results and Model Comparison</h2>
+
+    <p>The table below summarizes how accurately each model replicated the human perception data defined by ISO 226:2023:</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Loudness Method</th>
+                    <th>RMS Difference [dB] (Lower is Better)</th>
+                    <th>Notes on Performance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>ECMA 418-2 (Sottek Model)</strong></td>
+                    <td><strong>1.57 dB</strong></td>
+                    <td>**Best Match.** Shows superior accuracy, especially in the critical mid-frequency range (1 kHz to 5 kHz), where other models overestimate loudness.</td>
+                </tr>
+                <tr>
+                    <td><strong>ISO 532-3 (Moore-Glasberg-Schlittenlacher)</strong></td>
+                    <td><strong>3.04 dB</strong></td>
+                    <td>Reproduces the curves with reasonable accuracy. One order of magnitude slower calculation time than ISO 532-1.</td>
+                </tr>
+                <tr>
+                    <td><strong>ISO 532-1 (Zwicker Method)</strong></td>
+                    <td><strong>5.55 dB</strong></td>
+                    <td>**Poorest Match.** Its failure is expected, as it was designed to match the much older, substantially different ISO 226:1987 contours. Also prone to **fluctuations** due to steep filter characteristics.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>A. Calculation Efficiency (Computational Cost)</h3>
+    <p>The methods were also benchmarked for speed:</p>
+    <ul>
+        <li>ISO 532-1 was the fastest (baseline factor of 1).</li>
+        <li>ECMA 418-2 was 6 times slower (due to separating tonal and noise components).</li>
+        <li>ISO 532-3 was 22 times slower than ISO 532-1, making its application to long, complex signals "cumbersome."</li>
+    </ul>
+
+    <h3>B. Conclusion on Model Dominance</h3>
+    <p>The authors conclude that the **ECMA 418-2 (Sottek Loudness)** has established itself as the dominant model in terms of result quality, demonstrating equal or superior performance across pure tones, sub-critical bandwidth noise, and multi-tone components.</p>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Technical Terminology Buster</h2>
+        
+        <div class="jargon-term">ISO 226:2023</div>
+        <div class="jargon-def">
+            The international standard defining the **Equal-Loudness-Level Contours**—the fundamental curves showing what sound pressure level (in dB) is needed at different frequencies to sound equally loud to a human ear.
+        </div>
+
+        <div class="jargon-term">Phon</div>
+        <div class="jargon-def">
+            The unit of loudness level. It defines the perceived loudness of a sound relative to a 1 kHz tone.
+        </div>
+        
+        <div class="jargon-term">Sone</div>
+        <div class="jargon-def">
+            The unit of actual loudness magnitude (how much louder one sound is than another). 1 Sone = 40 phon.
+        </div>
+
+        <div class="jargon-term">RMS Difference</div>
+        <div class="jargon-def">
+            **Root-Mean-Squared Difference.** The main metric used for model comparison. It measures the average magnitude of the error (in dB) between the model's prediction and the true human perception data. A lower RMS difference means the model is more accurate.
+        </div>
+
+        <div class="jargon-term">Sub-Critical Bandwidth Noise</div>
+        <div class="jargon-def">
+            A specialized noise signal whose frequency bandwidth is narrower than the ear's critical filter (or critical band). Predicting the loudness of these signals is difficult because the energy is highly concentrated.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

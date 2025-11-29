@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Practical Applications of Psychoacoustics</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Practical Applications of Psychoacoustics</h1>
+    <p class="meta-info"><strong>Paper:</strong> Praktische Anwendungen der Psychoakustik (Practical Applications of Psychoacoustics)<br>
+    <strong>Author:</strong> Hugo Fastl (2010)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Principle: The Psychoacoustic Link</h3>
+        <p>Psychoacoustics acts as the essential quantitative link between the objective **World of Physical Measurement** (Frequency, Level) and the subjective **World of Auditory Sensation** (Pitch, Loudness, Roughness).</p>
+        <p>The paper stresses the critical need for a clear distinction between the physical *stimulus* and the perceived *sensation*.</p>
+            </div>
+
+    <h2>1. The Loudness Problem (Relevance to Your Project)</h2>
+    
+    <h3>A. Loudness vs. Level</h3>
+    <p>The common, casual error—even among professionals—is confusing **Level (dB)**, a physical metric, with **Loudness (Lautheit)**, a sensation. Correctly, a 10 dB reduction in level typically results in a reduction of loudness by half. Measuring this nonlinear relationship is the foundation of all objective psychoacoustic modeling.</p>
+
+    <h3>B. Contextual & Cognitive Effects</h3>
+    <p>Perception is highly contextual, not just acoustic:</p>
+    <ul>
+        <li><strong>Pitch Shift:</strong> The perceived pitch of a fixed-frequency tone can increase significantly (up to a musical semitone) when a low-frequency noise is added (see image below for measured example). This proves that the brain uses context to build sensation.</li>
+        <li><strong>Cognitive Aversion:</strong> The perceived annoyance of a noise type (e.g., motorcycle sound) may remain high even if the loudness is significantly reduced, because the listener's **aversion** to the source overrides the acoustic properties.</li>
+        <li><strong>Audiovisual Bias:</strong> **Red** and **dark green** colored objects (like trains or sports cars) are perceived as **significantly louder** than light-colored objects (like light green or blue) when the physical sound level is identical.</li>
+    </ul>
+    
+    <h2>2. Applications and Findings</h2>
+
+    <h3>A. Music and Selective Hearing</h3>
+    <ul>
+        <li><strong>Harmonicity/Inharmonicity:</strong> Composers like Pythagoras performed the first psychoacoustic experiments on consonance. More recently, studies showed that sounds from electric guitars are slightly **inharmonic** and that musicians often prefer this "physical flaw."</li>
+        <li><strong>Selective Filtering:</strong> The sound of a large bell contains 30 partial tones, but listeners only need 4 to 12 of them to perceive a "good bell sound." The brain filters the sound to extract only the most important perceptual components.</li>
+    </ul>
+
+    <h3>B. Noise Assessment and Model Validation</h3>
+    <ul>
+        <li><strong>Noise Reduction Metrics:</strong> When evaluating new sound-absorbing road surfaces, the standard rule of thumb ("10 dB less is half as loud") significantly *underestimated* the perceived noise reduction compared to measurements using psychoacoustic models (like the Loudness N5 percentile). This validates the need for models in complex noise assessment.</li>
+        <li><strong>Vehicle Audibility:</strong> For quiet vehicles (Hybrid/Electric), predicting the "critical distance" at which a pedestrian can hear the vehicle in background noise requires sophisticated psychoacoustic masking models, as simple SPL metrics are insufficient for collision avoidance.</li>
+    </ul>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Technical Terminology Buster</h2>
+        
+        <div class="jargon-term">Pegel / Schallpegel</div>
+        <div class="jargon-def">
+            **Sound Level (Physical).** The objective, measurable intensity of sound, usually in decibels (dB).
+        </div>
+
+        <div class="jargon-term">Lautheit / Hörempfindungen</div>
+        <div class="jargon-def">
+            **Loudness / Auditory Sensation (Perceptual).** The subjective sensation of intensity, which is affected by frequency, duration, and context.
+        </div>
+
+        <div class="jargon-term">Tonhöhe / Frequenz</div>
+        <div class="jargon-def">
+            **Pitch (Perceptual) vs. Frequency (Physical).** Pitch is what the brain perceives; frequency is the measurable rate of vibration. The two are not identical (as shown by the Pitch Shift phenomenon).
+        </div>
+
+        <div class="jargon-term">Hüllkurve</div>
+        <div class="jargon-def">
+            **Envelope.** The outline of a sound's amplitude over time (its shape). This is a physical metric used in psychoacoustic models.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Electric Truck Loudness</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary: Loudness Matching of Complex Tones</h1>
+    <p class="meta-info"><strong>Paper:</strong> Loudness matching of complex tones simulating sounds from electric trucks<br>
+    <strong>Authors:</strong> Nyman & Nykänen (2025)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>How do humans perceive the loudness of complex tonal sounds (like those from electric vehicle motors)? The goal was to determine if established psychoacoustic models—which evaluate tones individually—are sufficient, or if the holistic relationship between tones (harmonicity) controls perceived loudness.</p>
+    </div>
+
+    <h2>1. Methodology and Test Protocol</h2>
+    
+    <h3>A. Subjects & Apparatus</h3>
+    <ul>
+        <li><strong>Subjects:</strong> 24 participants (primarily R&D professionals) with self-reported normal hearing.</li>
+        <li><strong>Environment:</strong> Acoustically treated, isolated rooms with headphones.</li>
+        <li><strong>Protocol:</strong> <strong>Method of Adjustment.</strong> Participants performed pairwise loudness matching of a test sound to a reference sound until they reached the <strong>Point of Subjective Equality (PSE)</strong>.</li>
+    </ul>
+
+    <h3>B. Stimuli Design (Complex Tones)</h3>
+    <p>The test stimuli were looped, continuous complex tones presented with a stationary background noise (filtered white noise simulating truck background).</p>
+    <ul>
+        <li><strong>Frequency Range:</strong> Fundamental frequencies (f0) from 350 Hz to 2750 Hz, covering the human ear’s most sensitive area (350 Hz–11000 Hz).</li>
+        <li><strong>Harmonic Amplitude:</strong> Tonal components were presented with amplitude decreasing at <strong>-6 dB per octave</strong>.</li>
+        <li><strong>Component Count Test (Test 1):</strong> Compared the perceived loudness of a single tone to complexes with 2, 3, and 4 harmonic components.</li>
+        <li><strong>Harmonicity Test (Tests 2 & 3):</strong> Compared the full harmonic complex (4 components) to non-harmonic cases where either the **second partial** (2nd harmonic) or the **third partial** (3rd harmonic) was slightly detuned (shifted upward in frequency).</li>
+    </ul>
+
+    <h3>C. Matching Methods</h3>
+    <p>The study used two methods for comparison, which yielded different variances in the results:</p>
+    <ul>
+        <li><strong>Method A (Test 1 & 2):</strong> Adjustable Reference Sound (Pink Noise) vs. Fixed Test Sound (Tonal Complex).</li>
+        <li><strong>Method B (Test 3):</strong> Adjustable Test Sound (Tonal Complex) vs. Fixed Reference Sound (Pink Noise).</li>
+    </ul>
+
+    <h2>2. Key Findings and Conclusions</h2>
+    
+    <h3>A. Holistic Processing and Spectral Summation</h3>
+    <p>The perceived loudness of the complex tone increased **linearly** with the increasing number of harmonics. This increase was greater than predicted by standard spectral summation models.</p>
+    <ul>
+        <li><strong>Quantified Increase:</strong> The average perceived level increased by approximately **2 dB** per added harmonic component, even though the energy of the individual tones was decreasing (at -6 dB/octave).</li>
+        <li><strong>Conclusion:</strong> The subjective loudness is estimated <strong>holistically</strong>, meaning the total perceived magnitude is greater than the sum of its parts.</li>
+    </ul>
+
+    <h3>B. Impact of Inharmonicity (Detuning)</h3>
+    <p>The study confirmed that harmonic relationship is critical to perceived loudness.</p>
+    <ul>
+        <li><strong>Second Partial:</strong> Detuning the **second partial** (making the tone non-harmonic) caused a **statistically significant decrease** in perceived loudness when using Method B.</li>
+        <li><strong>Third Partial:</strong> Detuning the third partial did not show a significant effect.</li>
+        <li><strong>Conclusion:</strong> The fusion of harmonic components is vital for loudness perception. Breaking the harmonic relationship reduces the combined loudness, confirming that inharmonicity is a crucial loudness factor.</li>
+    </ul>
+
+    <h3>C. Methodological Preference</h3>
+    <p>The variability in results (variance) was **smaller** for Method B (adjustable tonal sound vs. fixed noise) compared to Method A. Participants generally found Method B easier to perform.</p>
+
+    <h2>3. Jargon & Terminology Buster</h2>
+    
+    <div class="jargon-section">
+        <div class="jargon-term">Complex Tone / Partials</div>
+        <div class="jargon-def">
+            A sound made up of a fundamental frequency (f0) and other frequency components (partials or harmonics).
+        </div>
+
+        <div class="jargon-term">Harmonic / Non-harmonic</div>
+        <div class="jargon-def">
+            A complex tone is <strong>harmonic</strong> if all its partials are exact integer multiples of the fundamental frequency (e.g., f0, 2*f0, 3*f0...). It is <strong>non-harmonic</strong> if one or more partials are slightly detuned, creating roughness or a sense of two separate sounds.
+        </div>
+
+        <div class="jargon-term">Point of Subjective Equality (PSE)</div>
+        <div class="jargon-def">
+            The final level at which the adjustable sound is perceived to be exactly equal in loudness to the reference sound.
+        </div>
+
+        <div class="jargon-term">Spectral Summation</div>
+        <div class="jargon-def">
+            The process used by standard loudness models (ISO 532-B, etc.) to calculate total loudness by adding up the energy across different frequency bands (critical bands). The study found human perception exceeds this calculation.
+        </div>
+        
+        <div class="jargon-term">dB/oct</div>
+        <div class="jargon-def">
+            Short for "decibels per octave." This describes the rate at which the sound's level changes as its frequency doubles. For example, -6 dB/oct means the sound level drops by 6 dB every time the frequency moves up by an octave.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

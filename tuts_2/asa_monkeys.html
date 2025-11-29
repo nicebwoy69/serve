@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Summary: Neural Correlates of Auditory Scene Analysis</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Jargon Buster Styles */
+        .jargon-section {
+            background-color: #fef9e7;
+            border: 1px solid #f1c40f;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .jargon-term {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+        }
+
+        .jargon-def {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Study Summary</h1>
+    <p class="meta-info"><strong>Paper:</strong> Neural Correlates of Auditory Scene Analysis Based on inharmonicity in monkey primary auditory cortex<br>
+    <strong>Authors:</strong> Fishman & Steinschneider (2010)</p>
+
+    <div class="highlight-box">
+        <h3>The Core Question</h3>
+        <p>How does the brain separate one specific sound (like a voice) from background noise? This study investigates how the brain uses "mistuning" (inharmonicity) to make a sound "pop out" from a group of sounds.</p>
+    </div>
+
+    <h2>1. The Context: The Cocktail Party Problem</h2>
+    <p>In complex environments, our ears receive a mixture of many sounds at once. The brain must organize this chaos into distinct objects (Auditory Scene Analysis). One powerful cue the brain uses is <strong>harmonicity</strong>. Most natural sounds (speech, music) are harmonic stacks of frequencies. If one component of that stack is "mistuned," humans perceive it as a separate object.</p>
+
+    <h2>2. The Methodology and Test Protocol</h2>
+    <p>The researchers employed a specific protocol to isolate the neural mechanisms responsible for detecting these "mistuned" sounds.</p>
+    <ul>
+        <li><strong>Subjects:</strong> Three awake, behaving Macaque monkeys (*Macaca fascicularis*) surgically implanted with head-fixation devices.</li>
+        <li><strong>Recording:</strong> Linear-array multicontact electrodes (16 channels) were inserted into the <strong>Primary Auditory Cortex (A1)</strong>, specifically targeting Lamina 3 (the main input layer).</li>
+        <li><strong>Stimuli (Test Protocol):</strong> They used <strong>Harmonic Complex Tones (HCTs)</strong> in two main conditions:
+            <ul>
+                <li><strong>"Shift 3rd":</strong> The 3rd harmonic was mistuned by shifting it up or down by 8% or 16%. This tested if the brain detects a simple "oddball" frequency.</li>
+                <li><strong>"Shift F0":</strong> The 3rd harmonic was kept <strong>fixed</strong> at the neuron's "Best Frequency" (sensitive zone), while the Fundamental Frequency ($F0$) and all other harmonics were shifted. This ensured the mistuning effect was always centered in the neuron's receptive field.</li>
+            </ul>
+        </li>
+        <li><strong>Controls:</strong>
+            <ul>
+                <li><strong>"Shift 6th":</strong> Mistuning a higher harmonic to test frequency specificity.</li>
+                <li><strong>"Stretched":</strong> A globally inharmonic sound where all spacing was stretched by 12%, testing "general messiness" vs. specific "pop-out."</li>
+            </ul>
+        </li>
+        <li><strong>Analysis:</strong> They compared the <strong>Multiunit Activity (MUA)</strong> (firing rate) and <strong>Auditory Evoked Potentials (AEP)</strong> (brain waves) between "mistuned" and "harmonic" trials. They also analyzed phase-locking to see if neurons synchronized to the "beat" frequencies.</li>
+    </ul>
+
+    <h2>3. Key Findings</h2>
+    
+    <h3>A. The "Pop-Out" Effect creates a Neural Boost</h3>
+    <p>When a sound component was mistuned, the neurons in the brain fired significantly more (increased firing rate). The brain didn't just ignore the error; it highlighted it. The more mistuned the note was (e.g., 16% shift vs. 8%), the stronger the brain responded.</p>
+
+    <h3>B. Location Specificity (Tonotopy)</h3>
+    <p>The entire brain didn't light up. The enhanced firing happened specifically in the neurons tuned to the frequency of the mistuned note. This suggests the brain isolates the "odd one out" at a very local level.</p>
+
+    <h3>C. Rhythm and "Beats"</h3>
+    <p>When a note is out of tune, it creates a physical wavering sound called a "beat" (roughness). The study found that the neurons synchronized their firing to the rhythm of these beats. The authors suggest the brain transforms these physical beats into a rate code (increased volume/firing).</p>
+
+    <h3>D. Human Parallels</h3>
+    <p>The electrical signals recorded in the monkeys (Intracortical Evoked Potentials) looked very similar to signals previously recorded on the scalps of humans (specifically the "Object-Related Negativity"). This confirms that monkeys process sound separation very similarly to humans.</p>
+
+    <div class="jargon-section">
+        <h2>🔬 Jargon & Medical Terminology Buster</h2>
+        <p><em>A breakdown of the complex terms used in the paper.</em></p>
+
+        <div class="jargon-term">Auditory Scene Analysis (ASA)</div>
+        <div class="jargon-def">
+            The cognitive process by which the brain organizes incoming sound into distinct "objects." Think of it like your eyes seeing a chair as separate from the floor; ASA is your ears hearing a violin as separate from the drum.
+        </div>
+
+        <div class="jargon-term">Primary Auditory Cortex (A1)</div>
+        <div class="jargon-def">
+            <strong>Medical/Anatomical Term.</strong> The part of the brain located in the Temporal Lobe that is the first "stop" for processing conscious sound information. It is the "CPU" for basic hearing.
+        </div>
+
+        <div class="jargon-term">Harmonic Complex Tone (HCT)</div>
+        <div class="jargon-def">
+            A sound composed of a fundamental frequency (the pitch you hear) and integer multiples of that frequency (harmonics). Most musical instruments and human voices produce HCTs.
+        </div>
+
+        <div class="jargon-term">Inharmonicity</div>
+        <div class="jargon-def">
+            When a frequency component does <em>not</em> fit the mathematical pattern of the rest of the sound (it is "out of tune"). The brain uses this as a clue that this sound might be coming from a different source.
+        </div>
+
+        <div class="jargon-term">Multiunit Activity (MUA)</div>
+        <div class="jargon-def">
+            <strong>Medical/Technical Term.</strong> A recording technique that captures the electrical "chatter" of a small group of neurons (brain cells) near the electrode, rather than just a single cell. It represents the "local consensus" of that brain area.
+        </div>
+
+        <div class="jargon-term">Tonotopic / Tonotopy</div>
+        <div class="jargon-def">
+            <strong>Medical/Anatomical Term.</strong> The "map" of frequencies in the brain. Just as a piano has low notes on the left and high notes on the right, the Auditory Cortex is physically organized by pitch. Low frequencies stimulate one end, high frequencies stimulate the other.
+        </div>
+
+        <div class="jargon-term">Object-Related Negativity (ORN)</div>
+        <div class="jargon-def">
+            <strong>Neuroscience Term.</strong> A specific pattern of electrical brain wave (a dip in voltage) seen in humans when they perceive two simultaneous sounds. It is a neurological "fingerprint" that the brain has detected a separate sound object.
+        </div>
+
+        <div class="jargon-term">Phase-Locking</div>
+        <div class="jargon-def">
+            When neurons fire in perfect synchronization with the sound wave or a rhythmic pattern (like a beat) within the sound. If the sound waves goes up and down 10 times a second, the neuron tries to fire 10 times a second to match it.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

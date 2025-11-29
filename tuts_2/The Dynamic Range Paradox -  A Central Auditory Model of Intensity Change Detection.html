@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dynamic Range Paradox: A Central Auditory Model of Intensity Change Detection</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #009688;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #009688;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.2em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e0f2f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #00bcd4;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>The Dynamic Range Paradox: A Central Auditory Model of Intensity Change Detection</h1>
+    <p style="text-align: center; font-style: italic;">Andrew J.R. Simpson, Joshua D. Reiss</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>This paper addresses the <strong>Dynamic Range Paradox</strong> in psychoacoustics: while loudness grows significantly with intensity, performance in intensity discrimination (JND) does not follow the same trend, leading to contradictory estimations of the underlying neural dynamic range. To resolve this, a <strong>Central Auditory Model</strong> is proposed, featuring central adaptation to the mean loudness level. The model operates on the detection of the maximum central-loudness <strong>rate-of-change</strong>, rather than magnitude. Through numerical optimization using empirical JND data, central adaptation parameters were derived: a central dynamic range of $0.215\text{ sones}$, $95\%$ central normalization, and a loudness JND constant of $5.5 \times 10^{-5}\text{ sones per ms}$. The findings argue that <strong>loudness reflects peripheral neural coding</strong>, while the <strong>intensity JND reflects central neural coding</strong>.</p>
+    </div>
+
+    <h2>Introduction: Defining the Dynamic Range Paradox</h2>
+
+    <p>Human hearing operates over an extremely wide dynamic range (over $120\text{ dB}$), yet neural structures like the auditory nerve have a very limited dynamic range (approximately $35\text{ dB}$). This is the general <strong>dynamic range problem</strong>. This paper focuses on a specific psychoacoustic contradiction: the <strong>Dynamic Range Paradox</strong>.</p>
+
+    <p>It is conventionally assumed that loudness ($L$) and intensity Just-Noticeable Difference ($\text{JND}$) are driven by the same neural signal, implying a reciprocal relationship. However, as shown by Allen and Neely, this relationship breaks down:</p>
+    <ul>
+        <li><strong>Loudness Growth:</strong> Loudness continues to grow significantly as intensity increases.</li>
+        <li><strong>JND Performance:</strong> Improvement in intensity discrimination performance plateaus above approximately $20\text{ dB}$ sensation level ($\text{SL}$), meaning the $\text{JND}$ remains nearly constant (near-miss to Weber's Law).</li>
+    </ul>
+
+    <p>The contradiction is that the large neural dynamic range implied by loudness data is inconsistent with the relatively small dynamic range implied by JND data.</p>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>The Loudness JND and the Paradoxical Relationship</h3>
+    <p>The loudness $\text{JND}$ ($\Delta L_{\text{jnd}}$) is the just-noticeable change in loudness corresponding to the physical intensity $\text{JND}$ ($\Delta I_{\text{jnd}}$). The original definition relates the intensity difference to the resulting loudness difference:</p>
+    <div class="formula-box">
+        $$\Delta L_{\text{jnd}} = L(I + \Delta I_{\text{jnd}}) - L(I)$$
+        <p>This formula was shown to require modification above $20\text{ dB SL}$ because the observed $\Delta L_{\text{jnd}}$ does not grow as quickly as the loudness function $L(I)$, defining the paradox.</p>
+    </div>
+
+    <h2>Modeling Approach: The Central Adaptive Solution</h2>
+
+    <p>The solution tested here is the hypothesis that <strong>central neural adaptation</strong> occurs in humans, similar to recent findings in animal models (e.g., in the inferior colliculus). This adaptation acts to normalize the neural signal relative to the mean sound level, effectively shifting the neural operating point to suit the prevailing stimulus level.</p>
+
+    <p>The model assumes that: (1) loudness and loudness change are coded independently at a central level, and (2) the intensity $\text{JND}$ is determined by a **fixed central neural dynamic range** whose lower limit is raised by adaptation to high mean levels.</p>
+
+    <h3>A. The Central Excitation Pattern Model</h3>
+    <p>The model uses the established time-varying excitation pattern loudness model (Moore et al.) as the **peripheral input**. This peripheral model calculates 'instantaneous loudness' through spectral and temporal integration. The proposed additions form the **central model**:</p>
+    <ol>
+        <li><strong>Central Adaptation (CA):</strong> Normalizes the peripheral loudness signal based on the mean level.</li>
+        <li><strong>Central Loudness ($L_{\text{Cen}}$):</strong> The output of the CA stage.</li>
+        <li><strong>Rate-of-Change Detector:</strong> The central decision stage that uses the maximum rate of change to predict the $\text{JND}$.</li>
+    </ol>
+    
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>B. Rate-of-Change Detection</h3>
+    <p>Based on evidence suggesting that intensity change detection is governed by the rate of change (e.g., Riesz's method of beats), the threshold expression is defined in the time domain as the minimum detectable difference in the rate of loudness change:</p>
+
+    <div class="formula-box">
+        $$\left(\frac{\Delta L}{\Delta t}\right)_{\text{jnd}} = \max\left(\frac{|\Delta L_{\text{Cen}}|}{\Delta t}\right)_{\text{inc}} - \max\left(\frac{|\Delta L_{\text{Cen}}|}{\Delta t}\right)_{\text{ped}}$$
+        <p>Where $\left(\Delta L/\Delta t\right)_{\text{jnd}}$ is the fixed rate of change threshold, $\text{inc}$ is the change during the increment, and $\text{ped}$ is the change during the pedestal (background) signal.</p>
+    </div>
+    
+    <div class="jargon-box">
+        <strong>Jargon Explained: Rate-of-Change Detection</strong><br>
+        This refers to the hypothesis that the auditory system detects loudness changes based on the speed (or slope) of the change ($\Delta L/\Delta t$) rather than simply the final magnitude difference ($\Delta L$). This explains why detecting a very slow but large intensity change is harder than detecting a fast, smaller change.
+    </div>
+
+    <h2>Central Adaptation Parameters</h2>
+
+    <p>The central adaptation (CA) stage has two free parameters that were determined through numerical optimization to fit empirical $\text{JND}$ data for tones (Viemeister and Bacon) and noise (Miller) over a wide dynamic range. The adaptation is implemented as a conditional normalization of the peripheral loudness ($L$).</p>
+
+    <div class="formula-box">
+        $$\text{L}_{\text{Cen}} = \begin{cases} L & \text{for } \overline{L} < T_{\text{CA}} \\ (1-\alpha)L + T_{\text{CA}}/\overline{L} & \text{for } \overline{L} \ge T_{\text{CA}} \end{cases}$$
+        <p>Where $\overline{L}$ is the mean peripheral loudness (pedestal level).</p>
+    </div>
+
+    <h3>Optimized Parameters and Findings:</h3>
+    <ul>
+        <li><strong>$T_{\text{CA}}$ (Central Dynamic Range/Threshold):</strong> **$0.215\text{ sones}$** (approximately $25\text{ dB SPL}$ for a $1\text{ kHz}$ tone). This value aligns well with the known dynamic range of primary auditory nerve fibers ($\approx 35\text{ dB}$).</li>
+        <li><strong>$\alpha$ (Normalization Amount):</strong> **$0.95$** (resulting in $95\%$ normalization). This reflects the known sub-optimal adaptation behavior of auditory neurons.</li>
+        <li><strong>Fixed JND Rate Constant:</strong> $\left(\Delta L/\Delta t\right)_{\text{jnd}}$ was fixed at **$5.5 \times 10^{-5}\text{ sones/ms}$**, representing the internal noise level.</li>
+    </ul>
+
+    <h3>Model Performance</h3>
+    <p>The optimized Central Excitation Pattern Model achieved a good fit to the continuous-pedestal data for both tones ($r=0.99$) and noise ($r=0.94$).</p>
+    <ul>
+        <li><strong>Peripheral Model Failure:</strong> The unaltered peripheral model alone fails to predict the intensity $\text{JND}$ at high levels. The peripheral model's output diverges strongly from the data above approximately $0.2\text{ sones}$.</li>
+        <li><strong>Central Model Success:</strong> The addition of central adaptation is necessary to hold the prediction to the constant $\text{JND}$ observed at high levels (Weber's Law/near-miss region).</li>
+    </ul>
+
+    <div class="figure-placeholder">
+            </div>
+
+    <h2>Supplementary Experiment and Model Validation</h2>
+
+    <p>A supplementary experiment was conducted using linearly ramped increments in noise pedestals to confirm the assumption that detection is based on the **rate-of-change** rather than magnitude.</p>
+    <ul>
+        <li><strong>Procedure:</strong> Listeners detected symmetrical, linearly ramped up-down increments in noise. Half-ramp durations varied widely ($5\text{ ms}$ to $50,000\text{ ms}$).</li>
+        <li><strong>Finding:</strong> The intensity $\text{JND}$ showed a symmetrical, non-monotonic curve with the **smallest thresholds (best detection) at a half-ramp duration of $100\text{ ms}$**. The $\text{JND}$ increased significantly for very long (slow) ramps, confirming Riesz's earlier findings and validating the use of the rate-of-change detector.</li>
+    </ul>
+
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>Model Prediction on Pseudo-Continuous Data</h3>
+    <p>The optimized model was tested against independent data from other studies (Plack et al., Gallun and Hafter, Oxenham) where the continuity constraint held loosely. The model provided a reasonable qualitative and quantitative fit to these diverse pseudo-continuous $\text{JND}$ data (overall fit $r=0.91$), demonstrating its generality in explaining the effects of duration, envelope shape, and masking noise on the $\text{JND}$.</p>
+
+    <h2>Summary and Conclusion</h2>
+    <p>The Dynamic Range Paradox, where loudness growth and intensity discrimination performance contradict, is resolved by separating the coding loci:</p>
+    <ol>
+        <li><strong>Loudness ($L$):</strong> Reflects **peripheral neural coding** (output of the cochlea/auditory nerve, modeled by the standard excitation pattern model).</li>
+        <li><strong>Intensity JND ($\Delta I_{\text{jnd}}$):</strong> Reflects **central neural coding** (modeled by the adaptive central stage).</li>
+    </ol>
+    <p>The central model uses adaptation (a $0.215\text{ sone}$ threshold and $95\%$ normalization) to normalize the large dynamic range of the peripheral signal, causing the sensitivity to plateau at high levels and explaining why the $\text{JND}$ is nearly constant across a wide range of intense sounds.</p>
+
+</div>
+
+</body>
+</html>

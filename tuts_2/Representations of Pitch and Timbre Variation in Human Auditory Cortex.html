@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Representations of Pitch and Timbre Variation in Human Auditory Cortex</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #0056b3;
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.2em;
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.2em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #e8f4f8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #3498db;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Representations of Pitch and Timbre Variation in Human Auditory Cortex</h1>
+    <p style="text-align: center; font-style: italic;">Emily J. Allen, Philip C. Burton, Cheryl A. Olman, and Andrew J. Oxenham</p>
+
+    <div class="abstract-box">
+        <h2>Abstract</h2>
+        <p>This study investigated the representation of pitch and timbre variations in the human auditory cortex. The central question was whether processing is <strong>modular</strong> (distinct brain regions for pitch or timbre) or <strong>distributed</strong> (overlapping neural populations). Listeners heard sound sequences that varied parametrically in <strong>Fundamental Frequency ($F_0$, eliciting pitch changes)</strong> or <strong>Spectral Centroid (eliciting brightness changes, an aspect of timbre)</strong>. The BOLD response increased with increasing sequence variance along each dimension. Univariate analysis showed that the regions most responsive to pitch or timbre variation were largely <strong>overlapping</strong>. However, <strong>Multivoxel Pattern Analysis (MVPA)</strong> successfully discriminated between the patterns of activation, suggesting a <strong>distributed code</strong> where the same cortical regions house distinct, intermingled neural populations for processing both dimensions.</p>
+    </div>
+
+    <h2>Introduction: The Modular vs. Distributed Debate</h2>
+    <p>Pitch and timbre are fundamental to auditory perception. While pitch governs melody, timbre (or sound quality) helps us distinguish instruments and speech sounds. Previous animal and human studies have yielded conflicting results regarding their cortical representation:</p>
+    <ul>
+        <li><strong>Modular Hypothesis:</strong> Suggests distinct anatomical regions preferentially code for one dimension (e.g., pitch-selective neurons found near the anterolateral border of primary auditory cortex).</li>
+        <li><strong>Distributed Hypothesis:</strong> Suggests a single population of neurons codes for multiple attributes (pitch, timbre, and location).</li>
+    </ul>
+    <p>Frequency-mapping studies often use pure tones, which conflate pitch (related to $F_0$) and brightness (related to spectral centroid), making it difficult to fully separate their neural codes.</p>
+
+    <h2>Materials and Methods</h2>
+
+    <h3>A. Stimuli and Experimental Design</h3>
+    <p>The experiment used a passive listening $\text{fMRI}$ task. Sounds were presented as $30\text{-second}$ sequences of $60$ complex tones, interspersed with silent baseline gaps.</p>
+    <div class="jargon-box">
+        <strong>Jargon Explained: Stimulus Parameters</strong><br>
+        <ul>
+            <li><strong>Pitch ($F_0$):</strong> The physical correlate of pitch. Varying $F_0$ shifts the frequencies of all harmonics.</li>
+            <li><strong>Timbre/Brightness (Spectral Centroid):</strong> The center of mass of the spectrum, correlated with perceived brightness. Varying the spectral centroid shifts the amplitudes (spectral envelope) of the harmonics, but not their actual frequencies.</li>
+        </ul>
+    </div>
+
+    <h4>Parametric Variation and Perceptual Salience</h4>
+    <p>The sequences varied parametrically in range (or "step size") to quantify the sensitivity of brain regions to variations in the dimension of interest. Crucially, changes in pitch and timbre were equated for <strong>perceptual salience</strong> by making scale steps multiples of the average difference limen ($\text{DL}$) for each dimension ($1.3\%$ for pitch $\text{DL}$, $4.5\%$ for timbre $\text{DL}$).</p>
+    <ul>
+        <li><strong>Scales:</strong> Step sizes were $1, 2, 5$, or $10$ times the average $\text{DL}$.</li>
+        <li><strong>Center Frequencies:</strong> $F_0$ was centered around $200\text{ Hz}$; spectral centroid was centered around $900\text{ Hz}$.</li>
+    </ul>
+
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>B. Data Analysis Techniques</h3>
+    <ul>
+        <li><strong>BOLD Response:</strong> Measured using $\text{fMRI}$ (3T Siemens Prisma Scanner) with a sparse temporal acquisition technique (TR of $6000\text{ ms}$).</li>
+        <li><strong>Univariate Analysis:</strong> Traditional analysis comparing the average $\text{BOLD}$ activity across large regions of interest ($\text{ROI}$) for pitch variation versus timbre variation.</li>
+        <li><strong>Multivoxel Pattern Analysis (MVPA):</strong> A sophisticated technique that analyzes the <strong>pattern of activity</strong> across small groups of voxels (multivoxel patterns) to determine if different conditions (pitch vs. timbre) can be discriminated, even if the overall average activity (univariate mean) is the same.</li>
+    </ul>
+
+    <h2>Results: Overlap in Region, Separation in Pattern</h2>
+
+    <h3>1. Univariate Analysis: Overlapping Regions</h3>
+    <p>The $\text{BOLD}$ response consistently showed that activation increased linearly with increasing **step size** (range) for both pitch and timbre variations. This confirmed that the regions were sensitive to the degree of perceptual variation.</p>
+    <ul>
+        <li><strong>Group Level:</strong> Single-sample t-tests comparing pitch vs. silence and timbre vs. silence showed strong bilateral activation in and around Heschl's Gyrus ($\text{HG}$).</li>
+        <li><strong>Direct Contrast (Pitch vs. Timbre):</strong> A paired t-test found **no significant difference** between the pitch and timbre conditions at the group level (no surviving voxels), and only minor, inconsistent differences at the individual level.</li>
+        <li><strong>Spatial Correlation:</strong> Correlation maps comparing BOLD response with increasing step size for pitch and timbre showed a **large degree of spatial overlap** bilaterally. The results did not support the modular hypothesis of spatially distinct processing regions for pitch and timbre.</li>
+    </ul>
+
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>2. Multivoxel Pattern Analysis (MVPA): Distributed Code</h3>
+    <p>MVPA was performed to determine if the <strong>pattern</strong> of neural activity could differentiate between pitch and timbre variations, despite the average activity being the same.</p>
+    <ul>
+        <li><strong>Classifier Performance:</strong> The classifier successfully predicted pitch versus timbre conditions with an average accuracy of $61.6\%$, which was significantly above chance ($50\%$). For $8$ of the $10$ subjects, performance was significantly above chance (up to $86\%$ correct).</li>
+    </ul>
+
+    <div class="jargon-box">
+        <strong>MVPA Conclusion (Distributed Code)</strong><br>
+        The success of the MVPA, combined with the overlapping univariate results, supports a <strong>distributed population code</strong>: Pitch and timbre engage distinct, intermingled micro-circuits within the same gross anatomical region of the auditory cortex.
+    </div>
+
+    <h3>3. Excitation-Pattern Analysis (Testing Tonotopy)</h3>
+    <p>A separate analysis tested whether the $\text{BOLD}$ response simply reflected low-level changes in the cochlear representation (tonotopy) rather than higher-level perceptual features (pitch/timbre). The simulated change in auditory excitation ($\Delta E$) between successive notes was calculated using an auditory excitation pattern model.</p>
+    <ul>
+        <li><strong>Prediction:</strong> The model predicted that changes in excitation ($\Delta E$) would be larger for timbre sequences than for pitch sequences.</li>
+        <li><strong>Actual BOLD Response:</strong> The $\text{BOLD}$ response did not fall on a single line as a function of the predicted $\Delta E$. Instead, the data separated based on whether pitch or timbre was varying.</li>
+    </ul>
+    <p>This suggests that the $\text{BOLD}$ responses are <strong>not simply a reflection of tonotopic changes</strong>; the auditory cortex is extracting the higher-level features of pitch and timbre, even when the underlying excitation patterns are different.</p>
+
+    <h2>Discussion and General Conclusions</h2>
+
+    <p>This study provides strong evidence against the modular hypothesis in favor of a distributed coding scheme for pitch and timbre in the human auditory cortex.</p>
+    <ul>
+        <li><strong>Neural Substrate:</strong> Pitch and timbre are processed in common anatomical regions, primarily throughout Heschl's Gyrus ($\text{HG}$).</li>
+        <li><strong>Coding Mechanism:</strong> The ability of $\text{MVPA}$ to decode the two dimensions suggests that distinct circuitries or populations of neurons, intermingled within the same region, are responsible for coding variations in pitch and timbre. This aligns with single-unit animal studies.</li>
+        <li><strong>Melody Processing:</strong> The use of melodic sequences may have activated higher-level processing regions (along the superior temporal gyri). However, the general symmetry of activation across hemispheres suggests the fundamental processing occurs bilaterally.</li>
+    </ul>
+    <p>The findings support the idea of a highly versatile neural population in the auditory cortex that can detect and recognize patterns of sound variation that generalize beyond a single dimension, reflecting the complex, integrated nature of human speech and music perception.</p>
+
+</div>
+
+</body>
+</html>

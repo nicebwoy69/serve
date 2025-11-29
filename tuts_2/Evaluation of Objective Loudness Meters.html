@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of Objective Loudness Meters (ITU-R Study)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #ff5722; /* Deep Orange */
+        }
+        h1 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 2.1em;
+            color: #ff5722;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 35px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 1.1em;
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .abstract-box {
+            background-color: #ffe0b2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border-left: 5px solid #ff9800;
+        }
+        .jargon-box {
+            background-color: #f4f8fb;
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .formula-box {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f4f8fb;
+            border: 1px solid #d0e0f0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .figure-placeholder {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-style: italic;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #2c3e50;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+    </style>
+    <!-- MathJax Configuration for rendering LaTeX -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Evaluation of Objective Loudness Meters</h1>
+    <p style="text-align: center; font-style: italic;">Gilbert A. Soulodre, Communications Research Centre (ITU-R Study)</p>
+
+    <div class="abstract-box">
+        <h2>ABSTRACT</h2>
+        <p>The $\text{ITU-R}$ launched a formal evaluation to identify an objective measure capable of reliably equalizing the perceived loudness of broadcast audio. Ten commercial loudness meters were assessed against an extensive subjective database derived from listening tests conducted across five global sites. The evaluation, using several specialized performance metrics, found that simple energy-based measures—specifically the **$L_{\text{eq}}(\text{RLB})$** (Revised Low-frequency B-curve Weighted $\text{RMS}$) and **$L_{\text{eq}}$** (unweighted $\text{RMS}$)—outperformed all ten complex meters submitted by private companies and research organizations.</p>
+    </div>
+
+    <h2>1. Introduction: The Broadcast Loudness Problem</h2>
+    <p>Variation in audio content (music, speech, sound effects) and the application of dynamics processing frequently lead to significant and undesirable subjective loudness changes in broadcasts. The $\text{ITU-R}$ established the Special Rapporteur Group ($\text{SRG3}$) to identify an objective loudness meter that could standardize perceived levels, leading to a new $\text{ITU-R}$ recommendation.</p>
+
+    <h2>2. Subjective Database and Methodology</h2>
+
+    <h3>2.1 Subjective Test Set-up</h3>
+    <p>A subjective database was developed using typical monophonic program material ($\text{96}$ audio sequences) from television and radio broadcasts.</p>
+    <ul>
+        <li><strong>Participants:</strong> $\text{97}$ listeners across five global test sites (e.g., $\text{ABC}, \text{BBC}, \text{CRC}$).</li>
+        <li><strong>Task:</strong> **Loudness matching**. Subjects adjusted the level (gain) of a test item until its perceived loudness matched a fixed reference signal ($\text{English female speech}$ at $\text{60 dBA}$).</li>
+        <li><strong>Setup:</strong> Acoustically "dead" environment with a single loudspeaker placed in front of the listener.</li>
+    </ul>
+    <div class="figure-placeholder">
+            </div>
+
+    <h3>2.2 Data Quality and Pre-processing</h3>
+    <p>Despite unavoidable experimental variations (loudspeaker choice, room acoustics, cultural differences), the analysis showed a very high degree of agreement between test sites (correlation $r=0.99$).</p>
+    <ul>
+        <li><strong>Consistency Check:</strong> Data from four subjects showing significantly low correlation to the mean were discarded.</li>
+        <li><strong>Normalization:</strong> Remaining data were processed using a **zero-order correction** (DC component removed) to ensure the meters were evaluated on **relative loudness** (the required gain difference) rather than absolute loudness.</li>
+    </ul>
+
+    <h2>3. Objective Loudness Meters</h2>
+    <p>Ten commercial and proprietary loudness meters were submitted by seven proponents for formal evaluation. The author contributed two basic $\text{RMS}$ algorithms as benchmarks.</p>
+    <ul>
+        <li>**Meter M ($\text{L}_{\text{eq}}(\text{RLB})$):** The $\text{Revised Low-frequency B-curve}$ weighted $\text{RMS}$ measure (high-pass filter).</li>
+        <li>**Meter L ($\text{L}_{\text{eq}}$):** The unweighted $\text{RMS}$ measure.</li>
+        <li>**Meter B ($\text{L}_{\text{eq}}(\text{A})$):** Later revealed to be the $\text{A-weighted}$ $\text{L}_{\text{eq}}$ measure.</li>
+    </ul>
+
+    <h2>4. Performance Metrics (Evaluation)</h2>
+    <p>Nine performance metrics were established to assess the meters, reflecting the need for both high average performance and robustness against errors (outliers), especially considering that large errors in broadcast applications are unacceptable.</p>
+
+    <div class="jargon-box">
+        <strong>Metric Focus: Penalizing Outliers</strong><br>
+        Metrics were designed to severely penalize meters if a prediction error exceeded a threshold (e.g., $\text{10 dB}$), as this would result in an unacceptable loudness jump in an automated broadcast system.
+    </div>
+
+    <h3>4.1 Key Performance Metrics (in $\text{dB}$ units)</h3>
+    <ol>
+        <li>**RMSE ($\text{Root-Mean-Square Error}$):** Measures average error magnitude, emphasizing larger errors.</li>
+        <li>**AAE ($\text{Average Absolute Error}$):** Simple average of the absolute error.</li>
+        <li>**MAE ($\text{Maximum Absolute Error}$):** The largest single error produced by the meter (least robust measure).</li>
+        <li>**LPI ($\text{Loudness Performance Index}$):** A penalty-based metric that computes an overall score from the product of individual performance indices. The score drops to zero if the error exceeds $\text{10 dB}$. The performance index for a single audio sequence is given by:
+            $$ \text{Performance Index} = \max\left\{1 - \left|\frac{\text{subj}(i) - \text{obj}(i)}{L}\right|^p, 0\right\} $$
+            Where $L=10\text{ dB}$ (the limit) and $p=2.5$ (shaping factor).</li>
+        <li>**ALPI ($\text{Advanced Loudness Performance Index}$):** A variant of $\text{LPI}$ that does **not penalize** errors less than $\pm 1.25\text{ dB}$, reflecting the limited resolution of human hearing and the confidence intervals of the subjective data.</li>
+    </ol>
+
+    <h2>5. Results: The Ranking of Meters</h2>
+
+    <h3>Meter Rankings Summary (Table 3)</h3>
+    <p>The results confirmed a clear ranking of the objective meters. The meters were evaluated on their ability to predict the subjective gain required to match the reference loudness.</p>
+
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Meter ($\text{Identity}$)</th>
+                <th>Metric (Best Score)</th>
+                <th>RMSE ($\text{dB}$)</th>
+                <th>Worst Case Error ($\text{MAE, dB}$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>$\mathbf{M} \text{ } [\text{L}_{\text{eq}}(\text{RLB})]$</td>
+                <td>LPI ($0.6973$) / ALPI ($0.7459$)</td>
+                <td>$\mathbf{1.15}$</td>
+                <td>$3.62$</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>$\mathbf{L} \text{ } [\text{L}_{\text{eq}}]$</td>
+                <td>Spearman $\rho$ ($0.9713$)</td>
+                <td>$1.26$</td>
+                <td>$4.33$</td>
+            </tr>
+            <tr>
+                <td>Worst</td>
+                <td>$\mathbf{H}$</td>
+                <td>(Lowest correlation $\text{R}=0.848$)</td>
+                <td>$3.33$</td>
+                <td>$6.89$</td>
+            </tr>
+            <tr>
+                <td>Standard</td>
+                <td>$\text{B } [\text{L}_{\text{eq}}(\text{A})]$</td>
+                <td>(Ranked $10^{\text{th}}$ overall)</td>
+                <td>$2.19$</td>
+                <td>$6.39$</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Key Findings:</h3>
+    <ul>
+        <li>**Overall Winner:** **Meter M ($\text{L}_{\text{eq}}(\text{RLB})$)** was found to be the best meter according to **all nine performance metrics**. Its $\text{RMSE}$ ($1.15\text{ dB}$) and $\text{MAE}$ ($3.62\text{ dB}$) were the lowest.</li>
+        <li>**Runner-Up:** **Meter L ($\text{L}_{\text{eq}}$)** (unweighted $\text{RMS}$) performed almost equally well ($\text{RMSE}=1.26\text{ dB}$).</li>
+        <li>**Commercial Meter Performance:** None of the ten complex commercial loudness meters submitted performed as well as the two simple $\text{RMS}$-based measures.</li>
+        <li>**Simple vs. Complex:** The findings suggest that for typical broadcast material, a simple energy-based loudness measure is more robust than more complex measures that may include detailed perceptual models.</li>
+    </ul>
+
+    <h2>6. Conclusions</h2>
+    <p>The comprehensive $\text{ITU-R}$ evaluation established the **$L_{\text{eq}}(\text{RLB})$** (a high-pass filtered $\text{RMS}$ measure) as the best performing objective loudness meter for broadcast applications, with the basic unweighted $\text{L}_{\text{eq}}$ measure ranking second. This outcome supports the notion that a simple energy-based approach is superior for leveling the loudness of dynamically varying program material. The results of this study were subsequently used by the $\text{ITU-R}$ in preparing a new recommendation on loudness metering.</p>
+
+    <div class="figure-placeholder">
+            </div>
+
+</div>
+
+</body>
+</html>
